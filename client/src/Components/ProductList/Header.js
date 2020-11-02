@@ -1,0 +1,133 @@
+import React, { useState } from 'react';
+import larunoLogo from '../../Assets/laruno-hiest.png';
+import downArrow from '../../Assets/down-arrow.png';
+import shoppingCart from '../../Assets/shopping-cart.png';
+import bell from '../../Assets/bell.png';
+import { Dropdown, DropdownMenu, DropdownToggle, NavLink } from 'reactstrap';
+import TextField from '@material-ui/core/TextField';
+import SearchIcon from '@material-ui/icons/Search';
+
+const Header = () => {
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const toggle = () => {
+        setDropdownOpen(prevState => !prevState);
+    };
+ 
+    return (
+        <div style={styles.container}>
+            <div style={styles.logo}>
+                <img src={larunoLogo} alt='logo' style={styles.logoLaruno} />
+            </div>
+            <div style={styles.topic}>
+                <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+                    <DropdownToggle
+                    tag="span"
+                    data-toggle="dropdown"
+                    aria-expanded={dropdownOpen}
+                    style={styles.dropdown}>
+                        Topics
+                        <img src={downArrow} alt='arrow' height={15} style={{marginLeft:'0.5rem'}} />
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <div onClick={toggle} style={styles.list}>Business</div>
+                        <div onClick={toggle} style={styles.list}>Career</div>
+                        <div onClick={toggle} style={styles.list}>Finance</div>
+                        <div onClick={toggle} style={styles.list}>Marketing</div>
+                        <div onClick={toggle} style={styles.list}>Sales</div>
+                    </DropdownMenu>
+                </Dropdown>
+            </div>
+            <div style={styles.searchBar}>
+                <TextField
+                    label="Search here"
+                    id="outlined-size-small"
+                    variant="outlined"
+                    size="small"
+                    leftIcon={<SearchIcon color="#000" />}
+                    style={styles.searchField}
+                />
+            </div>
+            <div style={styles.cart}>
+                <img src={shoppingCart} alt='cart' height={20} />
+            </div>
+            <div style={styles.bell}>
+                <img src={bell} alt='bell' height={20} />
+            </div>
+            <NavLink href='/register'>
+                <div style={styles.authBtn}>
+                    Register
+                </div>
+            </NavLink>
+        </div>
+    );
+};
+
+const styles = {
+    container: {
+        backgroundColor: '#f3f3f3',
+        height: '10vh',
+        display: 'flex',
+        position: 'relative',
+    },
+    logo: {
+        margin: '1.2em 2em',
+    },
+    logoLaruno: {
+        height: '2vw',
+    },
+    topic: {
+        display: 'flex',
+        margin: '1.2em 3em',
+    },
+    dropdown: {
+        cursor: 'pointer',
+        color: '#033e66',
+        fontWeight: '600',
+    },
+    list: {
+        cursor: 'pointer',
+        margin: '0.2rem 1rem',
+        color: '#033e66',
+    },
+    searchBar: {
+        margin: '0.8em 3em',
+    },
+    searchField: {
+        backgroundColor: 'white',
+        width: '30rem',
+    },
+    cart: {
+        cursor: 'pointer',
+        height: '2.2em',
+        width: '2.2em',
+        paddingTop: '0.2em',
+        paddingLeft: '0.45em',
+        margin: '1em 1em',
+        borderRadius: '25%',
+        backgroundColor: '#fff',
+        boxShadow: '0 0 0.25rem #a4a4a4',
+    },
+    bell: {
+        cursor: 'pointer',
+        height: '2.2em',
+        width: '2.2em',
+        paddingTop: '0.2em',
+        paddingLeft: '0.45em',
+        margin: '1em 0em',
+        borderRadius: '25%',
+        backgroundColor: '#fff',
+        boxShadow: '0 0 0.25rem #a4a4a4',
+    },
+    authBtn: {
+        textDecoration: 'none',
+        color: '#ff4500',
+        fontWeight: '700',
+        margin: '0.4rem 4rem',
+        padding: '0.2rem 0.5rem',
+        border: '3px solid #ff4500',
+        borderRadius: '10px',
+    },
+};
+
+export default Header;
