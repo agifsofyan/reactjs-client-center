@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Dropdown, DropdownMenu, DropdownToggle } from 'reactstrap';
-import downArrow from '../../Assets/down-arrow.png';
+import downArrow from '../../Assets/down-arrow-thin.png';
 
 const Sort = () => {
     const [dropdownTopic, setDropdownTopic] = useState(false);

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import larunoLogo from '../../Assets/laruno-hiest.png';
-import downArrow from '../../Assets/down-arrow.png';
-import shoppingCart from '../../Assets/shopping-cart.png';
+import larunoLogo from '../../Assets/laruno.png';
+import downArrow from '../../Assets/down-arrow-thick.png';
+import shoppingCart from '../../Assets/shopping-cart-black.png';
 import bell from '../../Assets/bell.png';
 import { Dropdown, DropdownMenu, DropdownToggle, NavLink } from 'reactstrap';
 import TextField from '@material-ui/core/TextField';
@@ -17,7 +17,9 @@ const Header = () => {
     return (
         <div style={styles.container}>
             <div style={styles.logo}>
-                <img src={larunoLogo} alt='logo' style={styles.logoLaruno} />
+                <a href='/'>
+                    <img src={larunoLogo} alt='logo' style={styles.logoLaruno} />
+                </a>
             </div>
             <div style={styles.topic}>
                 <Dropdown isOpen={dropdownOpen} toggle={toggle}>

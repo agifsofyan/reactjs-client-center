@@ -11,11 +11,13 @@ const Card = () => {
 
   const productGetList = useSelector((state) => state.product.productGetList);
 
+  const list = productGetList.slice(0,4);
+
   const renderCards = () => {
-    return productGetList.map((val,index) => {
+    return list.map((val,index) => {
       return (
         <div key={index} style={styles.cardContainer}>
-          <img src={val.image} alt='main pic' style={styles.image} />
+          <img src={val.image} alt='card pic' style={styles.image} />
           <div style={styles.title}>
             {val.title}
           </div>
@@ -84,13 +86,15 @@ const styles = {
     margin: '0.7em 0.9em',
     fontSize: '0.7em',
     padding: '0.4em 0em',
+    textDecoration: 'line-through',
+    textDecorationColor: 'red',
   },
   discount: {
     color: 'white',
     margin: '0.7em 0.9em',
     fontSize: '0.7em',
     fontWeight: '600',
-    borderRadius: '0.5em',
+    borderRadius: '0.75em',
     padding: '0.4em',
     backgroundColor: '#464646',
   },
@@ -100,13 +104,15 @@ const styles = {
     padding: '0.4em 0em',
   },
   joinBtn: {
+    cursor: 'pointer',
     display: 'flex',
     justifyContent: 'center',
     margin: '0.6em 1em',
     color: 'white',
     fontWeight: '600',
-    borderRadius: '0.75em',
+    borderRadius: '0.5em',
     backgroundColor: '#ff4500',
+    boxShadow: '0 0 5px #ff4500',
   },
 };
 

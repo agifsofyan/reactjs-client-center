@@ -6,7 +6,7 @@ import {
   LoginPage,
 } from './Pages';
 
-import Card from './Components/ProductList/Card';
+import Footer from './Components/ProductList/Footer';
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
       <Route path="/" component={ProductList} exact />
       <Route path="/register" component={RegisterPage} />
       <Route path="/login" component={LoginPage} />
-      <Route path="/card" component={Card} />
+      <Route path="/footer" component={Footer} />
     </Switch>
   );
 };

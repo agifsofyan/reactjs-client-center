@@ -5,6 +5,7 @@
             "image": "http://member.laruno.com/storage/uploads/products/1601542109_thumbnail_.jpg",
             "title": "eCourse The Business Booster",
             "subtitle": "Lorem ipsum dolor sit amet",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisi arcu, aliquet vitae ultricies ac, posuere eu velit.",
             "price": "Rp 1.900.000",
             "discount": "Hemat 80%",
             "discPrice": "Rp 359.000"
@@ -14,6 +15,7 @@
             "image": "http://member.laruno.com/storage/uploads/products/1602657517_thumbnail_tdw11.jpg",
             "title": "Talk - Tung Desem Waringin",
             "subtitle": "Lorem ipsum dolor sit amet",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisi arcu, aliquet vitae ultricies ac, posuere eu velit.",
             "price": "Rp 1.900.000",
             "discount": "Hemat 80%",
             "discPrice": "Rp 0"
@@ -23,6 +25,7 @@
             "image": "http://member.laruno.com/storage/uploads/products/1601873916_thumbnail_lsob.jpg",
             "title": "Laruno School of Business",
             "subtitle": "Lorem ipsum dolor sit amet",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisi arcu, aliquet vitae ultricies ac, posuere eu velit.",
             "price": "Rp 8.000.000",
             "discount": "Hemat 80%",
             "discPrice": "Rp 2.000.000"
@@ -32,6 +35,37 @@
             "image": "http://member.laruno.com/storage/uploads/products/1601543796_thumbnail_.jpg",
             "title": "Mindset Hack for Enterpreneur",
             "subtitle": "Lorem ipsum dolor sit amet",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisi arcu, aliquet vitae ultricies ac, posuere eu velit.",
+            "price": "Rp 1.900.000",
+            "discount": "Hemat 80%",
+            "discPrice": "Rp 99.000"
+        },
+        {
+            "id": 5,
+            "image": "http://member.laruno.com/storage/uploads/products/1601543796_thumbnail_.jpg",
+            "title": "Mindset Hack for Enterpreneur",
+            "subtitle": "Lorem ipsum dolor sit amet",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisi arcu, aliquet vitae ultricies ac, posuere eu velit.",
+            "price": "Rp 1.900.000",
+            "discount": "Hemat 80%",
+            "discPrice": "Rp 99.000"
+        },
+        {
+            "id": 6,
+            "image": "http://member.laruno.com/storage/uploads/products/1601543796_thumbnail_.jpg",
+            "title": "Mindset Hack for Enterpreneur",
+            "subtitle": "Lorem ipsum dolor sit amet",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisi arcu, aliquet vitae ultricies ac, posuere eu velit.",
+            "price": "Rp 1.900.000",
+            "discount": "Hemat 80%",
+            "discPrice": "Rp 99.000"
+        },
+        {
+            "id": 7,
+            "image": "http://member.laruno.com/storage/uploads/products/1601543796_thumbnail_.jpg",
+            "title": "Mindset Hack for Enterpreneur",
+            "subtitle": "Lorem ipsum dolor sit amet",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque nisi arcu, aliquet vitae ultricies ac, posuere eu velit.",
             "price": "Rp 1.900.000",
             "discount": "Hemat 80%",
             "discPrice": "Rp 99.000"
