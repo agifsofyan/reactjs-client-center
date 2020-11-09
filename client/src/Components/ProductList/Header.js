@@ -6,9 +6,14 @@ import bell from '../../Assets/bell.png';
 import { Dropdown, DropdownMenu, DropdownToggle, NavLink } from 'reactstrap';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
+import { useSelector } from 'react-redux';
 
 const Header = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
+
+    const loggedIn = useSelector((state) => state.user.loggedIn);
+    const userData = useSelector((state) => state.user.userData);
+    console.log(loggedIn);
 
     const toggle = () => {
         setDropdownOpen(prevState => !prevState);
@@ -50,17 +55,27 @@ const Header = () => {
                     style={styles.searchField}
                 />
             </div>
-            <div style={styles.cart}>
-                <img src={shoppingCart} alt='cart' height={20} />
-            </div>
+            <a href='/cart'>
+                <div style={styles.cart}>
+                    <img src={shoppingCart} alt='cart' height={20} />
+                </div>
+            </a>
             <div style={styles.bell}>
                 <img src={bell} alt='bell' height={20} />
             </div>
-            <NavLink href='/register'>
-                <div style={styles.authBtn}>
-                    Register
+            {
+                loggedIn
+                ?
+                <div style={styles.greet}>
+                    Hi, {userData.name}
                 </div>
-            </NavLink>
+                :
+                <NavLink href='/auth'>
+                    <div style={styles.authBtn}>
+                        Register / Login
+                    </div>
+                </NavLink>
+            }
         </div>
     );
 };
@@ -125,10 +140,19 @@ const styles = {
         textDecoration: 'none',
         color: '#ff4500',
         fontWeight: '700',
-        margin: '0.4rem 4rem',
+        margin: '0.4rem 2rem',
         padding: '0.2rem 0.5rem',
         border: '3px solid #ff4500',
         borderRadius: '10px',
+    },
+    greet: {
+        textDecoration: 'none',
+        color: '#ff4500',
+        fontWeight: '700',
+        margin: '0.4rem 2rem',
+        padding: '0.2rem 0.5rem',
+        // border: '3px solid #ff4500',
+        // borderRadius: '10px',
     },
 };
 

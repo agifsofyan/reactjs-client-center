@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Skeleton from '@material-ui/lab/Skeleton';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../Redux/Actions/ProductAction';
 
@@ -9,36 +10,52 @@ const Card = () => {
     dispatch(getProducts());
   }, [dispatch]);
 
-  const productGetList = useSelector((state) => state.product.productGetList);
+  const productList = useSelector((state) => state.product.productList);
+  const loading = useSelector((state) => state.product.loading);
 
-  const list = productGetList.slice(0,4);
+  const list = productList.slice(0,4);
 
   const renderCards = () => {
     return list.map((val,index) => {
       return (
-        <div key={index} style={styles.cardContainer}>
-          <img src={val.image} alt='card pic' style={styles.image} />
-          <div style={styles.title}>
-            {val.title}
-          </div>
-          <div style={styles.subtitle}>
-            {val.subtitle}
-          </div>
-          <div style={styles.priceContainer}>
-            <div style={styles.price}>
-              {val.price}
+        <React.Fragment>
+          {
+            loading
+            ?
+            <Skeleton variant="rect" style={{
+              width: '20%',
+              height: '25rem',
+              borderRadius: '15px',
+              margin: '1.5rem',
+            }}/>
+            :
+            <div key={index} style={styles.cardContainer}>
+              <img src={val.image} alt='card pic' style={styles.image} />
+              <div style={styles.title}>
+                {val.title}
+              </div>
+              <div style={styles.subtitle}>
+                {val.subtitle}
+              </div>
+              <div style={styles.priceContainer}>
+                <div style={styles.price}>
+                  {val.price}
+                </div>
+                <div style={styles.discount}>
+                  {val.discount}
+                </div>
+                <div style={styles.discPrice}>
+                  {val.discPrice}
+                </div>
+              </div>
+              <a href={`/product-detail?id=${val.id}`} key={val.id} style={{textDecoration:'none'}}>
+                <div style={styles.joinBtn}>
+                    Join Now
+                </div>
+              </a>
             </div>
-            <div style={styles.discount}>
-              {val.discount}
-            </div>
-            <div style={styles.discPrice}>
-              {val.discPrice}
-            </div>
-          </div>
-          <div style={styles.joinBtn}>
-            Join Now
-          </div>
-        </div>
+          }
+        </React.Fragment>
       );
     });
   };

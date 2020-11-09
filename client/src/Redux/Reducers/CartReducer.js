@@ -1,36 +1,36 @@
 import {
-    product_get_start,
-    product_get_success,
-    product_get_by_id,
-    product_get_failed,
+    cart_start,
+    cart_success,
+    cart_added,
+    cart_failed,
 } from '../Types';
 
 const INITIAL_STATE = {
-    productList: [],
-    productListById: [],
+    cartList: [],
+    cartAdded: [],
     loading: false,
 };
 
-export const productReducer = (state = INITIAL_STATE, action) => {
+export const cartReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case product_get_start:
+        case cart_start:
             return {
                 ...state,
                 loading: true,
             };
-        case product_get_success:
+        case cart_success:
             return {
                 ...state,
-                productList: action.payload,
+                cartList: action.payload,
                 loading: false,
             };
-        case product_get_by_id:
+        case cart_added:
             return {
                 ...state,
-                productListById: action.payload,
+                cartAdded: action.payload,
                 loading: false,
             };
-        case product_get_failed:
+        case cart_failed:
             return {
                 ...state,
                 loading: false,

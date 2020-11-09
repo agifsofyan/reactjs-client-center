@@ -10,9 +10,9 @@ const BottomList = () => {
         dispatch(getProducts());
     }, [dispatch]);
 
-    const productGetList = useSelector((state) => state.product.productGetList);
+    const productList = useSelector((state) => state.product.productList);
 
-    const list = productGetList.slice(0,3);
+    const list = productList.slice(0,3);
 
     const renderItems = () => {
         return list.map((val,index) => {
@@ -52,11 +52,13 @@ const BottomList = () => {
                                     {val.discount}
                                 </div>
                             </div>
-                            <div style={styles.joinBox}>
-                                <div style={styles.joinTxt}>
-                                    Join Now
+                            <a href={`/product-detail?id=${val.id}`} key={val.id} style={{textDecoration:'none'}}>
+                                <div style={styles.joinBox}>
+                                    <div style={styles.joinTxt}>
+                                        Join Now
+                                    </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,11 @@
 import ProductList from './ProductList';
-import RegisterPage from './RegisterPage';
-import LoginPage from './LoginPage';
+import ProductDetail from './ProductDetail';
+import Auth from './Auth';
+import Cart from './Cart';
 
 export {
     ProductList,
-    RegisterPage,
-    LoginPage,
+    ProductDetail,
+    Auth,
+    Cart,
 };

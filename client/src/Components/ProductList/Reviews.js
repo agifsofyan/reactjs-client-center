@@ -16,7 +16,7 @@ const Reviews = () => {
 
     return (
         <div style={styles.container}>
-             <div style={styles.header}>
+            <div style={styles.header}>
                 Reviews
             </div>
             {/* ------------------------------------------------------------------------------------ */}

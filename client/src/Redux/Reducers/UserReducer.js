@@ -3,11 +3,13 @@ import {
     user_register,
     user_login,
     user_failed,
+    user_keep_login,
 } from '../Types';
 
 const INITIAL_STATE = {
     userRegister: [],
     userLogin: [],
+    userData: [],
     loggedIn: false,
     loading: false,
 };
@@ -36,6 +38,13 @@ export const userReducer = (state = INITIAL_STATE, action) => {
         case user_failed:
             return {
                 ...state,
+                loading: false,
+            };
+        case user_keep_login:
+            return {
+                ...state,
+                userData: action.payload,
+                loggedIn: true,
                 loading: false,
             };
         default: return state;
