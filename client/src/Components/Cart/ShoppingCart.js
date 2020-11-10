@@ -8,7 +8,6 @@ const ShoppingCart = () => {
     const dispatch = useDispatch();
 
     const cartList = useSelector((state) => state.cart.cartList);
-    console.log(cartList);
 
     const [update, setUpdate] = useState(false);
 
@@ -44,41 +43,13 @@ const ShoppingCart = () => {
                 );
                 dispatch(removeCart(id));
                 setUpdate(true);
+                window.location.reload();
             }
         })
         .catch((err) => {
             console.log(err);
         })
     };
-
-    // const renderCart = () => {
-    //     return cartList.map((val,index) => {
-    //         return (
-    //             <tr key={index}>
-    //                 <td>
-    //                     {index + 1}
-    //                 </td>
-    //                 <td>
-    //                     {val.product_info.name}
-    //                 </td>
-    //                 <td>
-    //                     Rp. {val.product_info.price}
-    //                 </td>
-    //                 <td>
-    //                     Hemat {rounded((val.product_info.sale_price/val.product_info.price)*100 )}%
-    //                 </td>
-    //                 <td>
-    //                     Rp. {val.product_info.sale_price}
-    //                 </td>
-    //                 <td>
-    //                     <Button variant="outline-danger" onClick={() => handleDelete(val.product_info._id)}>
-    //                         Remove
-    //                     </Button>
-    //                 </td>
-    //             </tr>
-    //         );
-    //     });
-    // };
 
     const renderCart = () => {
         return cartList.map((val,index) => {
@@ -115,7 +86,7 @@ const ShoppingCart = () => {
                 Kelas yang Anda Ikuti
             </div>
             <div>
-                <Table striped bordered hover>
+                <Table bordered hover>
                     <thead>
                         <tr>
                             <th>#</th>
