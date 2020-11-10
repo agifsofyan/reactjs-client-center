@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { JSON_URL } from '../../Support/API_URL';
+import { SWAGGER_URL } from '../../Support/API_URL';
 import {
     product_get_start,
     product_get_success,
@@ -19,7 +19,7 @@ export const getProducts = () => {
                     'accept':'application/json',
                 },
             };
-            let res = await axios.get(`${JSON_URL}/products`, headers);
+            let res = await axios.get(`${SWAGGER_URL}/products`, headers);
             dispatch({
                 type: product_get_success,
                 payload: res.data,
@@ -32,7 +32,7 @@ export const getProducts = () => {
     };
 };
 
-export const getProductById = (id) => {
+export const getProductBySlug = (slug) => {
     return async dispatch => {
         dispatch({
             type: product_get_start,
@@ -44,7 +44,7 @@ export const getProductById = (id) => {
                     'accept': 'application/json',
                 },
             };
-            let res = await axios.get(`${JSON_URL}/products/${id}`, headers);
+            let res = await axios.get(`${SWAGGER_URL}/products/${slug}`, headers);
             dispatch({
                 type: product_get_by_id,
                 payload: res.data,

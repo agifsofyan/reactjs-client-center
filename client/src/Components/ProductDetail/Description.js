@@ -16,7 +16,7 @@ const Description = (props) => {
                 </div>
                 :
                 <div style={styles.videoDiv}>
-                    <img src={props.image} alt='imgDesc' style={styles.image} />
+                    <img src={props.image_url} alt='imgDesc' style={styles.image} />
                 </div>
             }
             {/* IMAGE end */}

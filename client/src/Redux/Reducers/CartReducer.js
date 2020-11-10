@@ -7,7 +7,7 @@ import {
 
 const INITIAL_STATE = {
     cartList: [],
-    cartAdded: [],
+    success: false,
     loading: false,
 };
 
@@ -22,17 +22,20 @@ export const cartReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 cartList: action.payload,
+                success: true,
                 loading: false,
             };
         case cart_added:
             return {
                 ...state,
-                cartAdded: action.payload,
+                cartList: action.payload,
+                success: true,
                 loading: false,
             };
         case cart_failed:
             return {
                 ...state,
+                success: true,
                 loading: false,
             };
         default: return state;

@@ -13,7 +13,6 @@ const Header = () => {
 
     const loggedIn = useSelector((state) => state.user.loggedIn);
     const userData = useSelector((state) => state.user.userData);
-    console.log(loggedIn);
 
     const toggle = () => {
         setDropdownOpen(prevState => !prevState);

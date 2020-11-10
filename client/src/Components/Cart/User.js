@@ -36,7 +36,7 @@ const styles = {
         flexDirection: 'column',
         width: '20rem',
         padding: '1rem 1.5rem',
-        borderRadius: '1rem',
+        borderRadius: '0.5rem',
         boxShadow: '0 0 3px #787878',
     },
     data: {

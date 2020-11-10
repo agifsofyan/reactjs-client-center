@@ -1,27 +1,43 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { addToCart } from '../../Redux/Actions/CartAction';
 
 const Bottom = (props) => {
+    const dispatch = useDispatch();
+
+    const product = useSelector((state) => state.product.productListById);
+    const success = useSelector((state) => state.cart.success);
+
+    const handleAddToCart = () => {
+        dispatch(addToCart(product._id));
+    };
+
+    if (success) {
+        return (
+            <Redirect to='/cart' />
+        );
+    }
     return (
         <div style={styles.container}>
             <div style={styles.wrapper}>
                 <div style={styles.prodWrapper}>
                     <span style={styles.title}>
-                        {props.title}
+                        {props.headline}
                     </span>
                     <div style={styles.priceContainer}>
                         <div style={styles.price}>
-                            {props.price}
+                            Rp. {props.price}
                         </div>
                         <div style={styles.discount}>
-                            {props.discount}
+                            Hemat 80%
                         </div>
                         <div style={styles.discPrice}>
-                            {props.discPrice}
+                            Rp. {props.sale_price}
                         </div>
                     </div>
                 </div>
-                {/* clickable */}
-                <div style={styles.joinBtn}>
+                <div style={styles.joinBtn} onClick={handleAddToCart}>
                     <div style={styles.joinTxt}>
                         JOIN SEKARANG
                     </div>

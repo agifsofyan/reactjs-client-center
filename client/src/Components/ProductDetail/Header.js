@@ -9,7 +9,7 @@ const Header = (props) => {
             </a>
             <div>
                 <div style={styles.titleText}>
-                    {props.title}
+                    {props.headline}
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@ const Header = (props) => {
 
     return (
         <div style={styles.container}>
-            <a href='/product-detail'>
+            <a href='/'>
                 <img src={backArrow} alt='back-arrow' style={styles.backIcon} />
             </a>
             <div style={styles.titleName}>

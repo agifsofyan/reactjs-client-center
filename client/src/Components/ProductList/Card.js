@@ -30,25 +30,26 @@ const Card = () => {
             }}/>
             :
             <div key={index} style={styles.cardContainer}>
-              <img src={val.image} alt='card pic' style={styles.image} />
+              <img src={val.image_url[0]} alt='card pic' style={styles.image} />
               <div style={styles.title}>
-                {val.title}
+                {val.headline}
               </div>
               <div style={styles.subtitle}>
-                {val.subtitle}
+                {val.subheadline}
               </div>
               <div style={styles.priceContainer}>
                 <div style={styles.price}>
-                  {val.price}
+                  Rp. {val.price}
                 </div>
                 <div style={styles.discount}>
-                  {val.discount}
+                  {/* {val.discount} */}
+                  Hemat 80%
                 </div>
                 <div style={styles.discPrice}>
-                  {val.discPrice}
+                  Rp. {val.sale_price}
                 </div>
               </div>
-              <a href={`/product-detail?id=${val.id}`} key={val.id} style={{textDecoration:'none'}}>
+              <a href={`/product-detail?slug=${val.slug}`} key={val.id} style={{textDecoration:'none'}}>
                 <div style={styles.joinBtn}>
                     Join Now
                 </div>

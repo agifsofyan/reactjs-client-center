@@ -18,10 +18,10 @@ const BottomList = () => {
         return list.map((val,index) => {
             return (
                 <div key={index} style={styles.itemContainer}>
-                    <img src={val.image} alt='item pic' height={175} width={175} style={{borderRadius:'1em'}} />
+                    <img src={val.image_url[0]} alt='item pic' height={175} width={175} style={{borderRadius:'1em'}} />
                     <div style={styles.titleDesc}>
                         <div style={styles.title}>
-                            {val.title}
+                            {val.headline}
                         </div>
                         <div style={styles.description}>
                             {val.description}
@@ -41,15 +41,16 @@ const BottomList = () => {
                         <div style={styles.wrapper}>
                             <div style={styles.bottomWraper}>
                                 <div style={styles.price}>
-                                    {val.price}
+                                    Rp. {val.price}
                                 </div>
                                 <div style={styles.discPrice}>
-                                    {val.discPrice}
+                                    Rp. {val.sale_price}
                                 </div>
                             </div>
                             <div style={styles.discBox}>
                                 <div style={styles.discount}>
-                                    {val.discount}
+                                    {/* {val.discount} */}
+                                    Hemat 80%
                                 </div>
                             </div>
                             <a href={`/product-detail?id=${val.id}`} key={val.id} style={{textDecoration:'none'}}>

@@ -11,35 +11,35 @@ import {
     Bottom,
 } from '../Components/ProductDetail';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductById } from '../Redux/Actions/ProductAction';
+import { getProductBySlug } from '../Redux/Actions/ProductAction';
 
 const ProductDetail = (query) => { 
     const dispatch = useDispatch();
 
     const product = useSelector((state) => state.product.productListById);
 
-    const id = query.location.search.split('=')[1];
+    const slug = query.location.search.split('=')[1];
 
     useEffect(() => {
-        document.title = product.title;
-        dispatch(getProductById(id));
-    }, [dispatch, id, product.title]);
+        document.title = 'Product Detail';
+        dispatch(getProductBySlug(slug));
+    }, [dispatch, slug]);
 
     return (
         <div>
             <Header
-                title={product.title}
+                headline={product.headline}
             />
             <BriefDesc
-                title={product.title}
-                detail={product.detail}
+                type={product.type}
+                headline={product.headline}
+                description={product.description}
                 price={product.price}
-                discount={product.discount}
-                discPrice={product.discPrice}
+                sale_price={product.sale_price}
                 video={product.video}
             />
             <Description
-                image={product.image}
+                image_url={product.image_url !== undefined && product.image_url[0]}
             />
             <Courses
                 title={product.title}
@@ -51,10 +51,9 @@ const ProductDetail = (query) => {
             <Reviews />
             <Bonus />
             <Bottom
-                title={product.title}
+                headline={product.headline}
                 price={product.price}
-                discount={product.discount}
-                discPrice={product.discPrice}
+                sale_price={product.sale_price}
             />
         </div>
     );

@@ -11,13 +11,13 @@ const BriefDesc = (props) => {
             {/* LEFT start */}
             <div style={styles.wrapper}>
                 <div style={styles.topic}>
-                    Topics : Business
+                    Type : {props.type}
                 </div>
                 <div style={styles.title}>
-                    {props.title}
+                    {props.headline}
                 </div>
                 <div style={styles.detail}>
-                    {props.detail}
+                    {props.description}
                 </div>
                 <div style={styles.ratingWrapper}>
                     <div style={styles.starRating}>
@@ -36,13 +36,13 @@ const BriefDesc = (props) => {
                 </div>
                 <div style={styles.priceContainer}>
                   <div style={styles.price}>
-                    {props.price}
+                    Rp. {props.price}
                   </div>
                   <div style={styles.discount}>
-                    {props.discount}
+                    Hemat 80%
                   </div>
                   <div style={styles.discPrice}>
-                    {props.discPrice}
+                    Rp. {props.sale_price}
                   </div>
                 </div>
             </div>
