@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import larunoLogo from '../../Assets/laruno.png';
 import downArrow from '../../Assets/down-arrow-thick.png';
 import shoppingCart from '../../Assets/shopping-cart-black.png';
@@ -6,18 +6,29 @@ import bell from '../../Assets/bell.png';
 import { Dropdown, DropdownMenu, DropdownToggle, NavLink } from 'reactstrap';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { keepLogin } from '../../Redux/Actions/UserAction';
 
 const Header = () => {
+    const dispatch = useDispatch();
+
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
     const loggedIn = useSelector((state) => state.user.loggedIn);
     const userData = useSelector((state) => state.user.userData);
+    console.log(loggedIn);
 
     const toggle = () => {
         setDropdownOpen(prevState => !prevState);
     };
- 
+
+    useEffect(() => {
+        let token = localStorage.getItem('token');
+        if (token) {
+            dispatch(keepLogin(token));
+        }
+    }, [dispatch]);
+
     return (
         <div style={styles.container}>
             <div style={styles.logo}>
@@ -148,10 +159,8 @@ const styles = {
         textDecoration: 'none',
         color: '#ff4500',
         fontWeight: '700',
-        margin: '0.4rem 2rem',
+        margin: '1rem 2rem',
         padding: '0.2rem 0.5rem',
-        // border: '3px solid #ff4500',
-        // borderRadius: '10px',
     },
 };
 

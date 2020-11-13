@@ -1,9 +1,15 @@
 import Header from './Header';
-import User from './User';
+import UserProfile from './UserProfile';
 import ShoppingCart from './ShoppingCart';
+import OrderBump from './OrderBump';
+import Summary from './Summary';
+import LoginForm from './LoginForm';
 
 export {
     Header,
-    User,
+    UserProfile,
     ShoppingCart,
+    OrderBump,
+    Summary,
+    LoginForm,
 };

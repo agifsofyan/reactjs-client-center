@@ -1,3 +1,4 @@
+import { Checkbox } from '@material-ui/core';
 import React, { useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,6 +11,19 @@ const ShoppingCart = () => {
     const cartList = useSelector((state) => state.cart.cartList);
 
     const [update, setUpdate] = useState(false);
+    const [ticked, setTicked] = useState({
+        id: [],
+    });
+
+    const handleTickedChild = (event) => {
+        let newArray = [...ticked.id, event.target.id];
+        if (ticked.id.includes(event.target.id)) {
+          newArray = newArray.filter((item) => item !== event.target.id);
+        }
+        setTicked({
+          id: newArray,
+        });
+    };
 
     React.useEffect(() => {
         dispatch(getCart());
@@ -20,7 +34,7 @@ const ShoppingCart = () => {
 
     const rounded = (num) => {
         let roundedString = num.toFixed(2);
-        var round = Number(roundedString);
+        let round = Number(roundedString);
         return round;
     };
 
@@ -54,21 +68,26 @@ const ShoppingCart = () => {
     const renderCart = () => {
         return cartList.map((val,index) => {
             return (
-                <tr key={index}>
+                <tr key={index} value={val.product_info._id}>
                     <td>
-                        {index + 1}
+                        <Checkbox
+                            color="default"
+                            value={ticked.id}
+                            id={val.product_info._id}
+                            onChange={handleTickedChild}
+                        />
                     </td>
                     <td>
                         {val.product_info.name}
                     </td>
                     <td>
-                        Rp. {val.product_info.price}
+                        Rp. {val.product_info.price.toLocaleString('id-ID')}
                     </td>
                     <td>
                         Hemat {rounded((val.product_info.sale_price/val.product_info.price)*100 )}%
                     </td>
                     <td>
-                        Rp. {val.product_info.sale_price}
+                        Rp. {val.product_info.sale_price.toLocaleString('id-ID')}
                     </td>
                     <td>
                         <Button variant="outline-danger" onClick={() => handleDelete(val.product_info._id)}>
@@ -108,7 +127,7 @@ const ShoppingCart = () => {
 
 const styles = {
     container: {
-        margin: '0rem 3rem',
+        margin: '0rem 5rem',
     },
     title: {
         fontSize: '1.25rem',

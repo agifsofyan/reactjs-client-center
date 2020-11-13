@@ -27,8 +27,8 @@ const styles = {
     },
     titleText: {
         borderRadius: '0.75rem',
-        marginTop: '0.75rem',
-        padding: '0.35rem 0.75rem',
+        margin: '0.5rem 0rem 0.6rem 0rem',
+        padding: '0.5rem 0.75rem',
         fontWeight: '600',
         backgroundColor: '#ffffff',
         boxShadow: '0 0 3px #787878',

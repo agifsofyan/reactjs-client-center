@@ -3,19 +3,25 @@ import { useDispatch, useSelector } from 'react-redux';
 import { keepLogin } from '../Redux/Actions/UserAction';
 import {
     Header,
-    User,
+    UserProfile,
     ShoppingCart,
+    OrderBump,
+    Summary,
+    LoginForm,
 } from '../Components/Cart';
 
 const Cart = () => {
     const dispatch = useDispatch();
 
     const userData = useSelector((state) => state.user.userData);
+    const loggedIn = useSelector((state) => state.user.loggedIn);
 
     useEffect(() => {
         document.title = `My Cart`;
         let token = localStorage.getItem('token');
-        dispatch(keepLogin(token));;
+        if (token) {
+            dispatch(keepLogin(token));
+        }
     }, [dispatch]);
 
     return (
@@ -23,12 +29,28 @@ const Cart = () => {
             <Header
                 name={userData.name}
             />
-            <User
-                name={userData.name}
-                email={userData.email}
-                phone_number={userData.phone_number}
-            />
-            <ShoppingCart />
+            {
+                loggedIn
+                ?
+                <UserProfile
+                    name={userData.name}
+                    email={userData.email}
+                    phone_number={userData.phone_number}
+                />
+                :
+                <LoginForm />
+            }
+            {
+                loggedIn
+                ?
+                <>
+                    <ShoppingCart />
+                    <OrderBump />
+                    <Summary />
+                </>
+                :
+                null
+            }
         </div>
     );
 };

@@ -7,7 +7,7 @@ import {
     cart_failed,
 } from '../Types';
 
-let token = localStorage.getItem('token');
+const token = localStorage.getItem('token');
 
 export const getCart = () => {
     return async dispatch => {

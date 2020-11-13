@@ -1,23 +1,14 @@
 import React from 'react';
-// import { useDispatch } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import {
   ProductList,
   ProductDetail,
   Auth,
   Cart,
+  Payment,
 } from './Pages';
-// import { keepLogin } from './Redux/Actions/UserAction';
 
 const App = () => {
-  // const dispatch = useDispatch();
-
-  // React.useEffect(() => {
-  //   let token = localStorage.getItem('token');
-  //   if (token) {
-  //       dispatch(keepLogin(token));
-  //   }
-  // }, [dispatch]);
 
   return (
     <Switch>
@@ -25,6 +16,7 @@ const App = () => {
       <Route path="/product-detail" component={ProductDetail} />
       <Route path='/auth' component={Auth} />
       <Route path='/cart' component={Cart} />
+      <Route path='/payment' component={Payment} />
     </Switch>
   );
 };

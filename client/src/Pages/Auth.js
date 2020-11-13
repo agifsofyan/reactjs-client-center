@@ -250,15 +250,15 @@ const Testing = () => {
                                             flex: 1,
                                         }}
                                     ></div>
-                                    <span 
-                                        style={{
-                                            color: '#ccc',
-                                            padding: '0 1rem',
-                                            fontSize: '0.875rem',
-                                        }}
-                                    >
-                                        ATAU
-                                    </span>
+                                        <span 
+                                            style={{
+                                                color: '#ccc',
+                                                padding: '0 1rem',
+                                                fontSize: '0.875rem',
+                                            }}
+                                        >
+                                            ATAU
+                                        </span>
                                     <div 
                                         style={{
                                             display: 'block',

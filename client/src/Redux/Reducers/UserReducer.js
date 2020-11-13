@@ -35,16 +35,16 @@ export const userReducer = (state = INITIAL_STATE, action) => {
                 loggedIn: true,
                 loading: false,
             };
-        case user_failed:
-            return {
-                ...state,
-                loading: false,
-            };
         case user_keep_login:
             return {
                 ...state,
                 userData: action.payload,
                 loggedIn: true,
+                loading: false,
+            };
+        case user_failed:
+            return {
+                ...state,
                 loading: false,
             };
         default: return state;

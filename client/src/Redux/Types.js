@@ -13,3 +13,8 @@ export const cart_start = 'cart_start';
 export const cart_success = 'cart_success';
 export const cart_added = 'cart_added';
 export const cart_failed = 'cart_failed';
+
+export const order_start = 'order_start';
+export const order_success = 'order_success';
+export const order_post = 'order_post';
+export const order_failed = 'order_failed';
