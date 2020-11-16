@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { getCart, removeCart } from '../../Redux/Actions/CartAction';
 import Swal from 'sweetalert2';
+import { addToOrder } from '../../Redux/Actions/OrderAction';
 
 const Contents = () => {
     const dispatch = useDispatch();
@@ -126,18 +127,27 @@ const Contents = () => {
     let totalCourse = cartList.length;
     let price = 0;
     let salePrice = 0;
+    let product_id = [];
 
     cartList.map((val,index) => {
         return(
             <div key={index}>
-                <div>{price += val.product_info.price}</div>
-                <div>{salePrice += val.product_info.sale_price}</div>
+                <div>
+                    {price += val.product_info.price}
+                </div>
+                <div>
+                    {salePrice += val.product_info.sale_price}
+                </div>
+                <div>
+                    {product_id = val.product_info.product_id}
+                </div>
             </div>
         );
     });
+    console.log(product_id);
 
-    const handleStoreOrder = (id) => {
-        // console.log(ticked.id);
+    const handleStoreOrder = (items) => {
+        dispatch(addToOrder(items));
     };
 
     return (
@@ -246,7 +256,7 @@ const Contents = () => {
                     </div>
                 </div>
                 <div style={summary.separator1} />
-                <div style={summary.choosePayBtn} onClick={handleStoreOrder}>
+                <div style={summary.choosePayBtn} onClick={() => handleStoreOrder(cartList)}>
                     <div style={summary.btnTxt}>
                         PILIH METODE PEMBAYARAN
                     </div>
