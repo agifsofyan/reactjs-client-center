@@ -28,6 +28,7 @@ export const addToOrder = (body) => {
                     type: order_post,
                     payload: res.data,
                 });
+                console.log(res.data);
             }
         } catch {
             dispatch({

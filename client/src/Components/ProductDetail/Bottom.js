@@ -9,8 +9,6 @@ const Bottom = (props) => {
     const product = useSelector((state) => state.product.productListById);
     const success = useSelector((state) => state.cart.success);
 
-    console.log(product.name);
-
     const handleAddToCart = () => {
         dispatch(addToCart(product._id));
         window.location.href = '/cart';

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from 'reactstrap';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { userLogin } from '../../Redux/Actions/UserAction';
 
 const LoginForm = () => {
@@ -11,8 +11,6 @@ const LoginForm = () => {
         email: '',
         password: '',
     });
-
-    const loading = useSelector((state) => state.user.loading);
 
     const togglePasswordVisibility = () => {
         setPasswordShown(
@@ -66,7 +64,7 @@ const LoginForm = () => {
                     </a>
                 </div>
                 <div onClick={handleLogin} style={styles.loginBtn}>
-                    {!loading ? 'loading...' : 'Login'}
+                    Login
                 </div>
             </div>
         </div>
@@ -118,7 +116,7 @@ const styles = {
         textDecoration: 'none',
     },
     register: {
-        marginLeft: '18.5rem',
+        marginLeft: '22rem',
         fontSize: '0.9rem',
         color: 'red',
         cursor: 'pointer',

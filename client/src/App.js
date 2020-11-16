@@ -6,10 +6,11 @@ import {
   Auth,
   Cart,
   Payment,
+  PaySuccess,
+  PayFailed,
 } from './Pages';
 
 const App = () => {
-
   return (
     <Switch>
       <Route path="/" component={ProductList} exact />
@@ -17,6 +18,8 @@ const App = () => {
       <Route path='/auth' component={Auth} />
       <Route path='/cart' component={Cart} />
       <Route path='/payment' component={Payment} />
+      <Route path='/success' component={PaySuccess} />
+      <Route path='/failed' component={PayFailed} />
     </Switch>
   );
 };

@@ -4,9 +4,7 @@ import { keepLogin } from '../Redux/Actions/UserAction';
 import {
     Header,
     UserProfile,
-    ShoppingCart,
-    OrderBump,
-    Summary,
+    Contents,
     LoginForm,
 } from '../Components/Cart';
 
@@ -44,9 +42,10 @@ const Cart = () => {
                 loggedIn
                 ?
                 <>
-                    <ShoppingCart />
+                    {/* <ShoppingCart />
                     <OrderBump />
-                    <Summary />
+                    <Summary /> */}
+                    <Contents />
                 </>
                 :
                 null
