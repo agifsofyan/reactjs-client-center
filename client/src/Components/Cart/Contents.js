@@ -7,25 +7,55 @@ import Swal from 'sweetalert2';
 import { addToOrder } from '../../Redux/Actions/OrderAction';
 
 const Contents = () => {
+
+    var items = [];
+
     const dispatch = useDispatch();
 
     const cartList = useSelector((state) => state.cart.cartList);
 
     const [update, setUpdate] = useState(false);
     const [ticked, setTicked] = useState({
-        id: [],
+        items: items,
+        item: {},
     });
 
     const handleTickedChild = (event) => {
-        let newArray = [...ticked.id, event.target.id];
-        if (ticked.id.includes(event.target.id)) {
-          newArray = newArray.filter((item) => item !== event.target.id);
-        }
-        setTicked({
-          id: newArray,
-        });
+        var itemState = ticked.item
+        itemState["product_id"] = event.target.id
+        console.log('product_id', itemState)
+        
+        items.push(itemState)
+        console.log('items', items)
+        // setTicked({
+        //     items: items
+        // })
+        // console.log('items', ticked.item)
+
+        // let newArray = setTicked({ item: prod}) //[prod, event.target.id];
+
+        // console.log(newArray)
+
+        // let newArray = [{product_id: ticked.id}, event.target.id];
+        // if (ticked.id.includes(event.target.id)) {
+        //     newArray = newArray.filter((item) => item !== event.target.id);
+        // }
+        // var newItems = [];
+        // var items = ticked.items['product_id'] //: newArray[i];
+        // for (let i in newArray) {
+        //     setTicked({
+        //         items: items.push(newArray[i])
+        //     })
+        // }
+        // setTicked({
+        //     items: ticked.items
+        // })
+
+        // console.log(ticked);
+        // setTicked({
+        //   id: newArray,
+        // });
     };
-    console.log(ticked);
 
     useEffect(() => {
         dispatch(getCart());
@@ -127,7 +157,6 @@ const Contents = () => {
     let totalCourse = cartList.length;
     let price = 0;
     let salePrice = 0;
-    let product_id = [];
 
     cartList.map((val,index) => {
         return(
@@ -138,16 +167,33 @@ const Contents = () => {
                 <div>
                     {salePrice += val.product_info.sale_price}
                 </div>
-                <div>
-                    {product_id = val.product_info.product_id}
-                </div>
             </div>
         );
     });
-    console.log(product_id);
 
     const handleStoreOrder = (items) => {
-        dispatch(addToOrder(items));
+        dispatch(addToOrder(
+            
+                {
+                    "items": [
+                        {
+                            "product_id": "5f7c32bed623b700b9b751bb",
+                            "variant": "blue",
+                            "note": "something note to shop",
+                            "is_bump": false,
+                            "quantity": 2
+                        }
+                    ],
+                    "payment": {
+                        "method": "5f969313970708276038afe5",
+                        "phone_number": "08989900181"
+                    },
+                    "shipment": {
+                        "address_id": "5face99e4b34ba1d647c9196 address id reference from user address"
+                    }
+                }
+            
+        ));
     };
 
     return (
@@ -256,7 +302,7 @@ const Contents = () => {
                     </div>
                 </div>
                 <div style={summary.separator1} />
-                <div style={summary.choosePayBtn} onClick={() => handleStoreOrder(cartList)}>
+                <div style={summary.choosePayBtn} onClick={handleStoreOrder}>
                     <div style={summary.btnTxt}>
                         PILIH METODE PEMBAYARAN
                     </div>
