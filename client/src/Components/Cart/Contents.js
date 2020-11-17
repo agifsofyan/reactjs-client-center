@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
@@ -7,35 +8,57 @@ import Swal from 'sweetalert2';
 import { addToOrder } from '../../Redux/Actions/OrderAction';
 
 const Contents = () => {
-
-    const itemsList = [];
-
     const dispatch = useDispatch();
-
+    
     const cartList = useSelector((state) => state.cart.cartList);
-
+    
+    const items = [];
+    
     const [update, setUpdate] = useState(false);
     const [ticked, setTicked] = useState({
-        items: itemsList,
+        items: items,
         item: {},
     });
 
+    const handleTickedChild = (e) => {
+        const { id, checked } = e.target;
+        var barang = ticked.item;
+        var productItem = barang["product_id"];
+        productItem = id;
 
-    const handleTickedChild = (event) => {
-        var itemState = ticked.item
-        itemState["product_id"] = event.target.id
+        console.log(e.target);
 
-        console.log('ticked.item', ticked.item)
+        if (checked) {
+            items.push({
+                product_id: productItem,
+            });
+        } else {
+            items.shift({
+                product_id: productItem,
+            });
+        }
 
-        console.log('product_id', itemState)
+        // setTicked({
+        //     items: items,
+        // });
+        setTicked(items);
 
-        itemsList.push(itemState)
-        console.log('itemsList', itemsList)
+        console.log('item state', ticked.items)
 
-        setTicked({
-            items: itemsList
-        })
-        console.log('items', ticked.items)
+        // var itemState = ticked.item
+        // itemState["product_id"] = event.target.id
+
+        // console.log('ticked.item', ticked.item)
+
+        // console.log('product_id', itemState)
+
+        // items.push(itemState)
+        // console.log('items', items)
+
+        // setTicked({
+        //     items: items
+        // })
+        // console.log('items', ticked.items)
         
         // setTicked({
         //     items: items
@@ -125,9 +148,9 @@ const Contents = () => {
             return (
                 <tr key={index} value={val.product_info._id}>
                     <td>
-                        <Checkbox
-                            color="default"
-                            value={ticked.id}
+                        <input
+                            type="checkbox"
+                            // value={ticked.id}
                             id={val.product_info._id}
                             onChange={handleTickedChild}
                         />
@@ -207,8 +230,6 @@ const Contents = () => {
             e.target.checked,
         );
     };
-
-    const img_url = 'https://images2.alphacoders.com/103/1039991.jpg';
 
     let totalCourse = cartList.length;
     let price = 0;
