@@ -10,6 +10,8 @@ import {
   PayFailed,
 } from './Pages';
 
+import Test from './Pages/Test';
+
 const App = () => {
   return (
     <Switch>
@@ -20,6 +22,8 @@ const App = () => {
       <Route path='/payment' component={Payment} />
       <Route path='/success' component={PaySuccess} />
       <Route path='/failed' component={PayFailed} />
+      {/* TESTING PART */}
+      <Route path='/tes' component={Test} />
     </Switch>
   );
 };

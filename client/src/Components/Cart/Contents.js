@@ -8,7 +8,7 @@ import { addToOrder } from '../../Redux/Actions/OrderAction';
 
 const Contents = () => {
 
-    var items = [];
+    const itemsList = [];
 
     const dispatch = useDispatch();
 
@@ -16,17 +16,27 @@ const Contents = () => {
 
     const [update, setUpdate] = useState(false);
     const [ticked, setTicked] = useState({
-        items: items,
+        items: itemsList,
         item: {},
     });
+
 
     const handleTickedChild = (event) => {
         var itemState = ticked.item
         itemState["product_id"] = event.target.id
+
+        console.log('ticked.item', ticked.item)
+
         console.log('product_id', itemState)
+
+        itemsList.push(itemState)
+        console.log('itemsList', itemsList)
+
+        setTicked({
+            items: itemsList
+        })
+        console.log('items', ticked.items)
         
-        items.push(itemState)
-        console.log('items', items)
         // setTicked({
         //     items: items
         // })
@@ -56,6 +66,7 @@ const Contents = () => {
         //   id: newArray,
         // });
     };
+
 
     useEffect(() => {
         dispatch(getCart());
@@ -143,6 +154,51 @@ const Contents = () => {
         });
     };
 
+    const renderBump = () => {
+        return cartList.map((val,index) => {
+            const bumps = val.product_info.bump;
+            return bumps.map((item, idx) => {
+                return (
+                    <div style={bump.box}>
+                        <div style={bump.topSection}>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        color="primary"
+                                        checked={tickedBump}
+                                        onClick={handleChangeTicked}
+                                    />
+                                }
+                                label={
+                                    <span style={{fontSize: '1.15rem', fontWeight:'500'}}>
+                                        {item.bump_name}
+                                    </span>
+                                }
+                                style={bump.tickBump}
+                            />
+                        </div>
+                        <div style={bump.content}>
+                            <img src={item.bump_image} alt='gambar bump' style={bump.contentImage} />
+                            <div style={bump.contentText}>
+                                <div style={bump.contentTitle}>
+                                    {item.bump_name}
+                                </div>
+                                <div style={bump.contentDescription}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper tincidunt sodales. Vestibulum venenatis porttitor lorem, quis finibus velit viverra ac. Ut a varius nulla. Nam tempus dapibus leo non vulputate. Fusce id mi ipsum. Nam in dui laoreet, lobortis ligula at, scelerisque mi. Cras nec nunc magna. Proin blandit viverra dui. Fusce tempor dignissim lorem vel tincidunt.
+                                </div>
+                            </div>
+                        </div>
+                        <div style={bump.bottomSection}>
+                            <span style={bump.footerTxt}>
+                                Footer for : {item.bump_name}
+                            </span>
+                        </div>
+                    </div>
+                );
+            });
+        });
+    };
+
     const [tickedBump, setTickedBump] = useState(false);
 
     const handleChangeTicked = (e) => {
@@ -173,26 +229,24 @@ const Contents = () => {
 
     const handleStoreOrder = (items) => {
         dispatch(addToOrder(
-            
-                {
-                    "items": [
-                        {
-                            "product_id": "5f7c32bed623b700b9b751bb",
-                            "variant": "blue",
-                            "note": "something note to shop",
-                            "is_bump": false,
-                            "quantity": 2
-                        }
-                    ],
-                    "payment": {
-                        "method": "5f969313970708276038afe5",
-                        "phone_number": "08989900181"
-                    },
-                    "shipment": {
-                        "address_id": "5face99e4b34ba1d647c9196 address id reference from user address"
+            {
+                "items": [
+                    {
+                        "product_id": "5f7c32bed623b700b9b751bb",
+                        "variant": "blue",
+                        "note": "something note to shop",
+                        "is_bump": false,
+                        "quantity": 2
                     }
+                ],
+                "payment": {
+                    "method": "5f969313970708276038afe5",
+                    "phone_number": "08989900181"
+                },
+                "shipment": {
+                    "address_id": "5face99e4b34ba1d647c9196 address id reference from user address"
                 }
-            
+            }
         ));
     };
 
@@ -224,41 +278,7 @@ const Contents = () => {
             {/* ORDER BUMP */}
             <div style={bump.container}>
                 <div style={bump.separator} />
-                <div style={bump.box}>
-                    <div style={bump.topSection}>
-                        <FormControlLabel
-                            control={
-                                <Checkbox
-                                    color="primary"
-                                    checked={tickedBump}
-                                    onClick={handleChangeTicked}
-                                />
-                            }
-                            label={
-                                <span style={{fontSize: '1.15rem', fontWeight:'500'}}>
-                                    Judul Order Bump
-                                </span>
-                            }
-                            style={bump.tickBump}
-                        />
-                    </div>
-                    <div style={bump.content}>
-                        <img src={img_url} alt='gambar bump' style={bump.contentImage} />
-                        <div style={bump.contentText}>
-                            <div style={bump.contentTitle}>
-                                Title goes here
-                            </div>
-                            <div style={bump.contentDescription}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper tincidunt sodales. Vestibulum venenatis porttitor lorem, quis finibus velit viverra ac. Ut a varius nulla. Nam tempus dapibus leo non vulputate. Fusce id mi ipsum. Nam in dui laoreet, lobortis ligula at, scelerisque mi. Cras nec nunc magna. Proin blandit viverra dui. Fusce tempor dignissim lorem vel tincidunt.
-                            </div>
-                        </div>
-                    </div>
-                    <div style={bump.bottomSection}>
-                        <span style={bump.footerTxt}>
-                            Footer starting cats are CUTE little animals
-                        </span>
-                    </div>
-                </div>
+                {renderBump()}
             </div>
             {/* SUMMARY */}
             <div style={summary.container}>
