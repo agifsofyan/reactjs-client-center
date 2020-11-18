@@ -2,14 +2,16 @@ import {
     user_start,
     user_register,
     user_login,
-    user_failed,
     user_keep_login,
+    user_change_pass,
+    user_failed,
 } from '../Types';
 
 const INITIAL_STATE = {
     userRegister: [],
     userLogin: [],
     userData: [],
+    passData: [],
     loggedIn: false,
     loading: false,
 };
@@ -39,6 +41,13 @@ export const userReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 userData: action.payload,
+                loggedIn: true,
+                loading: false,
+            };
+        case user_change_pass:
+            return {
+                ...state,
+                passData: action.payload,
                 loggedIn: true,
                 loading: false,
             };

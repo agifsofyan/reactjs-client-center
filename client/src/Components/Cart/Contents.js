@@ -10,11 +10,10 @@ const items = [];
 
 const Contents = () => {
     const dispatch = useDispatch();
-    
+
     const cartList = useSelector((state) => state.cart.cartList);
-    
-    // const items = [];
-    
+    console.log(cartList);
+
     const [update, setUpdate] = useState(false);
     const [ticked, setTicked] = useState({
         items: items,
@@ -35,68 +34,6 @@ const Contents = () => {
         }
         setTicked(items);
         console.log('ticked-state', ticked);
-
-        // const { id, checked } = e.target;
-        // // var item = ticked.item;
-        // var productItem = ticked.item["product_id"];
-        // productItem = id;
-
-        // if (checked) {
-        //     items.push(productItem);
-        // } else {
-        //     items.shift(productItem);
-        // }
-        // // console.log({productItem, id, checked}, "INI LOG");
-        // // setTicked({
-        // //     items: items,
-        // // });
-        // setTicked(items);
-        // console.log({ id, checked}, "INI LOG");
-        // console.log('item state', ticked.items,  ticked.item)
-
-        // var itemState = ticked.item
-        // itemState["product_id"] = event.target.id
-
-        // console.log('ticked.item', ticked.item)
-
-        // console.log('product_id', itemState)
-
-        // items.push(itemState)
-        // console.log('items', items)
-
-        // setTicked({
-        //     items: items
-        // })
-        // console.log('items', ticked.items)
-        
-        // setTicked({
-        //     items: items
-        // })
-        // console.log('items', ticked.item)
-
-        // let newArray = setTicked({ item: prod}) //[prod, event.target.id];
-
-        // console.log(newArray)
-
-        // let newArray = [{product_id: ticked.id}, event.target.id];
-        // if (ticked.id.includes(event.target.id)) {
-        //     newArray = newArray.filter((item) => item !== event.target.id);
-        // }
-        // var newItems = [];
-        // var items = ticked.items['product_id'] //: newArray[i];
-        // for (let i in newArray) {
-        //     setTicked({
-        //         items: items.push(newArray[i])
-        //     })
-        // }
-        // setTicked({
-        //     items: ticked.items
-        // })
-
-        // console.log(ticked);
-        // setTicked({
-        //   id: newArray,
-        // });
     };
 
 
@@ -150,6 +87,7 @@ const Contents = () => {
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
+                    <td>-</td>
                 </tr>
             );
         }
@@ -159,13 +97,13 @@ const Contents = () => {
                     <td>
                         <input
                             type="checkbox"
-                            // value={ticked.id}
                             id={val.product_info._id}
                             onChange={handleTickedChild}
                         />
                     </td>
                     <td>
-                        {val.product_info.name}
+                        {val.product_info.name}<br/>
+                        TYPE : {val.product_info.type}
                     </td>
                     <td>
                         Rp. {val.product_info.price.toLocaleString('id-ID')}
@@ -175,6 +113,15 @@ const Contents = () => {
                     </td>
                     <td>
                         Rp. {val.product_info.sale_price.toLocaleString('id-ID')}
+                    </td>
+                    <td>
+                        {
+                            val.product_info.type === 'ecommerce'
+                            ?
+                            <input type='number' defaultValue={1} />
+                            :
+                            '1'
+                        }
                     </td>
                     <td>
                         <Button variant="outline-danger" onClick={() => handleDelete(val.product_info._id)}>
@@ -257,28 +204,22 @@ const Contents = () => {
         );
     });
 
-    const handleStoreOrder = (items) => {
+    const handleStoreOrder = () => {
         dispatch(addToOrder(
             {
-                "items": [
-                    {
-                        "product_id": "5f7c32bed623b700b9b751bb",
-                        "variant": "blue",
-                        "note": "something note to shop",
-                        "is_bump": false,
-                        "quantity": 2
-                    }
-                ],
-                "payment": {
-                    "method": "5f969313970708276038afe5",
-                    "phone_number": "08989900181"
+                items: ticked,
+                payment: {
+                    method: "5fb24fc4c49a9f4adc62bceb",
+                    phone_number: "08989900181"
                 },
-                "shipment": {
-                    "address_id": "5face99e4b34ba1d647c9196 address id reference from user address"
+                shipment: {
+                    address_id: "5face99e4b34ba1d647c9196 address id reference from user address"
                 }
             }
         ));
+        window.location.reload();
     };
+
 
     return (
         <React.Fragment>
@@ -296,6 +237,7 @@ const Contents = () => {
                                 <th>Price</th>
                                 <th>Discount</th>
                                 <th>Sale Price</th>
+                                <th>Quantity</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

@@ -20,14 +20,14 @@ export const addToOrder = (body) => {
                     headers : {
                         'Access-Control-Allow-Origin': '*',
                         'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                        'Content-Type': 'multipart/form-data',
                         'Authorization': `Bearer ${token}`,
                     },
                 };
-                console.log('sblm axios order');
-                console.log(options);
+                // console.log('sblm axios order');
+                // console.log('body', body);
+                // console.log('token', token);
                 let res = await axios.post(`${SWAGGER_URL}/orders/store`, body, options);
-                console.log('stlh axios order')
+                // console.log('stlh axios order');
                 dispatch({
                     type: order_post,
                     payload: res.data,

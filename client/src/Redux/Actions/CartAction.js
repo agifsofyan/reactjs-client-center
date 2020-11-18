@@ -51,9 +51,9 @@ export const addToCart = (product_id) => {
                         'Authorization': `Bearer ${token}`,
                     },
                 };
-                // console.log('sblm axios');
+                console.log('sblm axios');
                 let res = await axios.post(`${SWAGGER_URL}/carts/add?product_id=${product_id}`, {}, options);
-                // console.log('stlh axios');
+                console.log('stlh axios');
                 dispatch({
                     type: cart_added,
                     payload: res.data.items,
@@ -81,20 +81,21 @@ export const removeCart = (product_id) => {
                         'Authorization': `Bearer ${token}`,
                     },
                 };
-                // console.log('sblm axios remove');
+                console.log('sblm axios remove');
+                console.log(product_id);
                 let res = await axios.delete(`${SWAGGER_URL}/carts/remove?product_id=${product_id}`, options);
-                // console.log('stlh axios remove');
+                console.log('stlh axios remove');
                 dispatch({
                     type: cart_success,
                     payload: res.data,
                 });
-                // console.log('stlh dispatch SUKSES');
+                console.log('stlh dispatch SUKSES');
             }
         } catch {
             dispatch({
                 type: cart_failed,
             });
-            // console.log('stlh dispatch FAILED');
+            console.log('stlh dispatch FAILED');
         }
     };
 };

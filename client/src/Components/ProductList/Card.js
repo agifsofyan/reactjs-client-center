@@ -31,6 +31,7 @@ const Card = () => {
             :
             <div key={index} style={styles.cardContainer}>
               <img src={val.image_url[0]} alt='card pic' style={styles.image} />
+              <div>TYPE : {val.type}</div> {/* line ini nanti dicomment */}
               <div style={styles.title}>
                 {val.headline}
               </div>
