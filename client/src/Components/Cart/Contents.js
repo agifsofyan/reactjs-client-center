@@ -1,49 +1,58 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Button, Table } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { getCart, removeCart } from '../../Redux/Actions/CartAction';
-import Swal from 'sweetalert2';
 import { addToOrder } from '../../Redux/Actions/OrderAction';
+import Swal from 'sweetalert2';
+
+const items = [];
 
 const Contents = () => {
     const dispatch = useDispatch();
     
     const cartList = useSelector((state) => state.cart.cartList);
     
-    const items = [];
+    // const items = [];
     
     const [update, setUpdate] = useState(false);
     const [ticked, setTicked] = useState({
         items: items,
-        item: {},
     });
 
     const handleTickedChild = (e) => {
         const { id, checked } = e.target;
-        var barang = ticked.item;
-        var productItem = barang["product_id"];
-        productItem = id;
-
-        console.log(e.target);
-
         if (checked) {
             items.push({
-                product_id: productItem,
+                product_id: id,
             });
         } else {
-            items.shift({
-                product_id: productItem,
-            });
+            for (let i = 0; i < items.length; i++) {
+                if (items[i].product_id === id) {
+                    items.splice(i, 1);
+                }
+            }
         }
-
-        // setTicked({
-        //     items: items,
-        // });
         setTicked(items);
+        console.log('ticked-state', ticked);
 
-        console.log('item state', ticked.items)
+        // const { id, checked } = e.target;
+        // // var item = ticked.item;
+        // var productItem = ticked.item["product_id"];
+        // productItem = id;
+
+        // if (checked) {
+        //     items.push(productItem);
+        // } else {
+        //     items.shift(productItem);
+        // }
+        // // console.log({productItem, id, checked}, "INI LOG");
+        // // setTicked({
+        // //     items: items,
+        // // });
+        // setTicked(items);
+        // console.log({ id, checked}, "INI LOG");
+        // console.log('item state', ticked.items,  ticked.item)
 
         // var itemState = ticked.item
         // itemState["product_id"] = event.target.id
