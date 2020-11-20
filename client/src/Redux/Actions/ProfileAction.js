@@ -8,7 +8,7 @@ import {
 
 const token = localStorage.getItem('token');
 
-export const getAddress = () => {
+export const fetchAddress = () => {
     return async dispatch => {
         dispatch({
             type: profile_start,
@@ -18,11 +18,11 @@ export const getAddress = () => {
                 let options = {
                     headers : {
                         'Access-Control-Allow-Origin': '*',
-                        'Access-Control-Allow-Methods' : 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
                         'Authorization': `Bearer ${token}`,
                     },
                 };
-                let res = await axios.get(`${SWAGGER_URL}/profile/address`, options);
+                let res = await axios.get(`${SWAGGER_URL}/users/profile/address`, options);
                 dispatch({
                     type: profile_success,
                     payload: res.data,
@@ -37,5 +37,30 @@ export const getAddress = () => {
 };
 
 export const putAddress = (form) => {
-    return async dispatch => {};
+    return async dispatch => {
+        dispatch({
+            type: profile_start,
+        });
+        try {
+            if (token) {
+                let options = {
+                    headers : {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                };
+                Number(form.postal_code);
+                let res = await axios.put(`${SWAGGER_URL}/users/profile/address`, form, options);
+                dispatch({
+                    type: profile_success,
+                    payload: res.data,
+                });
+            }
+        } catch {
+            dispatch({
+                type: profile_failed,
+            });
+        }
+    };
 };

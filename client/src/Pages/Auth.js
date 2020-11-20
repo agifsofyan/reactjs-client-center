@@ -10,8 +10,8 @@ import { userLogin, userRegister } from '../Redux/Actions/UserAction';
 import facebook from '../Assets/facebook.jpg';
 import google from '../Assets/google.png';
 import { Header } from '../Components/Auth';
-import Swal from 'sweetalert2';
 import { Redirect } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const useStyles = makeStyles((theme) => ({
     root: {

@@ -110,6 +110,7 @@ export default class Cart extends Component {
         super()
         this.state = {
             cartList: [],
+            addressData: [],
             items: items
         }
     }
@@ -127,8 +128,23 @@ export default class Cart extends Component {
         })
     }
 
+    getAddress = () => {
+        axios.get('http://139.162.59.84:5000/api/v1/users/profile/address', options)
+        .then((res) => {
+            const data = res.data
+            this.setState({
+                addressData: data
+            })
+            console.log(this.state.addressData)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+    }
+
     componentDidMount = () => {
         this.CartList()
+        this.getAddress()
     }
 
     onChange = (e) => {

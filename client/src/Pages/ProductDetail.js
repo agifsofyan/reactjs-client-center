@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductBySlug } from '../Redux/Actions/ProductAction';
 import {
     Header,
     BriefDesc,
@@ -10,8 +12,6 @@ import {
     Bonus,
     Bottom,
 } from '../Components/ProductDetail';
-import { useDispatch, useSelector } from 'react-redux';
-import { getProductBySlug } from '../Redux/Actions/ProductAction';
 
 const ProductDetail = (query) => { 
     const dispatch = useDispatch();
