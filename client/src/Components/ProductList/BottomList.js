@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProducts } from '../../Redux/Actions/ProductAction';
-import star from '../../Assets/star-filled.png';
+import star from '../../Assets/Images/star-filled.png';
 
 const BottomList = () => {
     const dispatch = useDispatch();

@@ -1,6 +1,6 @@
 import React from 'react';
-import profile from '../../Assets/profile.png';
-import starFilled from '../../Assets/star-filled.png';
+import profile from '../../Assets/Images/profile.png';
+import starFilled from '../../Assets/Images/star-filled.png';
 
 const Reviews = () => {
     const XLine = ({ color }) => (

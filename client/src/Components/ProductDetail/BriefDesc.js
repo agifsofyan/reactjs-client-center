@@ -1,7 +1,6 @@
 import React from 'react';
-import Skeleton from '@material-ui/lab/Skeleton';
 import { useSelector } from 'react-redux';
-import star from '../../Assets/star-filled.png';
+import star from '../../Assets/Images/star-filled.png';
 
 const BriefDesc = (props) => {
     const loading = useSelector((state) => state.product.loading);
@@ -52,10 +51,10 @@ const BriefDesc = (props) => {
                 {
                     loading
                     ?
-                    <Skeleton variant="rect" style={{width:'24rem', height:'13.5rem'}} />
+                    <img src="https://www.btklsby.go.id/images/placeholder/basic.png" alt='placeholder' style={{width:'24rem', height:'13.5rem'}} />
                     :
                     <iframe 
-                        style={{width:'24rem', height:'13.5rem'}}
+                        style={{width:'30rem', height:'13.5rem'}}
                         title={props.title} 
                         src={props.video} 
                         frameborder="0" 
@@ -79,7 +78,7 @@ const styles = {
     // LEFT start
     wrapper: {
         width: '45rem',
-        marginLeft: '3rem',
+        marginLeft: '10rem',
     },
     topic: {
         color: '#033E66',
@@ -138,7 +137,7 @@ const styles = {
     // RIGHT start
     videoDiv: {
         marginTop: '2rem',
-        marginLeft: '5rem',
+        marginLeft: '-10rem',
     },
     // RIGHT end
 };

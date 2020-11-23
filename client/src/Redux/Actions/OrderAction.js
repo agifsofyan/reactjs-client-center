@@ -23,11 +23,11 @@ export const addToOrder = (body) => {
                         'Authorization': `Bearer ${token}`,
                     },
                 };
-                // console.log('sblm axios order');
-                // console.log('body', body);
-                // console.log('token', token);
+                console.log('sblm axios order');
+                console.log('body', body);
+                console.log('token', token);
                 let res = await axios.post(`${SWAGGER_URL}/orders/store`, body, options);
-                // console.log('stlh axios order');
+                console.log('stlh axios order');
                 dispatch({
                     type: order_post,
                     payload: res.data,

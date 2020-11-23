@@ -62,7 +62,7 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        margin: '2rem 4rem',
+        margin: '2rem 4rem 2rem 10rem',
     },
     title: {
         fontSize: '1.25rem',
@@ -97,7 +97,7 @@ const styles = {
     joinBtn: {
         display: 'flex',
         alignItems: 'center',
-        marginLeft: '20rem',
+        marginLeft: '15rem',
     },
     joinTxt: {
         cursor: 'pointer',

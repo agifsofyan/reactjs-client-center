@@ -1,5 +1,5 @@
 import React from 'react';
-import backArrow from '../../Assets/back-arrow.png';
+import backArrow from '../../Assets/Images/back-arrow.png';
 
 const Header = (props) => {
     return (

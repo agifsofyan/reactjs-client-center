@@ -23,7 +23,7 @@ const User = (props) => {
 
 const styles = {
     container: {
-        margin: '0rem 5rem',
+        margin: '0rem 10rem',
         paddingBottom: '2.5rem',
     },
     title: {

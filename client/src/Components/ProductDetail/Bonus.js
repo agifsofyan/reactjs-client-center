@@ -1,24 +1,58 @@
-import React from 'react';
-import bonus from '../../Assets/bonus.png';
+import React, { useEffect, useState } from 'react';
+import bonus from '../../Assets/Images/bonus.png';
 
 const Bonus = () => {
+    const calculateTimeLeft = () => {
+        let year = new Date().getFullYear();
+        const difference = + new Date(`${year}-11-21`) - + new Date();
+        let timeLeft = {};
+        if (difference > 0) {
+            timeLeft = {
+                days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+                hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+                minutes: Math.floor((difference / 1000 / 60) % 60),
+                seconds: Math.floor((difference / 1000) % 60),
+            };
+        }
+        return timeLeft;
+    };
+
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+    useEffect(() => {
+        setTimeout(() => {
+            setTimeLeft(calculateTimeLeft());
+        }, 1000);
+    });
+
+    const timerComponents = [];
+
+    Object.keys(timeLeft).forEach((interval) => {
+        if (!timeLeft[interval]) {
+            return;
+        }
+        timerComponents.push(
+            <span>
+                {timeLeft[interval]} {interval}{" "}
+            </span>
+        );
+    });
+
     return (
         <div style={styles.root}>
             <div style={styles.container}>
-                {/* IMAGE start */}
                 <div>
                     <img src={bonus} alt='bonusImg' style={styles.bonusImg} />
                 </div>
-                {/* IMAGE end */}
-                {/* DESC start */}
                 <div style={styles.descWrapper}>
-                    <div style={styles.header}>
+                    <div style={styles.title}>
                         BONUS CEPAT!!!
                     </div>
                     <div style={styles.countdown}>
-                        29：59：00
+                        {/* 29：59：00 */}
+                        {timerComponents.length ? timerComponents : <span>Time's up!</span>}
                     </div>
-                    <div style={styles.title}>
+                    <div style={styles.bonusTitle}>
                         Bonus title here
                     </div>
                     <div style={styles.preDisc}>
@@ -33,11 +67,7 @@ const Bonus = () => {
                     <div style={styles.postDisc}>
                         Rp 210.000
                     </div>
-                    <div  style={styles.joinBtn}>
-                        JOIN SEKARANG
-                    </div>
                 </div>
-                {/* DESC end */}
             </div>
         </div>
     );
@@ -52,7 +82,7 @@ const styles = {
     container: {
         display: 'flex',
         height: '20rem',
-        width: '60rem',
+        width: '55rem',
         boxShadow: '0 0 5px #a4a4a4',
         borderRadius: '1rem',
     },
@@ -69,19 +99,19 @@ const styles = {
         alignItems: 'center',
         marginLeft: '3.5rem',
     },
-    header: {
-        margin: '0.25rem 0rem',
+    title: {
+        margin: '0.5rem 0rem',
         fontSize: '1.5rem',
         fontWeight: '600',
     },
     countdown: {
-        margin: '0.25rem 0rem',
+        margin: '0.5rem 0rem',
         color: 'red',
         border: '2px solid red',
         borderRadius: '0.5rem',
         padding: '0rem 0.75rem',
     },
-    title: {
+    bonusTitle: {
         fontSize: '1.25rem',
         fontWeight: '600',
     },
@@ -90,14 +120,17 @@ const styles = {
         fontSize: '1.35rem',
         textDecoration: 'line-through',
         textDecorationColor: 'red',
+        marginBottom: '0.5rem',
     },
     offer: {
         color: '#ff4500',
         fontSize: '1.35rem',
+        marginBottom: '0.5rem',
     },
     date: {
         color: '#ff4500',
         fontSize: '0.9rem',
+        marginBottom: '0.5rem',
     },
     postDisc: {
         marginBottom: '0.5rem',

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from '../Components/PaySuccess';
 import { keepLogin } from '../Redux/Actions/UserAction';
-import success from '../Assets/success.png';
+import success from '../Assets/Images/success.png';
 
 const PaySuccess = () => {
     const dispatch = useDispatch();

@@ -1,7 +1,7 @@
 import React from 'react';
 import { ProgressBar } from 'react-bootstrap';
-import starFilled from '../../Assets/star-filled.png';
-import starOutlined from '../../Assets/star-outline.png';
+import starFilled from '../../Assets/Images/star-filled.png';
+import starOutlined from '../../Assets/Images/star-outline.png';
 
 const Ratings = () => {
     return (
@@ -112,7 +112,7 @@ const styles = {
         display: 'flex',
         fontSize: '1.25rem',
         fontWeight: '600',
-        margin: '1rem 1rem 0rem 3rem',
+        margin: '1rem 1rem 0rem 10rem',
     },
     wrapper: {
         display: 'flex',
@@ -125,7 +125,7 @@ const styles = {
         color: '#BE5A0E',
         fontSize: '5rem',
         fontWeight: '600',
-        marginLeft: '3rem',
+        marginLeft: '10rem',
         width: '7rem',
         height: '7rem',
     },
@@ -133,7 +133,7 @@ const styles = {
         color: '#BE5A0E',
         fontSize: '1.1em',
         fontWeight: '600',
-        marginLeft: '3rem',
+        marginLeft: '10rem',
         marginTop: '-0.5rem',
         width: '7.5rem',
     },

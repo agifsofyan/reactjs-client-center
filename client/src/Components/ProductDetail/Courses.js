@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Accordion, AccordionContext, Card, useAccordionToggle } from 'react-bootstrap';
-import down from '../../Assets/down-arrow-thin.png';
-import up from '../../Assets/up-arrow-thin.png';
+import down from '../../Assets/Images/down-arrow-thin.png';
+import up from '../../Assets/Images/up-arrow-thin.png';
 
 const CustomToggle = ({ eventKey, callback }) => {
     const currentEventKey = useContext(AccordionContext);
@@ -151,12 +151,12 @@ const styles = {
     title: {
         fontSize: '1.25rem',
         fontWeight: '500',
-        margin: '0.5rem 1rem 0rem 3rem',
+        margin: '0.5rem 1rem 0rem 10rem',
     },
     accordion: {
         display: 'flex',
         justifyContent: 'center',
-        padding: '1.25rem 3rem',
+        padding: '1.25rem 10rem',
         borderRadius: '5rem',
     },
     container: {

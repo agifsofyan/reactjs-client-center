@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import backArrow from '../../Assets/back-arrow.png';
+import backArrow from '../../Assets/Images/back-arrow.png';
 
 const Header = (props) => {
     const loggedIn = useSelector((state) => state.user.loggedIn);

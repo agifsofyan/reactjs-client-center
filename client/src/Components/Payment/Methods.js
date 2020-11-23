@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import { Radio, Tab } from 'semantic-ui-react';
 // EWALLET
-import dana from '../../Assets/dana.png';
-import linkaja from '../../Assets/linkaja.png';
-import ovo from '../../Assets/ovo.png';
+import dana from '../../Assets/Images/dana.png';
+import linkaja from '../../Assets/Images/linkaja.png';
+import ovo from '../../Assets/Images/ovo.png';
 // VIRTUAL ACCOUNT
-import bca from '../../Assets/bca.png';
-import bni from '../../Assets/bni.png';
-import mandiri from '../../Assets/mandiri.png';
-import sampoerna from '../../Assets/sampoerna.png';
+import bca from '../../Assets/Images/bca.png';
+import bni from '../../Assets/Images/bni.png';
+import mandiri from '../../Assets/Images/mandiri.png';
+import sampoerna from '../../Assets/Images/sampoerna.png';
 // CREDIT CARD
-import visa from '../../Assets/visa.png';
-import mastercard from '../../Assets/mastercard.png';
-import jcb from '../../Assets/jcb.png';
+import visa from '../../Assets/Images/visa.png';
+import mastercard from '../../Assets/Images/mastercard.png';
+import jcb from '../../Assets/Images/jcb.png';
 
 const EWallet = () => {
     const [state, setState] = useState('');

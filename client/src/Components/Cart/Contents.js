@@ -5,6 +5,7 @@ import { Checkbox, FormControlLabel } from '@material-ui/core';
 import { getCart, removeCart } from '../../Redux/Actions/CartAction';
 import { addToOrder } from '../../Redux/Actions/OrderAction';
 import Swal from 'sweetalert2';
+import { Redirect } from 'react-router-dom';
 
 const items = [];
 
@@ -12,6 +13,8 @@ const Contents = () => {
     const dispatch = useDispatch();
 
     const cartList = useSelector((state) => state.cart.cartList);
+    const orderSuccess = useSelector((state) => state.order.success);
+
     console.log(cartList);
 
     const [update, setUpdate] = useState(false);
@@ -194,12 +197,12 @@ const Contents = () => {
     cartList.map((val,index) => {
         return(
             <div key={index}>
-                <div>
+                {/* <div> */}
                     {price += val.product_info.price}
-                </div>
-                <div>
+                {/* </div> */}
+                {/* <div> */}
                     {salePrice += val.product_info.sale_price}
-                </div>
+                {/* </div> */}
             </div>
         );
     });
@@ -217,10 +220,14 @@ const Contents = () => {
                 }
             }
         ));
-        window.location.reload();
+        // window.location.reload();
     };
 
-
+    if (orderSuccess) {
+        return (
+            <Redirect to='payment' />
+        );
+    }
     return (
         <React.Fragment>
             {/* SHOPPING CART */}
@@ -248,7 +255,7 @@ const Contents = () => {
                 </div>
             </div>
             {/* ORDER BUMP */}
-            <div style={bump.container}>
+            <div>
                 <div style={bump.separator} />
                 {renderBump()}
             </div>
@@ -306,7 +313,7 @@ const Contents = () => {
 
 const cart = {
     container: {
-        margin: '0rem 5rem',
+        margin: '0rem 10rem',
     },
     title: {
         fontSize: '1.25rem',
@@ -316,7 +323,6 @@ const cart = {
 };
 
 const bump = {
-    container: {},
     separator: {
         display: 'block',
         border: '.03125rem solid #dbdbdb',
@@ -328,7 +334,7 @@ const bump = {
     box: {
         border: '0.25rem solid red',
         borderStyle: 'dashed',
-        margin: '0rem 6.5rem 3rem 6.5rem',
+        margin: '0rem 10rem 3rem 10rem',
         borderRadius: '1.5rem',
         height: '22.5rem',
     },
@@ -385,7 +391,7 @@ const summary = {
     },
     content: {
         display: 'flex',
-        margin: '0rem 3rem',
+        margin: '0rem 3rem 0rem 10rem',
     },
     names: {
         display: 'flex',
@@ -410,7 +416,7 @@ const summary = {
         margin: '1.25rem 0rem'
     },
     pay: {
-        margin: '2rem 8rem',
+        margin: '2rem 6rem',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',

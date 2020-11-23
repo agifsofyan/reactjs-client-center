@@ -1,5 +1,5 @@
 import React from 'react';
-import businessIcon from '../../Assets/business-icon.png';
+import businessIcon from '../../Assets/Images/business-icon.png';
 
 const Description = () => {
     return (

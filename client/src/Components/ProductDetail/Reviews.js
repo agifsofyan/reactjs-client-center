@@ -1,6 +1,6 @@
 import React from 'react';
-import profile from '../../Assets/profile.png';
-import starFilled from '../../Assets/star-filled.png';
+import profile from '../../Assets/Images/profile.png';
+import starFilled from '../../Assets/Images/star-filled.png';
 
 const Reviews = () => {
     return (
@@ -153,7 +153,7 @@ const styles = {
     container: {
         display: 'flex',
         flexDirection: 'column',
-        margin: '0rem 3rem',
+        margin: '0rem 10rem',
     },
     title: {
         display: 'flex',

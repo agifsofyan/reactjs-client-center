@@ -7,8 +7,8 @@ import { Checkbox, FormControlLabel, Paper, Tabs } from '@material-ui/core';
 import { Input } from 'reactstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogin, userRegister } from '../Redux/Actions/UserAction';
-import facebook from '../Assets/facebook.jpg';
-import google from '../Assets/google.png';
+import facebook from '../Assets/Images/facebook.jpg';
+import google from '../Assets/Images/google.png';
 import { Header } from '../Components/Auth';
 import { Redirect } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
         height: '35rem',
         borderRadius: '1rem',
         boxShadow: '0 0 3px #a4a4a4',
-        margin: '0.75rem 2rem 2rem 2rem',
+        margin: '0.75rem 10rem 2rem 2rem',
         float: 'right',
     },
 }));
@@ -117,7 +117,7 @@ const Testing = () => {
         <React.Fragment>
             <Header />
             <div style={{display:'flex', justifyContent:'center'}}>
-                <div style={{margin:'0.75rem 2rem 2rem 2rem'}}>
+                <div style={{margin:'0.75rem 2rem 2rem 10rem'}}>
                     <img 
                         src={'https://media1.tenor.com/images/552ec189475f1d337391b02d6b0b9965/tenor.gif?itemid=13113745'} 
                         alt='authImg' 
@@ -211,7 +211,7 @@ const Testing = () => {
                                     <div style={{fontSize:'0.9rem', color:'#033e66', cursor:'pointer'}}>
                                         Lupa Password?
                                     </div>
-                                    <div style={{marginLeft:'13.5rem', fontSize:'0.9rem', color:'red', cursor:'pointer'}}>
+                                    <div style={{marginLeft:'8rem', fontSize:'0.9rem', color:'red', cursor:'pointer'}}>
                                         Belum punya akun?
                                     </div>
                                 </div>

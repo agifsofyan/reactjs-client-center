@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import larunoLogo from '../../Assets/laruno.png';
-import downArrow from '../../Assets/down-arrow-thick.png';
-import shoppingCart from '../../Assets/shopping-cart-black.png';
-import bell from '../../Assets/bell.png';
+import larunoLogo from '../../Assets/Images/laruno.png';
+import downArrow from '../../Assets/Images/down-arrow-thick.png';
+import shoppingCart from '../../Assets/Images/shopping-cart-black.png';
+import bell from '../../Assets/Images/bell.png';
 import { Dropdown, DropdownMenu, DropdownToggle, NavLink } from 'reactstrap';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';

@@ -16,7 +16,7 @@ const Cart = () => {
 
     useEffect(() => {
         document.title = `My Cart`;
-        let token = localStorage.getItem('token');
+        const token = localStorage.getItem('token');
         if (token) {
             dispatch(keepLogin(token));
         }

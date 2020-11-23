@@ -4,7 +4,6 @@ import backArrow from '../../Assets/Images/back-arrow.png';
 
 const Header = (props) => {
     const loggedIn = useSelector((state) => state.user.loggedIn);
-    console.log(loggedIn);
 
     return (
         <div style={styles.container}>
@@ -13,7 +12,7 @@ const Header = (props) => {
             </a>
             <div style={styles.titleName}>
                 <div style={styles.title}>
-                    Check Out
+                    Laruno Blog
                 </div>
                 <div style={styles.greet}>
                     Hi, {loggedIn ? props.name : 'Guest'} &#128075;

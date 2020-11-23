@@ -1,7 +1,7 @@
 import React from 'react';
 import Skeleton from '@material-ui/lab/Skeleton';
 import { useSelector } from 'react-redux';
-import section from '../../Assets/section.jpg';
+import section from '../../Assets/Images/section.jpg';
 
 const Section = () => {
     const loading = useSelector((state) => state.product.loading);
@@ -12,11 +12,11 @@ const Section = () => {
             {
                 loading
                 ?
-                <div style={styles.videoDiv}>
+                <div style={styles.imageDiv}>
                     <Skeleton variant="rect" style={{width:'24rem', height:'13.5rem'}} />
                 </div>
                 :
-                <div style={styles.videoDiv}>
+                <div style={styles.imageDiv}>
                     <img src={section} alt='imgDesc' style={styles.image} />
                 </div>
             }
@@ -43,8 +43,8 @@ const styles = {
     container: {
         display: 'flex',
     },
-    videoDiv: {
-        padding: '2rem 3rem',
+    imageDiv: {
+        padding: '2rem 3rem 2rem 10rem',
     },
     image: {
         width: '24rem',
@@ -55,7 +55,7 @@ const styles = {
     wrapper: {
         display: 'flex',
         flexDirection: 'column',
-        width: '45rem',
+        width: '40rem',
         margin: 'auto 0rem',
     },
     title: {

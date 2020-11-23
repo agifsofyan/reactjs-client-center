@@ -1,6 +1,6 @@
 import React from 'react';
-import starFilled from '../../Assets/star-filled.png';
-import starOutlined from '../../Assets/star-outline.png';
+import starFilled from '../../Assets/Images/star-filled.png';
+import starOutlined from '../../Assets/Images/star-outline.png';
 
 const Ratings = () => {
     const XLine = ({ color }) => (

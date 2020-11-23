@@ -1,8 +1,8 @@
 import React from 'react';
-import recommend from '../../Assets/recommend.jpg';
-import star from '../../Assets/star-filled.png';
-import share from '../../Assets/share.png';
-import cart from '../../Assets/shopping-cart-white.png';
+import recommend from '../../Assets/Images/recommend.jpg';
+import star from '../../Assets/Images/star-filled.png';
+import share from '../../Assets/Images/share.png';
+import cart from '../../Assets/Images/shopping-cart-white.png';
 
 const Recommendation = () => {
     return (

@@ -1,10 +1,9 @@
 import React from 'react';
-import laruno from '../../Assets/laruno.png';
-import facebook from '../../Assets/facebook.jpg';
-import instagram from '../../Assets/instagram.png';
-import youtube from '../../Assets/youtube.png';
-import tiktok from '../../Assets/tiktok.png';
-// import { orange } from '@material-ui/core/colors';
+import laruno from '../../Assets/Images/laruno.png';
+import facebook from '../../Assets/Images/facebook.jpg';
+import instagram from '../../Assets/Images/instagram.png';
+import youtube from '../../Assets/Images/youtube.png';
+import tiktok from '../../Assets/Images/tiktok.png';
 
 const Footer = () => {
     return (
