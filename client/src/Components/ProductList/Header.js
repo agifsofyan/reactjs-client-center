@@ -7,19 +7,28 @@ import { Dropdown, DropdownMenu, DropdownToggle, NavLink } from 'reactstrap';
 import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
 import { useDispatch, useSelector } from 'react-redux';
-import { keepLogin } from '../../Redux/Actions/UserAction';
+import { keepLogin, logOut } from '../../Redux/Actions/UserAction';
 
 const Header = () => {
     const dispatch = useDispatch();
 
     const [dropdownOpen, setDropdownOpen] = useState(false);
+    const [userDropdown, setUserDropdown] = useState(false);
 
     const loggedIn = useSelector((state) => state.user.loggedIn);
     const userData = useSelector((state) => state.user.userData);
-    console.log(loggedIn);
+    console.log(userData);
 
     const toggle = () => {
         setDropdownOpen(prevState => !prevState);
+    };
+
+    const toggleUser = () => {
+        setUserDropdown(prevState => !prevState);
+    };
+
+    const handleLogout = () => {
+        dispatch(logOut());
     };
 
     useEffect(() => {
@@ -76,9 +85,20 @@ const Header = () => {
             {
                 loggedIn
                 ?
-                <div style={styles.greet}>
-                    Hi, {userData.name}
-                </div>
+                <Dropdown style={styles.greet} isOpen={userDropdown} toggle={toggleUser}>
+                    <DropdownToggle
+                    tag="span"
+                    data-toggle="dropdown"
+                    aria-expanded={userDropdown}
+                    style={styles.greet}>
+                        Hi, {userData.name}
+                    </DropdownToggle>
+                    <DropdownMenu>
+                        <div style={styles.list} onClick={handleLogout}>
+                            Log Out
+                        </div>
+                    </DropdownMenu>
+                </Dropdown>
                 :
                 <NavLink href='/auth'>
                     <div style={styles.authBtn}>
@@ -156,6 +176,7 @@ const styles = {
         borderRadius: '10px',
     },
     greet: {
+        cursor: 'pointer',
         textDecoration: 'none',
         color: '#ff4500',
         fontWeight: '700',

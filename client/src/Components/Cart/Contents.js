@@ -6,6 +6,7 @@ import { getCart, removeCart } from '../../Redux/Actions/CartAction';
 import { addToOrder } from '../../Redux/Actions/OrderAction';
 import Swal from 'sweetalert2';
 import { Redirect } from 'react-router-dom';
+import { fetchAddress, fetchAddressById } from '../../Redux/Actions/ProfileAction';
 
 const items = [];
 
@@ -14,8 +15,8 @@ const Contents = () => {
 
     const cartList = useSelector((state) => state.cart.cartList);
     const orderSuccess = useSelector((state) => state.order.success);
-
-    console.log(cartList);
+    const addressData = useSelector((state) => state.profile.addressList);
+    console.log(`cartList: ${cartList}`);
 
     const [update, setUpdate] = useState(false);
     const [ticked, setTicked] = useState({
@@ -36,9 +37,8 @@ const Contents = () => {
             }
         }
         setTicked(items);
-        console.log('ticked-state', ticked);
+        console.log(ticked);
     };
-
 
     useEffect(() => {
         dispatch(getCart());
@@ -46,6 +46,17 @@ const Contents = () => {
             setUpdate(false);
         }
     }, [dispatch, update]);
+
+    useEffect(() => {
+        dispatch(fetchAddress());
+    }, [dispatch]);
+
+    useEffect(() => {
+        dispatch(fetchAddressById(addressData._id));
+    }, [dispatch, addressData._id]);
+
+    const addressById = useSelector((state) => state.profile.addressById);
+    // console.log('cart page', addressById._id);
 
     const rounded = (num) => {
         let roundedString = num.toFixed(2);
@@ -87,17 +98,17 @@ const Contents = () => {
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
+                    {/* <td>-</td> */}
+                    {/* <td>-</td> */}
+                    {/* <td>-</td> */}
+                    {/* <td>-</td> */}
                 </tr>
             );
         }
         return cartList.map((val,index) => {
             return (
-                <tr key={index} value={val.product_info._id}>
-                    <td>
+                <tr key={index} value={val.product_id}>
+                    {/* <td>
                         <input
                             type="checkbox"
                             id={val.product_info._id}
@@ -125,6 +136,12 @@ const Contents = () => {
                             :
                             '1'
                         }
+                    </td> */}
+                    <td>
+                        {val.quantity}
+                    </td>
+                    <td>
+                        {val.product_id}
                     </td>
                     <td>
                         <Button variant="outline-danger" onClick={() => handleDelete(val.product_info._id)}>
@@ -136,50 +153,50 @@ const Contents = () => {
         });
     };
 
-    const renderBump = () => {
-        return cartList.map((val,index) => {
-            const bumps = val.product_info.bump;
-            return bumps.map((item, idx) => {
-                return (
-                    <div style={bump.box}>
-                        <div style={bump.topSection}>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        color="primary"
-                                        checked={tickedBump}
-                                        onClick={handleChangeTicked}
-                                    />
-                                }
-                                label={
-                                    <span style={{fontSize: '1.15rem', fontWeight:'500'}}>
-                                        {item.bump_name}
-                                    </span>
-                                }
-                                style={bump.tickBump}
-                            />
-                        </div>
-                        <div style={bump.content}>
-                            <img src={item.bump_image} alt='gambar bump' style={bump.contentImage} />
-                            <div style={bump.contentText}>
-                                <div style={bump.contentTitle}>
-                                    {item.bump_name}
-                                </div>
-                                <div style={bump.contentDescription}>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper tincidunt sodales. Vestibulum venenatis porttitor lorem, quis finibus velit viverra ac. Ut a varius nulla. Nam tempus dapibus leo non vulputate. Fusce id mi ipsum. Nam in dui laoreet, lobortis ligula at, scelerisque mi. Cras nec nunc magna. Proin blandit viverra dui. Fusce tempor dignissim lorem vel tincidunt.
-                                </div>
-                            </div>
-                        </div>
-                        <div style={bump.bottomSection}>
-                            <span style={bump.footerTxt}>
-                                Footer for : {item.bump_name}
-                            </span>
-                        </div>
-                    </div>
-                );
-            });
-        });
-    };
+    // const renderBump = () => {
+    //     return cartList.map((val,index) => {
+    //         const bumps = val.product_info.bump;
+    //         return bumps.map((item, idx) => {
+    //             return (
+    //                 <div style={bump.box}>
+    //                     <div style={bump.topSection}>
+    //                         <FormControlLabel
+    //                             control={
+    //                                 <Checkbox
+    //                                     color="primary"
+    //                                     checked={tickedBump}
+    //                                     onClick={handleChangeTicked}
+    //                                 />
+    //                             }
+    //                             label={
+    //                                 <span style={{fontSize: '1.15rem', fontWeight:'500'}}>
+    //                                     {item.bump_name}
+    //                                 </span>
+    //                             }
+    //                             style={bump.tickBump}
+    //                         />
+    //                     </div>
+    //                     <div style={bump.content}>
+    //                         <img src={item.bump_image} alt='gambar bump' style={bump.contentImage} />
+    //                         <div style={bump.contentText}>
+    //                             <div style={bump.contentTitle}>
+    //                                 {item.bump_name}
+    //                             </div>
+    //                             <div style={bump.contentDescription}>
+    //                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper tincidunt sodales. Vestibulum venenatis porttitor lorem, quis finibus velit viverra ac. Ut a varius nulla. Nam tempus dapibus leo non vulputate. Fusce id mi ipsum. Nam in dui laoreet, lobortis ligula at, scelerisque mi. Cras nec nunc magna. Proin blandit viverra dui. Fusce tempor dignissim lorem vel tincidunt.
+    //                             </div>
+    //                         </div>
+    //                     </div>
+    //                     <div style={bump.bottomSection}>
+    //                         <span style={bump.footerTxt}>
+    //                             Footer for : {item.bump_name}
+    //                         </span>
+    //                     </div>
+    //                 </div>
+    //             );
+    //         });
+    //     });
+    // };
 
     const [tickedBump, setTickedBump] = useState(false);
 
@@ -194,18 +211,18 @@ const Contents = () => {
     let price = 0;
     let salePrice = 0;
 
-    cartList.map((val,index) => {
-        return(
-            <div key={index}>
-                {/* <div> */}
-                    {price += val.product_info.price}
-                {/* </div> */}
-                {/* <div> */}
-                    {salePrice += val.product_info.sale_price}
-                {/* </div> */}
-            </div>
-        );
-    });
+    // cartList.map((val,index) => {
+    //     return(
+    //         <div key={index}>
+    //             <div> 
+    //                 {price += val.product_info.price}
+    //             </div> 
+    //             <div> 
+    //                 {salePrice += val.product_info.sale_price}
+    //             </div> 
+    //         </div>
+    //     );
+    // });
 
     const handleStoreOrder = () => {
         dispatch(addToOrder(
@@ -216,11 +233,24 @@ const Contents = () => {
                     phone_number: "08989900181"
                 },
                 shipment: {
-                    address_id: "5face99e4b34ba1d647c9196 address id reference from user address"
+                    address_id: `${addressById._id} address id reference from user address`
                 }
             }
         ));
-        // window.location.reload();
+        // console.log(
+        //         `
+        //         {
+        //             items: ${ticked},
+        //             payment: {
+        //                 method: "5fb24fc4c49a9f4adc62bceb",
+        //                 phone_number: "08989900181"
+        //             },
+        //             shipment: {
+        //                 address_id: "${addressById._id} address id reference from user address"
+        //             }
+        //         }
+        //     `
+        // );
     };
 
     if (orderSuccess) {
@@ -239,12 +269,15 @@ const Contents = () => {
                     <Table bordered hover>
                         <thead>
                             <tr>
-                                <th>#</th>
+                                {/* <th>#</th>
                                 <th>Product Name</th>
                                 <th>Price</th>
                                 <th>Discount</th>
                                 <th>Sale Price</th>
                                 <th>Quantity</th>
+                                <th>Action</th> */}
+                                <th>Quantity</th>
+                                <th>Product Id</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -257,7 +290,7 @@ const Contents = () => {
             {/* ORDER BUMP */}
             <div>
                 <div style={bump.separator} />
-                {renderBump()}
+                {/* {renderBump()} */}
             </div>
             {/* SUMMARY */}
             <div style={summary.container}>

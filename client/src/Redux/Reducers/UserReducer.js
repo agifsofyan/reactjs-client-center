@@ -4,6 +4,7 @@ import {
     user_login,
     user_keep_login,
     user_change_pass,
+    user_logout,
     user_failed,
 } from '../Types';
 
@@ -51,6 +52,8 @@ export const userReducer = (state = INITIAL_STATE, action) => {
                 loggedIn: true,
                 loading: false,
             };
+        case user_logout: 
+            return INITIAL_STATE;
         case user_failed:
             return {
                 ...state,

@@ -26,8 +26,9 @@ export const getCart = () => {
                 let res = await axios.get(`${SWAGGER_URL}/carts/list`, options);
                 dispatch({
                     type: cart_success,
-                    payload: res.data.items,
+                    payload: res.data.data.items,
                 });
+                console.log('redux getCart', res.data.data.items);
             }
         } catch {
             dispatch({
@@ -56,7 +57,7 @@ export const addToCart = (product_id) => {
                 console.log('stlh axios');
                 dispatch({
                     type: cart_added,
-                    payload: res.data.items,
+                    payload: res.data.data.items,
                 });
             }
         } catch {
@@ -87,7 +88,7 @@ export const removeCart = (product_id) => {
                 console.log('stlh axios remove');
                 dispatch({
                     type: cart_success,
-                    payload: res.data,
+                    payload: res.data.data.items,
                 });
                 console.log('stlh dispatch SUKSES');
             }

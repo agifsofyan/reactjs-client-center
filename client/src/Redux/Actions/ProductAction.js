@@ -22,7 +22,7 @@ export const getProducts = () => {
             let res = await axios.get(`${SWAGGER_URL}/products`, headers);
             dispatch({
                 type: product_get_success,
-                payload: res.data,
+                payload: res.data.data,
             });
         } catch {
             dispatch({
@@ -44,10 +44,10 @@ export const getProductBySlug = (slug) => {
                     'accept': 'application/json',
                 },
             };
-            let res = await axios.get(`${SWAGGER_URL}/products/${slug}`, headers);
+            let res = await axios.get(`${SWAGGER_URL}/products/${slug}/detail`, headers);
             dispatch({
                 type: product_get_by_id,
-                payload: res.data,
+                payload: res.data.data,
             });
         } catch {
             dispatch({

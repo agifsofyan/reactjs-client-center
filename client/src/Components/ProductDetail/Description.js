@@ -16,8 +16,7 @@ const Description = (props) => {
                 </div>
                 :
                 <div style={styles.imageDiv}>
-                    {/* <img src={props.image_url} alt='imgDesc' style={styles.image} /> */}
-                    <img src='https://www.btklsby.go.id/images/placeholder/basic.png' alt='imgDesc' style={styles.image} />
+                    <img src={props.image_url} alt='imgDesc' style={styles.image} />
                 </div>
             }
             {/* IMAGE end */}

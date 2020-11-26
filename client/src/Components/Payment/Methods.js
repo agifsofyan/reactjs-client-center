@@ -17,38 +17,47 @@ import jcb from '../../Assets/Images/jcb.png';
 const EWallet = () => {
     const [state, setState] = useState('');
 
-    const handleChange = (e, { value }) => setState({ value });
+    const handleChange = (e, { value }) => {
+        setState({
+            value,
+        });
+    };
 
     return (
         <div>
-            <div style={{fontSize:'1.1rem', fontWeight:'600', marginBottom:'0.15rem'}}>
+            <div style={styles.methodTitle}>
                 E-Wallet
             </div>
-            <div>Bayar langsung dari akun ewallet</div>
-            <div style={{border:'0.05rem solid #d4d4d4', borderRadius:'0.5rem', padding:'0.5rem', margin:'1rem 0rem'}}>
+            <div>
+                Bayar langsung dari akun ewallet
+            </div>
+            <div style={styles.selected}>
+                Selected Method: <b>{state.value}</b>
+            </div>
+            <div style={styles.radioDiv}>
                 <Radio 
-                    value='dana'
+                    value='Dana'
                     onChange={handleChange}
-                    checked={state.value === 'dana'}
-                    style={{margin:'0rem 0.75rem', paddingTop:'0.15rem'}} 
+                    style={styles.radioBtn}
+                    checked={state.value === 'Dana'}
                 />
                 <img src={dana} alt='icon dana' height={27.5} />
             </div>
-            <div style={{border:'0.05rem solid #d4d4d4', borderRadius:'0.5rem', padding:'0.5rem', margin:'1rem 0rem'}}>
+            <div style={styles.radioDiv}>
                 <Radio 
-                    value='linkaja'
+                    value='LinkAja'
                     onChange={handleChange}
-                    checked={state.value === 'linkaja'}
-                    style={{margin:'0rem 0.75rem', paddingTop:'0.15rem'}} 
+                    style={styles.radioBtn}
+                    checked={state.value === 'LinkAja'}
                 />
                 <img src={linkaja} alt='icon linkaja' height={27.5} />
             </div>
-            <div style={{border:'0.05rem solid #d4d4d4', borderRadius:'0.5rem', padding:'0.5rem', margin:'1rem 0rem'}}>
+            <div style={styles.radioDiv}>
                 <Radio 
-                    value='ovo'
+                    value='OVO'
                     onChange={handleChange}
-                    checked={state.value === 'ovo'}
-                    style={{margin:'0rem 0.75rem', paddingTop:'0.15rem'}} 
+                    style={styles.radioBtn}
+                    checked={state.value === 'OVO'}
                 />
                 <img src={ovo} alt='icon ovo' height={27.5} />
             </div>
@@ -59,47 +68,54 @@ const EWallet = () => {
 const VirtualAccount = () => {
     const [state, setState] = useState('');
 
-    const handleChange = (e, { value }) => setState({ value });
+    const handleChange = (e, { value }) => {
+        setState({ value });
+    };
 
     return (
         <div>
-            <div style={{fontSize:'1.1rem', fontWeight:'600', marginBottom:'0.15rem'}}>
+            <div style={styles.methodTitle}>
                 Virtual Account
             </div>
-            <div>Bayar dengan kode dari bank</div>
-            <div style={{border:'0.05rem solid #d4d4d4', borderRadius:'0.5rem', padding:'0.5rem', margin:'1rem 0rem'}}>
+            <div>
+                Bayar dengan kode dari bank
+            </div>
+            <div style={styles.selected}>
+                Selected Method: <b>{state.value}</b>
+            </div>
+            <div style={styles.radioDiv}>
                 <Radio 
-                    value='bca'
+                    value='BCA'
                     onChange={handleChange}
-                    checked={state.value === 'bca'}
-                    style={{margin:'0rem 0.75rem', paddingTop:'0.15rem'}} 
+                    style={styles.radioBtn}
+                    checked={state.value === 'BCA'}
                 />
                 <img src={bca} alt='icon dana' height={27.5} />
             </div>
-            <div style={{border:'0.05rem solid #d4d4d4', borderRadius:'0.5rem', padding:'0.5rem', margin:'1rem 0rem'}}>
+            <div style={styles.radioDiv}>
                 <Radio 
-                    value='bni'
+                    value='BNI'
                     onChange={handleChange}
-                    checked={state.value === 'bni'}
-                    style={{margin:'0rem 0.75rem', paddingTop:'0.15rem'}} 
+                    style={styles.radioBtn}
+                    checked={state.value === 'BNI'}
                 />
                 <img src={bni} alt='icon linkaja' height={27.5} />
             </div>
-            <div style={{border:'0.05rem solid #d4d4d4', borderRadius:'0.5rem', padding:'0.5rem', margin:'1rem 0rem'}}>
+            <div style={styles.radioDiv}>
                 <Radio 
-                    value='mandiri'
+                    value='Mandiri'
                     onChange={handleChange}
-                    checked={state.value === 'mandiri'}
-                    style={{margin:'0rem 0.75rem', paddingTop:'0.15rem'}} 
+                    style={styles.radioBtn}
+                    checked={state.value === 'Mandiri'}
                 />
                 <img src={mandiri} alt='icon ovo' height={27.5} />
             </div>
-            <div style={{border:'0.05rem solid #d4d4d4', borderRadius:'0.5rem', padding:'0.5rem', margin:'1rem 0rem'}}>
+            <div style={styles.radioDiv}>
                 <Radio 
-                    value='sampoerna'
+                    value='Sampoerna'
                     onChange={handleChange}
-                    checked={state.value === 'sampoerna'}
-                    style={{margin:'0rem 0.75rem', paddingTop:'0.15rem'}} 
+                    style={styles.radioBtn}
+                    checked={state.value === 'Sampoerna'}
                 />
                 <img src={sampoerna} alt='icon ovo' height={27.5} />
             </div>
@@ -110,38 +126,45 @@ const VirtualAccount = () => {
 const CreditCard = () => {
     const [state, setState] = useState('');
 
-    const handleChange = (e, { value }) => setState({ value });
+    const handleChange = (e, { value }) => {
+        setState({ value });
+    };
 
     return (
         <div>
-            <div style={{fontSize:'1.1rem', fontWeight:'600', marginBottom:'0.15rem'}}>
+            <div style={styles.methodTitle}>
                 Credit Card
             </div>
-            <div>Bayar menggunakan kartu kredit</div>
-            <div style={{border:'0.05rem solid #d4d4d4', borderRadius:'0.5rem', padding:'0.5rem', margin:'1rem 0rem'}}>
+            <div>
+                Bayar menggunakan kartu kredit
+            </div>
+            <div style={styles.selected}>
+                Selected Method: <b>{state.value}</b>
+            </div>
+            <div style={styles.radioDiv}>
                 <Radio 
-                    value='visa'
+                    value='Visa'
                     onChange={handleChange}
-                    checked={state.value === 'visa'}
-                    style={{margin:'0rem 0.75rem', paddingTop:'0.15rem'}} 
+                    style={styles.radioBtn}
+                    checked={state.value === 'Visa'}
                 />
                 <img src={visa} alt='icon dana' height={27.5} />
             </div>
-            <div style={{border:'0.05rem solid #d4d4d4', borderRadius:'0.5rem', padding:'0.5rem', margin:'1rem 0rem'}}>
+            <div style={styles.radioDiv}>
                 <Radio 
-                    value='mastercard'
+                    value='Mastercard'
                     onChange={handleChange}
-                    checked={state.value === 'mastercard'}
-                    style={{margin:'0rem 0.75rem', paddingTop:'0.15rem'}} 
+                    style={styles.radioBtn}
+                    checked={state.value === 'Mastercard'}
                 />
                 <img src={mastercard} alt='icon linkaja' height={27.5} />
             </div>
-            <div style={{border:'0.05rem solid #d4d4d4', borderRadius:'0.5rem', padding:'0.5rem', margin:'1rem 0rem'}}>
+            <div style={styles.radioDiv}>
                 <Radio 
-                    value='jcb'
+                    value='JCB'
                     onChange={handleChange}
-                    checked={state.value === 'jcb'}
-                    style={{margin:'0rem 0.75rem', paddingTop:'0.15rem'}} 
+                    style={styles.radioBtn}
+                    checked={state.value === 'JCB'}
                 />
                 <img src={jcb} alt='icon ovo' height={27.5} />
             </div>
@@ -152,20 +175,27 @@ const CreditCard = () => {
 const BankTransfer = () => {
     const [state, setState] = useState('');
 
-    const handleChange = (e, { value }) => setState({ value });
+    const handleChange = (e, { value }) => {
+        setState({ value });
+    };
 
     return (
         <div>
-            <div style={{fontSize:'1.1rem', fontWeight:'600', marginBottom:'0.15rem'}}>
+            <div style={styles.methodTitle}>
                 Bank Transfer
             </div>
-            <div>Bayar dengan akhir nominal 4 angka verifikasi</div>
-            <div style={{border:'0.05rem solid #d4d4d4', borderRadius:'0.5rem', padding:'0.5rem', margin:'1rem 0rem'}}>
+            <div>
+                Bayar dengan akhir nominal 4 angka verifikasi
+            </div>
+            <div style={styles.selected}>
+                Selected Method: <b>{state.value}</b>
+            </div>
+            <div style={styles.radioDiv}>
                 <Radio 
-                    value='bca'
+                    value='BCA Transfer'
                     onChange={handleChange}
-                    checked={state.value === 'bca'}
-                    style={{margin:'0rem 0.75rem', paddingTop:'0.15rem'}} 
+                    style={styles.radioBtn}
+                    checked={state.value === 'BCA Transfer'}
                 />
                 <img src={bca} alt='icon dana' height={27.5} />
             </div>
@@ -209,12 +239,21 @@ const panes = [
 ];
 
 const Methods = () => {
+    const [state, setState] = useState('');
+
+    const handleChange = (e, { value }) => {
+        setState({ value });
+    };
+
     return (
-        <div style={{margin:'3rem 17.5rem'}}>
-            <div style={{margin:'1.5rem 0rem', display:'flex', justifyContent:'center', fontSize:'1.25rem', fontWeight:'600'}}>
+        <div style={styles.root}>
+            <div style={styles.title}>
                 Payment Methods
             </div>
-            <Tab menu={{ fluid: true, vertical: true, tabular: true }} panes={panes} />
+            <Tab 
+                panes={panes}
+                menu={{ fluid: true, vertical: true, tabular: true }}
+            />
             <div style={styles.payButton}>
                 BAYAR SEKARANG
             </div>
@@ -223,8 +262,15 @@ const Methods = () => {
 };
 
 const styles = {
-    panesContainer: {
-        borderRadius: '0.5rem',
+    root: {
+        margin: '3rem 17.5rem',
+    },
+    title: {
+        margin: '1.5rem 0rem',
+        display: 'flex',
+        justifyContent: 'center',
+        fontSize: '1.25rem',
+        fontWeight: '600',
     },
     payButton: {
         cursor: 'pointer',
@@ -239,6 +285,29 @@ const styles = {
         fontSize: '2rem',
         fontWeight: '600',
         boxShadow: '0 0 0.5rem #FF4500',
+    },
+    panesContainer: {
+        borderRadius: '0.5rem',
+    },
+    methodTitle: {
+        fontSize: '1.1rem',
+        fontWeight: '600',
+        marginBottom: '0.15rem',
+    },
+    selected: {
+        fontSize: '0.9rem',
+        color: '#696969',
+        marginTop: '0.25rem',
+    },
+    radioDiv: {
+        border: '0.05rem solid #d4d4d4',
+        borderRadius: '0.5rem',
+        padding: '0.5rem',
+        margin: '1rem 0rem',
+    },
+    radioBtn: {
+        margin: '0rem 0.75rem',
+        paddingTop: '0.15rem',
     },
 };
 

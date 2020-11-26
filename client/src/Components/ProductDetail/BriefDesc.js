@@ -38,7 +38,7 @@ const BriefDesc = (props) => {
                     Rp. {props.price}
                   </div>
                   <div style={styles.discount}>
-                    Hemat 80%
+                    Hemat {props.discount}%
                   </div>
                   <div style={styles.discPrice}>
                     Rp. {props.sale_price}

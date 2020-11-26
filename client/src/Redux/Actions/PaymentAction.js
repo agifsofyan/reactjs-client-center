@@ -25,8 +25,9 @@ export const getPayMethod = () => {
                 let res = await axios.get(`${SWAGGER_URL}/payments/method`, options);
                 dispatch({
                     type: payment_success,
-                    payload: res.data,
+                    payload: res.data.data,
                 });
+                // console.log('redux getPayMethod', res.data.data);
             }
         } catch {
             dispatch({
@@ -45,7 +46,7 @@ export const getPayMethodById = (id) => {
             let res = await axios.get(`${SWAGGER_URL}/payments/method/${id}`);
             dispatch({
                 type: payment_success,
-                payload: res.data,
+                payload: res.data.data,
             });
         } catch {
             dispatch({

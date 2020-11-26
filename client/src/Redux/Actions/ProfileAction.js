@@ -3,6 +3,7 @@ import { SWAGGER_URL } from '../../Support/API_URL';
 import {
     profile_start,
     profile_success,
+    profile_address_id,
     profile_failed,
 } from '../Types';
 
@@ -25,8 +26,9 @@ export const fetchAddress = () => {
                 let res = await axios.get(`${SWAGGER_URL}/users/profile/address`, options);
                 dispatch({
                     type: profile_success,
-                    payload: res.data,
+                    payload: res.data.data[0],
                 });
+                // console.log('ini dari redux', res.data.data[0]);
             }
         } catch {
             dispatch({
@@ -54,8 +56,37 @@ export const putAddress = (form) => {
                 let res = await axios.put(`${SWAGGER_URL}/users/profile/address`, form, options);
                 dispatch({
                     type: profile_success,
-                    payload: res.data,
+                    payload: res.data.data,
                 });
+            }
+        } catch {
+            dispatch({
+                type: profile_failed,
+            });
+        }
+    };
+};
+
+export const fetchAddressById = (_id) => {
+    return async dispatch => {
+        dispatch({
+            type: profile_start,
+        });
+        try {
+            if (token) {
+                let options = {
+                    headers : {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                };
+                let res = await axios.get(`${SWAGGER_URL}/users/profile/address/${_id}`, options);
+                dispatch({
+                    type: profile_address_id,
+                    payload: res.data.data,
+                });
+                // console.log('from redux', res.data._id, res.data.title);
             }
         } catch {
             dispatch({

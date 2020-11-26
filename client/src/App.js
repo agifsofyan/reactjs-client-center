@@ -13,7 +13,7 @@ import {
   PayFailed,
   Blog,
 } from './Pages';
-import Test from './Pages/Test';
+import RenderingOnly from './Pages/RenderingOnly';
 
 const token = localStorage.getItem('token');
 
@@ -46,7 +46,7 @@ const App = () => {
       <Route path='/failed' component={PayFailed} />
       <Route path='/blog' component={Blog} />
       {/* TESTING PART */}
-      <Route path='/tes' component={Test} />
+      <Route path='/render' component={RenderingOnly} />
     </Switch>
   );
 };

@@ -17,8 +17,15 @@ const ProductDetail = (query) => {
     const dispatch = useDispatch();
 
     const product = useSelector((state) => state.product.productListById);
+    // console.log(`product id : ${product._id}`);
 
     const slug = query.location.search.split('=')[1];
+
+    const rounded = (num) => {
+        let roundedString = num.toFixed(2);
+        let round = Number(roundedString);
+        return round;
+    };
 
     useEffect(() => {
         document.title = 'Product Detail';
@@ -28,15 +35,16 @@ const ProductDetail = (query) => {
     return (
         <div>
             <Header
-                headline={product.headline}
+                headline={product.name}
             />
             <BriefDesc
                 type={product.type}
-                headline={product.headline}
+                headline={product.name}
                 description={product.description}
                 price={product.price}
+                discount={rounded(100-((product.sale_price/product.price)*100))}
                 sale_price={product.sale_price}
-                video={product.video}
+                video={product.video} // sementara blm ada video
             />
             <Description
                 image_url={product.image_url !== undefined && product.image_url[0]}
@@ -44,14 +52,12 @@ const ProductDetail = (query) => {
             <Courses
                 title={product.title}
             />
-            <Section
-                image={product.image}
-            />
+            <Section />
             <Ratings />
             <Reviews />
             <Bonus />
             <Bottom
-                headline={product.headline}
+                headline={product.name}
                 price={product.price}
                 sale_price={product.sale_price}
             />

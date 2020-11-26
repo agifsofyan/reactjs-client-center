@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { keepLogin } from '../Redux/Actions/UserAction';
 import { Header } from '../Components/Profile';
 import { Form, Input, Button } from 'semantic-ui-react';
-import { fetchAddress, putAddress } from '../Redux/Actions/ProfileAction';
+import { fetchAddress, fetchAddressById, putAddress } from '../Redux/Actions/ProfileAction';
 import Swal from 'sweetalert2';
 
 const token = localStorage.getItem('token');
@@ -12,9 +12,9 @@ const Profile = () => {
     const dispatch = useDispatch();
 
     const userData = useSelector((state) => state.user.userData);
-    const addressData = useSelector((state) => state.profile.profileList);
-    const address = addressData[0];
-    console.log(addressData);
+    const addressData = useSelector((state) => state.profile.addressList);
+    // console.log(`ini dari page ${addressData.title} id: ${addressData._id}`);
+    console.log(userData);
 
     const [form, setForm] = useState({
         title: '',
@@ -34,15 +34,12 @@ const Profile = () => {
         }
     }, [dispatch]);
 
-    const capitalize = (str) => {
-        return str.toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substr(1)).join(' ');
-    };
+    useEffect(() => {
+        dispatch(fetchAddressById(addressData._id));
+    }, [dispatch, addressData._id]);
 
-    const takeFirstWord = (str) => {
-        let word = str.split(' ');
-        let capped = word[0].toLowerCase().split(' ').map(s => s.charAt(0).toUpperCase() + s.substr(1)).join(' ');
-        return capped;
-    };
+    const addressById = useSelector((state) => state.profile.addressById);
+    // console.log('profile page', addressById._id);
 
     const handleChange = (e) => {
         let capsText = e.target.value
@@ -82,16 +79,18 @@ const Profile = () => {
         }
     };
 
+    // const renderAddress = () => {};
+
     return (
         <div>
             <Header 
-                name={takeFirstWord(userData.name)}
+                name={userData.name}
             />
             {/* USER DATA */}
             <div style={styles.container}>
                 <div style={styles.bioSection}>
                     <div style={styles.title1}>
-                        {capitalize(userData.name)}'s Profile
+                        {userData.name}'s Profile
                     </div>
                     <div style={styles.data}>
                         <img src={userData.avatar} alt='avatar' style={styles.avatar} />
@@ -112,32 +111,29 @@ const Profile = () => {
             {/* ADRESS DETAILS */}
             <div style={styles.detailsContainer}>
                 <div style={styles.title2}>
-                    {capitalize(userData.name)}'s Address
+                    {addressData.title} Address
                 </div>
                 <div style={styles.addressDetails}>
                     <div className='d-flex'>
                         <div style={styles.location}>
-                            <b>Title</b> : {address.title}
+                            <b>Province</b> : {addressData.province}
                         </div>
                         <div style={styles.location}>
-                            <b>Province</b> : {address.province}
+                            <b>City</b> : {addressData.city}
                         </div>
                         <div style={styles.location}>
-                            <b>City</b> : {address.city}
+                            <b>District</b> : {addressData.districts}
                         </div>
                         <div style={styles.location}>
-                            <b>District</b> : {address.districts}
+                            <b>Sub District</b> : {addressData.sub_district}
                         </div>
                     </div>
                     <div className='d-flex'>
                         <div style={styles.location}>
-                            <b>Sub District</b> : {address.sub_district}
+                            <b>Address Detail</b> : {addressData.detail_address}
                         </div>
                         <div style={styles.location}>
-                            <b>Address Detail</b> : {address.detail_address}
-                        </div>
-                        <div style={styles.location}>
-                            <b>Postal Code</b> : {address.postal_code}
+                            <b>Postal Code</b> : {addressData.postal_code}
                         </div>
                     </div>
                 </div>
@@ -225,7 +221,7 @@ const styles = {
     // User Details
     container: {
         display: 'flex',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         paddingBottom: '1rem',
         margin: '0rem 8rem',
     },
@@ -236,7 +232,7 @@ const styles = {
     },
     title1: {
         display: 'flex',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         fontSize: '1.3rem',
         fontWeight: '600',
         margin: '1rem 0rem',
@@ -266,19 +262,22 @@ const styles = {
     },
     title2: {
         display: 'flex',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         fontSize: '1.3rem',
         fontWeight: '600',
+        marginLeft: '1rem',
+        marginBottom: '1rem',
     },
     addressDetails: {
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
+        // justifyContent: 'center',
+        // alignItems: 'center',
     },
     location: {
+        boxShadow: '0 0 0.15rem grey',
+        // backgroundColor: '#f4f4f4',
         borderRadius: '0.5rem',
-        backgroundColor: '#f4f4f4',
         padding: '0.8rem 1.25rem',
         margin: '1rem 1rem',
     },
@@ -288,7 +287,7 @@ const styles = {
     },
     title3: {
         display: 'flex',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         fontSize: '1.3rem',
         fontWeight: '600',
         margin: '1.5rem 0rem',
