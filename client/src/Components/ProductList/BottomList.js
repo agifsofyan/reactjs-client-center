@@ -18,7 +18,7 @@ const BottomList = () => {
         return list.map((val,index) => {
             return (
                 <div key={index} style={styles.itemContainer}>
-                    <img src={val.image_url[0]} alt='item pic' height={175} width={175} style={{borderRadius:'1em'}} />
+                    {/* <img src={val.image_url[0]} alt='item pic' height={175} width={175} style={{borderRadius:'1em'}} /> */}
                     <div style={styles.titleDesc}>
                         <div style={styles.title}>
                             {val.headline}

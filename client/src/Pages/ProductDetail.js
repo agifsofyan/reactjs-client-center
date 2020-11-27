@@ -17,7 +17,7 @@ const ProductDetail = (query) => {
     const dispatch = useDispatch();
 
     const product = useSelector((state) => state.product.productListById);
-    // console.log(`product id : ${product._id}`);
+    // console.log(`product id : ${product}`);
 
     const slug = query.location.search.split('=')[1];
 
@@ -39,6 +39,7 @@ const ProductDetail = (query) => {
             />
             <BriefDesc
                 type={product.type}
+                id={product._id}
                 headline={product.name}
                 description={product.description}
                 price={product.price}

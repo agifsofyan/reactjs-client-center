@@ -98,24 +98,24 @@ const Contents = () => {
                     <td>-</td>
                     <td>-</td>
                     <td>-</td>
-                    {/* <td>-</td> */}
-                    {/* <td>-</td> */}
-                    {/* <td>-</td> */}
-                    {/* <td>-</td> */}
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
                 </tr>
             );
         }
         return cartList.map((val,index) => {
             return (
-                <tr key={index} value={val.product_id}>
-                    {/* <td>
+                <tr key={index} value={val.product_info}>
+                    <td>
                         <input
                             type="checkbox"
-                            id={val.product_info._id}
+                            id={val.product_info}
                             onChange={handleTickedChild}
                         />
                     </td>
-                    <td>
+                    {/* <td>
                         {val.product_info.name}<br/>
                         TYPE : {val.product_info.type}
                     </td>
@@ -141,10 +141,10 @@ const Contents = () => {
                         {val.quantity}
                     </td>
                     <td>
-                        {val.product_id}
+                        {val.product_info}
                     </td>
                     <td>
-                        <Button variant="outline-danger" onClick={() => handleDelete(val.product_info._id)}>
+                        <Button variant="outline-danger" onClick={() => handleDelete(val.product_info)}>
                             Remove
                         </Button>
                     </td>
@@ -211,27 +211,27 @@ const Contents = () => {
     let price = 0;
     let salePrice = 0;
 
-    // cartList.map((val,index) => {
-    //     return(
-    //         <div key={index}>
-    //             <div> 
-    //                 {price += val.product_info.price}
-    //             </div> 
-    //             <div> 
-    //                 {salePrice += val.product_info.sale_price}
-    //             </div> 
-    //         </div>
-    //     );
-    // });
+    cartList.map((val,index) => {
+        return(
+            <div key={index}>
+                <div> 
+                    {price += val.product_info.price}
+                </div> 
+                <div> 
+                    {salePrice += val.product_info.sale_price}
+                </div> 
+            </div>
+        );
+    });
 
     const handleStoreOrder = () => {
         dispatch(addToOrder(
             {
                 items: ticked,
-                payment: {
-                    method: "5fb24fc4c49a9f4adc62bceb",
-                    phone_number: "08989900181"
-                },
+                // payment: {
+                //     method: "5fb24fc4c49a9f4adc62bceb",
+                //     phone_number: "08989900181"
+                // },
                 shipment: {
                     address_id: `${addressById._id} address id reference from user address`
                 }
@@ -269,16 +269,16 @@ const Contents = () => {
                     <Table bordered hover>
                         <thead>
                             <tr>
-                                {/* <th>#</th>
+                                <th>#</th>
                                 <th>Product Name</th>
                                 <th>Price</th>
                                 <th>Discount</th>
                                 <th>Sale Price</th>
                                 <th>Quantity</th>
-                                <th>Action</th> */}
-                                <th>Quantity</th>
-                                <th>Product Id</th>
                                 <th>Action</th>
+                                {/* <th>Quantity</th>
+                                <th>Product Id</th>
+                                <th>Action</th> */}
                             </tr>
                         </thead>
                         <tbody>

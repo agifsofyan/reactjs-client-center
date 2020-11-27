@@ -12,6 +12,9 @@ const BriefDesc = (props) => {
                 <div style={styles.topic}>
                     Type : {props.type}
                 </div>
+                <div style={styles.topic}>
+                    Id : {props.id}
+                </div>
                 <div style={styles.title}>
                     {props.headline}
                 </div>

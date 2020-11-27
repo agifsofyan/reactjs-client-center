@@ -30,7 +30,7 @@ export const addToOrder = (body) => {
                 console.log('stlh axios order');
                 dispatch({
                     type: order_post,
-                    payload: res.data,
+                    payload: res.data.data,
                 });
                 console.log('order berhasil');
             }
@@ -51,7 +51,7 @@ export const orderList = () => {
             let res = await axios.get(`${SWAGGER_URL}/orders/list`);
             dispatch({
                 type: order_success,
-                payload: res.data,
+                payload: res.data.data,
             });
         } catch {
             dispatch({
@@ -70,7 +70,7 @@ export const orderDetailById = (order_id) => {
             let res = await axios.get(`${SWAGGER_URL}/orders/${order_id}/detail`);
             dispatch({
                 type: order_success,
-                payload: res.data,
+                payload: res.data.data,
             });
         } catch {
             dispatch({

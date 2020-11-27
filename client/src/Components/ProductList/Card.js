@@ -30,10 +30,11 @@ const Card = () => {
             }}/>
             :
             <div key={index} style={styles.cardContainer}>
-              <img src={val.image_url[0]} alt='card pic' style={styles.image} />
+              {/* <img src={val.image_url[0]} alt='card pic' style={styles.image} /> */}
               <div>TYPE : {val.type}</div> {/* line ini nanti dicomment */}
               <div style={styles.title}>
-                {val.headline}
+                {/* {val.headline} */}
+                {val.name}
               </div>
               <div style={styles.subtitle}>
                 {val.subheadline}
