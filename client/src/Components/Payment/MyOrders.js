@@ -32,7 +32,7 @@ const MyOrders = () => {
                         {val.quantity}
                     </td>
                     <td>
-                        {val.product_id}
+                        {val.product_info}
                     </td>
                 </tr>
             );

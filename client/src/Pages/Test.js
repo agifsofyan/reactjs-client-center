@@ -9,8 +9,8 @@ const options = {
         'Access-Control-Allow-Methods': 'GET, PUT, POST, DELETE, OPTIONS',
         'Content-Type': 'multipart/form-data',
         'x-auth-token': `${token}`,
-    }
-}
+    },
+};
 
 var items = []
 

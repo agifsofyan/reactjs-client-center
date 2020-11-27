@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Radio, Tab } from 'semantic-ui-react';
+import { getPayMethod } from '../../Redux/Actions/PaymentAction';
 // EWALLET
 import dana from '../../Assets/Images/dana.png';
 import linkaja from '../../Assets/Images/linkaja.png';
@@ -239,16 +241,31 @@ const panes = [
 ];
 
 const Methods = () => {
-    const [state, setState] = useState('');
+    const dispatch = useDispatch();
 
-    const handleChange = (e, { value }) => {
-        setState({ value });
+    useEffect(() => {
+        dispatch(getPayMethod());
+    }, [dispatch]);
+
+    const method = useSelector((state) => state.payment.methodList);
+
+    const renderMethod = () => {
+        return method.slice(0,1).map((val,index) => {
+            return (
+                <div key={index}>
+                    method: {val.name}
+                </div>
+            );
+        });
     };
 
     return (
         <div style={styles.root}>
             <div style={styles.title}>
                 Payment Methods
+            </div>
+            <div>
+                {renderMethod()}
             </div>
             <Tab 
                 panes={panes}

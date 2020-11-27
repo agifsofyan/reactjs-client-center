@@ -38,9 +38,6 @@ const Profile = () => {
         dispatch(fetchAddressById(addressData._id));
     }, [dispatch, addressData._id]);
 
-    const addressById = useSelector((state) => state.profile.addressById);
-    // console.log('profile page', addressById._id);
-
     const handleChange = (e) => {
         let capsText = e.target.value
             .toLowerCase()
