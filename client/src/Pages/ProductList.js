@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { getProducts } from '../Redux/Actions/ProductAction';
 import { useDispatch} from 'react-redux';
+import MediaQuery from 'react-responsive';
 import {
     Header,
     Sort,
@@ -12,6 +13,12 @@ import {
     BottomList,
     Footer,
 } from '../Components/ProductList';
+import {
+    HeaderMobile,
+    List,
+    Recommend,
+    Formats,
+} from '../Mobile/ProductList';
 
 const ProductList = () => {
     const dispatch = useDispatch();
@@ -23,19 +30,29 @@ const ProductList = () => {
 
     return (
         <div>
-            <Header />
-            <Sort />
-            <Description />
-            <Card />
-            <Recommendation />
-            <div style={styles.isRow}>
-                <div style={styles.isColumn}>
-                    <Ratings />
-                    <Reviews />
+            {/* is Desktop */}
+            <MediaQuery minDeviceWidth={1224}>
+                <Header />
+                <Sort />
+                <Description />
+                <Card />
+                <Recommendation />
+                <div style={styles.isRow}>
+                    <div style={styles.isColumn}>
+                        <Ratings />
+                        <Reviews />
+                    </div>
+                    <BottomList />
                 </div>
-                <BottomList />
-            </div>
-            <Footer />
+                <Footer />
+            </MediaQuery>
+            {/* is Mobile */}
+            <MediaQuery maxDeviceWidth={1224}>
+                <HeaderMobile />
+                <List />
+                <Recommend />
+                <Formats />
+            </MediaQuery>
         </div>
     );
 };

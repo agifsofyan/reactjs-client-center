@@ -7,6 +7,7 @@ import Payment from './Payment';
 import PaySuccess from './PaySuccess';
 import PayFailed from './PayFailed';
 import Blog from './Blog';
+import BankSuccess from './BankSuccess';
 
 export {
     ProductList,
@@ -18,4 +19,5 @@ export {
     PaySuccess,
     PayFailed,
     Blog,
+    BankSuccess,
 };

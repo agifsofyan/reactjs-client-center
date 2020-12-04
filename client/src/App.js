@@ -12,8 +12,8 @@ import {
   PaySuccess,
   PayFailed,
   Blog,
+  BankSuccess,
 } from './Pages';
-import RenderingOnly from './Pages/RenderingOnly';
 
 const token = localStorage.getItem('token');
 
@@ -45,8 +45,7 @@ const App = () => {
       <Route path='/success' component={PaySuccess} />
       <Route path='/failed' component={PayFailed} />
       <Route path='/blog' component={Blog} />
-      {/* TESTING PART */}
-      <Route path='/render' component={RenderingOnly} />
+      <Route path='/bank-success' component={BankSuccess} />
     </Switch>
   );
 };

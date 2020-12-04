@@ -55,3 +55,32 @@ export const getPayMethodById = (id) => {
         }
     };
 };
+
+export const postPaymentMethod = (form) => {
+    return async dispatch=> {
+        dispatch({
+            type: payment_start,
+        });
+        try {
+            if (token) {
+                let options = {
+                    headers : {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                        'Authorization': `Bearer ${token}`,
+                    },
+                };
+                let res = await axios.post(`${SWAGGER_URL}/payments/method`, form, options);
+                dispatch({
+                    type: payment_success,
+                    payload: res.data.data,
+                });
+                console.log(`post payment sukses`);
+            }
+        } catch {
+            dispatch({
+                type: payment_failed,
+            });
+        }
+    };
+};

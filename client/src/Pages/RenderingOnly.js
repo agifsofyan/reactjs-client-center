@@ -18,7 +18,11 @@ const EWallet = () => {
         dispatch(getPayMethod());
     }, [dispatch]);
 
-    const method = useSelector(({ payment }) => payment.methodList);
+    let method = useSelector(({ payment }) => payment.methodList);
+
+    const postPayMethod = () => {
+        console.log('form: ', state.value);
+    };
 
     const renderMethod = () => {
         return method.filter(item => item.info === 'EWallet').map((val,index) => {
@@ -26,12 +30,12 @@ const EWallet = () => {
                 <div key={index}>
                     <div style={styles.radioDiv}>
                         <Radio 
-                            label={val.isActive ? null : 'Not Available'}
-                            value={val.name}
+                            value={val}
                             onChange={handleChange}
                             style={styles.radioBtn}
-                            checked={state.value === val.name}
+                            checked={state.value === val}
                             disabled={!val.isActive}
+                            label={val.isActive ? null : 'Not Available'}
                         />
                         <img src={val.icon} alt='icon' height={27.5} />
                     </div>
@@ -48,10 +52,10 @@ const EWallet = () => {
             <div>
                 Bayar langsung dari akun ewallet
             </div>
-            <div style={styles.selected}>
-                Selected Method: <b>{state.value}</b>
-            </div>
             {renderMethod()}
+            <div style={styles.payButton} onClick={postPayMethod}>
+                BAYAR SEKARANG
+            </div>
         </div>
     );
 };
@@ -71,18 +75,22 @@ const VirtualAccount = () => {
 
     const method = useSelector(({ payment }) => payment.methodList);
 
+    const postPayMethod = () => {
+        console.log('form: ', state.value);
+    };
+
     const renderMethod = () => {
         return method.filter(item => item.info === 'Virtual-Account').map((val,index) => {
             return (
                 <div key={index}>
                     <div style={styles.radioDiv}>
                         <Radio 
-                            label={val.isActive ? null : 'Not Available'}
-                            value={val.name}
+                            value={val._id}
                             onChange={handleChange}
                             style={styles.radioBtn}
-                            checked={state.value === val.name}
+                            checked={state.value === val._id}
                             disabled={!val.isActive}
+                            label={val.isActive ? null : 'Not Available'}
                         />
                         <img src={val.icon} alt='icon' height={27.5} />
                     </div>
@@ -99,10 +107,10 @@ const VirtualAccount = () => {
             <div>
                 Bayar dengan kode dari bank
             </div>
-            <div style={styles.selected}>
-                Selected Method: <b>{state.value}</b>
-            </div>
             {renderMethod()}
+            <div style={styles.payButton} onClick={postPayMethod}>
+                BAYAR SEKARANG
+            </div>
         </div>
     );
 };
@@ -122,18 +130,22 @@ const CreditCard = () => {
 
     const method = useSelector(({ payment }) => payment.methodList);
 
+    const postPayMethod = () => {
+        console.log('form: ', state.value);
+    };
+
     const renderMethod = () => {
         return method.filter(item => item.info === 'Credit-Card').map((val,index) => {
             return (
                 <div key={index}>
                     <div style={styles.radioDiv}>
                         <Radio 
-                            label={val.isActive ? null : 'Not Available'}
-                            value={val.name}
+                            value={val._id}
                             onChange={handleChange}
                             style={styles.radioBtn}
-                            checked={state.value === val.name}
+                            checked={state.value === val._id}
                             disabled={!val.isActive}
+                            label={val.isActive ? null : 'Not Available'}
                         />
                         <img src={val.icon} alt='icon' height={27.5} />
                     </div>
@@ -150,15 +162,15 @@ const CreditCard = () => {
             <div>
                 Bayar menggunakan kartu kredit
             </div>
-            <div style={styles.selected}>
-                Selected Method: <b>{state.value}</b>
-            </div>
             {renderMethod()}
+            <div style={styles.payButton} onClick={postPayMethod}>
+                BAYAR SEKARANG
+            </div>
         </div>
     );
 };
 
-const BankTransfer = () => {
+const BankTransfer = (props) => {
     const [state, setState] = useState('');
 
     const handleChange = (e, { value }) => {
@@ -173,19 +185,23 @@ const BankTransfer = () => {
 
     const method = useSelector(({ payment }) => payment.methodList);
 
+    const postPayMethod = () => {
+        console.log('form: ', state.value);
+    };
+
     const renderMethod = () => {
         return method.filter(item => item.info === 'Bank-Transfer').map((val,index) => {
             return (
                 <div key={index}>
                     <div style={styles.radioDiv}>
                         <Radio 
-                            label={val.isActive ? null : 'Not Available'}
-                            value={val.name}
+                            value={val._id}
                             onChange={handleChange}
                             style={styles.radioBtn}
-                            checked={state.value === val.name}
+                            checked={state.value === val._id}
                             disabled={!val.isActive}
-                        />
+                            label={val.isActive ? null : 'Not Available'}
+                            />
                         <img src={val.icon} alt='icon' height={27.5} />
                     </div>
                 </div>
@@ -201,10 +217,12 @@ const BankTransfer = () => {
             <div>
                 Bayar dengan akhir nominal 4 angka verifikasi
             </div>
-            <div style={styles.selected}>
-                Selected Method: <b>{state.value}</b>
-            </div>
             {renderMethod()}
+            <a href={state.value !== undefined ? '/success' : null}>
+                <div style={styles.payButton} onClick={postPayMethod}>
+                    BAYAR SEKARANG
+                </div>
+            </a>
         </div>
     );
 };
@@ -249,30 +267,15 @@ const Methods = () => {
         document.title = "Rendering ONLY";
     });
 
-    const [state, setState] = useState('');
-
-    const handleChange = (e, { value }) => {
-        setState({
-            value,
-        });
-    };
-
     return (
         <div style={styles.root}>
             <div style={styles.title}>
                 Payment Methods
             </div>
-            <div style={styles.selectedTop}>
-                Selected Payment Method: 
-            </div>
             <Tab 
                 panes={paneContents}
                 menu={{ fluid: true, vertical: true, tabular: true }}
-                handChange={handleChange}
             />
-            <div style={styles.payButton}>
-                BAYAR SEKARANG
-            </div>
         </div>
     );
 };
@@ -297,15 +300,16 @@ const styles = {
         cursor: 'pointer',
         display: 'flex',
         justifyContent: 'center',
-        margin: '2.5rem 15rem',
-        paddingTop: '1rem',
+        margin: '1.5rem 12.5rem 0.5rem 12.5rem',
+        paddingTop: '0.5rem',
         backgroundColor: '#FF4500',
-        borderRadius: '1rem',
+        borderRadius: '0.75rem',
         color: 'white',
-        height: '3.5rem',
-        fontSize: '2rem',
+        height: '2.5rem',
+        width: '12.5rem',
+        fontSize: '1.25rem',
         fontWeight: '600',
-        boxShadow: '0 0 0.5rem #FF4500',
+        boxShadow: '0 0 0.35rem #FF4500',
     },
     panesContainer: {
         borderRadius: '0.5rem',

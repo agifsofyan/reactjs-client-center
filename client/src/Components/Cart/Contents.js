@@ -115,7 +115,7 @@ const Contents = () => {
                             onChange={handleTickedChild}
                         />
                     </td>
-                    {/* <td>
+                    <td>
                         {val.product_info.name}<br/>
                         TYPE : {val.product_info.type}
                     </td>
@@ -136,13 +136,13 @@ const Contents = () => {
                             :
                             '1'
                         }
-                    </td> */}
-                    <td>
+                    </td>
+                    {/* <td>
                         {val.quantity}
                     </td>
                     <td>
                         {val.product_info}
-                    </td>
+                    </td> */}
                     <td>
                         <Button variant="outline-danger" onClick={() => handleDelete(val.product_info)}>
                             Remove
@@ -153,50 +153,50 @@ const Contents = () => {
         });
     };
 
-    // const renderBump = () => {
-    //     return cartList.map((val,index) => {
-    //         const bumps = val.product_info.bump;
-    //         return bumps.map((item, idx) => {
-    //             return (
-    //                 <div style={bump.box}>
-    //                     <div style={bump.topSection}>
-    //                         <FormControlLabel
-    //                             control={
-    //                                 <Checkbox
-    //                                     color="primary"
-    //                                     checked={tickedBump}
-    //                                     onClick={handleChangeTicked}
-    //                                 />
-    //                             }
-    //                             label={
-    //                                 <span style={{fontSize: '1.15rem', fontWeight:'500'}}>
-    //                                     {item.bump_name}
-    //                                 </span>
-    //                             }
-    //                             style={bump.tickBump}
-    //                         />
-    //                     </div>
-    //                     <div style={bump.content}>
-    //                         <img src={item.bump_image} alt='gambar bump' style={bump.contentImage} />
-    //                         <div style={bump.contentText}>
-    //                             <div style={bump.contentTitle}>
-    //                                 {item.bump_name}
-    //                             </div>
-    //                             <div style={bump.contentDescription}>
-    //                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper tincidunt sodales. Vestibulum venenatis porttitor lorem, quis finibus velit viverra ac. Ut a varius nulla. Nam tempus dapibus leo non vulputate. Fusce id mi ipsum. Nam in dui laoreet, lobortis ligula at, scelerisque mi. Cras nec nunc magna. Proin blandit viverra dui. Fusce tempor dignissim lorem vel tincidunt.
-    //                             </div>
-    //                         </div>
-    //                     </div>
-    //                     <div style={bump.bottomSection}>
-    //                         <span style={bump.footerTxt}>
-    //                             Footer for : {item.bump_name}
-    //                         </span>
-    //                     </div>
-    //                 </div>
-    //             );
-    //         });
-    //     });
-    // };
+    const renderBump = () => {
+        return cartList.map((val,index) => {
+            const bumps = val.product_info.bump;
+            return bumps.map((item, idx) => {
+                return (
+                    <div style={bump.box}>
+                        <div style={bump.topSection}>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        color="primary"
+                                        checked={tickedBump}
+                                        onClick={handleChangeTicked}
+                                    />
+                                }
+                                label={
+                                    <span style={{fontSize: '1.15rem', fontWeight:'500'}}>
+                                        {item.bump_name}
+                                    </span>
+                                }
+                                style={bump.tickBump}
+                            />
+                        </div>
+                        <div style={bump.content}>
+                            <img src={item.bump_image} alt='gambar bump' style={bump.contentImage} />
+                            <div style={bump.contentText}>
+                                <div style={bump.contentTitle}>
+                                    {item.bump_name}
+                                </div>
+                                <div style={bump.contentDescription}>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper tincidunt sodales. Vestibulum venenatis porttitor lorem, quis finibus velit viverra ac. Ut a varius nulla. Nam tempus dapibus leo non vulputate. Fusce id mi ipsum. Nam in dui laoreet, lobortis ligula at, scelerisque mi. Cras nec nunc magna. Proin blandit viverra dui. Fusce tempor dignissim lorem vel tincidunt.
+                                </div>
+                            </div>
+                        </div>
+                        <div style={bump.bottomSection}>
+                            <span style={bump.footerTxt}>
+                                Footer for : {item.bump_name}
+                            </span>
+                        </div>
+                    </div>
+                );
+            });
+        });
+    };
 
     const [tickedBump, setTickedBump] = useState(false);
 
@@ -211,46 +211,40 @@ const Contents = () => {
     let price = 0;
     let salePrice = 0;
 
-    cartList.map((val,index) => {
-        return(
-            <div key={index}>
-                <div> 
-                    {price += val.product_info.price}
-                </div> 
-                <div> 
-                    {salePrice += val.product_info.sale_price}
-                </div> 
-            </div>
-        );
-    });
+    // if ('price' in cartList && 'sale_price' in cartList) {
+        cartList.map((val,index) => {
+            return(
+                <div key={index}>
+                    <div>
+                        {price += val.product_info.price}
+                    </div>
+                    <div>
+                        {salePrice += val.product_info.sale_price}
+                    </div>
+                </div>
+            );
+        });
+    // }
 
     const handleStoreOrder = () => {
         dispatch(addToOrder(
             {
                 items: ticked,
-                // payment: {
-                //     method: "5fb24fc4c49a9f4adc62bceb",
-                //     phone_number: "08989900181"
-                // },
                 shipment: {
                     address_id: `${addressById._id} address id reference from user address`
                 }
             }
         ));
-        // console.log(
-        //         `
-        //         {
-        //             items: ${ticked},
-        //             payment: {
-        //                 method: "5fb24fc4c49a9f4adc62bceb",
-        //                 phone_number: "08989900181"
-        //             },
-        //             shipment: {
-        //                 address_id: "${addressById._id} address id reference from user address"
-        //             }
-        //         }
-        //     `
-        // );
+        console.log(
+            `
+                {
+                    items: ${ticked},
+                    shipment: {
+                        address_id: "${addressById._id} address id reference from user address"
+                    }
+                }
+            `
+        );
     };
 
     if (orderSuccess) {
@@ -290,7 +284,7 @@ const Contents = () => {
             {/* ORDER BUMP */}
             <div>
                 <div style={bump.separator} />
-                {/* {renderBump()} */}
+                {renderBump()}
             </div>
             {/* SUMMARY */}
             <div style={summary.container}>

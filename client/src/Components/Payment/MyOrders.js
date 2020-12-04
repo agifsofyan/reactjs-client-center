@@ -14,25 +14,20 @@ const MyOrders = () => {
 
     const renderList = () => {
         return cartList.map((val,index) => {
+            console.log(val);
             return (
-                <tr key={index}>
-                    {/* <td>
+                <tr key={val._id}>
+                    <td>
                         {index + 1}
                     </td>
                     <td>
                         {val.product_info.name}
                     </td>
                     <td>
-                        Rp. {val.product_info.price.toLocaleString('id-ID')}
-                    </td> */}
-                    <td>
-                        {index + 1}
-                    </td>
-                    <td>
                         {val.quantity}
                     </td>
                     <td>
-                        {val.product_info}
+                        Rp. {val.product_info.price.toLocaleString('id-ID')}
                     </td>
                 </tr>
             );
@@ -48,12 +43,10 @@ const MyOrders = () => {
                 <Table bordered hover>
                     <thead>
                         <tr>
-                            {/* <th>#</th>
-                            <th>Product Name</th>
-                            <th>Sale Price</th> */}
                             <th>#</th>
+                            <th>Product Name</th>
                             <th>Quantity</th>
-                            <th>Product ID</th>
+                            <th>Price</th>
                         </tr>
                     </thead>
                     <tbody>

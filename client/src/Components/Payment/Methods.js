@@ -2,19 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Radio, Tab } from 'semantic-ui-react';
 import { getPayMethod } from '../../Redux/Actions/PaymentAction';
-// EWALLET
-import dana from '../../Assets/Images/dana.png';
-import linkaja from '../../Assets/Images/linkaja.png';
-import ovo from '../../Assets/Images/ovo.png';
-// VIRTUAL ACCOUNT
-import bca from '../../Assets/Images/bca.png';
-import bni from '../../Assets/Images/bni.png';
-import mandiri from '../../Assets/Images/mandiri.png';
-import sampoerna from '../../Assets/Images/sampoerna.png';
-// CREDIT CARD
-import visa from '../../Assets/Images/visa.png';
-import mastercard from '../../Assets/Images/mastercard.png';
-import jcb from '../../Assets/Images/jcb.png';
 
 const EWallet = () => {
     const [state, setState] = useState('');
@@ -22,6 +9,38 @@ const EWallet = () => {
     const handleChange = (e, { value }) => {
         setState({
             value,
+        });
+    };
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getPayMethod());
+    }, [dispatch]);
+
+    const method = useSelector(({ payment }) => payment.methodList);
+
+    const postPayMethod = () => {
+        console.log('form: ', state.value);
+    };
+
+    const renderMethod = () => {
+        return method.filter(item => item.info === 'EWallet').map((val,index) => {
+            return (
+                <div key={index}>
+                    <div style={styles.radioDiv}>
+                        <Radio 
+                            value={val}
+                            onChange={handleChange}
+                            style={styles.radioBtn}
+                            checked={state.value === val}
+                            disabled={!val.isActive}
+                            label={val.isActive ? null : 'Not Available'}
+                        />
+                        <img src={val.icon} alt='icon' height={27.5} />
+                    </div>
+                </div>
+            );
         });
     };
 
@@ -33,35 +52,9 @@ const EWallet = () => {
             <div>
                 Bayar langsung dari akun ewallet
             </div>
-            <div style={styles.selected}>
-                Selected Method: <b>{state.value}</b>
-            </div>
-            <div style={styles.radioDiv}>
-                <Radio 
-                    value='Dana'
-                    onChange={handleChange}
-                    style={styles.radioBtn}
-                    checked={state.value === 'Dana'}
-                />
-                <img src={dana} alt='icon dana' height={27.5} />
-            </div>
-            <div style={styles.radioDiv}>
-                <Radio 
-                    value='LinkAja'
-                    onChange={handleChange}
-                    style={styles.radioBtn}
-                    checked={state.value === 'LinkAja'}
-                />
-                <img src={linkaja} alt='icon linkaja' height={27.5} />
-            </div>
-            <div style={styles.radioDiv}>
-                <Radio 
-                    value='OVO'
-                    onChange={handleChange}
-                    style={styles.radioBtn}
-                    checked={state.value === 'OVO'}
-                />
-                <img src={ovo} alt='icon ovo' height={27.5} />
+            {renderMethod()}
+            <div style={styles.payButton} onClick={postPayMethod}>
+                BAYAR SEKARANG
             </div>
         </div>
     );
@@ -74,6 +67,38 @@ const VirtualAccount = () => {
         setState({ value });
     };
 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getPayMethod());
+    }, [dispatch]);
+
+    const method = useSelector(({ payment }) => payment.methodList);
+
+    const postPayMethod = () => {
+        console.log('form: ', state.value);
+    };
+
+    const renderMethod = () => {
+        return method.filter(item => item.info === 'Virtual-Account').map((val,index) => {
+            return (
+                <div key={index}>
+                    <div style={styles.radioDiv}>
+                        <Radio 
+                            value={val}
+                            onChange={handleChange}
+                            style={styles.radioBtn}
+                            checked={state.value === val}
+                            disabled={!val.isActive}
+                            label={val.isActive ? null : 'Not Available'}
+                        />
+                        <img src={val.icon} alt='icon' height={27.5} />
+                    </div>
+                </div>
+            );
+        });
+    };
+
     return (
         <div>
             <div style={styles.methodTitle}>
@@ -82,44 +107,9 @@ const VirtualAccount = () => {
             <div>
                 Bayar dengan kode dari bank
             </div>
-            <div style={styles.selected}>
-                Selected Method: <b>{state.value}</b>
-            </div>
-            <div style={styles.radioDiv}>
-                <Radio 
-                    value='BCA'
-                    onChange={handleChange}
-                    style={styles.radioBtn}
-                    checked={state.value === 'BCA'}
-                />
-                <img src={bca} alt='icon dana' height={27.5} />
-            </div>
-            <div style={styles.radioDiv}>
-                <Radio 
-                    value='BNI'
-                    onChange={handleChange}
-                    style={styles.radioBtn}
-                    checked={state.value === 'BNI'}
-                />
-                <img src={bni} alt='icon linkaja' height={27.5} />
-            </div>
-            <div style={styles.radioDiv}>
-                <Radio 
-                    value='Mandiri'
-                    onChange={handleChange}
-                    style={styles.radioBtn}
-                    checked={state.value === 'Mandiri'}
-                />
-                <img src={mandiri} alt='icon ovo' height={27.5} />
-            </div>
-            <div style={styles.radioDiv}>
-                <Radio 
-                    value='Sampoerna'
-                    onChange={handleChange}
-                    style={styles.radioBtn}
-                    checked={state.value === 'Sampoerna'}
-                />
-                <img src={sampoerna} alt='icon ovo' height={27.5} />
+            {renderMethod()}
+            <div style={styles.payButton} onClick={postPayMethod}>
+                BAYAR SEKARANG
             </div>
         </div>
     );
@@ -132,6 +122,38 @@ const CreditCard = () => {
         setState({ value });
     };
 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getPayMethod());
+    }, [dispatch]);
+
+    const method = useSelector(({ payment }) => payment.methodList);
+
+    const postPayMethod = () => {
+        console.log('form: ', state.value);
+    };
+
+    const renderMethod = () => {
+        return method.filter(item => item.info === 'Credit-Card').map((val,index) => {
+            return (
+                <div key={index}>
+                    <div style={styles.radioDiv}>
+                        <Radio 
+                            value={val}
+                            onChange={handleChange}
+                            style={styles.radioBtn}
+                            checked={state.value === val}
+                            disabled={!val.isActive}
+                            label={val.isActive ? null : 'Not Available'}
+                        />
+                        <img src={val.icon} alt='icon' height={27.5} />
+                    </div>
+                </div>
+            );
+        });
+    };
+
     return (
         <div>
             <div style={styles.methodTitle}>
@@ -140,45 +162,51 @@ const CreditCard = () => {
             <div>
                 Bayar menggunakan kartu kredit
             </div>
-            <div style={styles.selected}>
-                Selected Method: <b>{state.value}</b>
-            </div>
-            <div style={styles.radioDiv}>
-                <Radio 
-                    value='Visa'
-                    onChange={handleChange}
-                    style={styles.radioBtn}
-                    checked={state.value === 'Visa'}
-                />
-                <img src={visa} alt='icon dana' height={27.5} />
-            </div>
-            <div style={styles.radioDiv}>
-                <Radio 
-                    value='Mastercard'
-                    onChange={handleChange}
-                    style={styles.radioBtn}
-                    checked={state.value === 'Mastercard'}
-                />
-                <img src={mastercard} alt='icon linkaja' height={27.5} />
-            </div>
-            <div style={styles.radioDiv}>
-                <Radio 
-                    value='JCB'
-                    onChange={handleChange}
-                    style={styles.radioBtn}
-                    checked={state.value === 'JCB'}
-                />
-                <img src={jcb} alt='icon ovo' height={27.5} />
+            {renderMethod()}
+            <div style={styles.payButton} onClick={postPayMethod}>
+                BAYAR SEKARANG
             </div>
         </div>
     );
 };
 
-const BankTransfer = () => {
+const BankTransfer = (props) => {
     const [state, setState] = useState('');
 
     const handleChange = (e, { value }) => {
         setState({ value });
+    };
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getPayMethod());
+    }, [dispatch]);
+
+    const method = useSelector(({ payment }) => payment.methodList);
+
+    const postPayMethod = () => {
+        console.log('form: ', state.value);
+    };
+
+    const renderMethod = () => {
+        return method.filter(item => item.info === 'Bank-Transfer').map((val,index) => {
+            return (
+                <div key={index}>
+                    <div style={styles.radioDiv}>
+                        <Radio 
+                            value={val}
+                            onChange={handleChange}
+                            style={styles.radioBtn}
+                            checked={state.value === val}
+                            disabled={!val.isActive}
+                            label={val.isActive ? null : 'Not Available'}
+                            />
+                        <img src={val.icon} alt='icon' height={27.5} />
+                    </div>
+                </div>
+            );
+        });
     };
 
     return (
@@ -189,23 +217,17 @@ const BankTransfer = () => {
             <div>
                 Bayar dengan akhir nominal 4 angka verifikasi
             </div>
-            <div style={styles.selected}>
-                Selected Method: <b>{state.value}</b>
-            </div>
-            <div style={styles.radioDiv}>
-                <Radio 
-                    value='BCA Transfer'
-                    onChange={handleChange}
-                    style={styles.radioBtn}
-                    checked={state.value === 'BCA Transfer'}
-                />
-                <img src={bca} alt='icon dana' height={27.5} />
-            </div>
+            {renderMethod()}
+            <a href={state.value !== undefined ? '/bank-success' : null}>
+                <div style={styles.payButton} onClick={postPayMethod}>
+                    BAYAR SEKARANG
+                </div>
+            </a>
         </div>
     );
 };
 
-const panes = [
+const paneContents = [
     {
         menuItem: 'E-Wallet', 
         render: () => (
@@ -241,39 +263,19 @@ const panes = [
 ];
 
 const Methods = () => {
-    const dispatch = useDispatch();
-
     useEffect(() => {
-        dispatch(getPayMethod());
-    }, [dispatch]);
-
-    const method = useSelector((state) => state.payment.methodList);
-
-    const renderMethod = () => {
-        return method.slice(0,1).map((val,index) => {
-            return (
-                <div key={index}>
-                    method: {val.name}
-                </div>
-            );
-        });
-    };
+        document.title = "Rendering ONLY";
+    });
 
     return (
         <div style={styles.root}>
             <div style={styles.title}>
                 Payment Methods
             </div>
-            <div>
-                {renderMethod()}
-            </div>
             <Tab 
-                panes={panes}
+                panes={paneContents}
                 menu={{ fluid: true, vertical: true, tabular: true }}
             />
-            <div style={styles.payButton}>
-                BAYAR SEKARANG
-            </div>
         </div>
     );
 };
@@ -289,19 +291,25 @@ const styles = {
         fontSize: '1.25rem',
         fontWeight: '600',
     },
+    selectedTop: {
+        display: 'flex',
+        justifyContent: 'center',
+        marginBottom: '1rem',
+    },
     payButton: {
         cursor: 'pointer',
         display: 'flex',
         justifyContent: 'center',
-        margin: '2.5rem 15rem',
-        paddingTop: '1rem',
+        margin: '1.5rem 12.5rem 0.5rem 12.5rem',
+        paddingTop: '0.5rem',
         backgroundColor: '#FF4500',
-        borderRadius: '1rem',
+        borderRadius: '0.75rem',
         color: 'white',
-        height: '3.5rem',
-        fontSize: '2rem',
+        height: '2.5rem',
+        width: '12.5rem',
+        fontSize: '1.25rem',
         fontWeight: '600',
-        boxShadow: '0 0 0.5rem #FF4500',
+        boxShadow: '0 0 0.35rem #FF4500',
     },
     panesContainer: {
         borderRadius: '0.5rem',
