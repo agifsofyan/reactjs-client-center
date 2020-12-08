@@ -92,7 +92,7 @@ const PaySuccess = () => {
                     </div>
                     <div style={styles.payInfo}>
                         <img src={bca} alt='bank icon' height={25} />
-                        <div style={styles.rekening1}>
+                        <div style={styles.noRekening}>
                             88 3131 0006
                         </div>
                         <img 
@@ -122,7 +122,7 @@ const PaySuccess = () => {
                     </div>
                     <div style={styles.payInfo}>
                         <img src={bni} alt='bank icon' height={25} />
-                        <div style={styles.rekening1}>
+                        <div style={styles.noRekening}>
                             88 3131 0000
                         </div>
                         <img 
@@ -155,8 +155,10 @@ const PaySuccess = () => {
             {/* Home Button */}
             <a href='/'>
                 <div style={{paddingBottom:'1.25rem'}}>
-                    <div style={styles.back}>
-                        Back to Home
+                    <div style={styles.backBox}>
+                        <div style={styles.backTxt}>
+                            Back to Home
+                        </div>
                     </div>
                 </div>
             </a>
@@ -219,28 +221,31 @@ const styles = {
     payInfo: {
         padding: '1.5rem',
         display: 'flex',
+        justifyContent: 'center',
     },
-    rekening1: {
-        padding: '0rem 5rem',
+    noRekening: {
+        padding: '0rem 5.5rem',
         paddingTop: '0.15rem',
-        color: 'grey',
+        color: 'gray',
     },
     copyIcon: {
         marginTop: '0.25rem',
         cursor: 'pointer',
     },
-    back: {
+    backBox: {
         display: 'flex',
-        textAlign: 'center',
         color: '#FF4500',
         fontSize: '1.5rem',
         fontWeight: '600',
-        margin: '1.25rem auto',
+        margin: '1.5rem auto',
         border: '0.15rem solid #FF4500',
-        width: '12.5rem',
+        width: '12rem',
         padding: '0.5rem 1rem',
         borderRadius: '0.75rem',
         boxShadow: '0 0 0.35rem #FF4500',
+    },
+    backTxt: {
+        margin: '0rem auto',
     },
 };
 

@@ -15,6 +15,8 @@ import {
   BankSuccess,
 } from './Pages';
 
+import Test from './Pages/Test';
+
 const token = localStorage.getItem('token');
 
 const App = () => {
@@ -46,6 +48,8 @@ const App = () => {
       <Route path='/failed' component={PayFailed} />
       <Route path='/blog' component={Blog} />
       <Route path='/bank-success' component={BankSuccess} />
+
+      <Route path='/test' component={Test} />
     </Switch>
   );
 };

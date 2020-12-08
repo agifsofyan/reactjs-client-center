@@ -99,7 +99,7 @@ const styles = {
     cardContainer: {
         border: '1px solid #8F8F8F',
         borderRadius: '0.5rem',
-        margin: '2rem 3.5rem 1rem 3.5rem',
+        margin: '2rem 4rem 1rem 4rem',
     },
     image: {
         borderRadius: '0.5rem 0.5rem 0 0',

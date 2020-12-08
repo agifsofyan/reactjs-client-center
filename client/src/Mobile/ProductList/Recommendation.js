@@ -20,7 +20,7 @@ const Recommendation = () => {
     const list = productList.slice(0,3);
 
     const settings = {
-        dots: false,
+        dots: true,
         autoplay: false,
         infinite: false,
         slidesToShow: 1,
@@ -101,7 +101,7 @@ const styles = {
     },
     separator: {
         borderBottom: '0.1rem solid #a4a4a4',
-        marginTop: '1.5rem',
+        marginTop: '2.5rem',
         marginLeft: '1.5rem',
         marginRight: '1.5rem',
         flex: 1,
@@ -109,7 +109,7 @@ const styles = {
     cardContainer: {
         border: '1px solid #8F8F8F',
         borderRadius: '0.5rem',
-        margin: '2rem 3.5rem 1rem 3.5rem',
+        margin: '2rem 4rem 1rem 4rem',
     },
     image: {
         borderRadius: '0.5rem 0.5rem 0 0',
