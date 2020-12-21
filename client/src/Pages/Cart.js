@@ -30,25 +30,19 @@ const Cart = () => {
             {
                 loggedIn
                 ?
-                <UserProfile
-                    name={userData.name}
-                    email={userData.email}
-                    phone_number={userData.phone_number}
-                />
-                :
-                <LoginForm />
-            }
-            {
-                loggedIn
-                ?
                 <>
-                    {/* <ShoppingCart />
-                    <OrderBump />
-                    <Summary /> */}
+                    <UserProfile
+                        name={userData.name}
+                        email={userData.email}
+                        phone_number={userData.phone_number}
+                    />
                     <Contents />
                 </>
                 :
-                null
+                <>
+                    <LoginForm />
+                    <Contents />
+                </>
             }
         </div>
     );

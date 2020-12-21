@@ -14,7 +14,7 @@ import {
   Blog,
   BankSuccess,
 } from './Pages';
-
+// testing area
 import Test from './Pages/Test';
 
 const token = localStorage.getItem('token');
@@ -35,21 +35,22 @@ const App = () => {
       <Route path="/" component={ProductList} exact />
       <Route path="/product-detail" component={ProductDetail} />
       <Route path='/auth' component={Auth} />
+      <Route path='/blog' component={Blog} />
+      <Route path='/cart' component={Cart} />
+      <Route path='/test' component={Test} />
       {
         loggedIn
         ?
-        <Route path='/profile' component={Profile} />
+        <>
+          <Route path='/profile' component={Profile} />
+          <Route path='/payment' component={Payment} />
+          <Route path='/failed' component={PayFailed} />
+          <Route path='/success' component={PaySuccess} />
+          <Route path='/bank-success' component={BankSuccess} />
+        </>
         :
         null
       }
-      <Route path='/cart' component={Cart} />
-      <Route path='/payment' component={Payment} />
-      <Route path='/success' component={PaySuccess} />
-      <Route path='/failed' component={PayFailed} />
-      <Route path='/blog' component={Blog} />
-      <Route path='/bank-success' component={BankSuccess} />
-
-      <Route path='/test' component={Test} />
     </Switch>
   );
 };

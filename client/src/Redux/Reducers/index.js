@@ -5,6 +5,7 @@ import { cartReducer } from './CartReducer';
 import { orderReducer } from './OrderReducer';
 import { paymentReducer } from './PaymentReducer';
 import { profileReducer } from './ProfileReducer';
+import { contentReducer } from './ContentReducer';
 
 export default combineReducers({
     product : productReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
     order : orderReducer,
     payment : paymentReducer,
     profile : profileReducer,
+    content : contentReducer,
 });

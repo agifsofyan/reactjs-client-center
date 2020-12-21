@@ -2,17 +2,26 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { addToCart } from '../../Redux/Actions/CartAction';
+import Cookies from 'js-cookie';
 
 const Bottom = (props) => {
     const dispatch = useDispatch();
 
     const product = useSelector((state) => state.product.productListById);
     const success = useSelector((state) => state.cart.success);
-    // console.log(product);
+    const loggedIn = useSelector((state) => state.user.loggedIn);
+
+    let cookieStorage = [];
+    cookieStorage.push(product);
+    let strCookie = JSON.stringify(cookieStorage);
 
     const handleAddToCart = () => {
-        dispatch(addToCart(product._id));
-        window.location.href = '/cart';
+        if (loggedIn) {
+            dispatch(addToCart(product._id));
+            window.location.href = '/cart';
+        } else {
+            Cookies.set('cartList', strCookie, { path: '/' });
+        }
     };
 
     if (success) {

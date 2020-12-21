@@ -29,3 +29,7 @@ export const profile_start = 'profile_start';
 export const profile_success = 'profile_success';
 export const profile_address_id = 'profile_address_id';
 export const profile_failed = 'profile_failed';
+
+export const content_start = 'content_start';
+export const content_success = 'content_success';
+export const content_failed = 'content_failed';

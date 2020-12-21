@@ -13,6 +13,7 @@
     "antd": "^4.8.6",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.3",
+    "js-cookie": "^2.2.1",
     "moment": "^2.29.1",
     "react": "^17.0.1",
     "react-bootstrap": "^1.4.0",
@@ -56,6 +57,11 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "transformIgnorePatterns": [
+      "/node_modules/(?!antd|@ant-design|rc-.+?|@babel/runtime).+(js|jsx)$"
     ]
   }
 }

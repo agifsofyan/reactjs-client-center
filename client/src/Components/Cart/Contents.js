@@ -7,6 +7,7 @@ import { addToOrder } from '../../Redux/Actions/OrderAction';
 import Swal from 'sweetalert2';
 import { Redirect } from 'react-router-dom';
 import { fetchAddress, fetchAddressById } from '../../Redux/Actions/ProfileAction';
+import Cookies from 'js-cookie';
 
 const items = [];
 
@@ -16,7 +17,9 @@ const Contents = () => {
     const cartList = useSelector((state) => state.cart.cartList);
     const orderSuccess = useSelector((state) => state.order.success);
     const addressData = useSelector((state) => state.profile.addressList);
-    console.log(`cartList: ${cartList}`);
+    const loggedIn = useSelector((state) => state.user.loggedIn);
+
+    const cookieCart = JSON.parse(Cookies.get('cartList'));
 
     const [update, setUpdate] = useState(false);
     const [ticked, setTicked] = useState({
@@ -56,7 +59,6 @@ const Contents = () => {
     }, [dispatch, addressData._id]);
 
     const addressById = useSelector((state) => state.profile.addressById);
-    // console.log('cart page', addressById._id);
 
     const rounded = (num) => {
         let roundedString = num.toFixed(2);
@@ -92,65 +94,105 @@ const Contents = () => {
     };
 
     const renderCart = () => {
-        if (cartList.length === 0) {
-            return (
-                <tr>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            );
+        if (loggedIn) {
+            return cartList.map((val,index) => {
+                if (cartList.length === 0) {
+                    return (
+                        <tr>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    );
+                }
+                return (
+                    <tr key={index} value={val.product_info}>
+                        <td>
+                            <input
+                                type="checkbox"
+                                id={val.product_info}
+                                onChange={handleTickedChild}
+                            />
+                        </td>
+                        <td>
+                            {val.product_info.name}<br/>
+                            TYPE : {val.product_info.type}
+                        </td>
+                        <td>
+                            Rp. {val.product_info.price.toLocaleString('id-ID')}
+                        </td>
+                        <td>
+                            Hemat {rounded(100-((val.product_info.sale_price/val.product_info.price)*100))}%
+                        </td>
+                        <td>
+                            Rp. {val.product_info.sale_price.toLocaleString('id-ID')}
+                        </td>
+                        <td>
+                            {
+                                val.product_info.type === 'ecommerce'
+                                ?
+                                <input type='number' defaultValue={1} />
+                                :
+                                '1'
+                            }
+                        </td>
+                        <td>
+                            <Button variant="outline-danger" onClick={() => handleDelete(val.product_info)}>
+                                Remove
+                            </Button>
+                        </td>
+                    </tr>
+                );
+            });
+        } else {
+            if (cookieCart.length === 0) {
+                return (
+                    <tr>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                );
+            }
+            return cookieCart.map((val,index) => {
+                return (
+                    <tr key={index} value={val.product_info}>
+                        <td>
+                            {index + 1}
+                        </td>
+                        <td>
+                            {val.name}<br/>
+                            TYPE : {val.type}
+                        </td>
+                        <td>
+                            Rp. {val.price.toLocaleString('id-ID')}
+                        </td>
+                        <td>
+                            Hemat {rounded(100-((val.sale_price/val.price)*100))}%
+                        </td>
+                        <td>
+                            Rp. {val.sale_price.toLocaleString('id-ID')}
+                        </td>
+                        <td>
+                            {
+                                val.type === 'ecommerce'
+                                ?
+                                <input type='number' defaultValue={1} />
+                                :
+                                '1'
+                            }
+                        </td>
+                    </tr>
+                );
+            });
         }
-        return cartList.map((val,index) => {
-            return (
-                <tr key={index} value={val.product_info}>
-                    <td>
-                        <input
-                            type="checkbox"
-                            id={val.product_info}
-                            onChange={handleTickedChild}
-                        />
-                    </td>
-                    <td>
-                        {val.product_info.name}<br/>
-                        TYPE : {val.product_info.type}
-                    </td>
-                    <td>
-                        Rp. {val.product_info.price.toLocaleString('id-ID')}
-                    </td>
-                    <td>
-                        Hemat {rounded(100-((val.product_info.sale_price/val.product_info.price)*100))}%
-                    </td>
-                    <td>
-                        Rp. {val.product_info.sale_price.toLocaleString('id-ID')}
-                    </td>
-                    <td>
-                        {
-                            val.product_info.type === 'ecommerce'
-                            ?
-                            <input type='number' defaultValue={1} />
-                            :
-                            '1'
-                        }
-                    </td>
-                    {/* <td>
-                        {val.quantity}
-                    </td>
-                    <td>
-                        {val.product_info}
-                    </td> */}
-                    <td>
-                        <Button variant="outline-danger" onClick={() => handleDelete(val.product_info)}>
-                            Remove
-                        </Button>
-                    </td>
-                </tr>
-            );
-        });
     };
 
     const renderBump = () => {
@@ -254,86 +296,115 @@ const Contents = () => {
     }
     return (
         <React.Fragment>
-            {/* SHOPPING CART */}
-            <div style={cart.container}>
-                <div style={cart.title}>
-                    Kelas yang Anda Ikuti
-                </div>
-                <div>
-                    <Table bordered hover>
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Product Name</th>
-                                <th>Price</th>
-                                <th>Discount</th>
-                                <th>Sale Price</th>
-                                <th>Quantity</th>
-                                <th>Action</th>
-                                {/* <th>Quantity</th>
-                                <th>Product Id</th>
-                                <th>Action</th> */}
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {renderCart()}
-                        </tbody>
-                    </Table>
-                </div>
-            </div>
-            {/* ORDER BUMP */}
-            <div>
-                <div style={bump.separator} />
-                {renderBump()}
-            </div>
-            {/* SUMMARY */}
-            <div style={summary.container}>
-                <div style={summary.content}>
-                    <div style={summary.names}>
-                        <div style={summary.namesTxt}>
-                            Course Taken
+            {
+                loggedIn
+                ?
+                <>
+                    {/* SHOPPING CART */}
+                    <div style={cart.container}>
+                        <div style={cart.title}>
+                            Kelas yang Anda Ikuti
                         </div>
-                        <div style={summary.namesTxt}>
-                            Total Price
-                        </div>
-                        <div style={summary.namesTxt}>
-                            Total Sale Price
-                        </div>
-                        <div style={summary.namesTxt}>
-                            You Saved
+                        <div>
+                            <Table bordered hover>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Discount</th>
+                                        <th>Sale Price</th>
+                                        <th>Quantity</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {renderCart()}
+                                </tbody>
+                            </Table>
                         </div>
                     </div>
-                    <div style={summary.values}>
-                        <div style={summary.valuesTxt}>
-                            {totalCourse}
+                    {/* ORDER BUMP */}
+                    <div>
+                        <div style={bump.separator} />
+                        {renderBump()}
+                    </div>
+                    {/* SUMMARY */}
+                    <div style={summary.container}>
+                        <div style={summary.content}>
+                            <div style={summary.names}>
+                                <div style={summary.namesTxt}>
+                                    Course Taken
+                                </div>
+                                <div style={summary.namesTxt}>
+                                    Total Price
+                                </div>
+                                <div style={summary.namesTxt}>
+                                    Total Sale Price
+                                </div>
+                                <div style={summary.namesTxt}>
+                                    You Saved
+                                </div>
+                            </div>
+                            <div style={summary.values}>
+                                <div style={summary.valuesTxt}>
+                                    {totalCourse}
+                                </div>
+                                <div style={summary.valuesTxt}>
+                                    Rp. {price.toLocaleString('id-ID')}
+                                </div>
+                                <div style={summary.valuesTxt}>
+                                    Rp. {salePrice.toLocaleString('id-ID')}
+                                </div>
+                                <div style={summary.valuesTxt}>
+                                    Rp. {(price - salePrice).toLocaleString('id-ID')}
+                                </div>
+                            </div>
                         </div>
-                        <div style={summary.valuesTxt}>
-                            Rp. {price.toLocaleString('id-ID')}
+                        <div style={summary.separator1} />
+                        <div style={summary.pay}>
+                            <div style={summary.payTxt}>
+                                Amount will be paid
+                            </div>
+                            <div style={summary.payNum}>
+                                Rp. {salePrice.toLocaleString('id-ID')}
+                            </div>
                         </div>
-                        <div style={summary.valuesTxt}>
-                            Rp. {salePrice.toLocaleString('id-ID')}
-                        </div>
-                        <div style={summary.valuesTxt}>
-                            Rp. {(price - salePrice).toLocaleString('id-ID')}
+                        <div style={summary.separator1} />
+                        <div style={summary.choosePayBtn} onClick={handleStoreOrder}>
+                            <div style={summary.btnTxt}>
+                                PILIH METODE PEMBAYARAN
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div style={summary.separator1} />
-                <div style={summary.pay}>
-                    <div style={summary.payTxt}>
-                        Amount will be paid
+                </>
+                :
+                <>
+                    {/* SHOPPING CART */}
+                    <div style={cart.container}>
+                        <div style={cart.title}>
+                            Kelas yang Anda Ikuti
+                        </div>
+                        <div>
+                            <Table bordered hover>
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Product Name</th>
+                                        <th>Price</th>
+                                        <th>Discount</th>
+                                        <th>Sale Price</th>
+                                        <th>Quantity</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {renderCart()}
+                                </tbody>
+                            </Table>
+                        </div>
                     </div>
-                    <div style={summary.payNum}>
-                        Rp. {salePrice.toLocaleString('id-ID')}
-                    </div>
-                </div>
-                <div style={summary.separator1} />
-                <div style={summary.choosePayBtn} onClick={handleStoreOrder}>
-                    <div style={summary.btnTxt}>
-                        PILIH METODE PEMBAYARAN
-                    </div>
-                </div>
-            </div>
+                </>
+            }
         </React.Fragment>
     );
 };
