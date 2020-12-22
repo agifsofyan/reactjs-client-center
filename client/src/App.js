@@ -31,28 +31,36 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Switch>
-      <Route path="/" component={ProductList} exact />
-      <Route path="/product-detail" component={ProductDetail} />
-      <Route path='/auth' component={Auth} />
-      <Route path='/blog' component={Blog} />
-      <Route path='/cart' component={Cart} />
-      <Route path='/test' component={Test} />
-      {
-        loggedIn
-        ?
-        <>
-          <Route path='/profile' component={Profile} />
-          <Route path='/payment' component={Payment} />
-          <Route path='/failed' component={PayFailed} />
-          <Route path='/success' component={PaySuccess} />
-          <Route path='/bank-success' component={BankSuccess} />
-        </>
-        :
-        null
-      }
-    </Switch>
+    <div style={styles.root}>
+      <Switch>
+        <Route path="/" component={ProductList} exact />
+        <Route path="/product-detail" component={ProductDetail} />
+        <Route path='/auth' component={Auth} />
+        <Route path='/blog' component={Blog} />
+        <Route path='/cart' component={Cart} />
+        <Route path='/test' component={Test} />
+        {
+          loggedIn
+          ?
+          <>
+            <Route path='/profile' component={Profile} />
+            <Route path='/payment' component={Payment} />
+            <Route path='/failed' component={PayFailed} />
+            <Route path='/success' component={PaySuccess} />
+            <Route path='/bank-success' component={BankSuccess} />
+          </>
+          :
+          null
+        }
+      </Switch>
+    </div>
   );
+};
+
+const styles = {
+  root: {
+    // margin: '0rem 15rem',
+  },
 };
 
 export default App;

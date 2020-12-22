@@ -14,7 +14,7 @@ const User = (props) => {
                     <b>Email:</b> {props.email}
                 </div>
                 <div style={styles.data}>
-                    <b>Nomor Telepon:</b> {props.phone_number}
+                    <b>UID:</b> {props._id}
                 </div>
             </div>
         </div>

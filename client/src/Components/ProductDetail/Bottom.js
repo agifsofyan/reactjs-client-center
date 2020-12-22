@@ -1,60 +1,100 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { addToCart } from '../../Redux/Actions/CartAction';
+import { Button, Modal } from 'antd';
 import Cookies from 'js-cookie';
 
 const Bottom = (props) => {
     const dispatch = useDispatch();
 
     const product = useSelector((state) => state.product.productListById);
-    const success = useSelector((state) => state.cart.success);
     const loggedIn = useSelector((state) => state.user.loggedIn);
 
-    let cookieStorage = [];
-    cookieStorage.push(product);
-    let strCookie = JSON.stringify(cookieStorage);
+    const addCart = (item) => {
+        let cookieStorage = [];
+        cookieStorage.push(item);
+        let strCookie = JSON.stringify(cookieStorage);
+        return Cookies.set('cartList', strCookie, { path: '/' });
+    };
+
+    const addId = (item) => {
+        let cookieStorage = [];
+        cookieStorage.push(item);
+        let strCookie = JSON.stringify(cookieStorage);
+        return Cookies.set('productId', strCookie, { path: '/' });
+    };
+
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const showModal = () => {
+        setIsModalVisible(true);
+    };
+
+    const handleOk = () => {
+        setIsModalVisible(false);
+    };
+
+    const handleCancel = () => {
+        setIsModalVisible(false);
+    };
 
     const handleAddToCart = () => {
         if (loggedIn) {
             dispatch(addToCart(product._id));
-            window.location.href = '/cart';
+            showModal();
+            // window.location.href = '/cart';
         } else {
-            Cookies.set('cartList', strCookie, { path: '/' });
+            addCart(product);
+            addId(product._id);
+            showModal();
         }
     };
 
-    if (success) {
-        return (
-            <Redirect to='/cart' />
-        );
-    }
     return (
-        <div style={styles.container}>
-            <div style={styles.wrapper}>
-                <div style={styles.prodWrapper}>
-                    <span style={styles.title}>
-                        {props.headline}
-                    </span>
-                    <div style={styles.priceContainer}>
-                        <div style={styles.price}>
-                            Rp. {props.price}
+        <React.Fragment>
+            <div style={styles.container}>
+                <div style={styles.wrapper}>
+                    <div style={styles.prodWrapper}>
+                        <span style={styles.title}>
+                            {props.headline}
+                        </span>
+                        <div>
+                            {props.id}
                         </div>
-                        <div style={styles.discount}>
-                            Hemat 80%
-                        </div>
-                        <div style={styles.discPrice}>
-                            Rp. {props.sale_price}
+                        <div style={styles.priceContainer}>
+                            <div style={styles.price}>
+                                Rp. {props.price}
+                            </div>
+                            <div style={styles.discount}>
+                                Hemat 80%
+                            </div>
+                            <div style={styles.discPrice}>
+                                Rp. {props.sale_price}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div style={styles.joinBtn} onClick={handleAddToCart}>
-                    <div style={styles.joinTxt}>
-                        JOIN SEKARANG
+                    <div style={styles.joinBtn} onClick={handleAddToCart}>
+                        <div style={styles.joinTxt}>
+                            JOIN SEKARANG
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+                {
+                    loggedIn
+                    ?
+                    <p>Item successfully added to cart!</p>
+                    :
+                    <p>You can only save 1 product to your cart. ✨Thank You✨</p>
+                }
+                <a href='/cart'>
+                    <Button>
+                        Go to Cart
+                    </Button>
+                </a>
+            </Modal>
+        </React.Fragment>
     );
 };
 

@@ -34,7 +34,7 @@ const Cart = () => {
                     <UserProfile
                         name={userData.name}
                         email={userData.email}
-                        phone_number={userData.phone_number}
+                        _id={userData._id}
                     />
                     <Contents />
                 </>

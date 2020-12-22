@@ -61,6 +61,7 @@ const ProductDetail = (query) => {
                 headline={product.name}
                 price={product.price}
                 sale_price={product.sale_price}
+                id={product._id}
             />
         </div>
     );

@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Input } from 'reactstrap';
 import { useDispatch } from 'react-redux';
 import { userLogin } from '../../Redux/Actions/UserAction';
-import { addToCart } from '../../Redux/Actions/CartAction';
-import Cookies from 'js-cookie';
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -13,10 +11,6 @@ const LoginForm = () => {
         email: '',
         password: '',
     });
-
-    const cookieCart = JSON.parse(Cookies.get('cartList'));
-    // console.log('from cookies: ', cookieCart);
-    console.log('from cookies: ', cookieCart);
 
     const togglePasswordVisibility = () => {
         setPasswordShown(
@@ -33,7 +27,6 @@ const LoginForm = () => {
 
     const handleLogin = () => {
         dispatch(userLogin(formLogin));
-        dispatch(addToCart(...cookieCart));
     };
 
     return (

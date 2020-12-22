@@ -28,7 +28,7 @@ export const getCart = () => {
                     type: cart_success,
                     payload: res.data.data.items,
                 });
-                console.log('redux getCart', res.data.data.items);
+                // console.log('redux getCart', res.data.data.items);
             }
         } catch {
             dispatch({
@@ -53,7 +53,7 @@ export const addToCart = (product_id) => {
                     },
                 };
                 console.log('sblm axios');
-                let res = await axios.post(`${SWAGGER_URL}/carts/add?product_id=${product_id}`, {}, options);
+                let res = await axios.post(`${SWAGGER_URL}/carts/add`, product_id, options);
                 console.log('stlh axios');
                 dispatch({
                     type: cart_added,

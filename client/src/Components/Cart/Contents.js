@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Table } from 'react-bootstrap';
+import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { Checkbox, FormControlLabel } from '@material-ui/core';
-import { getCart, removeCart } from '../../Redux/Actions/CartAction';
+import { addToCart, getCart, removeCart } from '../../Redux/Actions/CartAction';
 import { addToOrder } from '../../Redux/Actions/OrderAction';
 import Swal from 'sweetalert2';
 import { Redirect } from 'react-router-dom';
-import { fetchAddress, fetchAddressById } from '../../Redux/Actions/ProfileAction';
+import { fetchAddress, /* fetchAddressById */ } from '../../Redux/Actions/ProfileAction';
 import Cookies from 'js-cookie';
+import { DeleteOutlined } from '@ant-design/icons';
 
 const items = [];
 
@@ -16,10 +18,21 @@ const Contents = () => {
 
     const cartList = useSelector((state) => state.cart.cartList);
     const orderSuccess = useSelector((state) => state.order.success);
-    const addressData = useSelector((state) => state.profile.addressList);
+    // const addressData = useSelector((state) => state.profile.addressList);
     const loggedIn = useSelector((state) => state.user.loggedIn);
 
     const cookieCart = JSON.parse(Cookies.get('cartList'));
+    const cookieId = JSON.parse(Cookies.get('productId'));
+
+    const fetchCookieCart = () => {
+        dispatch(addToCart(
+            {
+                "product_id": cookieId
+            }
+        ));
+        Cookies.remove('cartList');
+        Cookies.remove('productId');
+    };
 
     const [update, setUpdate] = useState(false);
     const [ticked, setTicked] = useState({
@@ -54,9 +67,9 @@ const Contents = () => {
         dispatch(fetchAddress());
     }, [dispatch]);
 
-    useEffect(() => {
-        dispatch(fetchAddressById(addressData._id));
-    }, [dispatch, addressData._id]);
+    // useEffect(() => {
+    //     dispatch(fetchAddressById(addressData._id));
+    // }, [dispatch, addressData._id]);
 
     const addressById = useSelector((state) => state.profile.addressById);
 
@@ -123,13 +136,13 @@ const Contents = () => {
                             TYPE : {val.product_info.type}
                         </td>
                         <td>
-                            Rp. {val.product_info.price.toLocaleString('id-ID')}
+                            Rp. {val.product_info.price}
                         </td>
                         <td>
                             Hemat {rounded(100-((val.product_info.sale_price/val.product_info.price)*100))}%
                         </td>
                         <td>
-                            Rp. {val.product_info.sale_price.toLocaleString('id-ID')}
+                            Rp. {val.product_info.sale_price}
                         </td>
                         <td>
                             {
@@ -141,9 +154,13 @@ const Contents = () => {
                             }
                         </td>
                         <td>
-                            <Button variant="outline-danger" onClick={() => handleDelete(val.product_info)}>
-                                Remove
-                            </Button>
+                            <Button 
+                                danger 
+                                icon={<DeleteOutlined/>} 
+                                size='large' 
+                                shape='circle' 
+                                onClick={() => handleDelete(val.product_info)} 
+                            />
                         </td>
                     </tr>
                 );
@@ -305,6 +322,17 @@ const Contents = () => {
                         <div style={cart.title}>
                             Kelas yang Anda Ikuti
                         </div>
+                        {
+                            cookieCart.length !== 0
+                            ?
+                            <div style={{display:'flex', justifyContent:'center', marginBottom:'1.5rem'}}>
+                                <Button onClick={fetchCookieCart}>
+                                    Fetch my items from cookies
+                                </Button>
+                            </div>
+                            :
+                            null
+                        }
                         <div>
                             <Table bordered hover>
                                 <thead>
