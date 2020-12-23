@@ -7,7 +7,7 @@ import { addToCart, getCart, removeCart } from '../../Redux/Actions/CartAction';
 import { addToOrder } from '../../Redux/Actions/OrderAction';
 import Swal from 'sweetalert2';
 import { Redirect } from 'react-router-dom';
-import { fetchAddress, /* fetchAddressById */ } from '../../Redux/Actions/ProfileAction';
+import { fetchAddress, fetchAddressById } from '../../Redux/Actions/ProfileAction';
 import Cookies from 'js-cookie';
 import { DeleteOutlined } from '@ant-design/icons';
 
@@ -18,20 +18,22 @@ const Contents = () => {
 
     const cartList = useSelector((state) => state.cart.cartList);
     const orderSuccess = useSelector((state) => state.order.success);
-    // const addressData = useSelector((state) => state.profile.addressList);
     const loggedIn = useSelector((state) => state.user.loggedIn);
+    const addressData = useSelector((state) => state.profile.addressList);
 
-    const cookieCart = JSON.parse(Cookies.get('cartList'));
-    const cookieId = JSON.parse(Cookies.get('productId'));
+    const cookieCart = Cookies.get('cartList');
+    const cookieId = Cookies.get('productId');
+
+    const cartIsExist = cookieCart === undefined ? null : cookieCart;
+    const idIsExist = cookieId === undefined ? null : cookieId;
+    const parsedId = JSON.parse(idIsExist);
+
+    console.log(parsedId);
 
     const fetchCookieCart = () => {
         dispatch(addToCart(
-            {
-                "product_id": cookieId
-            }
+            { "product_id": parsedId }
         ));
-        Cookies.remove('cartList');
-        Cookies.remove('productId');
     };
 
     const [update, setUpdate] = useState(false);
@@ -67,9 +69,9 @@ const Contents = () => {
         dispatch(fetchAddress());
     }, [dispatch]);
 
-    // useEffect(() => {
-    //     dispatch(fetchAddressById(addressData._id));
-    // }, [dispatch, addressData._id]);
+    useEffect(() => {
+        dispatch(fetchAddressById(addressData._id));
+    }, [dispatch, addressData._id]);
 
     const addressById = useSelector((state) => state.profile.addressById);
 
@@ -166,7 +168,7 @@ const Contents = () => {
                 );
             });
         } else {
-            if (cookieCart.length === 0) {
+            if (cartIsExist === null) {
                 return (
                     <tr>
                         <td>-</td>
@@ -178,7 +180,7 @@ const Contents = () => {
                     </tr>
                 );
             }
-            return cookieCart.map((val,index) => {
+            return JSON.parse(cartIsExist).map((val,index) => {
                 return (
                     <tr key={index} value={val.product_info}>
                         <td>
