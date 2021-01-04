@@ -1,0 +1,14 @@
+.button-comp-style {
+    background-color: #FF4500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    color: #ffffff;
+    cursor: pointer;
+    width: 82%;
+    height: 43px;
+    margin-top: 10px;
+    font-size: 19px;
+    border: none;
+}
