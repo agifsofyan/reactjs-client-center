@@ -18,7 +18,7 @@ function Input (props) {
     if (!isPassword) {
         return (
             <div style={styles.root}>
-                <div style={{width : "82%"}}>{text}</div>
+                <div style={{width : "80%"}}>{text}</div>
                 <input 
                     className="auth-input-style"
                     onChange={e=>setter(e.target.value)}
@@ -30,7 +30,7 @@ function Input (props) {
     }else {
         return (
             <div style={styles.root}>
-                <div style={{width : "82%"}}>{text}</div>
+                <div style={{width : "80%"}}>{text}</div>
                 <div className="auth-input-style-2">
                     <input 
                         onChange={e=>setter(e.target.value)}

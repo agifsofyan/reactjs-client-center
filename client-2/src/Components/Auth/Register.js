@@ -26,11 +26,9 @@ function Login () {
     
     // LOCAL STATE CHECKBOX
     const [check1,setCheck1] = useState(false)
-    const [check2,setCheck2] = useState(false)
-    const [t] = useState( "092929292922")
 
     let handleClick = () => {
-        if (check2 && check1 && password === confirmPassword) {
+        if (password === confirmPassword) {
             axios({
                 method : "POST",
                 url : `${SWAGGER_URL}/users`,
@@ -107,14 +105,6 @@ function Login () {
                     onClick={e=>setCheck1(!check1)}
                 />
                 <label style={{marginLeft : 10}}>Saya telah membaca dan menyetujui Aturan Penggunaan dan kebijakan Privasi Larunocom</label>
-            </div>
-            <div style={{display : "flex",width : "82%" , marginTop : 25, alignItems : "center" , height : 30}}>
-                <input 
-                    type="checkbox" 
-                    className="auth-checkbox"
-                    onClick={e=>setCheck2(!check2)}
-                />
-                <label style={{marginLeft : 10}}>Privacy Policy Here</label>
             </div>
 
             <Button

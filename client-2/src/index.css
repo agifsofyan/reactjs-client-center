@@ -6,6 +6,16 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #E5E5E5;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
+html {
+  overflow-x: hidden;
 }
 
 code {
@@ -18,12 +28,54 @@ code {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #E5E5E5;
 }
 
 .root-content {
-  width: 46%;
+  width: 36%;
   background-color: #ffffff;
-  min-height: 100vh;
+  /* min-height: 100vh; */
+}
+
+.burger-menu-01 {
+  /* display: none;  */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: auto;
+  top: 0;
+  width: 46%; 
+  height: 100%; 
+
+}
+
+.burger-menu-01-content {
+    animation-name: modal;
+    animation-duration: 1s;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    z-index: 1; /* Sit on top */
+}
+
+@keyframes modal {
+  from {
+    width: 0;
+    height: 0;
+    /* left: 0; */
+  }
+  to {
+    width: 100%;
+    height: 100%;
+    /* left: auto; */
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  .root-content {
+    width: 85%;
+    /* background-color: pink; */
+    min-height: 100vh;
+  }
 }
 
 @media only screen and (max-width: 600px) {

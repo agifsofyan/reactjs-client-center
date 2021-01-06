@@ -1,0 +1,197 @@
+.home-main-content-c1 {
+    /* width: 100%; */
+    height: 36px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-main-content-c1-item {
+    font-size: 18px;
+    color: #7F7F7F;
+    width: 24%;
+    /* padding: 10px 10px 10px 10px; */
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-main-content-c1-item-active {
+    cursor: pointer;
+    font-size: 18px;
+    color: #ffffff;
+    width: 24%;
+    background-color: #FF4500;
+    border-radius: 22px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* SLIDERS  */
+
+.slider {
+    width: 20%;
+    text-align: center;
+    /* overflow: hidden; */
+}
+
+.slides-2 {
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    width: 90%;
+    margin-top: 5px;
+}
+
+.slides-2-content {
+    width: 77%;
+    height: 82.7%;
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    flex-direction: column;
+    /* padding-top: 10px; */
+    /* padding-bottom: 10px; */
+}
+
+/* .slides-2-content-c2 div {
+    width: 90%;
+    margin-top: 30px;
+    font-size: 20px;
+} */
+
+.slides-2 > div {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    /* width: 180px; */
+    /* height: 230px; */
+    /* margin-right: 50px; */
+    /* border-radius: 16px; */
+    /* background: #ffffff; */
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.5s;
+    position: relative;
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* font-size: 100px; */
+}
+
+.slides-2::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+/* .slides-2::-webkit-scrollbar-thumb {
+    background: black;
+    border-radius: 10px;
+} */
+.slides-2::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.slides-2 > div:target {
+/*   transform: scale(0.8); */
+}
+
+.author-info {
+    background: rgba(0, 0, 0, 0.75);
+    color: white;
+    /* padding: 0.75rem; */
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+}
+.author-info a {
+    color: white;
+}
+
+.slider > a {
+    display: inline-flex;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: white;
+    text-decoration: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin: 0 0 0.5rem 0;
+    position: relative;
+}
+.slider > a:active {
+    top: 1px;
+}
+.slider > a:focus {
+    background: #000;
+}
+
+/* Don't need button navigation */
+/* @supports (scroll-snap-type) {
+    .slider > a {
+    display: none;
+    }
+} */
+
+@media only screen and (max-width: 1300px) {
+
+    .home-main-content-c1-item-active {
+        font-size: 16px;
+    }
+
+    .home-main-content-c1-item {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 1190px) {
+
+    .home-main-content-c1-item-active {
+        font-size: 15.5px;
+    }
+
+    .home-main-content-c1-item {
+        font-size: 15.5px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+
+    .home-main-content-c1 {
+        width: 90%;
+    }
+
+    .home-main-content-c1-item-active {
+        font-size: 15px;
+        width: 24.5%;
+        border-radius: 18px;
+    }
+
+    .home-main-content-c1-item {
+        font-size: 15px;
+        width: 24.5%;
+        border-radius: 18px;
+    }
+
+}
+
+@media only screen and (max-width: 390px) {
+    .home-main-content-c1-item-active {
+        font-size: 14px;
+        width: 24.5%;
+    }
+
+    .home-main-content-c1-item {
+        font-size: 14px;
+        width: 24.5%;
+    }
+}
