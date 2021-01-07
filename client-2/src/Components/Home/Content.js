@@ -19,7 +19,7 @@ function Content (props) {
                 setSelectedTab={setSelectedTab}
             />
 
-            <FirstContent/>
+            {/* <FirstContent/> */}
 
             <SecondContent/>
 

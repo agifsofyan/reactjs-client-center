@@ -42,6 +42,10 @@
     border-radius: 16px;
 }
 
+@media only screen and (max-width: 1260px) {
+
+}
+
 @media only screen and (max-width: 600px) {
 
     .home-main-content-fc-container {
