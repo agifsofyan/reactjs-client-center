@@ -1,11 +1,11 @@
 import React from 'react'
 
 // MODULES
-// import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 // ANT DESIGN 
 import { Rate } from 'antd';
-import '../style.css'
+import './style.css'
 
 // STYLE
 import 'antd/dist/antd.css';
@@ -15,16 +15,19 @@ import productRecom from '../../../Assets/Images/recommended.png'
 
 function Content () {
 
-    // const list = useSelector(state=>state.product.productList)
+    const list = useSelector(state=>state.product.productList)
 
-    // let renderList = () => {
-    //     return list.map((el,index)=>{
-    //         return 
-    //     })
-    // }
+    let renderDot = (name) => {
+        if (name.length >= 28) {
+            return "......"
+        }else {
+            return ""
+        }
+    }
 
-    return (
-        <div className="slides-3">
+    let renderList = () => {
+        return list.map((el,index)=>{
+            return (
             <div>
                 <img 
                     className="slides-3-content-c1"
@@ -32,7 +35,9 @@ function Content () {
                     alt={'recom'}
                 />
                 <span className="slides-3-content-c2">
-                    BOE THE MAN PO
+                    {
+                        el.name.slice(0,28) + "" + renderDot(el.name)
+                    }
                 </span>
                 <div className="slides-3-content-c3">
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
@@ -42,7 +47,7 @@ function Content () {
                     <Rate 
                         allowHalf 
                         defaultValue={5} 
-                        style={{color : "#EB8A2F",fontSize : 15}}
+                        style={{color : "#EB8A2F",fontSize : 20}}
                     />
                     <div className="slides-3-content-c4-t">
                         (5) 1.200
@@ -60,6 +65,13 @@ function Content () {
                     JOIN
                 </div>
             </div>
+            ) 
+        })
+    }
+
+    return (
+        <div className="slides-3">
+            { list && renderList()}
         </div>
     )
 

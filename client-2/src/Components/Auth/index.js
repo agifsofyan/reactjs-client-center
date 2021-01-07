@@ -1,4 +1,4 @@
-import Header from './Header'
+import Header from './Header/index'
 import Login from './Login'
 import Register from './Register'
 

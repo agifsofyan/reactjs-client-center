@@ -16,6 +16,9 @@ import google from '../../Assets/Images/google.png'
 // API
 import { SWAGGER_URL } from '../../Support/API_URL'
 
+// STYLE
+import './style.css'
+
 function Login (props) {
 
     // PROPS
@@ -54,12 +57,12 @@ function Login (props) {
         .catch(err=>{
             // alert('GAGAL PPPPPPPPPPPPPPPPP')
             setIsLoading(false)
-            console.log(err , ' <<< ERROR')
+            // console.log(err , ' <<< ERROR')
         })
     }
 
     return (
-        <div style={{width : "100%",display : "flex",flexDirection : "column",justifyContent : "center",alignItems : "center"}}>
+        <div style={{width : "100%",display : "flex",flexDirection : "column",justifyContent : "center",alignItems : "center", marginTop : 5}}>
 
             <Input 
                 text={'Email'}
@@ -104,7 +107,10 @@ function Login (props) {
             />
 
             <div className="auth-last-content">
-                <div style={{color : "#326282", cursor : "pointer"}}>
+                <div 
+                    onClick={e=>history.push('/change-password')}
+                    style={{color : "#326282", cursor : "pointer"}}
+                >
                     Lupa Password
                 </div>
                 <div className="auth-lc-c">

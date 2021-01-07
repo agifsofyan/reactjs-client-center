@@ -1,5 +1,8 @@
 import React from 'react'
 
+// MODULES
+import { useHistory } from 'react-router-dom'
+
 // STYLE
 import './style.css'
 
@@ -11,6 +14,8 @@ import Logo from '../../Assets/Images/laruno.png'
 function Navbar (props) {
 
     const { setShowModal } = props
+
+    const history = useHistory()
     
     return (
         <div className="navbar-container">
@@ -20,6 +25,7 @@ function Navbar (props) {
                     src={Logo}
                     alt="laruno"
                     className="navbar-laruno-logo"
+                    onClick={e=>history.push('/')}
                     // onClick={e=>setShowModal(true)}
                 />
                 <NotificationsNoneIcon style={{ fontSize : 27 }}/>

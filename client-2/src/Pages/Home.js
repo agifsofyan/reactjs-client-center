@@ -1,7 +1,6 @@
 import React , { useState , useEffect } from 'react'
 
 // MODULE
-import axios from 'axios'
 import { useDispatch , useSelector } from 'react-redux'
 
 // COMPONENT
@@ -10,8 +9,6 @@ import { Title , Search , Content } from '../Components/Home'
 // GLOBAL ACTION
 import { changeValue } from '../Redux/Actions/productAction'
 
-// API
-import {  SWAGGER_URL } from '../Support/API_URL'
 
 function Home () {
 
@@ -25,35 +22,6 @@ function Home () {
     // CALL DISPATCH
     const dispatch = useDispatch()
 
-    useEffect(()=>{
-
-        // GET TOPICS
-        axios({
-            method : "GET",
-            url : `${SWAGGER_URL}/topics`
-        })
-        .then(({data})=>{
-            dispatch(changeValue("topicList",data.data))
-           
-        })
-        .catch(err=>{
-            console.log(err , ' <<< ERROR')
-        })
-
-        // GET PRODUCTS
-        axios({
-            method : "GET",
-            url : `${SWAGGER_URL}/products`
-        })
-        .then(({data})=>{
-            dispatch(changeValue("productList",data.data))
-            
-        })
-        .catch(err=>{
-            console.log(err , ' <<< ERROR')
-        })
-
-    },[dispatch])
 
     useEffect(()=>{
         if (productList && topicList) {

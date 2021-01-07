@@ -1,0 +1,53 @@
+.auth-header-root {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    border-bottom: 1px solid #C5C5C5;
+}
+
+.auth-header-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.auth-header-line {
+    width: 1px;
+    height: 76%;
+    background-color: #C5C5C5;
+}
+
+.auth-header-before {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-header-tab {
+    cursor: pointer;
+    width: 26%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #C5C5C5;
+    transition: 0.5s;
+}
+
+.auth-header-tab-selected {
+    transition: 0.5s;
+    cursor: pointer;
+    width: 26%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1.6px solid #033E66;
+    color: #033E66;
+}

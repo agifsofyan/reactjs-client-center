@@ -1,50 +1,3 @@
-.auth-header-root {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 40px;
-    border-bottom: 1px solid #C5C5C5;
-}
-
-.auth-header-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.auth-header-line {
-    width: 1px;
-    height: 76%;
-    background-color: #C5C5C5;
-}
-
-.auth-header-tab {
-    cursor: pointer;
-    width: 12%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #C5C5C5;
-    transition: 0.5s;
-}
-
-.auth-header-tab-selected {
-    transition: 0.5s;
-    cursor: pointer;
-    width: 12%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 1.6px solid #033E66;
-    color: #033E66;
-}
-
-
 .auth-input-style {
     width: 80%;
     height: 40px;
@@ -118,17 +71,17 @@
     width: 30px;
     height: 30px;
     object-fit: contain;
-    margin-left: 30%;
+    margin-left: 27%;
 }
 
 .auth-button-type2 div {
     color: #797979;
-    margin-right: 30%;
+    margin-right: 27%;
 }
 
 .auth-last-content {
     margin-top: 25px;
-    width: 45%;
+    width: 49%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -153,13 +106,53 @@
     margin-top: 4.5px;
 }
 
-@media only screen and (max-width: 1400px) {
+@media only screen and (max-width: 1485px) {
     .auth-button-type2 img {
         margin-left: 26%;
     }
 
     .auth-button-type2 div {
         margin-right: 26%;
+    }
+}
+
+@media only screen and (max-width: 1428px) {
+    .auth-button-type2 img {
+        margin-left: 25%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 25%;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .auth-button-type2 img {
+        margin-left: 24.8%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 24.8%;
+    }
+}
+
+@media only screen and (max-width: 1370px) {
+    .auth-button-type2 img {
+        margin-left: 24%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 24%;
+    }
+}
+
+@media only screen and (max-width: 1307px) {
+    .auth-button-type2 img {
+        margin-left: 23%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 23%;
     }
 }
 
@@ -171,14 +164,26 @@
 
 @media only screen and (max-width: 1260px) {
     .auth-last-content {
-        width: 55%;
+        width: 56%;
     }
     .auth-button-type2 img {
-        margin-left: 23%;
+        margin-left: 21%;
     }
 
     .auth-button-type2 div {
-        margin-right: 23%;
+        margin-right: 21%;
+    }
+}
+
+@media only screen and (max-width: 1220px) {
+    .auth-last-content {
+        width: 58%;
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    .auth-last-content {
+        width: 62%;
     }
 }
 
@@ -207,13 +212,27 @@
     }
 
     .auth-last-content {
-        width: 70%;
+        width: 68%;
     }
 
 }
 
 @media only screen and (max-width: 390px) {
     .auth-last-content {
-        width: 80%;
+        width: 72%;
+    }
+}
+
+
+@media only screen and (max-width: 350px) {
+    .auth-button-type2 img {
+        margin-left: 13%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 13%;
+    }
+    .auth-last-content {
+        width: 79%;
     }
 }

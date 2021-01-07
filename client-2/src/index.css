@@ -37,40 +37,11 @@ code {
   /* min-height: 100vh; */
 }
 
-.burger-menu-01 {
-  /* display: none;  */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: auto;
-  top: 0;
-  width: 46%; 
-  height: 100%; 
-
+* {
+  font-family: 'Roboto', sans-serif;
 }
 
-.burger-menu-01-content {
-    animation-name: modal;
-    animation-duration: 1s;
-    width: 100%;
-    height: 100%;
-    background-color: #ffffff;
-    z-index: 1; /* Sit on top */
-}
-
-@keyframes modal {
-  from {
-    width: 0;
-    height: 0;
-    /* left: 0; */
-  }
-  to {
-    width: 100%;
-    height: 100%;
-    /* left: auto; */
-  }
-}
-
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 950px) {
   .root-content {
     width: 85%;
     /* background-color: pink; */

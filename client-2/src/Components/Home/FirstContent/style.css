@@ -1,21 +1,19 @@
 .home-main-content-fc-container {
     width: 90%;
     height: auto;
-    border-radius: 22px;
+    border-radius: 26px;
     background-color: #ffffff;
     margin-top: 26px;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 19px;
+    padding-bottom: 19px;
 }
 
 .home-main-content-fc-content {
     width: 85%;
-    /* height: auto; */
-    /* height: 100%; <<><><><><><><><><><><><><><>< */
-    height: 100%;
+    height: 180px;
     display: flex;
     justify-content: space-between;
     /* align-items: center; */
@@ -31,14 +29,14 @@
 
 .hmc-fc-c-lc-1 {
     width: 106px;
-    font-size: 22px;
+    font-size: 17px;
     font-weight: bold;
     color: #000000;
     margin-bottom: 30px;
 }
 
 .home-main-c-fc-c-rc {
-    height: auto;
+    /* height: 100%; */
     width: 47%;
     background-color: #f3f3f3;
     border-radius: 16px;

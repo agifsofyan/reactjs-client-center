@@ -42,51 +42,70 @@
     /* height: auto;  */
     padding-top: 10px;
     padding-bottom: 10px;
-    width: 186px;
+    width: 270px;
     height: auto;
-    margin-right: 5.8%;
+    margin-right: 5.7%;
     border-radius: 5px;
     background: #ffffff;
+}
+
+.slides-3-content-c6 {
+    width: 270px;
+    height: 26px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FF4500;
+    color: #ffffff;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: bold;
 }
 
 .slides-3-content-c1 {
     width: 100%;
     /* border-radius: 4px; */
-    /* object-fit: contain; */
-    height: 114px;
+    object-fit: cover;
+    height: 40%;
 }
 
 .slides-3-content-c2 {
     width: 100%;
-    font-size: 11px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 400;
+    margin-top: 5px;
+    font-family: 'Rubik', sans-serif;
 }
 
 .slides-3-content-c3 {
     width: 100%;
-    margin-top: 5px;
-    font-weight: 400;
-    font-size: 9px;
+    margin-top: 7px;
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 17px;
+    font-family: 'Rubik', sans-serif;
 }
 
 .slides-3-content-c4 {
     display: flex;
-    margin-top: 3px;
+    margin-top: 7px;
     align-items: center;
-    height: 20px;
+    height: 19px;
     width: 100%;
     /* background-color: olive; */
 }
 
 .slides-3-content-c4-t {
     margin-left: 10px;
-    font-size: 10px;
+    font-size: 12px;
     color: #000000;
     display: flex;
     text-align: center;
     justify-content: center;
     align-items: center;
     margin-top: 6.5px;
+    font-family: 'Rubik', sans-serif;
 }
 
 .slides-3-content-c5 {
@@ -96,28 +115,15 @@
 }
 
 .slides-3-content-c5 span {
-    text-decoration: line-through red 1.2px;
-    font-size: 10px;
+    text-decoration: line-through red 1.6px;
+    font-size: 14.5px;
 }
 
 .slides-3-content-c5 div {
-    font-size: 10px;
+    font-size: 14.5px;
     margin-left: 10px;
 }
 
-.slides-3-content-c6 {
-    width: 180px;
-    height: 20px;
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #FF4500;
-    color: #ffffff;
-    border-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
-}
 /* .slides-3-content-c2 div {
     width: 90%;
     margin-top: 30px;

@@ -64,7 +64,7 @@ function Login () {
     },[firstName,lastName,email,phoneNumber,password,confirmPassword])
 
     return (
-        <div style={{width : "100%",display : "flex",flexDirection : "column",justifyContent : "center",alignItems : "center", paddingBottom : 40}}>
+        <div style={{width : "100%",display : "flex",flexDirection : "column",justifyContent : "center",alignItems : "center", paddingBottom : 40,marginTop : 5}}>
             <Input 
                 text={'First Name'}
                 setter={setFirstName}
