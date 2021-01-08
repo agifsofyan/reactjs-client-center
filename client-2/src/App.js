@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 
 
 // PAGES
-import { Auth , Home , ProductList , ChangePass , ResetPass  } from './Pages'
+import { Auth , Home , ProductList , ChangePass , ResetPass , ProductDetail  } from './Pages'
 
 // COMPONENT 
 import Navbar from './Components/Navbar'
@@ -52,7 +52,7 @@ function App () {
       })
       .then(({data})=>{
           dispatch(changeValue("productList",data.data))
-          
+          console.log(data.data , ' <<<< DATA >>>>')
       })
       .catch(err=>{
           console.log(err , ' <<< ERROR')
@@ -77,6 +77,7 @@ function App () {
           <Route path="/product-list" component={ProductList}/>
           <Route path="/change-password"component={ChangePass}/>
           <Route path="/reset-password" component={ResetPass}/>
+          <Route path="/product-detail/:id" component={ProductDetail}/>
           <Route path="/" component={Home}/>
         </Switch>
       </div>

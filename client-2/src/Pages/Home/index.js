@@ -4,11 +4,13 @@ import React , { useState , useEffect } from 'react'
 import { useDispatch , useSelector } from 'react-redux'
 
 // COMPONENT
-import { Title , Search , Content } from '../Components/Home'
+import { Title , Search , Content } from '../../Components/Home'
 
 // GLOBAL ACTION
-import { changeValue } from '../Redux/Actions/productAction'
+import { changeValue } from '../../Redux/Actions/productAction'
 
+// STYLE
+import './style.css'
 
 function Home () {
 
@@ -45,8 +47,12 @@ function Home () {
         <div
             style={styles.root}
         >
-            <Title/>
-            <Search/>
+            <div
+                className="hc-title-search-00"
+            >
+                <Title/>
+                <Search selectedTab={selectedTab} />
+            </div>
             <Content
                 selectedTab={selectedTab}
                 setSelectedTab={setSelectedTab}

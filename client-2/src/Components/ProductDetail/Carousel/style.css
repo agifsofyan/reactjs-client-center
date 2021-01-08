@@ -1,0 +1,15 @@
+.product-detail-carousel {
+    width: 90%;
+    height: 187px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 11px;
+}
+
+.pdc-carousel-55 {
+    width: 280px;
+    height: 100%;
+    background-color: #c4c4c4;   
+    border-radius: 6px;
+}

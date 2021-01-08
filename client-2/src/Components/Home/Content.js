@@ -2,7 +2,7 @@ import React from 'react'
 
 // COMPONENT
 import TabFilter from './TabFilter'
-import FirstContent from './FirstContent'
+// import FirstContent from './FirstContent'
 import SecondContent from './SecondContent/'
 
 function Content (props) {

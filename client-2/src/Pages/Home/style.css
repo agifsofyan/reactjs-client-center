@@ -1,0 +1,11 @@
+.hc-title-search-00 {
+    width: 100%;
+    height: auto;
+    padding-top: 17px;
+    padding-bottom: 17px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #ffffff;
+}

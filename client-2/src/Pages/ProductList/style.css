@@ -1,10 +1,11 @@
 .product-list-container {
     width: 100%;
-    height: auto;
+    min-height: 99vh;
     background-color: #ffffff;
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding-bottom: 50px;
 }
 
 .plc-p-title {
@@ -22,4 +23,23 @@
     margin-top: 20px;
     height: 1px;
     background-color: #000000;
+}
+
+.plc-image-content1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-position: center;
+    /* min-width: 220px;
+    max-width: 100%; */
+    /* min-width: %; */
+    /* max-width: 90%; */
+    width: 85%;
+    /* min-height: 200px; */
+    /* max-height: 290px; */
+    /* object-fit: contain; */
+    /* object-fit: contain; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* margin-right: 0.5%; */
 }

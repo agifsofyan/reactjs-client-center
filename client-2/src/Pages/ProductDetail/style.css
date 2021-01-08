@@ -1,0 +1,236 @@
+.product-detail-root {
+    width: 100%;
+    min-height: 99vh;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 30px;
+}
+
+.product-detail-c1 {
+    font-size: 24px;
+    line-height: 27px;
+    /* width: 329px; */
+    /* height: 56px; */
+    margin: 13px 0 0 0;
+    padding: 0;
+    color: #000000;
+    width: 90%;
+}
+
+.product-detail-c2 {
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    color: #000000;
+    margin: 8px 0 0 0;
+    /* width: 329px; */
+    width: 90%;
+}
+
+.product-detail-c3 {
+    display: flex;
+    width: 90%;
+    margin-top: 10px;
+}
+
+.pdc3-button {
+    background-color: #FF4500;
+    border-radius: 5px;
+    width: auto;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    padding: 10px 5px 10px 5px;
+}
+
+.pdc3-button-2 {
+    color: #FF4500;
+    border: 1.25px solid #FF4500;
+    border-radius: 5px;
+    width: auto;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    line-height: 14px;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 6px 10px 6px;
+}
+
+.product-detail-c4 {
+    width: 90%;
+    height: auto;
+    background-color: #F3F3F3;
+    margin-top: 15px;
+    padding-top: 21%;
+    padding-bottom: 21%;
+}
+
+.product-detail-c5 {
+    display: flex;
+    width: 90%;
+    margin-top: 9.5px;
+    height: 40px;
+}
+
+.product-detail-c5 h5 {
+    /* width: 100%; */
+    font-size: 27px;
+    font-weight: 400;
+    /* line-height: 31px; */
+    /* text-align: center; */
+    display: flex;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.product-detail-c5 span {
+    margin-left: 30px;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 300;
+    text-decoration: line-through red 1.6px;
+    /* margin-top: 5px; */
+}
+
+.product-detail-c6 {
+    font-size: 14px;
+    color: #FF0000;
+    font-weight: 400;
+    width: 90%;
+}
+
+.product-detail-c7 {
+    background-color: #FF4500;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    color: #ffffff;
+    width: 90%;
+    height: 100%;
+    margin-top: 10px;
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.product-detail-c8 {
+    width: 90%;
+    height: 0.15px;
+    background-color: #000000;
+    margin-top: 23px;
+}
+
+.product-detail-c9 {
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 25px;
+    margin-top: 14px;
+}
+
+.product-detail-c10 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 15px;
+    line-height: 18px;
+    text-align: center;
+    font-weight: 400;
+    margin-top: 30px;
+    font-family: 'Roboto Condensed', sans-serif;
+    width: 90%;
+}
+
+.product-detail-c11 {
+    font-size: 12px;
+    line-height: 13.72px;
+    font-weight: 300;
+    width: 90%;
+    margin-top: 10px;
+}
+
+.product-detail-c12 {
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.product-detail-section-57 {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.product-detail-c13 {
+    min-width: 90%;
+    max-width: 285px;
+    height: 208px;
+    object-fit: contain;
+    border-radius: 15px;
+    margin-top: 13px;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+    .product-detail-c1 {
+        font-size: 22px;
+        line-height: 25px;
+    }
+
+    .product-detail-c2 {
+        font-size: 12px;
+        line-height: 14px;
+    }
+
+
+    .pdc3-button-2 {
+        height: 17.5px;
+    }
+
+    .product-detail-c5 h5 {
+        font-size: 25px;
+    }
+
+    .product-detail-c5 span {
+        font-size: 18px;
+        margin-top: 0;
+    }
+
+    .product-detail-c7 {
+        font-size: 26px;
+    }
+
+}
+
+@media only screen and (max-width: 350px) {
+    .product-detail-c5 h5 {
+        font-size: 23px;
+    }
+
+    .product-detail-c5 span {
+        margin-left: 20px;
+        margin-bottom: 4px;
+        font-size: 16px;
+    }
+}

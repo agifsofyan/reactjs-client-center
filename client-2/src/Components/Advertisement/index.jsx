@@ -17,11 +17,13 @@ function Advertisement (props) {
     // CHILD PROPS
     const { setShowAdv } = props
 
-    if (location.pathname === '/auth' || location.pathname === '/change-password' || location.pathname === '/reset-password') {
+    // RESPONSIVE
+
+    if (location.pathname === '/auth' || location.pathname === '/change-password' || location.pathname === '/reset-password' || location.pathname.split('/')[1] === "product-detail") {
         return (<></>)
     }else {
         return (
-            <div className="adv-container" style={{position : "relative"}} id="adv-cont">
+            <div className="adv-container"  id="adv-cont">
                 <div className="adv-root">
                     <div className="adv-content">
                         Mau Tau Benefit Premium Member? Cukup Rp 20.000,-/bulan. Cek Disini Sekarang
@@ -29,7 +31,9 @@ function Advertisement (props) {
                 </div>
                 <CloseIcon
                     onClick={e=>setShowAdv(false)}
-                    style={{ marginTop : 16 , marginRight :30 , cursor : "pointer"  }}
+                    // style={{ marginTop : 16 , marginRight :30 , cursor : "pointer"  }}
+                    // className=""
+                    className="adv-close-icon"
                 />
             </div>
         )

@@ -61,6 +61,7 @@
     border-radius: 7px;
     font-size: 14px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .slides-3-content-c1 {
@@ -68,6 +69,7 @@
     /* border-radius: 4px; */
     object-fit: cover;
     height: 40%;
+    cursor: pointer;
 }
 
 .slides-3-content-c2 {
@@ -76,6 +78,7 @@
     font-weight: 400;
     margin-top: 5px;
     font-family: 'Rubik', sans-serif;
+    cursor: pointer;
 }
 
 .slides-3-content-c3 {

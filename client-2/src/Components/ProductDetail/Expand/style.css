@@ -1,0 +1,85 @@
+.product-detail-c13-expand {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-top: 16px;
+}
+
+.pdce-c13-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.pdce-c13-content {
+    border-top: 0.5px solid #000000;
+    border-left: 0.5px solid #000000;
+    border-right: 0.5px solid #000000;
+    background-color: #F8F8F8;
+    width : 100%;
+    height: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pdce-c13-content-1 {
+    margin-left: 2%;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: 'Roboto Condensed', sans-serif;
+    text-align: center;
+}
+
+.pdce-c13-content-2 {
+    margin-right: 2%;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.pdce-c13-content-2-a {
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+.pdce-c13-content-2-b {
+    font-size: 25px !important;
+    margin-left: 8px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .pdce-c13-content-1 {
+        margin-left: 3%;
+        font-size: 13px;
+    }
+
+    .pdce-c13-content-2 {
+        margin-right: 3%;
+    }
+
+    .pdce-c13-content-2-a {
+        font-size: 11px;
+    }
+
+
+}
+
+@media only screen and (max-width: 350px) {
+    .pdce-c13-content-1 {
+        font-size: 11px;
+    }
+    .pdce-c13-content-2-a {
+        font-size: 10.8px;
+    }
+}

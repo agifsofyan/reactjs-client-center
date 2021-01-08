@@ -11,3 +11,9 @@ export const changeValue = (key,value) => {
         })
     }
 }
+
+export const searchProduct = (str) => {
+    return (dispatch) => {
+        
+    }
+}

@@ -2,6 +2,7 @@ import React from 'react'
 
 // MODULES
 import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 // ANT DESIGN 
 import { Rate } from 'antd';
@@ -15,20 +16,28 @@ import productRecom from '../../../Assets/Images/recommended.png'
 
 function Content () {
 
+    // DECLARE HISTORY
+    const history = useHistory()
+
+    // GLOBAL STATE
     const list = useSelector(state=>state.product.productList)
 
+    // LOCAL ACTION
     let renderDot = (name) => {
-        if (name.length >= 28) {
+        if (name.length >= 27) {
             return "......"
         }else {
             return ""
         }
     }
 
+    // LOCAL ACTION
     let renderList = () => {
         return list.map((el,index)=>{
             return (
-            <div>
+            <div
+                onClick={e=>history.push(`/product-detail/${el._id}`)}
+            >
                 <img 
                     className="slides-3-content-c1"
                     src={productRecom}
@@ -36,7 +45,7 @@ function Content () {
                 />
                 <span className="slides-3-content-c2">
                     {
-                        el.name.slice(0,28) + "" + renderDot(el.name)
+                        el.name.slice(0,27) + "" + renderDot(el.name)
                     }
                 </span>
                 <div className="slides-3-content-c3">
@@ -62,7 +71,7 @@ function Content () {
                     </div>
                 </div>
                 <div className="slides-3-content-c6">
-                    JOIN
+                    Daftar
                 </div>
             </div>
             ) 

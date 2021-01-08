@@ -8,7 +8,7 @@ function Auth () {
     const [selectedTab,setSelectedTab] = useState(0)
 
     return (
-        <div style={{width : "100%",display : "flex" , flexDirection : "column" ,alignItems : "center" ,  minHeight : "100vh" , backgroundColor : "#FFFFF"}}>
+        <div style={{width : "100%",display : "flex" , flexDirection : "column" ,alignItems : "center" ,  minHeight : "100vh" , backgroundColor : "#FFFFFF"}}>
            <Header
             selectedTab={selectedTab}
             setSelectedTab={setSelectedTab}
