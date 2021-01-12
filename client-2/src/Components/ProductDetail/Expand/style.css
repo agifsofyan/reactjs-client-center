@@ -55,6 +55,7 @@
 .pdce-c13-content-2-b {
     font-size: 25px !important;
     margin-left: 8px;
+    cursor: pointer !important;
 }
 
 @media only screen and (max-width: 600px) {

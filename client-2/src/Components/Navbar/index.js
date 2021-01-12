@@ -21,7 +21,7 @@ function Navbar (props) {
     // USE HISTORY
     const history = useHistory()
 
-    if (location.pathname.split('/')[1] === "product-detail") {
+    if (location.pathname.split('/')[1] === "product-detail"|| location.pathname === '/card') {
         return (
         <div className="navbar-container">
             <div className="navbar-content" style={{justifyContent : "center"}} >

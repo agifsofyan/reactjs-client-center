@@ -45,7 +45,7 @@ function Content () {
                 />
                 <span className="slides-3-content-c2">
                     {
-                        el.name.slice(0,27) + "" + renderDot(el.name)
+                        el.name.slice(0,23) + "" + renderDot(el.name)
                     }
                 </span>
                 <div className="slides-3-content-c3">

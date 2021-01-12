@@ -37,6 +37,10 @@ code {
   /* min-height: 100vh; */
 }
 
+.cwr-99-1 {
+  width: 90%;
+} 
+
 * {
   font-family: 'Roboto', sans-serif;
 }

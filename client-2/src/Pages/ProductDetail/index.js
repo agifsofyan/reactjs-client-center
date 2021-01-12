@@ -1,7 +1,7 @@
 import React , { useState } from 'react'
 
 // COMPONENT
-import { Carousel , Expand } from '../../Components/ProductDetail'
+import { Carousel , Expand , Bonus , Payment } from '../../Components/ProductDetail'
 
 // IMAGES 
 import DummyImage from '../../Assets/Images/dummy.jpg'
@@ -112,6 +112,7 @@ function ProductDetail () {
                 What You Will Learn
             </div>
 
+            {/* C 13 */}
             <Expand/>   
 
             {/* ONLY LINE */}
@@ -120,6 +121,10 @@ function ProductDetail () {
             </div>
 
             {renderSection()}
+
+            <Bonus/>
+
+            <Payment/>
 
         </div>
     )

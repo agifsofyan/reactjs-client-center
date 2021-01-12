@@ -19,7 +19,14 @@ function Advertisement (props) {
 
     // RESPONSIVE
 
-    if (location.pathname === '/auth' || location.pathname === '/change-password' || location.pathname === '/reset-password' || location.pathname.split('/')[1] === "product-detail") {
+    if (
+            location.pathname === '/auth' || 
+            location.pathname === '/change-password' || 
+            location.pathname === '/reset-password' || 
+            location.pathname.split('/')[1] === "product-detail" ||
+            location.pathname === '/card'
+        ) 
+    {
         return (<></>)
     }else {
         return (
