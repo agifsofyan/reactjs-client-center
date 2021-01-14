@@ -1,8 +1,5 @@
 import React from 'react'
 
-// STYLE
-import './style.css'
-
 function Button (props) {
 
     const {

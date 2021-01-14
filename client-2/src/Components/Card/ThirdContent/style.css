@@ -1,0 +1,125 @@
+.card-06-tc-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0 30px 0;
+}
+
+/* CONTENT 1 */
+
+.card-06-tc-c1  {
+    border: 1.5px solid #5E5E5E;
+    border-radius: 5px;
+    width: 90%;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-06-tc-c1-1 {
+    width: 90%;
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-06-tc-c1-1 span {
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Rubik', sans-serif;
+}
+
+.card-06-tc-c1-1-icon {
+    font-weight: bold !important;
+    font-size: 30px !important;
+    /* margin-right: -30px; */
+}
+
+/* CONTENT 2 */
+.card-06-tc-c2 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #595959;
+    width: 90%;
+    margin-top: 10px;
+}
+
+
+/* CONTENT 3 */
+.card-06-tc-c3 {
+    width: 90%;
+    height: 290px;
+    border-radius: 12px;
+    background-color: #F3F3F3;
+    margin-top: 39px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.c06-tc-c3-1 {
+    width: 90%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.c06-tc-c3-1-ta {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+}
+
+.c06-tc-c3-1-ta-text {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.c06-tc-c3-1-ta-bold {
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 2px;
+    margin-left: 3px;
+}
+
+.c06-tc-c3-1-tb {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 21px;
+    flex-direction: column;
+}
+
+.c06-tc-c3-1-tb-text2 {
+    font-size: 21px;
+    font-weight: 300;
+}
+
+.c06-tc-c3-1-tb-bold2 {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.c06-tc-c3-1-tb-button {
+    background-color: #FF4500;
+    box-shadow: 0px 0px 10px 1px rgba(255, 0, 0, 0.5);
+    border-radius: 10px;
+    /* width: 90%;
+    height: 45px; */
+    width: 263px;
+    height: 39px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    cursor: pointer;
+    margin: 8px 0 0 0;
+}

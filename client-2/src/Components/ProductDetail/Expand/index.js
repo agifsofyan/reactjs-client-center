@@ -41,7 +41,7 @@ function Expand () {
     let renderData = () => {
         return data.map((el,index)=>{
             return (
-                <div className="pdce-c13-container">
+                <div key={index} className="pdce-c13-container">
                     <div 
                         className="pdce-c13-content"
                         style={{

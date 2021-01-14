@@ -1,7 +1,7 @@
 import React from 'react'
 
 // COMPONENT 
-import { List , FirstContent } from '../../Components/Cart'
+import { List , FirstContent, SecondContent , ThirdContent } from '../../Components/Card'
 
 // CART
 import './style.css'
@@ -19,6 +19,11 @@ function Cart () {
                 Enrolled Course
             </h2>
             <List/>
+            <div className="cwr-99-1 cart-06-c2">
+
+            </div>
+            <SecondContent/>
+            <ThirdContent/>
         </div>
     )
 

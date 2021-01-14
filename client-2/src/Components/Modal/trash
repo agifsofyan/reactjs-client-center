@@ -1,0 +1,19 @@
+                    <div className="bmc-content-1">
+
+                        <div className="bmc-content-2">
+                            <img
+                                src={Logo}
+                                alt="laruno"
+                            />
+                             <span style={{marginTop : 30}}>Business</span>
+                             <span>Career</span>
+                             <span>Finance</span>
+                             <span>Marketing</span>
+                             <span>Sales</span>
+                        </div>
+                        <CloseIcon
+                            style={{ marginTop : 30 , cursor : "pointer"}}
+                            onClick={e=>HandleModalClose()}
+                        />    
+
+                    </div>

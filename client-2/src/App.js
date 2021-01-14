@@ -5,9 +5,8 @@ import { Switch, Route } from 'react-router-dom';
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 
-
 // PAGES
-import { Auth , Home , ProductList , ChangePass , ResetPass , ProductDetail , Cart  } from './Pages'
+import { Auth , Home , ProductList , ChangePass , ResetPass , ProductDetail , Card  } from './Pages'
 
 // COMPONENT 
 import Navbar from './Components/Navbar'
@@ -25,11 +24,16 @@ import './index.css'
 
 function App () {
 
+  // USE DISPATCH
+  const dispatch = useDispatch()
+
+  // LOCAL STATE
   const [showModal,setShowModal] = useState(false)
   const [modalClose,setModalClose] = useState(false)
   const [showAdv,setShowAdv] = useState(true)
-  const dispatch = useDispatch()
+  const [topScroll,setTopScroll] = useState(0)
 
+  // USE EFFECT
   useEffect(()=>{
 
       // GET TOPICS
@@ -60,9 +64,18 @@ function App () {
 
   },[dispatch])
 
+  // HANDLE SCROLL
+  let handleAll = (e) => {
+    setTopScroll(document.body.scrollTop)
+  }
+
   return (
-    <div className="root-container">
-      <div className="root-content">
+    <div
+      className="root-container" 
+      id="master-root"
+      onWheel={e=>handleAll(e)} 
+    >
+      <div onScroll={e=>console.log('HMMMM')} className="root-content">
         <Navbar
           setShowModal={setShowModal}
         />
@@ -77,8 +90,12 @@ function App () {
           <Route path="/product-list" component={ProductList}/>
           <Route path="/change-password"component={ChangePass}/>
           <Route path="/reset-password" component={ResetPass}/>
-          <Route path="/product-detail/:id" component={ProductDetail}/>
-          <Route path="/card" component={Cart}/>
+          <Route 
+            path="/product-detail/:id" 
+            // component={ProductDetail}
+            component={()=><ProductDetail topScroll={topScroll} />}
+          />
+          <Route path="/card" component={Card}/>
           <Route path="/" component={Home}/>
         </Switch>
       </div>

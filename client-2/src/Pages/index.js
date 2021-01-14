@@ -1,15 +1,15 @@
-import Auth from './Auth'
+import Auth from './Auth/index'
 import Home from './Home/index'
 import ProductList from './ProductList'
-import ChangePass from './ChangePass'
+import ChangePass from './ChangePassword'
 import ResetPass from './ResetPassword'
 import ProductDetail from './ProductDetail'
-import Cart from './Cart'
+import Card from './Card'
 
 export {
     Auth,
     Home,
-    Cart,
+    Card,
     ProductList,
     ChangePass,
     ResetPass,

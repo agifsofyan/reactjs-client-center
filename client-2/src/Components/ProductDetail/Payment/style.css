@@ -9,6 +9,20 @@
     padding: 10px 0 10px 0;
 } 
 
+.product-detail-c14-fixed {
+    width: 36%;
+    background-color: #F4F4F4;
+    /* height: 70px; */
+    /* padding: 12px 12px 12px 12px; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0 10px 0;
+    position: fixed;
+    left: 0 auto;
+    bottom: 0;
+}
+
 .product-detail-c14-fc {
     width: 90%;
     margin-left: 5%;
@@ -95,5 +109,17 @@
 
     .product-detail-c14-fc div {
         font-size: 10px;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .product-detail-c14-fixed {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .product-detail-c14-fixed {
+        width: 100%;
     }
 }

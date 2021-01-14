@@ -1,9 +1,9 @@
-import Header from './Header/index'
-import Login from './Login'
-import Register from './Register'
+import Login from './Login/index'
+import Register from './Register/index'
+import CheckEmail from './CheckEmail'
 
 export  {
-    Header,
     Login,
-    Register
+    Register,
+    CheckEmail
 }

@@ -1,48 +1,37 @@
 import React , { useState } from 'react'
 
 // COMPONENT 
-import Input from '../../Components/Auth/Input'
+import Input from '../../Components/AuthOld/Input'
 import Button from '../../Components/Button'
 
+// STYLE
+import './style.css'
+
 // IMAGES
-import rp from '../../Assets/Images/Illustration.png'
+import il from '../../Assets/Images/cp.png'
 
-function ResetPassword () {
+function ChangePass () {
 
-    const [password,setPassword] = useState(null)
-    const [confirm,setConfirm] = useState(null)
+    const [email,setEmail] = useState(null)
 
     return (
         <div className="change-pass-container">
             <img
-                src={rp}
-                alt={'reset-pass'}
+                src={il}
+                alt={'change-pass'}
             />
             <span className="change-pass-bold">
-                Create New Password
+                Reset Password
             </span>
             <div className="change-pass-text">
-                Your new password must be different from previous used password.
+                Enter the email associated with your account to confirm the ownership of the account.
             </div>
-
             <Input
-                text={"Password"}
-                value={password}
-                setter={setPassword}
-                style={{width : 361}}
-                isPassword={true}
-                eyeStyle={{marginRight : 14}}
+                text={"Email Address"}
+                value={email}
+                setter={setEmail}
+                style={{width : 290}}
             />
-
-            <Input
-                text={"Confirm Password"}
-                value={confirm}
-                setter={setConfirm}
-                style={{width : 361}}
-                isPassword={true}
-                eyeStyle={{marginRight : 14}}
-            />
-
             <Button
                 text={'Confirm'}
                 style={{width : 290,marginTop : 20}}
@@ -52,4 +41,4 @@ function ResetPassword () {
 
 }
 
-export default ResetPassword
+export default ChangePass

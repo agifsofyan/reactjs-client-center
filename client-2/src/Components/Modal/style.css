@@ -16,7 +16,7 @@
     background-color: #ffffff;
     z-index: 1; /* Sit on top */
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 }
 
@@ -66,9 +66,95 @@
     }
 }
 
-/* CONTENT MODAL  */
+/* CONTENT MODAL FIX */
 
 .bmc-content-1 {
+    width: 100%;
+    height: 62px;
+    background-color: #F4F4F4;
+    display: flex;
+    justify-content: center;
+}
+
+.bmc-content-1-c1 {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bmc-content-1-c1 > img {
+    width: 90px;
+    object-fit: contain;
+}
+
+.bmc-content-2 {
+    font-family: 'Rubik', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20.78px;
+    color: #033E66;
+    margin-top: 20px;
+    width: 80%;
+    text-align: center;
+}
+
+.bmc-content-3 {
+    background-color: #E9E9E9;
+    width: 90%;
+    height: 7px;
+}
+
+.bmc-content-4 {
+    width: 80%;
+    font-weight: 300;
+    font-size: 18px;
+    color: #606060;
+    margin-top: 10px;
+    /* height: 40px; */
+    cursor: pointer;
+    height: 40px;
+}
+
+.bmc-content-4-selected {
+    height: 40px;
+    background-color: #E8F1FF;
+    border-radius: 2px;
+    width: 85%;
+    font-weight: 300;
+    font-size: 18px;
+    margin-top: 10px;
+    color: #4C91FA;
+    /* height: 40px; */
+    display: flex;
+    align-items: center;
+    padding-left: 3%;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 900px) {
+    .burger-menu-01 {
+        width: 85%;
+    }
+    .burger-menu-02 {
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .burger-menu-01 {
+        width: 100%;
+    }
+    .burger-menu-02 {
+        width: 100%;
+    }
+
+}
+
+/* CONTENT MODAL  */
+
+/* .bmc-content-1 {
     width: 90%;
     height: 100%;
     display: flex;
@@ -94,21 +180,4 @@
     object-fit: contain;
 }
 
-@media only screen and (max-width: 900px) {
-    .burger-menu-01 {
-        width: 85%;
-    }
-    .burger-menu-02 {
-        width: 85%;
-    }
-}
-
-@media only screen and (max-width: 600px) {
-    .burger-menu-01 {
-        width: 100%;
-    }
-    .burger-menu-02 {
-        width: 100%;
-    }
-
-}
+ */

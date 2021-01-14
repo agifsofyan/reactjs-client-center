@@ -1,4 +1,4 @@
-import React , { useState } from 'react'
+import React , { useState  } from 'react'
 
 // COMPONENT
 import { Carousel , Expand , Bonus , Payment } from '../../Components/ProductDetail'
@@ -9,10 +9,15 @@ import DummyImage from '../../Assets/Images/dummy.jpg'
 // STYLE
 import './style.css'
 
-function ProductDetail () {
-
+function ProductDetail (props) {
+    
+    // PARENT PROPS
+    const { topScroll } = props
+    
+    // LOCAL STATE
     const [dummyData] = useState([0,1])
 
+    // RENDER ELEMENT
     let renderSection = () => {
         return dummyData.map((el,index)=>{
             return (
@@ -90,13 +95,13 @@ function ProductDetail () {
             </div>
 
             {/* TITLE */}
-            <span className="product-detail-c9">
+            <span  className="product-detail-c9">
                 Product Description
             </span>
 
             <Carousel/>
 
-            <div className="product-detail-c10">
+            <div  className="product-detail-c10">
                 #1 MOST PURCHASED BUSINESS COURSE ON UDEMY! ** OVER 350,000 STUDENTS IN 195 COUNTRIES
             </div>
             <div className="product-detail-c11">
@@ -124,7 +129,7 @@ function ProductDetail () {
 
             <Bonus/>
 
-            <Payment/>
+            <Payment topScroll={topScroll}/>
 
         </div>
     )

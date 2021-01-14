@@ -14,54 +14,33 @@ function Input (props) {
         value,
         isPassword,
         style,
-        eyeStyle,
-        isError,
-        message
+        eyeStyle
     } = props
 
     if (!isPassword) {
         return (
-            <div 
-                style={{...styles.root, ...style}}
-            >
-                <div style={{width : "100%"}}>{text}</div>
+            <div style={{...styles.root, ...style}}>
+                <div style={{width : "80%"}}>{text}</div>
                 <input 
                     className="auth-input-style"
                     onChange={e=>setter(e.target.value)}
                     value={value}
                     type={text}
-                    style={{ border : isError && "1px solid #ff3333" }}
                 />
-                {
-                    isError &&
-                    <span className="auth-input-error-m">
-                        {message}
-                    </span>
-                }
             </div>
         )
     }else {
         return (
             <div style={{...styles.root, ...style}}>
-                <div style={{width : "100%"}}>{text}</div>
+                <div style={{width : "80%"}}>{text}</div>
                 <div className="auth-input-style-2">
                     <input 
                         onChange={e=>setter(e.target.value)}
                         value={value}
                         type={ isVisible ? "text" : "password"}
-                        style={{
-                            borderTop : isError && "1px solid #ff3333" ,
-                            borderLeft : isError && "1px solid #ff3333" ,
-                            borderBottom : isError && "1px solid #ff3333" 
-                        }}
                     />
                     <div 
-                        style={{
-                            cursor : "pointer",
-                            borderTop : isError && "1px solid #ff3333" ,
-                            borderRight : isError && "1px solid #ff3333" ,
-                            borderBottom : isError && "1px solid #ff3333" 
-                        }}
+                        style={{cursor : "pointer"}}
                         onClick={e=>setIsVisible(!isVisible)}
                     >
                         {
@@ -77,12 +56,6 @@ function Input (props) {
                         }
                     </div>
                 </div>
-                {
-                    isError &&
-                    <span className="auth-input-error-m">
-                        {message}
-                    </span>
-                }
             </div>
         )
     }
