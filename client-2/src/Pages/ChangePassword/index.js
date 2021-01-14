@@ -158,11 +158,11 @@ function ChangePassword () {
                 src={rp}
                 alt={'reset-pass'}
             />
-            <span className="change-pass-bold">
-                Create New Password
+            <span className="change-pass-bold" style={{width : "82%"}}>
+                Ganti Password
             </span>
-            <div className="change-pass-text">
-                Your new password must be different from previous used password.
+            <div className="change-pass-text" style={{width : "82%"}}>
+                Silahkan Isi password lama anda dan password baru anda dan harus berbeda dengan password sebelumnya.
             </div>
 
             <Input
@@ -184,10 +184,8 @@ function ChangePassword () {
                 isError={newError}
                 message={newMessage}
             />
-
             <Button
                 text={'Confirm'}
-                // style={{width : 290,marginTop : 20}}
                 style={{width : "82%",marginTop : 20}}
                 fn={checkValidation}
                 loader={isLoading}

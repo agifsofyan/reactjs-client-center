@@ -14,7 +14,6 @@ import image from '../../../Assets/Images/login-image.png'
 // API
 import { SWAGGER_URL } from '../../../Support/API_URL'
 
-
 function Login (props) {
 
     // PARENT PROPS
@@ -44,7 +43,6 @@ function Login (props) {
             }
         })
         .then(({data})=>{
-            console.log(data.data.accessToken , ' <<<<')
             let tokenR = data.data.accessToken
             localStorage.setItem('token',tokenR)
             history.push('/')
@@ -54,7 +52,13 @@ function Login (props) {
             if (err.response.data)
             messageError = err.response.data ? err.response.data.message : null
             if (messageError === "The password you've entered is incorrect." ) {
-                console.log('HAHAHHA')
+                setIsError(true)
+                setMessage("Password yang anda masukkan salah!")
+            } else if (err.response.data.statusCode === 500) {
+                setIsError(true)
+                setMessage("Internal Server Error")
+            }
+            else {
                 setIsError(true)
                 setMessage("Password yang anda masukkan salah!")
             }

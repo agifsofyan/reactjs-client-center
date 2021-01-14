@@ -4,7 +4,7 @@ import React from 'react'
 import './style.css'
 
 // COMPONENT
-import Content from './Content'
+import { Content , Carousel } from '../../Components/ProductList'
 
 // IMAGE
 import Content1 from '../../Assets/Images/content-1.png'
@@ -13,9 +13,13 @@ function ProductList () {
 
     return (
         <div className="product-list-container">
+            <Carousel/>
+            <div className="plc-p-line" >
+
+            </div>
             <span 
                 className="plc-p-title"
-                style={{marginTop : 90}}
+                style={{marginTop : 15}}
             >
                 Kelas Rekomendasi
             </span>

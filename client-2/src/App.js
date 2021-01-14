@@ -89,7 +89,7 @@ function App () {
           <Route path="/auth" component={Auth}/>
           <Route path="/product-list" component={ProductList}/>
           <Route path="/change-password"component={ChangePass}/>
-          <Route path="/reset-password" component={ResetPass}/>
+          <Route path="/forget-password" component={ResetPass}/>
           <Route 
             path="/product-detail/:id" 
             // component={ProductDetail}

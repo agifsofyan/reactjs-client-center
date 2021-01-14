@@ -23,7 +23,7 @@ import '../style.css'
 import { SWAGGER_URL } from '../../../Support/API_URL'
 
 // REGEX EMAIL
-import { re } from './re'
+import { re } from '../../../Support/re'
 
 function CheckEmail (props) {
 
@@ -131,7 +131,7 @@ function CheckEmail (props) {
 
             <div className="auth-last-content" style={{marginBottom : 40}}>
                 <div 
-                    onClick={e=>history.push('/change-password')}
+                    onClick={e=>history.push('/forget-password')}
                     style={{color : "#326282", cursor : "pointer"}}
                 >
                     Lupa Password
