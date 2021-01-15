@@ -18,7 +18,7 @@ function Button (props) {
     return (
        <button
         className="button-comp-style"
-        onClick={e=>fn()}
+        onClick={e=>fn(e)}
         style={{...style}}
        >
            {

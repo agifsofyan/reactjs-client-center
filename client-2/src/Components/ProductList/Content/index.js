@@ -14,7 +14,10 @@ import 'antd/dist/antd.css';
 // IMAGES
 import productRecom from '../../../Assets/Images/recommended.png'
 
-function Content () {
+function Content (props) {
+
+    // PARENT PROPS
+    const { style } = props 
 
     // DECLARE HISTORY
     const history = useHistory()
@@ -79,7 +82,7 @@ function Content () {
     }
 
     return (
-        <div className="slides-3">
+        <div className="slides-3" style={{...style}}>
             { list && renderList()}
         </div>
     )

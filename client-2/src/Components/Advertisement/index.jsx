@@ -22,9 +22,10 @@ function Advertisement (props) {
     if (
             location.pathname === '/auth' || 
             location.pathname === '/change-password' || 
-            location.pathname === '/reset-password' || 
+            location.pathname === '/forget-password' || 
             location.pathname.split('/')[1] === "product-detail" ||
-            location.pathname === '/card'
+            location.pathname === '/card' ||
+            location.pathname === ''
         ) 
     {
         return (<></>)

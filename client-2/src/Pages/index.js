@@ -5,6 +5,7 @@ import ChangePass from './ChangePassword'
 import ResetPass from './ResetPassword'
 import ProductDetail from './ProductDetail'
 import Card from './Card'
+import Error404 from './Error404'
 
 export {
     Auth,
@@ -13,5 +14,6 @@ export {
     ProductList,
     ChangePass,
     ResetPass,
-    ProductDetail
+    ProductDetail,
+    Error404
 }

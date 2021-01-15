@@ -4,7 +4,7 @@ import React from 'react'
 import './style.css'
 
 // COMPONENT
-import { Content , Carousel } from '../../Components/ProductList'
+import { Content , Carousel , TopicSort , Rating } from '../../Components/ProductList'
 
 // IMAGE
 import Content1 from '../../Assets/Images/content-1.png'
@@ -50,6 +50,12 @@ function ProductList () {
 
             </div>
 
+            <TopicSort/>
+            <Content style={{marginTop : 21}}/>
+            <div className="plc-p-line" style={{marginTop : 25}}>
+
+            </div>
+            <Rating/>
         </div>
     )
 

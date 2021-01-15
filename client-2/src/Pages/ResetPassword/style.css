@@ -1,13 +1,21 @@
 .change-pass-container {
     width: 100%;
-    min-height: 94.7vh;
+    min-height: 94.4vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #ffffff;
 }
 
-.change-pass-container > img {
+.change-pass-email {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.change-pass-email > img {
     width: 55%;
     height: 100%;
     object-fit: cover;

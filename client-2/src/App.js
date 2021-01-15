@@ -6,7 +6,7 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 
 // PAGES
-import { Auth , Home , ProductList , ChangePass , ResetPass , ProductDetail , Card  } from './Pages'
+import { Auth , Home , ProductList , ChangePass , ResetPass , ProductDetail , Card , Error404  } from './Pages'
 
 // COMPONENT 
 import Navbar from './Components/Navbar'
@@ -90,6 +90,7 @@ function App () {
           <Route path="/product-list" component={ProductList}/>
           <Route path="/change-password"component={ChangePass}/>
           <Route path="/forget-password" component={ResetPass}/>
+          <Route path="" component={Error404}/>
           <Route 
             path="/product-detail/:id" 
             // component={ProductDetail}

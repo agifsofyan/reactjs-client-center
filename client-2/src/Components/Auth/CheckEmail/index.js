@@ -64,7 +64,8 @@ function CheckEmail (props) {
         })
     }
 
-    let checkValidation = () => {
+    let checkValidation = (e) => {
+        e.preventDefault()
         let check = re.test(String(email))
         if (!email || email === "" ) {
             setIsError(true)
@@ -84,7 +85,7 @@ function CheckEmail (props) {
     }
 
     return (
-        <div className="auth-check-email-container">
+        <form onSubmit={e=>checkValidation(e)} className="auth-check-email-container">
             <img
                 src={image}
                 alt="check-email"
@@ -147,7 +148,7 @@ function CheckEmail (props) {
                 </div>
             </div>
 
-        </div>
+        </form>
     )
 
 }

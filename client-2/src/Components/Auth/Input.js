@@ -16,10 +16,12 @@ function Input (props) {
         style,
         eyeStyle,
         isError,
-        message
+        message,
+        isHasIcon,
+        IconComponent
     } = props
 
-    if (!isPassword) {
+    if (!isPassword && !isHasIcon) {
         return (
             <div 
                 style={{...styles.root, ...style}}
@@ -40,7 +42,46 @@ function Input (props) {
                 }
             </div>
         )
-    }else {
+    }else if (isHasIcon) {
+        return (
+            <div style={{...styles.root, ...style}}>
+                <div style={{width : "100%"}}>{text}</div>
+                <div className="auth-input-style-2">
+                    <input 
+                        onChange={e=>setter(e.target.value)}
+                        value={value}
+                        // type={ isVisible ? "text" : "password"}
+                        type="text"
+                        style={{
+                            borderTop : isError && "1px solid #ff3333" ,
+                            borderLeft : isError && "1px solid #ff3333" ,
+                            borderBottom : isError && "1px solid #ff3333" 
+                        }}
+                    />
+                    <div 
+                        style={{
+                            cursor : "pointer",
+                            borderTop : isError && "1px solid #ff3333" ,
+                            borderRight : isError && "1px solid #ff3333" ,
+                            borderBottom : isError && "1px solid #ff3333" 
+                        }}
+                        onClick={e=>setIsVisible(!isVisible)}
+                    >
+                        <IconComponent
+                            style={{...eyeStyle}} 
+                        /> 
+                    </div>
+                </div>
+                {
+                    isError &&
+                    <span className="auth-input-error-m">
+                        {message}
+                    </span>
+                }
+            </div>
+        )
+    }
+    else {
         return (
             <div style={{...styles.root, ...style}}>
                 <div style={{width : "100%"}}>{text}</div>
