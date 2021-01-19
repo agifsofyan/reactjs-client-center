@@ -56,11 +56,28 @@ function App () {
       })
       .then(({data})=>{
           dispatch(changeValue("productList",data.data))
-          console.log(data.data , ' <<<< DATA >>>>')
       })
       .catch(err=>{
           console.log(err , ' <<< ERROR')
       })
+      
+      // GET USERS
+      // axios({
+      //   method : "GET",
+      //   url : `${SWAGGER_URL}/users/me`,
+      //   headers : {
+      //     'Access-Control-Allow-Origin': '*',
+      //     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      //     'Authorization': `Bearer ${localStorage.getItem('token')}`,
+      //     // "x-auth-token" : localStorage.getItem('token')
+      //   }
+      // })
+      // .then((data)=>{
+      //   console.log(data , ' <<<< FIX >>>> OKOKOKOK')
+      // })
+      // .catch(err=>{
+      //   console.log(err.response)
+      // })
 
   },[dispatch])
 

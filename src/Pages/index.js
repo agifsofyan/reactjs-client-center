@@ -4,9 +4,9 @@ import ProductList from './ProductList'
 import ChangePass from './ChangePassword'
 import ResetPass from './ResetPassword'
 import ProductDetail from './ProductDetail'
-import Card from './Card'
+import Card from './Cart'
 import Error404 from './Error404'
-import CardNotLoggedIn from './CardNLog'
+import CardNotLoggedIn from './CartNLog'
 import CartContainer from './CartContainer'
 
 export {

@@ -191,7 +191,7 @@ function ProductDetail (props) {
 
             <Bonus/>
 
-            <Payment topScroll={topScroll}/>
+            <Payment handleAddCart={handleAddCart} topScroll={topScroll}/>
 
         </div>
     )

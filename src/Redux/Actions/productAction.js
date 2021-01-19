@@ -1,5 +1,5 @@
 // TYPE
-import { CHANGE_PRODUCT } from '../type'
+import { CHANGE_PRODUCT , GET_SELECTED_USER } from '../type'
 
 export const changeValue = (key,value) => {
     return (dispatch) => {
@@ -12,8 +12,13 @@ export const changeValue = (key,value) => {
     }
 }
 
-export const searchProduct = (str) => {
+export const changeValueUser = (key,value) => {
     return (dispatch) => {
-        
+        dispatch({
+            type : GET_SELECTED_USER,
+            payload : {
+                key,value
+            }
+        })
     }
 }

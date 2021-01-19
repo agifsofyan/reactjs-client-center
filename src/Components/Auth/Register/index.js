@@ -95,6 +95,8 @@ function Register (props) {
             }
         })
         .then(({data})=>{
+            let tokenR = data.data.accessToken
+            localStorage.setItem('token',tokenR)
             history.push('/')
             setLoading(false)
         })

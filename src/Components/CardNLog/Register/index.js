@@ -2,6 +2,7 @@ import React , { useState , useEffect } from 'react'
 
 // MODULE
 import axios from 'axios'
+import Cookies from 'js-cookie';
 
 // COMPONENT
 import Input from '../../Auth/Input' 
@@ -14,6 +15,9 @@ function Register (props) {
 
     // PARENT PROPS
     const { email , setSelectedPage } = props
+    
+    // COOKIES
+    const cookieId = Cookies.get('productId');
 
     // LOCAL STATE CHECK CLICK
     const [isClick,setIsClick] = useState(false)
@@ -74,6 +78,28 @@ function Register (props) {
 
     }
 
+    // HANDLE ADD CART
+    let handleAddCart = () => {
+        console.log(cookieId.length , ' <<< COOKIE ID')
+        axios({
+            method : 'POST',
+            url : `${SWAGGER_URL}/carts/add`,
+            data : {
+                product_id : JSON.parse(cookieId),
+            },
+            headers : {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            setLoading(false)
+            setSelectedPage(1)
+        })
+        .catch(err=>{
+            console.log(err.response , ' << BUG')
+        })
+    }
+
     // HANDLE REGISTER
     let handleClick = () => {
         setLoading(true)
@@ -88,8 +114,11 @@ function Register (props) {
             }
         })
         .then(({data})=>{
-            setSelectedPage(1)
-            setLoading(false)
+            // setSelectedPage(1)
+            // setLoading(false)
+            let tokenR = data.data.accessToken
+            localStorage.setItem('token',tokenR)
+            handleAddCart()
         })
         .catch(err=>{
             handleError(err.response)

@@ -1,18 +1,12 @@
 import React  from 'react'
 
-// MODULE
-import { useHistory } from 'react-router-dom'
-
 // STYLE
 import './style.css'
 
 function Payment (props) {
 
-    // HISTORY 
-    const history = useHistory()
-
     // PARENT PROPS
-    const { topScroll } = props
+    const { topScroll , handleAddCart } = props
 
     // GET MEDIA QUERY FROM JAVASCRIPT
     // window.matchMedia("(max-width: 768px)")
@@ -31,7 +25,7 @@ function Payment (props) {
                 </div>
             </div>
             <div className="product-detail-c14-sc">
-                <div onClick={e=>history.push('/cart')}>
+                <div onClick={e=>handleAddCart(e)}>
                     JOIN SEKARANG
                 </div>
             </div>

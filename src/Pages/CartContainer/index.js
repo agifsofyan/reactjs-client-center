@@ -1,8 +1,8 @@
 import React , { useState , useEffect } from 'react'
 
 // PAGES COMPONENT
-import Cart from '../Card'
-import CartNlg from '../CardNLog'
+import Cart from '../Cart'
+import CartNlg from '../CartNLog'
 
 function CartContainer () {
 
