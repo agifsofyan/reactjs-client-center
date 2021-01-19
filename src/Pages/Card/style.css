@@ -1,0 +1,40 @@
+.cart-container-06 {
+    width: 100%;
+    min-height: 91vh;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cart-06-1 {
+    width: 90%;
+}
+
+.cart-06-2 {
+    width: 90%;
+}
+
+.cart-06-title1 {
+    font-size: 17px;
+    line-height: 19px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    margin: 15px 0 0 0;
+}
+
+.cart-06-c2 {
+    height: 0.1px;
+    background-color: #000000;
+    margin-top: 21px;
+}
+
+@media only screen and (max-width: 1180px) {
+    .cart-06-1 {
+        width: 95%;
+    }
+    .cart-06-2 {
+        width: 95%;
+    }
+}

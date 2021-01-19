@@ -1,0 +1,244 @@
+.plc-rating-root {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(164, 164, 164, 0.75);
+    border-radius: 24px;
+    width: 90%;
+    height: 225px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* CONTENT 2 */
+
+.plc-rating-1 {
+    width: 90%;
+    /* height: 60px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 300;
+    font-size: 21px;
+    line-height: 23px;
+    color: #000000;
+    text-align: center;
+    margin-top: 10px;
+    /* height: 30px; */
+}
+
+.plc-rating-line-1 {
+    width: 90%;
+    height: 0.2px;
+    background-color: #A4A4A4;
+    margin-top: 9px;
+}
+
+/* CONTENT 2 */
+.plc-rating-2 {
+    width: 95%;
+    height: 100%;
+    display: flex;
+    /* justify-content: center;  */
+}
+
+.plc-r2-c1 {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.plc-r2-c1 > h3 {
+    font-weight: bold;
+    margin: 21px 0 0 0;
+    padding: 0;
+    font-size: 48px;
+    text-align: center;
+    line-height: 55px;
+    color: #BE5A0E;
+}
+
+.plc-r2-c1 > h4 {
+    font-weight: bold;
+    font-size: 15px;
+    line-height: 16px;
+    color: #BE5A0E;
+    margin: 2px 0 0 0;
+    padding: 0;
+    text-align: center;
+}
+
+.plc-r2-c1 > div {
+    display: flex;
+    width: auto;
+    margin-top: 6px;
+}
+
+.plc-r2-c2 {
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    flex-direction: column;
+    width: 55%;
+    border-left: 0.15px solid #A4A4A4;
+    height: auto;
+    margin: 8px 0 20px 0;
+    /* background-color: blue; */
+}
+
+.plc-r2-c2 > div {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    margin-top: 6px;
+    /* background-color: pink; */
+    /* align-items: center; */
+}
+
+.plc-r2-c2 > div > span {
+    font-size: 26px;
+    line-height: 26px;
+    margin-left: 7px;
+}
+
+
+.plc-r2-c2 > div > h5 {
+    color: #0F7C90;
+    font-weight: 400;
+    font-size: 18px;
+    text-align: center;
+    /* margin-left: 7px; */
+    margin: 0 0 0 5px;
+}
+
+.plc-star {
+    font-size: 22px;
+    line-height: 22px;
+    margin-left: 4px;
+}
+
+.plc-star-c {
+    font-size: 22px;
+    line-height: 22px;
+    margin-left: 4px;
+    color: #EB8A2F;
+}
+
+@media only screen and (max-width: 1230px) {
+    .plc-r2-c2 > div > span {
+        font-size: 24px;
+        line-height: 26px;
+        margin-left: 5px;
+    }
+    
+    
+    .plc-r2-c2 > div > h5 {
+        font-size: 17px;
+        text-align: center;
+        margin: 0 0 0 4.7px;
+        padding: 0;
+    }
+    
+    .plc-star {
+        font-size: 20px;
+        line-height: 20px;
+        margin-left: 3px;
+    }
+    
+    .plc-star-c {
+        font-size: 20px;
+        line-height: 20px;
+        margin-left: 3px;
+    }
+}
+
+@media only screen and (max-width: 1130px) {
+    .plc-r2-c2 > div > span {
+        font-size: 23px;
+        line-height: 22px;
+        margin-left: 5px;
+    }
+    
+    
+    .plc-r2-c2 > div > h5 {
+        font-size: 16px;
+        text-align: center;
+        margin: 0 0 0 4px;
+        padding: 0;
+    }
+    
+    .plc-star {
+        font-size: 20px;
+        line-height: 20px;
+        margin-left: 3px;
+    }
+    
+    .plc-star-c {
+        font-size: 20px;
+        line-height: 20px;
+        margin-left: 3px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .plc-rating-root {
+        height: 210px;
+        border-radius: 20px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .plc-rating-root {
+        height: 190px;
+    }
+    .plc-r2-c2 > div > span {
+        font-size: 20px;
+        line-height: 20px;
+        margin-left: 4px;
+    }
+    .plc-r2-c2 > div > h5 {
+        font-size: 14px;
+        text-align: center;
+        margin: 0 0 0 3.5px;
+        padding: 0;
+    }
+    
+    .plc-star {
+        font-size: 18px;
+        line-height: 18px;
+        margin-left: 3px;
+    }
+    
+    .plc-star-c {
+        font-size: 18px;
+        line-height: 18px;
+        margin-left: 3px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .plc-rating-root {
+        height: 150px;
+    }
+    .plc-r2-c1 > h3 {
+        font-weight: bold;
+        margin: 9px 0 0 0;
+        padding: 0;
+        font-size: 38px;
+        text-align: center;
+        line-height: 55px;
+        color: #BE5A0E;
+    }
+    
+    .plc-r2-c1 > h4 {
+        font-weight: bold;
+        font-size: 13px;
+        line-height: 16px;
+        color: #BE5A0E;
+        margin: 2px 0 0 0;
+        padding: 0;
+        text-align: center;
+    }
+}

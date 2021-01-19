@@ -1,0 +1,110 @@
+.cardn-container-07 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    min-height: 96vh;
+}
+
+.cardn-container-07-title-1 {
+    width: 82%;
+    display: flex;
+}
+
+.cardn-container-07-title-1 h1 {
+    margin: 18px 0 0 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 25px;
+}
+
+.cardn-auth-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cardn-line-07 {
+    width: 90%;
+    height: 0.5px;
+    background-color: #000000;
+    margin: 36px 0 0 0;
+}
+
+.cardn-title-2 {
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+    margin: 27px 0 0 0;
+    width: 82%;
+}
+
+.carnd-cart-list {
+    border: 0.5px solid #A4A4A4;
+    box-sizing: border-box;
+    border-radius: 12px;
+    width: 82%;
+    height: 80px;
+    margin: 13px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.carnd-cart-list > h4 {
+    margin: 0 0 0 4%;
+    padding: 0;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 22px;
+    color: #000000;
+}
+
+.carnd-cart-list > div {
+    display: flex;
+    flex-direction: column;
+    margin: 0 4% 0 0;
+    align-items: center;
+}
+
+.carnd-cart-list > div > button {
+    width: 70px;
+    height: 20px;
+    background: #FF4500;
+    border: 1px solid #FF4500;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFFFF;
+    font-size: 12px;
+    line-height: 14px;
+    font-style: normal;
+    font-weight: bold;
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: 4px 0 0 0;
+}
+
+.carnd-cart-list > div > div {
+    display: flex;
+}
+
+.carnd-cart-list > div > div > span {
+    text-decoration: line-through #9F9F9F 0.5px;
+    font-weight: 100;
+    font-size: 16px;
+    line-height: 18px;
+    color: #9F9F9F;
+}
+
+.carnd-cart-list > div > div > div {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 18px;
+    margin-left: 7px;
+}

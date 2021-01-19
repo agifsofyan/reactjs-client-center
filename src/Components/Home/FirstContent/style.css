@@ -1,0 +1,88 @@
+.home-main-content-fc-container {
+    width: 90%;
+    height: auto;
+    border-radius: 26px;
+    background-color: #ffffff;
+    margin-top: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 19px;
+    padding-bottom: 19px;
+}
+
+.home-main-content-fc-content {
+    width: 85%;
+    height: 180px;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+
+.home-main-c-fc-c-lc {
+    height: auto;
+    width: 47%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-between;  */
+}
+
+.hmc-fc-c-lc-1 {
+    width: 106px;
+    font-size: 17px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.home-main-c-fc-c-rc {
+    /* height: 100%; */
+    width: 47%;
+    background-color: #f3f3f3;
+    border-radius: 16px;
+}
+
+@media only screen and (max-width: 1260px) {
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .home-main-content-fc-container {
+        width: 90%;
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+
+    .hmc-fc-c-lc-1 {
+        font-size: 19px;
+    }
+
+    .hmc-shop-title {
+        font-size: 14px;
+    }
+
+    .hmc-shop-icon {
+        font-size: 12px;
+    }
+    
+}
+
+@media only screen and (max-width: 390px) {
+    .home-main-content-fc-container {
+        padding-top: 14px;
+        padding-bottom: 12px;
+    }
+
+    .hmc-fc-c-lc-1 {
+        font-size: 16px;
+    }
+
+    .hmc-shop-title {
+        font-size: 12px;
+    }
+
+    .hmc-shop-icon {
+        font-size: 12px;
+    }
+}

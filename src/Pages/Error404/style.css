@@ -1,0 +1,53 @@
+.error-404-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #FFFFFF;
+    min-height: 96vh;
+}
+
+.error-404-container-1 {
+    width: 250px;
+    height: 212.34px;
+    margin-top: 29px;
+}
+
+.error-404-container-2 {
+    width: 225px;
+    height: 103.12px;
+    margin-top: 15px;
+}
+
+.error-404-container > h1 {
+    font-family: 'Rubik', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+    color: #A0A0A0;
+    font-size: 17px;
+    line-height: 20px;
+    margin-top: 38px;
+    width: 290px;
+    height: 46px;
+    text-align: center;
+}
+
+.error-404-container > button {
+    width: 160px; 
+    height: 40px;
+    background-color: #A98AFF;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    font-family: 'Rubik', sans-serif;
+    color: #FFFFFF;
+    font-size: 17px;
+    line-height: 20.15px;
+    text-align: center;
+    margin-top: 40px;
+    border: none;
+    margin-bottom: 20px;
+}

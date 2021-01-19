@@ -1,0 +1,248 @@
+.auth-input-style {
+    width: 100%;
+    height: 40px;
+    padding-left: 5px;
+    border: 1px solid #999999;
+    margin-top: 10px;
+    outline: none;
+}
+
+.auth-input-style-2 {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    display: flex;
+}
+
+.auth-input-style-2 input {
+    width: 90%;
+    border-top: 1px solid #999999;
+    border-left: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    border-right: none;
+    padding-left: 5px;
+    outline: none;
+}
+
+.auth-input-style-2 div {
+    width: 10%;
+    border-top: 1px solid #999999;
+    border-right: 1px solid #999999;
+    border-bottom: 1px solid #999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth-input-error-m {
+    text-align: left;
+    width: 100%;
+    display: flex;
+    margin-top: 1px;
+    color: #ff3333;
+    font-size: 13px;
+    font-weight: 300;
+}
+
+
+.auth-login-content-01 {
+    width: 82%;
+    height: 30px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.auth-lc1-line {
+    height: 1px;
+    width: 42.5%;
+    background-color: #9F9F9F;
+}
+
+.auth-lc1-text {
+    color: #7F7F7F;
+}
+
+.auth-button-type2 {
+    width: 82%;
+    height: 45px;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.auth-button-type2 img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin-left: 27%;
+}
+
+.auth-button-type2 div {
+    color: #797979;
+    margin-right: 27%;
+}
+
+.auth-last-content {
+    margin-top: 25px;
+    width: 49%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
+}
+
+.auth-lc-c {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: #000000;
+}
+
+.auth-checkbox {
+    /* background-color: #fafafa;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	padding: 9px;
+	border-radius: 3px;
+	display: inline-block;
+    position: relative; */
+    margin-top: 4.5px;
+}
+
+@media only screen and (max-width: 1485px) {
+    .auth-button-type2 img {
+        margin-left: 26%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 26%;
+    }
+}
+
+@media only screen and (max-width: 1428px) {
+    .auth-button-type2 img {
+        margin-left: 25%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 25%;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .auth-button-type2 img {
+        margin-left: 24.8%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 24.8%;
+    }
+}
+
+@media only screen and (max-width: 1370px) {
+    .auth-button-type2 img {
+        margin-left: 24%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 24%;
+    }
+}
+
+@media only screen and (max-width: 1307px) {
+    .auth-button-type2 img {
+        margin-left: 23%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 23%;
+    }
+}
+
+@media only screen and (max-width: 1299px) {
+    .auth-last-content {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 1260px) {
+    .auth-last-content {
+        width: 56%;
+    }
+    .auth-button-type2 img {
+        margin-left: 21%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 21%;
+    }
+}
+
+@media only screen and (max-width: 1220px) {
+    .auth-last-content {
+        width: 58%;
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    .auth-last-content {
+        width: 62%;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .auth-input-style-2 input {
+        width: 85%;
+    }
+    .auth-input-style-2 div {
+        width: 15%;
+    }
+
+    .auth-button-type2 div {
+        font-size: 13px;
+    }
+
+    .auth-button-type2 img {
+        width: 26px;
+        height: 26px;
+        margin-left: 20%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 20%;
+    }
+
+    .auth-last-content {
+        width: 68%;
+    }
+
+}
+
+@media only screen and (max-width: 390px) {
+    .auth-last-content {
+        width: 72%;
+    }
+}
+
+
+@media only screen and (max-width: 350px) {
+    .auth-button-type2 img {
+        margin-left: 13%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 13%;
+    }
+    .auth-last-content {
+        width: 79%;
+    }
+}
