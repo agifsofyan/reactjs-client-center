@@ -17,7 +17,7 @@ function Register (props) {
     const { email , setSelectedPage } = props
     
     // COOKIES
-    const cookieId = Cookies.get('productId');
+    const cookieId = Cookies.get('productId') ? Cookies.get('productId') : null;
 
     // LOCAL STATE CHECK CLICK
     const [isClick,setIsClick] = useState(false)
@@ -92,6 +92,8 @@ function Register (props) {
             }
         })
         .then(({data})=>{
+            Cookies.remove('cartList')
+            Cookies.remove('productId')
             setLoading(false)
             setSelectedPage(1)
         })

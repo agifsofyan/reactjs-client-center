@@ -12,29 +12,42 @@
     border: 1.5px solid #5E5E5E;
     border-radius: 5px;
     width: 90%;
-    height: 48px;
+    height: 58px;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
+    flex-direction: column;
 }
 
 .card-06-tc-c1-1 {
-    width: 90%;
+    width: 95%;
     display: flex;
     height: 100%;
     justify-content: space-between;
     align-items: center;
 }
 
+.card-06-tc-c1-2 {
+    width: 95%;
+    height: 58px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border-bottom: 1px solid black; */
+    margin-top: 20px;
+    cursor: pointer;
+}
+
 .card-06-tc-c1-1 span {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 400;
     font-family: 'Rubik', sans-serif;
 }
 
 .card-06-tc-c1-1-icon {
     font-weight: bold !important;
-    font-size: 30px !important;
+    font-size: 32px !important;
+    cursor: pointer !important;
     /* margin-right: -30px; */
 }
 
@@ -107,12 +120,12 @@
 
 .c06-tc-c3-1-tb-button {
     background-color: #FF4500;
-    box-shadow: 0px 0px 10px 1px rgba(255, 0, 0, 0.5);
+    /* box-shadow: 0px 0px 10px 1px rgba(255, 0, 0, 0.5); */
     border-radius: 10px;
     /* width: 90%;
     height: 45px; */
     width: 263px;
-    height: 39px;
+    height: 42px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,4 +135,22 @@
     line-height: 21px;
     cursor: pointer;
     margin: 8px 0 0 0;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .card-06-tc-c1  {
+        height: 48px;
+        width: 90%;
+    }
+    .card-06-tc-c1-1 {
+        height: 48px;
+        width: 90%;
+    }
+    .card-06-tc-c1-2 {
+        height: 48px;
+        width: 90%;
+    }
+
+
 }

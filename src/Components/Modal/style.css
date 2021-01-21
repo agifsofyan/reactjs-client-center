@@ -4,7 +4,8 @@
     z-index: 1; /* Sit on top */
     left: auto;
     top: 0;
-    width: 36%; 
+    /* width: 36%;  */
+    width: 50%; 
     height: 100%; 
   }
   
@@ -39,7 +40,8 @@
     z-index: 1; /* Sit on top */
     left: auto;
     top: 0;
-    width: 36%; 
+    /* width: 36%; */
+    width: 50%; 
     height: 100%; 
 
 }

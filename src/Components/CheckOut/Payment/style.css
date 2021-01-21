@@ -1,0 +1,104 @@
+.order-08-payment {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-bottom: 500px; */
+}
+
+.order-08-payment > div {
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 7px rgba(164, 164, 164, 0.3);
+    border-radius: 10px;
+    width: 82%;
+    height: auto;
+    padding: 30px 0 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 25px 0 0 0;
+}
+
+.order-08-payment > div > header {
+    font-size: 20px;
+    line-height: 23px;
+    color: #000000;
+    width: 92%;
+    font-weight: 300;
+}
+
+.order-08-payment > div > main {
+    font-weight: 200;
+    font-size: 18px;
+    line-height: 21px;
+    color: #a0a0a0;
+    margin: 16px 0 0 0;
+    width: 92%;
+}
+
+.order-08-payment > div > section {
+    width: 92%;
+    height: 0.15px;
+    background-color: #A4A4A4;
+    margin: 17px 0 0 0;
+}
+
+.order-08-payment > div > div {
+    width: 92%;
+    height: 40px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    margin: 24px 0 0 0;
+    display: flex;
+    align-items: center;
+}
+
+.order-08-payment > div > div > input {
+    margin: 0 0 0 10px;
+    border-radius: 100%;
+}
+
+.order-08-payment > div > div > img {
+    width: 70px;
+    height: 21px;
+    object-fit: contain;
+    margin: 0 0 0 10px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .order-08-payment > div {
+        padding: 20px 0 20px 0;
+    }
+
+
+    .order-08-payment > div > header {
+        width: 86%;
+        font-size: 18px;
+    }
+
+    .order-08-payment > div > main {
+        width: 86%;
+        margin: 11px 0 0 0;
+        font-size: 16px;
+    }
+    
+    .order-08-payment > div > section {
+        width: 86%;
+        margin: 12px 0 0 0;
+    }
+    
+    .order-08-payment > div > div {
+        width: 86%;
+        height: 36px;
+        margin: 14px 0 0 0;
+    }
+
+    .order-08-payment > div > div > img {
+        width: 60px;
+    }
+
+    
+}   

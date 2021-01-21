@@ -18,7 +18,7 @@ function CardNotLoggendIn (props) {
     const [email,setEmail] = useState(null)
     const [selectedTab,setSelectedTab] = useState(0)
 
-    const cookieCart = JSON.parse(Cookies.get('cartList'));
+    const cookieCart = Cookies.get('cartList') ? JSON.parse(Cookies.get('cartList')) : null;
 
     let renderPage = () => {
         if (selectedTab === 0) {

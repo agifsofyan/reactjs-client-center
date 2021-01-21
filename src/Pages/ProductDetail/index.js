@@ -7,6 +7,7 @@ import Cookies from 'js-cookie';
 
 // COMPONENT
 import { Carousel , Expand , Bonus , Payment } from '../../Components/ProductDetail'
+import Loader from '../../Components/Loader'
 
 // IMAGES 
 import DummyImage from '../../Assets/Images/dummy.jpg'
@@ -30,6 +31,9 @@ function ProductDetail (props) {
     
     // LOCAL STATE DATA DETAIL
     const [detail,setDetail] = useState(null)
+
+    // LOCAL STATE LOADER
+    const [loading,setLoading] = useState(false)
 
     // ID PRODUCT
     const idProduct = history.location.search.split('=')[2] 
@@ -94,10 +98,34 @@ function ProductDetail (props) {
         return Cookies.set('productId', strCookie, { path: '/' });
     };
 
+    let handleCartDb = () => {
+        setLoading(true)
+        axios({
+            method : 'POST',
+            url : `${SWAGGER_URL}/carts/add`,
+            data : {
+                product_id : [idProduct],
+            },
+            headers : {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            setLoading(false)
+            console.log(data , ' <<< DATA')
+            console.log('BERHASIL JALAN')
+            history.push('/cart')
+        })
+        .catch(err=>{
+            setLoading(false)
+            console.log(err.response , ' <<<< ERROR')
+        }) 
+    }
+
     // HANDLE ADD TO CART
     let handleAddCart = () => {
         if (localStorage.getItem('token')) {
-            history.push('/cart')
+            handleCartDb()
         }else {
             console.log(detail , ' <<< VALUE DETAIL')
             addCart(detail)
@@ -148,7 +176,10 @@ function ProductDetail (props) {
                 className="product-detail-c7"
                 onClick={e=>handleAddCart()}
             >
-                JOIN SEKARANG
+                {
+                    loading?<Loader/>:
+                    "JOIN SEKARANG"
+                }
             </button>
             
             {/* ONLY LINE */}

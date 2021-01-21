@@ -8,6 +8,8 @@ import Card from './Cart'
 import Error404 from './Error404'
 import CardNotLoggedIn from './CartNLog'
 import CartContainer from './CartContainer'
+import CheckOut from './CheckOut'
+import TransferConfirm from './TransferConfirm'
 
 export {
     Auth,
@@ -19,5 +21,7 @@ export {
     ProductDetail,
     Error404,
     CardNotLoggedIn,
-    CartContainer
+    CartContainer,
+    CheckOut,
+    TransferConfirm
 }

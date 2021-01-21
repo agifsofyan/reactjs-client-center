@@ -26,8 +26,6 @@ function List (props) {
 
     let renderData = () => {
         return cart.map((el,index)=>{
-            console.log(index,  '  INDEX')
-            console.log(lastLength , ' <<< LAST LENGTH')
             return (
                 <div 
                     key={index}
@@ -55,8 +53,8 @@ function List (props) {
 
                     <div className="cart-06-list1-sc">
                         <div className="cart-06-list1-sc-c1">
-                            <span>Rp 1.900.000</span>
-                            <div>Rp. 210.000</div>
+                            <span>{ "Rp. " + el.product_info.price}</span>
+                            <div>{ "Rp. " + el.product_info.sale_price}</div>
                         </div>
                         <div className="cart-06-list1-sc-c2">
                             <div className="cart-06-list1-sc-c2-button">Hemat 80%</div>

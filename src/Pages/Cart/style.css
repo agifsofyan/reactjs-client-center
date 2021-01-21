@@ -30,6 +30,24 @@
     margin-top: 21px;
 }
 
+.cart-06-address {
+    width: 86%;
+    margin: 15px 0 0 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-06-address > span {
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.cart-06-address > div {
+    font-size: 14px;
+    line-height: 20px;
+}
+
 @media only screen and (max-width: 1180px) {
     .cart-06-1 {
         width: 95%;

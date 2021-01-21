@@ -18,7 +18,7 @@ function Login (props) {
     const { email , setSelectedPage } = props
 
     // COOKIES
-    const cookieId = Cookies.get('productId');
+    const cookieId = Cookies.get('productId') ? Cookies.get('productId') : null;
 
     // HISTORY
     const history = useHistory()
@@ -45,6 +45,8 @@ function Login (props) {
             }
         })
         .then(({data})=>{
+            Cookies.remove('cartList')
+            Cookies.remove('productId')
             setIsLoading(false)
             setSelectedPage(1)
         })

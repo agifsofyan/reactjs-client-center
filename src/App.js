@@ -6,7 +6,18 @@ import axios from 'axios'
 import { useDispatch } from 'react-redux'
 
 // PAGES
-import { Auth , Home , ProductList , ChangePass , ResetPass , ProductDetail , Error404 ,  CartContainer  } from './Pages'
+import { 
+        Auth , 
+        Home , 
+        ProductList , 
+        ChangePass , 
+        ResetPass , 
+        ProductDetail , 
+        Error404 ,  
+        CartContainer , 
+        CheckOut  ,
+        TransferConfirm,
+      } from './Pages'
 
 // COMPONENT 
 import Navbar from './Components/Navbar'
@@ -107,6 +118,7 @@ function App () {
           <Route path="/product-list" component={ProductList}/>
           <Route path="/change-password"component={ChangePass}/>
           <Route path="/forget-password" component={ResetPass}/>
+          <Route path="/check-out" component={CheckOut}/>
           <Route 
             path="/product-detail" 
             component={ProductDetail}
@@ -117,6 +129,7 @@ function App () {
             component={CartContainer}
             // component={()=>localStorage.getItem('token') ? <Card/> : <CardNotLoggedIn/>}
           />
+          <Route path="/transfer-confirm" component={TransferConfirm}/>
           <Route path="/" exact component={Home}/>
           <Route path="" component={Error404}/>
         </Switch>

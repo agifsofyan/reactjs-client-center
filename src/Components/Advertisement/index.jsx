@@ -25,7 +25,9 @@ function Advertisement (props) {
             location.pathname === '/forget-password' || 
             location.pathname.split('/')[1] === "product-detail" ||
             location.pathname === '/cart' ||
-            location.pathname === ''
+            location.pathname === '/check-out' ||
+            location.pathname === '' ||
+            location.pathname === '/transfer-confirm'
         ) 
     {
         return (<></>)
