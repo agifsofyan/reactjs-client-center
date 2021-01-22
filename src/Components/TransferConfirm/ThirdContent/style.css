@@ -1,0 +1,129 @@
+.transfer-08-tc {
+    width: 82%;
+    margin: 15px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0.5px solid #606060;
+    border-radius: 16px;
+    height: 480px;
+    margin-bottom: 40px;
+}
+
+.transfer-08-tc > h3 {
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 15px;
+    text-align: center;
+    color: #404040;
+    margin: 19px 0 0 0;
+}
+
+.transfer-08-tc-line {
+    height: 0.5px;
+    width: 90%;
+    background-color: #606060;
+    margin: 20px 0 0 0;
+}
+
+.transfer-08-tc > span {
+    font-size: 12px;
+    line-height: 14px;
+    color: #606060;
+    width: 90%;
+    margin: 11px 0 0 0;
+}
+
+.transfer-08-tc > input {
+    margin: 5px 0 0 0;
+    background: #FFFFFF;
+    border: 0.35px solid #777777;
+    box-sizing: border-box;
+    border-radius: 7px;
+    height: 38px;
+    width: 90%;
+    outline: none;
+    padding: 0 0 0 5px;
+}
+
+.transfer-08-tc-date {
+    margin: 5px 0 0 0;
+    background: #FFFFFF;
+    border: 0.35px solid #777777;
+    box-sizing: border-box;
+    border-radius: 7px;
+    height: 38px;
+    width: 90%;
+    outline: none;
+    padding: 0 0 0 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.transfer-08-tc-date-2 {
+    border: none;
+    outline: none;
+}
+
+.transfer-08-b-upload {
+    background-color: #43B0FF;
+    border-radius: 6px;
+    width: 90px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    margin: 12px 0 0 0;
+}
+
+.transfer-08-b-upload > input[type="file"] {
+    display: none;
+}
+
+
+.transfer-08-tc > button {
+    background-color: #FF4500;
+    box-shadow: 0px 0px 6px rgba(255, 69, 0, 0.4);
+    border-radius: 5px;
+    width: 90%;
+    height: 40px;
+    margin: 26px 0 0 0;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    border: none;
+}
+
+@media only screen and (max-width: 600px) {
+    
+    .transfer-08-tc {
+        height: 455px;
+    }
+
+
+    .transfer-08-tc > h3 {
+        width: 90%;
+    }
+
+    .transfer-08-tc > span {
+        margin: 9px 0 0 0;
+    }
+    
+    .transfer-08-tc > input {
+        margin: 4px 0 0 0;
+        height: 38px;
+    }
+
+    .transfer-08-tc > button {
+        height: 35px;
+        margin: 25px;
+    }
+
+
+}

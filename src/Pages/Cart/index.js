@@ -88,11 +88,11 @@ function Cart () {
             }
         })
         .then(({data})=>{
-            console.log(data.data.address , ' <<, fix')
+            console.log(data , ' <<, fix <><>><')
             setAddress(data.data.address)
         })
         .catch(err=>{
-            console.log(err , ' <<< ERROR')
+            console.log(err.response , ' <<<< ERORR')
         })
 
     },[])

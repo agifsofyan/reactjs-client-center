@@ -10,6 +10,7 @@ import CardNotLoggedIn from './CartNLog'
 import CartContainer from './CartContainer'
 import CheckOut from './CheckOut'
 import TransferConfirm from './TransferConfirm'
+import PaymentSuccess from './PaymentSuccess'
 
 export {
     Auth,
@@ -23,5 +24,6 @@ export {
     CardNotLoggedIn,
     CartContainer,
     CheckOut,
-    TransferConfirm
+    TransferConfirm,
+    PaymentSuccess
 }

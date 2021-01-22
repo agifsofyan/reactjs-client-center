@@ -17,6 +17,7 @@ import {
         CartContainer , 
         CheckOut  ,
         TransferConfirm,
+        PaymentSuccess
       } from './Pages'
 
 // COMPONENT 
@@ -66,6 +67,12 @@ function App () {
           url : `${SWAGGER_URL}/products`
       })
       .then(({data})=>{
+          data.data.forEach((e,index)=>{
+            if (e.type === 'ecommerce') {
+              console.log(e.name , ' <<<<><><')
+            }
+          })
+          console.log(data.data , ' <<<<<')
           dispatch(changeValue("productList",data.data))
       })
       .catch(err=>{
@@ -130,6 +137,7 @@ function App () {
             // component={()=>localStorage.getItem('token') ? <Card/> : <CardNotLoggedIn/>}
           />
           <Route path="/transfer-confirm" component={TransferConfirm}/>
+          <Route path="/payment=true" component={PaymentSuccess}/>
           <Route path="/" exact component={Home}/>
           <Route path="" component={Error404}/>
         </Switch>
