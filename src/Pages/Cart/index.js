@@ -27,6 +27,9 @@ function Cart () {
     const [selectedAddress,setSelectedAddress] = useState(null)
     const [address,setAddress] = useState(null)
 
+    // PRICE
+    const [price,setPrice] = useState(0)
+
     // LOCAL STATE CHECK ECOMMERCE
     const [isEcommerce,setIsEcommerce] = useState(false)
 
@@ -37,6 +40,8 @@ function Cart () {
     const [loadingOrder,setLoadingOrder] = useState(false)
 
     useEffect(()=>{
+
+        let priceNum = 0
 
         // GET CART
         axios(({
@@ -58,6 +63,13 @@ function Cart () {
                 if (check === 'ecommerce') {
                     setIsEcommerce(true)
                 }
+                if (e.product_info.sale_price) {
+                    priceNum += e.product_info.sale_price
+                }else {
+                    priceNum += e.product_info.price
+                }
+                setPrice(priceNum)
+                console.log(e.product_info , ' <<<< E')
             })
         })
         .catch(err=>{
@@ -125,9 +137,10 @@ function Cart () {
                 coupon : {
                     code : selectedCoupon.code
                 },
-                // shipment : {
-
-                // }
+                shipment : {
+                    address_id : selectedAddress && isEcommerce ? selectedAddress._id : null,
+                    price :  price   
+                }
             },
             headers : {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,

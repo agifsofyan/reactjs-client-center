@@ -55,10 +55,8 @@ function Order () {
             }
         })
         .then(({data})=>{
-            // console.log(data ,  ' <<<><><>')
             console.log(data.data[0] , '   HMMM <><><><><><><><><>>')
             setOrder(data.data[0])
-            // console.log(data , '  ,<< VALUE DATA >>>')
         })
         .catch(err=>{
             console.log(err ,  ' <<< ERROR GET ORDER LIST')
