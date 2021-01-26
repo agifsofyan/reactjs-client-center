@@ -74,6 +74,11 @@ function Login (props) {
         .then(({data})=>{
             let tokenR = data.data.accessToken
             localStorage.setItem('token',tokenR)
+            if (typeof window !== "undefined") {
+                if (window.fbq != null) { 
+                  window.fbq('track', 'Subscribe');
+                }
+            }
             // ACTION CHANGE TO CART LOGGED IN HERE
             handleAddCart()
         })

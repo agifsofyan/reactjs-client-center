@@ -56,6 +56,7 @@ function Cart () {
         .then(({data})=>{
             console.log(data.data , '  <<<<LOL')
             setCart(data.data.items)
+            console.log(data.data.items , ' <<<< CART ')
             let arr = data.data.items
             // ecommerce
             arr.forEach(e=>{

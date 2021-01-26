@@ -1,4 +1,4 @@
-import React from 'react'
+import React , { useEffect } from 'react'
 
 // STYLE
 import './style.css'
@@ -10,6 +10,14 @@ import { Content , Carousel , TopicSort , Rating } from '../../Components/Produc
 import Content1 from '../../Assets/Images/content-1.png'
 
 function ProductList () {
+
+    useEffect(()=>{
+        if (typeof window !== "undefined") {
+            if (window.fbq != null) { 
+                window.fbq('track', 'Lead',)
+            }
+        }
+    },[])
 
     return (
         <div className="product-list-container">

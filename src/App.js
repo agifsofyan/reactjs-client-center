@@ -1,7 +1,7 @@
 import React , { useEffect , useState }  from 'react'
 
 // MODULE
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route   } from 'react-router-dom';
 import axios from 'axios'
 import { useDispatch } from 'react-redux'
 
@@ -17,7 +17,8 @@ import {
         CartContainer , 
         CheckOut  ,
         TransferConfirm,
-        PaymentSuccess
+        PaymentSuccess,
+        ScrollToTop
       } from './Pages'
 
 // COMPONENT 
@@ -26,7 +27,7 @@ import Modal from './Components/Modal'
 import Advertisement from './Components/Advertisement'
 
 // GLOBAL ACTION
-import { changeValue } from './Redux/Actions/productAction'
+import { changeValue , changeValueUser } from './Redux/Actions/index'
 
 // API
 import {  SWAGGER_URL } from './Support/API_URL'
@@ -72,7 +73,7 @@ function App () {
               console.log(e.name , ' <<<<><><')
             }
           })
-          console.log(data.data , ' <<<<<')
+          console.log(data.data , ' <<<<< DATA PRODUCT')
           dispatch(changeValue("productList",data.data))
       })
       .catch(err=>{
@@ -100,15 +101,16 @@ function App () {
   },[dispatch])
 
   // HANDLE SCROLL
-  // let handleAll = (e) => {
-  //   setTopScroll(document.body.scrollTop)
-  // }
+  let handleAll = (e) => {
+    // setTopScroll(document.body.scrollTop)
+    dispatch(changeValueUser('top',document.body.scrollTop))
+  }
  
   return (
     <div
       className="root-container" 
       id="master-root"
-      // onWheel={e=>handleAll(e)} 
+      onWheel={e=>handleAll(e)} 
     >
       <div onScroll={e=>console.log('HMMMM')} className="root-content">
         <Navbar
@@ -120,27 +122,30 @@ function App () {
             setShowAdv={setShowAdv}
           />
         }
-        <Switch>
-          <Route path="/auth" component={Auth}/>
-          <Route path="/product-list" component={ProductList}/>
-          <Route path="/change-password"component={ChangePass}/>
-          <Route path="/forget-password" component={ResetPass}/>
-          <Route path="/check-out" component={CheckOut}/>
-          <Route 
-            path="/product-detail" 
-            component={ProductDetail}
-            // component={()=><ProductDetail topScroll={topScroll} />}
-          />
-          <Route 
-            path="/cart" 
-            component={CartContainer}
-            // component={()=>localStorage.getItem('token') ? <Card/> : <CardNotLoggedIn/>}
-          />
-          <Route path="/transfer-confirm" component={TransferConfirm}/>
-          <Route path="/payment=true" component={PaymentSuccess}/>
-          <Route path="/" exact component={Home}/>
-          <Route path="" component={Error404}/>
-        </Switch>
+        <ScrollToTop>
+          <Switch>
+            <Route path="/auth" component={Auth}/>
+            <Route path="/product-list" component={ProductList}/>
+            <Route path="/change-password"component={ChangePass}/>
+            <Route path="/forget-password" component={ResetPass}/>
+            <Route path="/check-out" component={CheckOut}/>
+            <Route 
+              path="/product-detail" 
+              component={ProductDetail}
+              // component={()=><ProductDetail topScroll={topScroll} />}
+            />
+            <Route 
+              path="/cart" 
+              component={CartContainer}
+              // component={()=>localStorage.getItem('token') ? <Card/> : <CardNotLoggedIn/>}
+            />
+            <Route path="/transfer-confirm" component={TransferConfirm}/>
+            <Route path="/payment=true" component={PaymentSuccess}/>
+            {/* <Route path="/" exact component={Home}/> */}
+            <Route path="/" exact component={ProductList}/>
+            <Route path="" component={Error404}/>
+          </Switch>
+        </ScrollToTop>
       </div>
       {
         showModal &&

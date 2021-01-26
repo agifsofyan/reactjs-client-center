@@ -14,8 +14,8 @@
 
 .transfer-08-tc > h3 {
     font-weight: 300;
-    font-size: 13px;
-    line-height: 15px;
+    font-size: 17px;
+    line-height: 19px;
     text-align: center;
     color: #404040;
     margin: 19px 0 0 0;
@@ -29,8 +29,8 @@
 }
 
 .transfer-08-tc > span {
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 16px;
+    line-height: 18px;
     color: #606060;
     width: 90%;
     margin: 11px 0 0 0;
@@ -137,7 +137,20 @@
     justify-content: center;
     align-items: center;
     border: none;
-    margin: 12px 0 0 0;
+    margin: 20px 0 0 0;
+    cursor: pointer;
+}
+
+.transfer-08-b-upload > span {
+    font-family: 'Rubik', sans-serif;
+    font-size: 17px;
+    line-height: 19px;
+    color: #FFFFFF;
+    /* margin-left: 10%; */
+    font-weight: 300;
+}
+
+.transfer-08-b-upload > img {
 }
 
 .transfer-08-b-upload > input[type="file"] {
@@ -174,10 +187,14 @@
 
     .transfer-08-tc > h3 {
         width: 90%;
+        font-size: 16px;
+        line-height: 19px;
     }
 
     .transfer-08-tc > span {
         margin: 9px 0 0 0;
+        font-size: 15px;
+        line-height: 17px;
     }
     
     .transfer-08-tc > input {

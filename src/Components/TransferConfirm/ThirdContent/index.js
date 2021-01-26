@@ -4,9 +4,7 @@ import DatePicker from "react-datepicker";
 
 // COMPONENT
 import Menu from '../../CheckOut/Menu'
-
-// MATERIAL UI ICONS
-import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
+import Loader from '../../Loader'
 
 // REACT DATE PICKER STYLE 
 import "react-datepicker/dist/react-datepicker.css";
@@ -28,10 +26,12 @@ function ThirdContent (props) {
         setName,
         image,
         setImage,
-        handleConfirmation
+        handleConfirmation,
+        handleConfirmation2,
+        loading,
     } = props
 
-    const [dateShow,setDateShow] = useState(true)
+    // const [dateShow,setDateShow] = useState(true)
 
     const [showMenu,setShowMenu] = useState(false)
 
@@ -90,8 +90,12 @@ function ThirdContent (props) {
             isNext = false
         }
 
-        if (isNext) {
-            handleConfirmation()
+        if (isNext ) {
+            if (image) {
+                handleConfirmation()
+            }else {
+                handleConfirmation2()
+            }
         }
 
     }
@@ -128,8 +132,8 @@ function ThirdContent (props) {
                 <DatePicker 
                     onChange={date=>setTanggalTransfer(date)}
                     closeOnScroll={e => e.target === document} 
-                    onCalendarClose={e=>setDateShow(true)}
-                    onCalendarOpen={e=>setDateShow(false)}
+                    // onCalendarClose={e=>setDateShow(true)}
+                    // onCalendarOpen={e=>setDateShow(false)}
                     calendarClassName="transfer-08-calendar"
                     // className="transfer-08-tc-date-2"
                     customInput={<CustomDate/>}
@@ -180,16 +184,22 @@ function ThirdContent (props) {
                 <div className="error-m-08">{numVal}</div>
             }
             
+            {/* UPLOAD IMAGE */}
             <div style={{width : "90%"}}>
                 <label className="transfer-08-b-upload">
                     <input type="file"  onChange={e=>setImage(e.target.files[0])}/>
+                    <span>Upload</span>
                 </label>
             </div>
             
             <button
                 onClick={e=>validation()}
             >
-                Konfirmasi Pembayaran
+                {
+                    loading ? 
+                    <Loader/> :
+                    "Konfirmasi Pembayaran"
+                }
             </button>
         
         </div>

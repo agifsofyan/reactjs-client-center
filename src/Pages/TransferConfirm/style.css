@@ -8,7 +8,7 @@
 }
 
 .transfer-08-container > h1 {
-    font-size: 15px;
+    font-size: 20px;
     line-height: 18px;
     color: #000000;
     padding: 0;
@@ -26,7 +26,7 @@
 
 .transfer-08-container > h2 {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 19px;
     line-height: 21px;
     margin: 24.5px 0 0 0;
     padding: 0;
@@ -41,8 +41,8 @@
 
 .transfer-08-t1 {
     font-weight: 300;
-    font-size: 14px;
-    line-height: 16.41px;
+    font-size: 17px;
+    line-height: 20.41px;
     width: 290px;
     height: 50px;
     text-align: center;
@@ -51,8 +51,8 @@
 
 .transfer-08-t2{
     font-weight: 500;
-    font-size: 15px;
-    line-height: 18px;
+    font-size: 18px;
+    line-height: 21px;
     width: 82%;
     margin: 38px 0 0 0;
 }

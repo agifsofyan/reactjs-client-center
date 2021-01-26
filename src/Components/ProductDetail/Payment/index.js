@@ -1,12 +1,18 @@
 import React  from 'react'
 
+// MODULE
+import { useSelector } from 'react-redux'
+ 
 // STYLE
 import './style.css'
 
 function Payment (props) {
 
     // PARENT PROPS
-    const { topScroll , handleAddCart } = props
+    const { handleAddCart } = props
+
+    // GLOBAL
+    const topScroll = useSelector(state=>state.user.top)
 
     // GET MEDIA QUERY FROM JAVASCRIPT
     // window.matchMedia("(max-width: 768px)")

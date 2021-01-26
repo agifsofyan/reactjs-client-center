@@ -39,6 +39,20 @@ function ProductDetail (props) {
     const idProduct = history.location.search.split('=')[2] 
 
     useEffect(()=>{
+        window.scrollTo(0, 0);
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });   
+        if (typeof window !== "undefined") {
+            if (window.fbq != null) { 
+                window.fbq('track', 'Lead',)
+            }
+        }
+    },[])
+
+    useEffect(()=>{
         axios({
             method : 'GET',
             url :`${SWAGGER_URL}/products/${idProduct}`
@@ -87,6 +101,11 @@ function ProductDetail (props) {
         let cookieStorage = [];
         cookieStorage.push(item);
         let strCookie = JSON.stringify(cookieStorage);
+        if (typeof window !== "undefined") {
+            if (window.fbq != null) { 
+              window.fbq('track', 'AddToCart');
+            }
+        }
         return Cookies.set('cartList', strCookie, { path: '/' });
     };
 
@@ -112,9 +131,12 @@ function ProductDetail (props) {
         })
         .then(({data})=>{
             setLoading(false)
-            console.log(data , ' <<< DATA')
-            console.log('BERHASIL JALAN')
             history.push('/cart')
+            if (typeof window !== "undefined") {
+                if (window.fbq != null) { 
+                  window.fbq('track', 'AddToCart');
+                }
+            }
         })
         .catch(err=>{
             setLoading(false)

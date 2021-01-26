@@ -20,8 +20,8 @@
 .transfer-08-fc-1 > h3 {
     margin: 0;
     padding: 0;
-    font-size: 16px;
-    line-height: 17.58px;
+    font-size: 20px;
+    line-height: 21.58px;
     font-weight: 300;
 }
 
@@ -54,15 +54,15 @@
 }
 
 .transfer-08-fc-2 > div > span {
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 18px;
+    line-height: 20px;
     color: #000000;
     font-weight: 300;
 }
 
 .transfer-08-fc-2 > div > b {
-    font-size: 16px;
-    line-height: 18px;
+    font-size: 18px;
+    line-height: 20px;
     color: #000000;
 }
 
@@ -92,5 +92,18 @@
     }   
     .transfer-08-fc-2 > div {
         margin: 10px 0 0 0;
+    }
+    .transfer-08-fc-1 > h3 {
+        font-size: 19px;
+        line-height: 20.58px;
+    }
+    .transfer-08-fc-2 > div > span {
+        font-size: 16px;
+        line-height: 18px;
+    }
+    
+    .transfer-08-fc-2 > div > b {
+        font-size: 16px;
+        line-height: 18px;
     }
 }

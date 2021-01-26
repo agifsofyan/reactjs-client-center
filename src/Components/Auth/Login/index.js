@@ -3,6 +3,7 @@ import React , { useState } from 'react'
 // MODULE
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
+import Cookies from 'js-cookie';
 
 // COMPONENT
 import Input from '../Input' 
@@ -47,6 +48,13 @@ function Login (props) {
             localStorage.setItem('token',tokenR)
             history.push('/')
             setIsLoading(false)
+            Cookies.remove('cartList')
+            Cookies.remove('productId')
+            if (typeof window !== "undefined") {
+                if (window.fbq != null) { 
+                  window.fbq('track', 'Subscribe');
+                }
+            }
         })
         .catch(err=>{
             if (err.response.data)

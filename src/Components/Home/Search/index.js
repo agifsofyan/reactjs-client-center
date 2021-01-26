@@ -1,10 +1,10 @@
-import React from 'react'
+import React , { useEffect } from 'react'
 
 // MODULE
 import { useSelector , useDispatch } from 'react-redux'
 
 // GLOBAL ACTION
-import { changeValue } from '../../../Redux/Actions/productAction'
+import { changeValue } from '../../../Redux/Actions/index'
 
 // MATERIAL ICONS
 import SearchIcon from '@material-ui/icons/Search';
@@ -17,14 +17,21 @@ function Search (props) {
     const list = useSelector(state=>state.product.productList)
     const topicList = useSelector(state=>state.product.topicList)
 
+    // USE EFFECT
+    useEffect(()=>{
+        if (typeof window !== "undefined") {
+            if (window.fbq != null) { 
+            //   window.fbq('track', 'ViewContent',)
+              window.fbq('track', 'Search');
+            }
+        }
+    },[])
 
     // CALL DISPATCH
     const dispatch = useDispatch()
 
-
+    // HANDLE SEARHC
     let handleSearch = (str) => {
-        console.log(str , ' <<< VALUE')
-        // let result = list.filter(e=> e.name )
         if (str.length === 0 || str === '') {
             let dataProduct = list
             let first = topicList[selectedTab]._id

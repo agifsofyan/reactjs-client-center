@@ -2,6 +2,7 @@ import React , { useState , useEffect } from 'react'
 
 // MODULE 
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
 
 // COMPONENT
 import {
@@ -17,6 +18,9 @@ import { SWAGGER_URL } from '../../Support/API_URL'
 import './style.css'
 
 function Order () {
+
+    // CALL HISTORY
+    const history = useHistory()
 
     // LOCAL STATE DATA PAYMENT
     const [payment,setPayment] = useState(null)
@@ -87,7 +91,20 @@ function Order () {
             })
             .then(({data})=>{
                 setLoading(false)
-                console.log(data , '  <<<< SUKSES YAHOOOO')
+                let type = data.data.payment.method.info;
+                let total = data.data.total_price
+                console.log(total ,  ' <<< TOTAL')
+                if (type === "Bank-Transfer") {
+                    console.log('TRUEE')
+                    if (typeof window !== "undefined") {
+                        if (window.fbq != null) { 
+                          window.fbq('track', 'Purchase', {currency: "IDR", value: total });
+                        }
+                    }
+                    history.push('/transfer-confirm')
+                }
+                console.log(data.data.payment.method.info , '  <<<< KUDU BANK TRANSFER')
+                console.log(data , )
             })
             .catch(err=>{
                 setLoading(false)

@@ -4,3 +4,4 @@ export const CHANGE_PRODUCT = "CHANGE_PRODUCT"
 
 // USER
 export const GET_SELECTED_USER = "GET_SELECTED_USER"
+export const CHANGE_TOP = "CHANGE_TOP"

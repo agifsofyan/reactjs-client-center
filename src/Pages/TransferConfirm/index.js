@@ -37,6 +37,9 @@ function TransferBank () {
     // LOCAL STATE DATA ORDER
     const [order,setOrder] = useState(null)
 
+    // LOADING
+    const [loading,setLoading] = useState(false)
+
     useEffect(()=>{
         // GET ORDER
         axios({
@@ -64,6 +67,7 @@ function TransferBank () {
         // console.log(num , ' <<< NOMOR PENGIRIM')
         // console.log(name , ' <<< NAMA PENGIRIM')
         // console.log(image , ' <<< GAMBAR')
+        setLoading(true)
         const data = new FormData() 
         data.append('file', image)
         axios({
@@ -99,12 +103,43 @@ function TransferBank () {
             })
         })
         .then(({data})=>{
+            setLoading(false)
             history.push('/payment=true')
         })
         .catch(err=>{
+            setLoading(false)
             console.log(err.response , ' <<< ERROR')
         })
 
+    }
+
+    let handleConfirmation2 = () => {
+        setLoading(true)
+        axios({
+            method : "POST",
+            url : `${SWAGGER_URL}/transfer_confirms`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+            data : {
+                    transfer_date :tanggalTransfer ,
+                    bank_name :bank ,
+                    account_owner_name :name ,
+                    account_number : num ,
+                    destination_bank : bank ,
+                    invoice_number : order.invoice ,
+            }
+        })
+        .then(({data})=>{
+            setLoading(false)
+            history.push('/payment=true')
+        })
+        .catch(err=>{
+            setLoading(false)
+            console.log(err.response , ' <<< ERROR')
+        })
     }
 
     return (
@@ -119,7 +154,7 @@ function TransferBank () {
             <div className="transfer-08-t1">
                 Silahkan lakukan 3 langkah mudah dibawah untuk mendapatkan akses kelas dan merasakan manfaatnya dengan segera
             </div>
-            <div className="transfer-08-t2">
+            <div className="transfer-08-t2" style={{marginTop : 50}}>
                 1. Review Pesanan
             </div>
             <FirstContent/>
@@ -145,6 +180,9 @@ function TransferBank () {
                     image={image}
                     setImage={setImage}
                     handleConfirmation={handleConfirmation}
+                    handleConfirmation2={handleConfirmation2}
+                    loading={loading}
+                    setLoading={setLoading}
                 />
             }
         </div>

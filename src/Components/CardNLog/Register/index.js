@@ -96,6 +96,11 @@ function Register (props) {
             Cookies.remove('productId')
             setLoading(false)
             setSelectedPage(1)
+            if (typeof window !== "undefined") {
+                if (window.fbq != null) { 
+                  window.fbq('track', 'CompleteRegistration');
+                }
+            }
         })
         .catch(err=>{
             console.log(err.response , ' << BUG')

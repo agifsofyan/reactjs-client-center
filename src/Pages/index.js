@@ -11,6 +11,7 @@ import CartContainer from './CartContainer'
 import CheckOut from './CheckOut'
 import TransferConfirm from './TransferConfirm'
 import PaymentSuccess from './PaymentSuccess'
+import ScrollToTop from './ScrollToTop'
 
 export {
     Auth,
@@ -25,5 +26,6 @@ export {
     CartContainer,
     CheckOut,
     TransferConfirm,
-    PaymentSuccess
+    PaymentSuccess,
+    ScrollToTop
 }

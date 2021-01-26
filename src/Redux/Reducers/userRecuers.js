@@ -1,7 +1,8 @@
-import { GET_SELECTED_USER } from '../type'
+import { GET_SELECTED_USER  } from '../type'
 
 const INTITAL_STATE = {
-    user : null
+    user : null,
+    top : 0
 }
 
 let stateGlobal = (state = INTITAL_STATE,action) => {

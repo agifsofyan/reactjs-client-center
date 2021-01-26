@@ -1,11 +1,9 @@
 import React from 'react'
 
-// MATERIAL UI ICONS
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-
 // IMAGES
 import Bca from '../../../Assets/Images/bca.png'
 import Bni from '../../../Assets/Images/bni.png'
+import copy from '../../../Assets/Images/copy.png'
 
 // STYLE
 import './style.css'
@@ -26,11 +24,12 @@ function SecondContent () {
                         src={Bca}
                     />
                     <span>
-                        88 9991 0006
+                        88 3131 0006
                     </span>
-                    <FileCopyIcon
-                        style={{color : "5F5F5F", cursor : "pointer"}}
-                        className="transfer-08-sc-icon"
+                    <img
+                        className="icon-copy"
+                        src={copy}
+                        alt="copy-logo"
                     />
                 </div>
                 <div>
@@ -39,11 +38,12 @@ function SecondContent () {
                         src={Bni}
                     />
                     <span>
-                        88 9991 0006
+                        88 3131 0000
                     </span>
-                    <FileCopyIcon
-                        style={{color : "5F5F5F", cursor : "pointer"}}
-                        className="transfer-08-sc-icon"
+                    <img
+                        className="icon-copy"
+                        src={copy}
+                        alt="copy-logo"
                     />
                 </div>
             </div>

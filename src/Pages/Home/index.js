@@ -7,7 +7,7 @@ import { useDispatch , useSelector } from 'react-redux'
 import { Title , Search , Content } from '../../Components/Home'
 
 // GLOBAL ACTION
-import { changeValue } from '../../Redux/Actions/productAction'
+import { changeValue } from '../../Redux/Actions'
 
 // STYLE
 import './style.css'
@@ -24,6 +24,13 @@ function Home () {
     // CALL DISPATCH
     const dispatch = useDispatch()
 
+    useEffect(()=>{
+        if (typeof window !== "undefined") {
+            if (window.fbq != null) { 
+              window.fbq('track', 'ViewContent',)
+            }
+        }
+    },[])
 
     useEffect(()=>{
         if (productList && topicList) {

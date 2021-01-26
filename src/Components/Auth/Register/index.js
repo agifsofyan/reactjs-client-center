@@ -99,6 +99,11 @@ function Register (props) {
             localStorage.setItem('token',tokenR)
             history.push('/')
             setLoading(false)
+            if (typeof window !== "undefined") {
+                if (window.fbq != null) { 
+                  window.fbq('track', 'CompleteRegistration');
+                }
+            }
         })
         .catch(err=>{
             handleError(err.response)
