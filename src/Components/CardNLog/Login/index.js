@@ -126,7 +126,7 @@ function Login (props) {
                 message={message}
             />
             <Button
-                text={'Confirm'}
+                text={'Lanjut'}
                 style={{width : "82%",marginTop : 15}}
                 loader={isLoading}
                 fn={handleValidation}

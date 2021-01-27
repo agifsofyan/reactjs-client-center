@@ -75,7 +75,7 @@
 .slides-3-content-c2 {
     width: 100%;
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 700;
     margin-top: 5px;
     font-family: 'Rubik', sans-serif;
     cursor: pointer;
@@ -84,7 +84,7 @@
 .slides-3-content-c3 {
     width: 100%;
     margin-top: 7px;
-    font-weight: 300;
+    font-weight: 100;
     font-size: 15px;
     line-height: 17px;
     font-family: 'Rubik', sans-serif;
@@ -119,12 +119,12 @@
 
 .slides-3-content-c5 span {
     text-decoration: line-through red 1.6px;
-    font-size: 14.5px;
+    font-size: 15px;
 }
 
 .slides-3-content-c5 div {
-    font-size: 14.5px;
-    margin-left: 10px;
+    font-size: 15px;
+    margin-left: 11px;
 }
 
 /* .slides-3-content-c2 div {

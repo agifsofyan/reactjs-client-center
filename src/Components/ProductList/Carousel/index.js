@@ -1,5 +1,9 @@
 import React from 'react'
 
+// MODULE
+import Skeleton from 'react-loading-skeleton';
+import { useSelector } from 'react-redux'
+
 // MATERIAL UI ICONS
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
@@ -12,6 +16,9 @@ import './style.css'
 
 function Carousel () {
 
+    // GLOBAL STATE
+    const list = useSelector(state=>state.product.productList)
+
     return (
         <div className="plc-carousel-container">
             
@@ -19,22 +26,33 @@ function Carousel () {
                 <NavigateBeforeIcon
                     style={{fontSize : 40,cursor : 'pointer'}}
                 />
-                    <img
-                        src={image1}
-                        alt="list-p"
-                    />  
+                    {
+                        list ?
+                        <img
+                            src={image1}
+                            alt="list-p"
+                        />  :
+                        <Skeleton duration={0.3} height={194} width={197} style={{borderRadius : 6}}/> 
+                    }
                 <NavigateNextIcon
                     style={{fontSize : 40,cursor : 'pointer'}}
                 />
             </div>
+            {   
+                list ?
+                <h1>
+                    BOE The Business Booster
+                </h1> :
+                <Skeleton duration={0.1} width={220} height={15} style={{marginTop : 15}} /> 
+            }
 
-            <h1>
-                BOE The Business Booster
-            </h1>
-
-            <h2>
-                Lorem Ipsum dolor sit amet
-            </h2>
+            {
+                list ?
+                <h2>
+                    Lorem Ipsum dolor sit amet
+                </h2> :
+                <Skeleton duration={0.1} width={200} height={15} style={{marginTop : 15}} /> 
+            }
 
             <button>
                 JOIN

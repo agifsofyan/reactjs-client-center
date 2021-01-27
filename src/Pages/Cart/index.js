@@ -54,7 +54,6 @@ function Cart () {
             }
         }))
         .then(({data})=>{
-            console.log(data.data , '  <<<<LOL')
             setCart(data.data.items)
             console.log(data.data.items , ' <<<< CART ')
             let arr = data.data.items
@@ -70,7 +69,6 @@ function Cart () {
                     priceNum += e.product_info.price
                 }
                 setPrice(priceNum)
-                console.log(e.product_info , ' <<<< E')
             })
         })
         .catch(err=>{
@@ -170,6 +168,7 @@ function Cart () {
             {
                 cart && cart.length > 0 ?
                 <List
+                    setCart={setCart}
                     cart={cart}
                 /> :
                 <div style={{marginTop : 10}}>

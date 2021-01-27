@@ -4,6 +4,7 @@ import React , { useState ,useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import Cookies from 'js-cookie';
+import Skeleton from 'react-loading-skeleton';
 
 // COMPONENT
 import { Carousel , Expand , Bonus , Payment } from '../../Components/ProductDetail'
@@ -39,12 +40,12 @@ function ProductDetail (props) {
     const idProduct = history.location.search.split('=')[2] 
 
     useEffect(()=>{
-        window.scrollTo(0, 0);
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });   
+        // window.scrollTo(0, 0);
+        // window.scroll({
+        //     top: 0,
+        //     left: 0,
+        //     behavior: 'smooth'
+        // });   
         if (typeof window !== "undefined") {
             if (window.fbq != null) { 
                 window.fbq('track', 'Lead',)
@@ -52,19 +53,28 @@ function ProductDetail (props) {
         }
     },[])
 
+    let manipulationYt = (vid) => {
+        console.log(vid.split('/') ,  ' <<<<< OOOOPPP')
+    }
+
     useEffect(()=>{
         axios({
             method : 'GET',
             url :`${SWAGGER_URL}/products/${idProduct}`
         })
         .then(({data})=>{
-            setDetail(data.data)
+            console.log(data.data.media_url , '  <<<< DETAIL DATA')
+            setTimeout(()=>{
+                setDetail(data.data)
+            },300)
+            manipulationYt(data.data.media_url)
+            // setDetail(data.data)
         })
         .catch(err=>{
             console.log(err , ' <<< ERROR')
         })
     },[idProduct])
-
+    
     // RENDER ELEMENT
     let renderSection = () => {
         return dummyData.map((el,index)=>{
@@ -156,14 +166,52 @@ function ProductDetail (props) {
         }
     }
 
+    if (!detail) {
+        return (
+            <div className="product-detail-root" style={{height : "99vh",alignItems : "flex-start"}}>
+                <div style={{width : "100%",display : "flex",flexDirection : "column",marginLeft : "5%"}}>
+                    <Skeleton duration={0.5} width={290} height={15} style={{marginTop : 13 }} /> 
+                    <Skeleton duration={0.5} width={280} height={15} style={{marginTop : 6 }} /> 
+                    <Skeleton duration={0.5} width={270} height={15} style={{marginTop : 6 }} /> 
+                    <Skeleton duration={0.5} width={260} height={15} style={{marginTop : 6 }} /> 
+                </div>
+                {/* <Skeleton duration={0.5} width={400} height={500} style={{marginTop : 15,marginLeft : "7%"}}  />  */}
+                <div style={{width : "100%",display : "flex",alignItems : "center",justifyContent : "center"}}>
+                    <div className="product-detail-c4" style={{backgroundColor : "#EFEFEF",marginTop : 8,paddingBottom : "21%",paddingTop : "21%"}}>
+                    </div>
+                </div>
+                <div style={{width : "100%",display : "flex",flexDirection : "column",marginLeft : "5%"}}>
+                    <Skeleton duration={0.5} width={350} height={15} style={{marginTop : 13}} /> 
+                    <Skeleton duration={0.5} width={300} height={15} style={{marginTop : 7}} /> 
+                </div>
+                <div style={{width : "100%",display : "flex",alignItems : "center",justifyContent : "center",marginTop : 17,flexDirection : "column"}}>
+                    <button 
+                        className="product-detail-c7"
+                    >
+                        {
+                            loading?<Loader/>:
+                            "JOIN SEKARANG"
+                        }
+                    </button>
+                    <div className="product-detail-c8">
+
+                    </div>
+                    {/* TITLE */}
+                    <span  className="product-detail-c9">
+                        Product Description
+                    </span>
+                </div>
+            </div>
+        )
+    }
     return (
         <div className="product-detail-root">
             
             <h1 className="product-detail-c1">
-                How to be a Professional Businessman
+                {detail.headline}
             </h1>
             <h3 className="product-detail-c2">
-                Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                {detail.subheadline}
             </h3>
             <div className="product-detail-c3">
 
@@ -181,8 +229,18 @@ function ProductDetail (props) {
                 </div>
 
             </div>
-            <div className="product-detail-c4">
-            </div>
+            {/* <video className="product-detail-c4" controls={true} autoPlay={true}>
+                <source src={`${detail.media_url}`} type="video/mp4"/>
+            </video> */}
+            <iframe 
+                className="product-detail-c4" 
+                src={`${detail.media_url}`}
+                src={"https://www.youtube.com/embed/tT0w1KN0mjM"}
+            >
+            </iframe>
+            {/* <div className="product-detail-c4">
+            </div> */}
+            
             <div className="product-detail-c5">
                 <h5>
                     Rp. 200.000
@@ -244,7 +302,7 @@ function ProductDetail (props) {
 
             <Bonus/>
 
-            <Payment handleAddCart={handleAddCart} topScroll={topScroll}/>
+            <Payment loading={loading} handleAddCart={handleAddCart} topScroll={topScroll}/>
 
         </div>
     )

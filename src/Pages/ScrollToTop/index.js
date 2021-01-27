@@ -21,7 +21,7 @@ function ScrollToTop({ history, children }) {
     return () => {
       unlisten();
     }
-  }, [history]);
+  }, [history,dispatch]);
 
   return <Fragment>{children}</Fragment>;
 }

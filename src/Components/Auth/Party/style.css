@@ -1,0 +1,150 @@
+.auth-button-type2 {
+    width: 82%;
+    height: 45px;
+    background-color: #FFFFFF;
+    border-radius: 6px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.auth-button-type2 > div {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.auth-button-type2 > div >img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    margin: 0 8px 0 0;
+    /* margin-left: 27%; */
+}
+
+.auth-button-type2 > div > div {
+    color: #797979;
+    margin: 0 0 0 8px;
+    font-size: 15.4px;
+    /* margin-right: 27%; */
+}
+
+@media only screen and (max-width: 1300px) {
+    .auth-button-type2 > div > div {
+        font-size: 15.2px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .auth-button-type2 > div >img {
+        width: 25px;
+        height: 25px;
+    }
+    .auth-button-type2 > div > div {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 550px) {
+    .auth-button-type2 > div >img {
+        width: 24.5px;
+        height: 24.5px;
+    }
+    .auth-button-type2 > div > div {
+        font-size: 13.5px;
+    }
+}
+
+/* @media only screen and (max-width: 1485px) {
+    .auth-button-type2 img {
+        margin-left: 26%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 26%;
+    }
+}
+
+@media only screen and (max-width: 1428px) {
+    .auth-button-type2 img {
+        margin-left: 25%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 25%;
+    }
+}
+
+@media only screen and (max-width: 1400px) {
+    .auth-button-type2 img {
+        margin-left: 24.8%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 24.8%;
+    }
+}
+
+@media only screen and (max-width: 1370px) {
+    .auth-button-type2 img {
+        margin-left: 24%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 24%;
+    }
+}
+
+@media only screen and (max-width: 1307px) {
+    .auth-button-type2 img {
+        margin-left: 23%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 23%;
+    }
+}
+
+@media only screen and (max-width: 1260px) {
+    .auth-button-type2 img {
+        margin-left: 21%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 21%;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .auth-button-type2 div {
+        font-size: 13px;
+    }
+
+    .auth-button-type2 img {
+        width: 26px;
+        height: 26px;
+        margin-left: 20%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 20%;
+    }
+
+}
+
+@media only screen and (max-width: 350px) {
+    .auth-button-type2 img {
+        margin-left: 13%;
+    }
+
+    .auth-button-type2 div {
+        margin-right: 13%;
+    }
+} */

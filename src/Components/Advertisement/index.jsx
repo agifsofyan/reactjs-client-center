@@ -34,17 +34,21 @@ function Advertisement (props) {
     }else {
         return (
             <div className="adv-container"  id="adv-cont">
-                <div className="adv-root">
-                    <div className="adv-content">
-                        Mau Tau Benefit Premium Member? Cukup Rp 20.000,-/bulan. Cek Disini Sekarang
+                <div
+                    className="adv-content"
+                >
+                    <div className="adv-root">
+                        <div className="adv-content">
+                            Mau Tau Benefit Premium Member? Cukup Rp 20.000,-/bulan. Cek Disini Sekarang
+                        </div>
                     </div>
+                    <CloseIcon
+                        onClick={e=>setShowAdv(false)}
+                        // style={{ marginTop : 16 , marginRight :30 , cursor : "pointer"  }}
+                        // className=""
+                        className="adv-close-icon"
+                    />
                 </div>
-                <CloseIcon
-                    onClick={e=>setShowAdv(false)}
-                    // style={{ marginTop : 16 , marginRight :30 , cursor : "pointer"  }}
-                    // className=""
-                    className="adv-close-icon"
-                />
             </div>
         )
     }

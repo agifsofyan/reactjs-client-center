@@ -70,10 +70,12 @@
 .product-detail-c4 {
     width: 90%;
     height: auto;
-    background-color: #F3F3F3;
+    /* background-color: #F3F3F3; */
     margin-top: 15px;
-    padding-top: 21%;
-    padding-bottom: 21%;
+    border: none;
+    height: 400px;
+    /* padding-top: 10%; */
+    /* padding-bottom: 10%; */
 }
 
 .product-detail-c5 {
@@ -207,6 +209,11 @@
         font-size: 12px;
         line-height: 14px;
     }
+
+    .product-detail-c4 {
+        height: 200px;
+    }
+
 
 
     .pdc3-button-2 {

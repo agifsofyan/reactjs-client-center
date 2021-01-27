@@ -6,7 +6,7 @@ import axios from 'axios'
 
 // COMPONENT
 import Input from '../Input' 
-import Party from '../Party'
+import Party from '../Party/index'
 import Button from '../../Button'
 
 
@@ -132,6 +132,7 @@ function CheckEmail (props) {
 
             <div className="auth-last-content" style={{marginBottom : 40}}>
                 <div 
+                    className="first"
                     onClick={e=>history.push('/forget-password')}
                     style={{color : "#326282", cursor : "pointer"}}
                 >
@@ -141,6 +142,7 @@ function CheckEmail (props) {
 
                 </div>
                 <div 
+                    className="second"
                     // onClick={e=>setSelectedTab(1)}
                     style={{color : "#D33030", cursor : "pointer"}}
                 >

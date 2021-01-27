@@ -243,7 +243,7 @@ function Register (props) {
                 <label  style={{marginLeft : 10}}>Saya telah membaca dan menyetujui Aturan Penggunaan dan kebijakan Privasi Larunocom</label>
             </div>
             <Button
-                text={'Confirm'}
+                text={'Lanjut'}
                 style={{width : "82%",marginTop : 15,marginBottom : 40}}
                 fn={handleValidation}
                 loader={loading}

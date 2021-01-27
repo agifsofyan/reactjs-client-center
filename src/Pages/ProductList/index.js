@@ -4,7 +4,7 @@ import React , { useEffect } from 'react'
 import './style.css'
 
 // COMPONENT
-import { Content , Carousel , TopicSort , Rating } from '../../Components/ProductList'
+import { Content , Carousel , TopicSort , Rating  } from '../../Components/ProductList'
 
 // IMAGE
 import Content1 from '../../Assets/Images/content-1.png'

@@ -2,6 +2,9 @@ import React  from 'react'
 
 // MODULE
 import { useSelector } from 'react-redux'
+
+// COMPONENT
+import Loader from '../../Loader'
  
 // STYLE
 import './style.css'
@@ -9,7 +12,7 @@ import './style.css'
 function Payment (props) {
 
     // PARENT PROPS
-    const { handleAddCart } = props
+    const { handleAddCart , loading } = props
 
     // GLOBAL
     const topScroll = useSelector(state=>state.user.top)

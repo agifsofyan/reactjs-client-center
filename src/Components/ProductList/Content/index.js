@@ -3,10 +3,14 @@ import React from 'react'
 // MODULES
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
+import Skeleton from 'react-loading-skeleton';
 
 // ANT DESIGN 
 import { Rate } from 'antd';
 import './style.css'
+
+// HELPER
+import moneyConvert from '../../../Support/moneyConvert'
 
 // STYLE
 import 'antd/dist/antd.css';
@@ -52,8 +56,9 @@ function Content (props) {
                     }
                 </span>
                 <div className="slides-3-content-c3">
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                    Lorem Ipsum has been the  
+                    {
+                        el.description.slice(0,23) + "" + renderDot(el.name)
+                    }
                 </div>
                 <div className="slides-3-content-c4">
                     <Rate 
@@ -66,11 +71,22 @@ function Content (props) {
                     </div>
                 </div>
                 <div className="slides-3-content-c5">
-                    <span>
-                        Rp. 1.900.000,00
-                    </span>
-                    <div>
-                        Rp. 9.000.00,00
+                    {
+                        el.sale_price >0 &&
+                        <span>
+                            {
+                                moneyConvert(el.price.toString(),'Rp. ')
+                            }
+                        </span>
+                    }
+                    <div
+                        style={{
+                            marginLeft : el.sale_price <= 0 ? 0 : null 
+                        }}
+                    >
+                        {
+                            el.sale_price > 0 ? moneyConvert(el.sale_price.toString(),'Rp. ')  : moneyConvert(el.price.toString(),'Rp. ')
+                        }
                     </div>
                 </div>
                 <div className="slides-3-content-c6">
@@ -81,9 +97,23 @@ function Content (props) {
         })
     }
 
+    let renderSkeleton = () => {
+        return [0,1,2,3,4].map(()=>{
+            return (
+                <div>
+                    <Skeleton duration={0.3} width={"100%"} height={150}/>
+                    <Skeleton duration={0.3} width={"100%"} style={{marginTop : 5}}/>
+                    <Skeleton duration={0.3} width={"100%"} style={{marginTop : 5}} />
+                    <Skeleton duration={0.3} width={"100%"} style={{marginTop : 5}} />
+                    <Skeleton duration={0.3} width={"100%"} style={{marginTop : 5}} />
+                </div>
+            )
+        })
+    }
+
     return (
         <div className="slides-3" style={{...style}}>
-            { list && renderList()}
+            { list ? renderList() : renderSkeleton()}
         </div>
     )
 

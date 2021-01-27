@@ -86,7 +86,7 @@ function Email (props) {
                 message={message}
             />
             <Button
-               text={'Confirm'}
+               text={'Lanjut'}
                style={{width : "82%",marginTop : 15}}
                fn={checkValidation}
                loader={loading1}

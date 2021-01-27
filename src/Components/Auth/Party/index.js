@@ -1,6 +1,7 @@
 import React from 'react'
 
 // STYLE
+import '../style.css'
 import './style.css'
 
 function Button (props) {
@@ -11,12 +12,14 @@ function Button (props) {
 
     return (
         <div className="auth-button-type2">
-            <img
-                src={image}
-                alt="third-party-login"
-            />
             <div>
-                {text}
+                <img
+                    src={image}
+                    alt="third-party-login"
+                />
+                <div>
+                    {text}
+                </div>
             </div>
         </div>
     )

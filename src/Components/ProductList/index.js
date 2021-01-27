@@ -7,5 +7,5 @@ export {
     Carousel,
     Content,
     TopicSort,
-    Rating
+    Rating,
 }
