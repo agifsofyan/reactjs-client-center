@@ -8,9 +8,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // STYLE
 import './style.css'
 
-function Expand () {
+function Expand (props) {
 
-    const [data] = useState([0,1,2,3,4])
+    const { data } = props
+
+    // const [data] = useState([0,1,2,3,4])
     const [lastLength] = useState(data.length-1)
     const [isShow,setIsShow] = useState([])
 
@@ -53,12 +55,12 @@ function Expand () {
                         }}
                     >
                         <div className="pdce-c13-content-1">
-                            Do Some Soul Searching
+                            {el.title}
                         </div>
 
                         <div className="pdce-c13-content-2">
                             <div className="pdce-c13-content-2-a">
-                                30 minutes
+                                {el.note}
                             </div>
                             {
                                 checkAccordion(el)  ?
@@ -86,9 +88,7 @@ function Expand () {
                                 borderBottomLeftRadius : index === lastLength && 5,
                                 padding : "10px 10px 10px 10px"
                             }}>
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+                                {el.content}
                         </div> 
                     }
                 </div>

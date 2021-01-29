@@ -18,6 +18,13 @@ function Carousel () {
 
     // GLOBAL STATE
     const list = useSelector(state=>state.product.productList)
+    const productHeader = useSelector(state=>state.product.productHeader)
+
+    // let renderImage = () => {
+    //     // console.log(productHeader)
+    //     // pro
+        
+    // }
 
     return (
         <div className="plc-carousel-container">
@@ -41,7 +48,7 @@ function Carousel () {
             {   
                 list ?
                 <h1>
-                    BOE The Business Booster
+                    {productHeader.name}
                 </h1> :
                 <Skeleton duration={0.1} width={220} height={15} style={{marginTop : 15}} /> 
             }
@@ -49,7 +56,7 @@ function Carousel () {
             {
                 list ?
                 <h2>
-                    Lorem Ipsum dolor sit amet
+                    {productHeader.description}
                 </h2> :
                 <Skeleton duration={0.1} width={200} height={15} style={{marginTop : 15}} /> 
             }

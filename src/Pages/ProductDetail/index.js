@@ -2,6 +2,7 @@ import React , { useState ,useEffect } from 'react'
 
 // MODULE
 import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import axios from 'axios'
 import Cookies from 'js-cookie';
 import Skeleton from 'react-loading-skeleton';
@@ -11,10 +12,13 @@ import { Carousel , Expand , Bonus , Payment } from '../../Components/ProductDet
 import Loader from '../../Components/Loader'
 
 // IMAGES 
-import DummyImage from '../../Assets/Images/dummy.jpg'
+// import DummyImage from '../../Assets/Images/dummy.jpg'
 
 // API
 import { SWAGGER_URL } from '../../Support/API_URL'
+
+// HELPER
+import moneyConvert from '../../Support/moneyConvert'
 
 // STYLE
 import './style.css'
@@ -53,40 +57,59 @@ function ProductDetail (props) {
         }
     },[])
 
-    let manipulationYt = (vid) => {
-        console.log(vid.split('/') ,  ' <<<<< OOOOPPP')
-    }
+    // let manipulationYt = (vid) => {
+    //     console.log(vid.split('/') ,  ' <<<<< OOOOPPP')
+    // }
+
+    const list = useSelector(state=>state.product.productList)
 
     useEffect(()=>{
-        axios({
-            method : 'GET',
-            url :`${SWAGGER_URL}/products/${idProduct}`
-        })
-        .then(({data})=>{
-            console.log(data.data.media_url , '  <<<< DETAIL DATA')
-            setTimeout(()=>{
-                setDetail(data.data)
-            },300)
-            manipulationYt(data.data.media_url)
-            // setDetail(data.data)
-        })
-        .catch(err=>{
-            console.log(err , ' <<< ERROR')
-        })
+        // axios({
+        //     method : 'GET',
+        //     url :`${SWAGGER_URL}/products/${idProduct}`
+        // })
+        // .then(({data})=>{
+        //     console.log(data.data.media_url , '  <<<< DETAIL DATA')
+        //     setTimeout(()=>{
+        //         setDetail(data.data)
+        //     },300)
+        //     manipulationYt(data.data.media_url)
+        //     // setDetail(data.data)
+        // })
+        // .catch(err=>{
+        //     console.log(err , ' <<< ERROR')
+        // })
     },[idProduct])
+
+    useEffect(()=>{
+        // console.log(props.match)
+        // console.log(props.location.pathname.split('/')[2] , ' <<< PARAMS')
+        let params = props.location.pathname.split('/')[2]
+        if (list) {
+            list.forEach(e=>{
+                let {price,sale_price} = e
+                let l = (price - sale_price) / price * (100/100)
+                // let result = (100/100) * l
+                console.log(l , '  <<< FIX')
+                if (e.slug === params ) {
+                    setDetail(e)
+                }
+            })
+        }
+    },[list,props.location.pathname])
     
     // RENDER ELEMENT
     let renderSection = () => {
-        return dummyData.map((el,index)=>{
+        return detail.section.map((el,index)=>{
             return (
                 <div className="product-detail-section-57">
                     {/* TITLE */}
                     <span className="product-detail-c9">
-                        Section Here
+                        {el.title}
                     </span>
     
                     <img
-                        src={DummyImage}
+                        src={el.image}
                         className="product-detail-c13"
                         alt="dummy"
                     />
@@ -95,7 +118,9 @@ function ProductDetail (props) {
                         #1 MOST PURCHASED BUSINESS COURSE ON UDEMY! ** OVER 350,000 STUDENTS IN 195 COUNTRIES
                     </div>
                     <div className="product-detail-c11">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur imperdiet eros ac urna efficitur, et imperdiet nibh ornare. Proin posuere sollicitudin venenatis. In tristique quis odio eu feugiat. Mauris rutrum risus eu justo ultricies elementum. Pellentesque in sem nec nulla pellentesque venenatis.
+                       {
+                           el.content
+                       }
                     </div>
                     {/* ONLY LINE */}
                     <div className="product-detail-c8">
@@ -128,12 +153,13 @@ function ProductDetail (props) {
     };
 
     let handleCartDb = () => {
+        console.log(detail , ' <<<< >>>>')
         setLoading(true)
         axios({
             method : 'POST',
             url : `${SWAGGER_URL}/carts/add`,
             data : {
-                product_id : [idProduct],
+                product_id : [detail._id],
             },
             headers : {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -234,7 +260,8 @@ function ProductDetail (props) {
             </video> */}
             <iframe 
                 className="product-detail-c4" 
-                src={`${detail.media_url}`}
+                title={"p"}
+                // src={`${detail.media_url}`}
                 src={"https://www.youtube.com/embed/tT0w1KN0mjM"}
             >
             </iframe>
@@ -243,10 +270,15 @@ function ProductDetail (props) {
             
             <div className="product-detail-c5">
                 <h5>
-                    Rp. 200.000
+                    {
+                        detail.sale_price > 0 ?
+                        moneyConvert(detail.sale_price.toString(),"Rp. ") : moneyConvert(detail.price.toString(),"Rp. ")
+                    }
                 </h5>
                 <span>
-                    Rp. 1.900.000
+                    {
+                        detail.sale_price > 0  && moneyConvert(detail.price.toString(),"Rp. ")
+                    }
                 </span>
             </div>
             <span className="product-detail-c6">
@@ -269,16 +301,16 @@ function ProductDetail (props) {
 
             {/* TITLE */}
             <span  className="product-detail-c9">
-                Product Description
+                {detail.headline}
             </span>
 
             <Carousel/>
 
             <div  className="product-detail-c10">
-                #1 MOST PURCHASED BUSINESS COURSE ON UDEMY! ** OVER 350,000 STUDENTS IN 195 COUNTRIES
+                {detail.subheadline}
             </div>
             <div className="product-detail-c11">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur imperdiet eros ac urna efficitur, et imperdiet nibh ornare. Proin posuere sollicitudin venenatis. In tristique quis odio eu feugiat. Mauris rutrum risus eu justo ultricies elementum. Pellentesque in sem nec nulla pellentesque venenatis.
+               {detail.description}
             </div>
             
             {/* ONLY LINE */}
@@ -291,7 +323,9 @@ function ProductDetail (props) {
             </div>
 
             {/* C 13 */}
-            <Expand/>   
+            <Expand
+                data={detail.learn_about}
+            />   
 
             {/* ONLY LINE */}
             <div className="product-detail-c8" style={{marginTop : 27}}>
@@ -302,7 +336,7 @@ function ProductDetail (props) {
 
             <Bonus/>
 
-            <Payment loading={loading} handleAddCart={handleAddCart} topScroll={topScroll}/>
+            <Payment detail={detail} loading={loading} handleAddCart={handleAddCart} topScroll={topScroll}/>
 
         </div>
     )

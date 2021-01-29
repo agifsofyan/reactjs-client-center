@@ -191,6 +191,12 @@ function ThirdContent (props) {
                     <span>Upload</span>
                 </label>
             </div>
+
+            <div style={{marginTop : 5,width : "90%"}}>
+                {
+                    image && image.name
+                }
+            </div>
             
             <button
                 onClick={e=>validation()}

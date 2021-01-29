@@ -29,9 +29,9 @@ function PaymentSuccess () {
                     src={wa}
                 />
             </div>
-            <div className="payment-09-button2">
+            {/* <div className="payment-09-button2">
                 Check Order History
-            </div>
+            </div> */}
         </div>
     )
 

@@ -11,6 +11,9 @@ import DeleteIcon from '@material-ui/icons/Delete';
 // API
 import { SWAGGER_URL } from '../../../Support/API_URL'
 
+// HELPER
+import moneyConvert from '../../../Support/moneyConvert'
+
 // STYLE
 import './style.css'
 
@@ -22,13 +25,13 @@ function List (props) {
 
     // LOCAL STATE
     const [lastLength] = useState(cart.length-1)
-    const [num,setNum] = useState(1)
+    // const [num,setNum] = useState(1)
 
-    let handleChangeNum = (res) => {
-        if (num > 0) {
-            setNum(res)
-        }
-    }
+    // let handleChangeNum = (res) => {
+    //     if (num > 0) {
+    //         setNum(res)
+    //     }
+    // }
 
     let deleteCart = (id) => {
         axios({
@@ -86,6 +89,7 @@ function List (props) {
 
                         <input
                             type="checkbox"
+                            checked
                         />
 
                         <span>
@@ -96,8 +100,8 @@ function List (props) {
 
                     <div className="cart-06-list1-sc">
                         <div className="cart-06-list1-sc-c1">
-                            <span>{ "Rp. " + el.product_info.price}</span>
-                            <div>{ "Rp. " + el.product_info.sale_price}</div>
+                            <span>{ moneyConvert(el.product_info.price.toString(),"Rp. ") }</span>
+                            <div>{ moneyConvert(el.product_info.sale_price.toString(),"Rp. ")}</div>
                         </div>
                         <div className="cart-06-list1-sc-c2">
                             <div className="cart-06-list1-sc-c2-button">Hemat 80%</div>
@@ -113,7 +117,7 @@ function List (props) {
                             </div>
                             <div className="cart-06-list1-sc-c3-num" style={{marginLeft : 9}}>
                                 {
-                                    num
+                                    el.quantity
                                 }
                             </div>
                             <div className="cart-06-list1-sc-c3-box" style={{marginLeft : 9}}>

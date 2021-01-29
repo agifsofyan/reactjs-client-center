@@ -42,23 +42,23 @@ function Payment (props) {
             className="order-08-payment"
         >
 
-            <div style={{marginTop : 25}}>
+            {/* <div style={{marginTop : 25}}>
                 <header>E-Wallet</header>
                 <main>Bayar langsung dari akun e-wallet</main>
                 <section></section>
                 {
                     renderData("EWallet")
                 }
-            </div>
+            </div> */}
 
-            <div style={{marginTop : 30}}>
+            {/* <div style={{marginTop : 30}}>
                 <header>Virtual Account</header>
                 <main>Bayar langsung dari akun e-wallet</main>
                 <section></section>
                 {
                     renderData("Virtual-Account")
                 }
-            </div>
+            </div> */}
 
             <div style={{marginTop : 30}}>
                 <header>Bank Transfer</header>
@@ -69,14 +69,14 @@ function Payment (props) {
                 }
             </div>
 
-            <div style={{marginTop : 30}}>
+            {/* <div style={{marginTop : 30}}>
                 <header>Retail Outlet</header>
                 <main>Bayar langsung ke Retail Outlet</main>
                 <section></section>
                 {
                     renderData("Retail-Outlet")
                 }
-            </div>
+            </div> */}
 
         </div>
     )

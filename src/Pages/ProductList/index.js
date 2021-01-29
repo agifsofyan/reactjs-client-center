@@ -29,21 +29,21 @@ function ProductList () {
                 className="plc-p-title"
                 style={{marginTop : 15}}
             >
-                Kelas Rekomendasi
+                Business
             </span>
             <Content/>
             <div className="plc-p-line">
 
             </div>
             <span className="plc-p-title">
-                Favorites
+                Career
             </span>
             <Content/>
             <div className="plc-p-line">
 
             </div>
             <span className="plc-p-title">
-                Based On Reviews
+                Finance
             </span>
             <Content/>
             <div className="plc-p-line">

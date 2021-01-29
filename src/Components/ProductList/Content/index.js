@@ -43,7 +43,8 @@ function Content (props) {
         return list.map((el,index)=>{
             return (
             <div
-                onClick={e=>history.push(`/product-detail?utm=origin&id=${el._id}`)}
+                // onClick={e=>history.push(`/product-detail?utm=origin&id=${el._id}`)}
+                onClick={e=>history.push(`/product-detail/${el.slug}?utm=origin`)}
             >
                 <img 
                     className="slides-3-content-c1"

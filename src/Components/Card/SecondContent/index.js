@@ -1,39 +1,33 @@
 import React from 'react'
 
-// IMAGES 
-import dummy from '../../../Assets/Images/dummy.jpg'
-
 // STYLE
 import './style.css'
 
-function SecondContent () {
+function SecondContent (props) {
+
+    const { bump , index } = props
 
     return (
-        <div className="card-06-sc-container">
+        <div style={{marginTop : index !== 0 && 0 }} className="card-06-sc-container">
             
-            <div className="card-06-sc-c1">
+            <div className="card-06-sc-c1" style={{borderTop : index !== 0 && "none"}}>
                 <div className="card-06-sc-c1-fc">
                     <input type="checkbox"/>
-                    <span>Judul Order Bump</span>
+                    <span>{bump.bump_heading}</span>
                 </div>
             </div>
             <div className="card-06-sc-c2">
                 <img
                     className="card-06-sc-c2"
-                    src={dummy}
+                    src={bump.bump_image}
                     alt="dummy-card"
                 />
             </div>
             <div className="card-06-sc-c3">
                 <div className="card-06-sc-c3-fc">
-                    <h4>Title Goes Here</h4>
+                    <h4>{bump.bump_name}</h4>
                     <div>
-                        Lorem ipsum dolor sit amet, 
-                        consectetur adipiscing elit. 
-                        Donec semper tincidunt sodales. 
-                        Vestibulum venenatis porttitor lorem, quis finibus 
-                        velit viverra ac. Ut a varius nulla. 
-                        Nam tempus dapibus leo non vulputate.
+                        {bump.bump_desc}
                     </div>
                 </div>
             </div>

@@ -46,7 +46,7 @@
     min-height: 210px;
     max-height: 240px;
     width: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .card-06-sc-c3 {

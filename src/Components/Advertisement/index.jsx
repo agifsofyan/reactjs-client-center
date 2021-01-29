@@ -2,6 +2,7 @@ import React  from 'react'
 
 // MODULES
 import { useLocation  } from 'react-router-dom';
+import { useSelector } from 'react-redux'
 
 // MATERIAL ICONS
 import CloseIcon from '@material-ui/icons/Close';
@@ -17,6 +18,9 @@ function Advertisement (props) {
     // CHILD PROPS
     const { setShowAdv } = props
 
+    // GLOBAL STATE
+    const productHeader = useSelector(state=>state.product.productHeader)
+
     // RESPONSIVE
 
     if (
@@ -27,11 +31,12 @@ function Advertisement (props) {
             location.pathname === '/cart' ||
             location.pathname === '/check-out' ||
             location.pathname === '' ||
-            location.pathname === '/transfer-confirm'
+            location.pathname === '/transfer-confirm' ||
+            location.pathname === '/payment=true'
         ) 
     {
-        return (<></>)
-    }else {
+        return null
+    }else if (productHeader) {
         return (
             <div className="adv-container"  id="adv-cont">
                 <div
@@ -39,7 +44,7 @@ function Advertisement (props) {
                 >
                     <div className="adv-root">
                         <div className="adv-content">
-                            Mau Tau Benefit Premium Member? Cukup Rp 20.000,-/bulan. Cek Disini Sekarang
+                            {productHeader.feature.feature_onheader}
                         </div>
                     </div>
                     <CloseIcon
@@ -52,6 +57,7 @@ function Advertisement (props) {
             </div>
         )
     }
+    return null
 
 
 }

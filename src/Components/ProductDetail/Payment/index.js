@@ -5,6 +5,9 @@ import { useSelector } from 'react-redux'
 
 // COMPONENT
 import Loader from '../../Loader'
+
+// HELPER 
+import moneyConvert from '../../../Support/moneyConvert'
  
 // STYLE
 import './style.css'
@@ -12,7 +15,7 @@ import './style.css'
 function Payment (props) {
 
     // PARENT PROPS
-    const { handleAddCart , loading } = props
+    const { handleAddCart , detail ,loading  } = props
 
     // GLOBAL
     const topScroll = useSelector(state=>state.user.top)
@@ -24,18 +27,31 @@ function Payment (props) {
         <div 
             // className="product-detail-c14-fixed"
             className={
-                topScroll > 440 ? "product-detail-c14-fixed" : "product-detail-c14"
+                topScroll > 400 && !loading ? "product-detail-c14-fixed" : "product-detail-c14"
             }
+            // className="product-detail-c14"
         >
             <div className="product-detail-c14-fc">
-                <span>Rp 210.000</span>
+                <span>
+                    {/* Rp 210.000 */}
+                    {
+                        detail.sale_price > 0 ?
+                        moneyConvert(detail.sale_price.toString(),"Rp. ") : moneyConvert(detail.price.toString(),"Rp. ")
+                    }
+                </span>
                 <div>
-                    Rp. 1.900.000
+                    {
+                        detail.sale_price > 0  && moneyConvert(detail.price.toString(),"Rp. ")
+                    }
                 </div>
             </div>
             <div className="product-detail-c14-sc">
                 <div onClick={e=>handleAddCart(e)}>
-                    JOIN SEKARANG
+                    {
+                        loading ?
+                        <Loader/> :
+                        "JOIN SEKARANG"
+                    }
                 </div>
             </div>
         </div>

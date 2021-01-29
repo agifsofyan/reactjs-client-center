@@ -5,6 +5,7 @@ const INTITAL_STATE = {
     topicList : null,
     productFilter : null,
     isLoading : false,
+    productHeader : null
 }
 
 let stateGlobal = (state =  INTITAL_STATE , action) => {

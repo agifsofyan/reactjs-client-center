@@ -69,8 +69,15 @@ function App () {
       })
       .then(({data})=>{
           data.data.forEach((e,index)=>{
-            if (e.type === 'ecommerce') {
-              console.log(e.name , ' <<<<><><')
+            // if (e.type === 'ecommerce') {
+            //   console.log(e.name , ' <<<<><><')
+            // }
+            if (!e.price || !e.sale_price) {
+              console.log(e.price , ' <<<< PRICE')
+              console.log(e.sale_price , ' <<< SALE PRICE')
+            }
+            if (e.feature.active_header || e.feature.active_page) {
+              dispatch(changeValue("productHeader",e))
             }
           })
           console.log(data.data , ' <<<<< DATA PRODUCT')
@@ -103,6 +110,8 @@ function App () {
   // HANDLE SCROLL
   let handleAll = (e) => {
     // setTopScroll(document.body.scrollTop)
+    e.stopPropagation()
+    e.nativeEvent.stopImmediatePropagation();
     dispatch(changeValueUser('top',document.body.scrollTop))
   }
  
@@ -130,7 +139,7 @@ function App () {
             <Route path="/forget-password" component={ResetPass}/>
             <Route path="/check-out" component={CheckOut}/>
             <Route 
-              path="/product-detail" 
+              path="/product-detail/:slug" 
               component={ProductDetail}
               // component={()=><ProductDetail topScroll={topScroll} />}
             />

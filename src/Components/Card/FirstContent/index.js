@@ -3,7 +3,9 @@ import React from 'react'
 // STLYE
 import './style.css'
 
-function FirstContent () {
+function FirstContent (props) {
+
+    const { user } = props
 
     return (
         <div className="cart-06-1 cart-06-c1">
@@ -12,7 +14,9 @@ function FirstContent () {
                     Name:
                 </div>
                 <div className="cart-06-c1-sc">
-                    John Doed
+                    {
+                        user && user.name
+                    }
                 </div>
             </div>
             <div className="cart-06-c1-fc">
@@ -20,9 +24,8 @@ function FirstContent () {
                     Email:
                 </div>
                 <div className="cart-06-c1-sc">
-                    
                     {
-                        "johndoe@gmail.com".slice(0,20)
+                        user && user.email.slice(0,20)
                     }
                 </div>
             </div>
@@ -31,7 +34,9 @@ function FirstContent () {
                     NomorTelepon:
                 </div>
                 <div className="cart-06-c1-sc">
-                    0821484829292
+                    {
+                        user && user.phone_number
+                    }
                 </div>
             </div>
         </div>

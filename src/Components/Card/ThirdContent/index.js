@@ -7,6 +7,9 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 // COMPONENT
 import Loader from '../../../Components/Loader'
 
+// HELPER
+import moneyConvert from '../../../Support/moneyConvert'
+
 // STYLE
 import './style.css'
 
@@ -19,6 +22,8 @@ function ThirdContent (props) {
             setSelectedCoupon , 
             handleOrder , 
             loadingOrder,
+            price,
+            cart
         } = props
 
     // LOCAL STATE
@@ -61,15 +66,15 @@ function ThirdContent (props) {
             <div className="card-06-tc-c2">
                 Mendapat diskon sebesar 75%
             </div>
-            <div className="card-06-tc-c3">
+            {/* <div className="card-06-tc-c3">
                 <div className="c06-tc-c3-1">
                     <div className="c06-tc-c3-1-ta" style={{marginTop :0}}>
                         <div style={{display : "flex",alignItems : "center",justifyContent : "center"}}>
                             <div className="c06-tc-c3-1-ta-text">Courses : </div>
-                            <div className="c06-tc-c3-1-ta-bold"> 5</div>
+                            <div className="c06-tc-c3-1-ta-bold"> {cart.length}</div>
                         </div>
                         <span className="c06-tc-c3-1-ta-text" style={{paddingTop : 2}}>
-                            Rp 9.500.000
+                            {cart.length}
                         </span>
                     </div>
                     <div className="c06-tc-c3-1-ta">
@@ -86,6 +91,7 @@ function ThirdContent (props) {
                         </div>
                         <div className="c06-tc-c3-1-tb-bold2">
                             Rp 6.800.000
+                            {moneyConvert(price.toString(),"Rp. ")}
                         </div>
                     </div>
                     <div className="c06-tc-c3-1-tb">
@@ -100,7 +106,7 @@ function ThirdContent (props) {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     )
 
