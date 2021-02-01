@@ -27,7 +27,7 @@ function Payment (props) {
         <div 
             // className="product-detail-c14-fixed"
             className={
-                topScroll > 400 && !loading ? "product-detail-c14-fixed" : "product-detail-c14"
+                topScroll > 400 ? "product-detail-c14-fixed" : "product-detail-c14"
             }
             // className="product-detail-c14"
         >

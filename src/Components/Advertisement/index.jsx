@@ -32,7 +32,8 @@ function Advertisement (props) {
             location.pathname === '/check-out' ||
             location.pathname === '' ||
             location.pathname === '/transfer-confirm' ||
-            location.pathname === '/payment=true'
+            location.pathname === '/payment=true'||
+            location.pathname === '/landing-page'
         ) 
     {
         return null

@@ -14,6 +14,9 @@ import Loader from '../../Components/Loader'
 // API
 import {  SWAGGER_URL } from '../../Support/API_URL'
 
+// HELPER
+import moneyConvert from '../../Support/moneyConvert'
+
 // CART
 import './style.css'
 
@@ -36,6 +39,7 @@ function Cart () {
 
     // PRICE
     const [price,setPrice] = useState(0)
+    const [sale,setSale] = useState(0)
     // const []
 
     // LOCAL STATE CHECK ECOMMERCE
@@ -50,6 +54,7 @@ function Cart () {
     useEffect(()=>{
 
         let priceNum = 0
+        let saleNum = 0
 
         // GET CART
         axios(({
@@ -72,14 +77,17 @@ function Cart () {
                 if (check === 'ecommerce') {
                     setIsEcommerce(true)
                 }
-                if (e.product_info.sale_price) {
-                    priceNum += e.product_info.sale_price
-                }else {
-                    priceNum += e.product_info.price
-                }
+                // if (e.product_info.sale_price) {
+                //     priceNum += e.product_info.sale_price
+                // }else {
+                //     priceNum += e.product_info.price
+                // }
+                priceNum += e.product_info.price
+                saleNum += e.product_info.sale_price
                 bumpArr.push(...e.product_info.bump)
                 setBump(bumpArr)
                 setPrice(priceNum)
+                setSale(saleNum)
             })
             console.log(bumpArr , ' <<< VALUE BUMP')
         })
@@ -94,7 +102,8 @@ function Cart () {
         })
         .then(({data})=>{
             setCoupons(data.data )
-            setSelectedCoupon(data.data[0])
+            console.log(data , ' <<<< COUPON')
+            // setSelectedCoupon(data.data[0])
         })
         .catch(err=>{
             console.log(err ,  ' <<<< ERROR')
@@ -252,7 +261,7 @@ function Cart () {
                 })
             }
             {
-                coupons && selectedCoupon && cart.length > 0 &&
+                coupons  && cart.length > 0 &&
                 <ThirdContent 
                     selectedCoupon={selectedCoupon} 
                     setSelectedCoupon={setSelectedCoupon}
@@ -261,6 +270,8 @@ function Cart () {
                     loadingOrder={loadingOrder}
                     price={price}
                     cart={cart}
+                    sale={sale}
+                    setSale={setSale}
                 />
             }
 
@@ -275,9 +286,9 @@ function Cart () {
                     }
                 >
                     <div className="product-detail-c14-fc">
-                        <span>Rp 210.000</span>
+                        <span>{ sale && moneyConvert(sale.toString(),"Rp. ")}</span>
                         <div>
-                            Rp. 1.900.000
+                            { price && moneyConvert(price.toString(),"Rp. ") }
                         </div>
                     </div>
                     <div className="product-detail-c14-sc" onClick={e=>handleOrder(e)}>

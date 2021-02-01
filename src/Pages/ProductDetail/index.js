@@ -32,10 +32,13 @@ function ProductDetail (props) {
     const { topScroll } = props
     
     // LOCAL STATE
-    const [dummyData] = useState([0,1])
+    // const [dummyData] = useState([0,1])
     
     // LOCAL STATE DATA DETAIL
     const [detail,setDetail] = useState(null)
+
+    // LOCAL STATE PRESENTASE DISKON
+    const [diskP,setDiskP] = useState(null)
 
     // LOCAL STATE LOADER
     const [loading,setLoading] = useState(false)
@@ -87,11 +90,16 @@ function ProductDetail (props) {
         let params = props.location.pathname.split('/')[2]
         if (list) {
             list.forEach(e=>{
-                let {price,sale_price} = e
-                let l = (price - sale_price) / price * (100/100)
-                // let result = (100/100) * l
-                console.log(l , '  <<< FIX')
+                // console.log(l , '  <<< FIX')
                 if (e.slug === params ) {
+                    let {price,sale_price} = e
+                    let min = price - sale_price
+                    console.log(price , ' <<< PRICE')
+                    console.log(sale_price , ' <<< SALE PRICE')
+                    console.log(min , ' <<<< MIN')
+                    let presentase = min/price * 100
+                    console.log( Math.round(presentase) , ' <<<< FIX')
+                    setDiskP(Math.round(presentase))
                     setDetail(e)
                 }
             })
@@ -282,7 +290,7 @@ function ProductDetail (props) {
                 </span>
             </div>
             <span className="product-detail-c6">
-                Hemat 80% - 4 days left at this price!
+                Hemat {diskP}% - 4 days left at this price!
             </span>
             <button 
                 className="product-detail-c7"

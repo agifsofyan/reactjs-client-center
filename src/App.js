@@ -18,7 +18,8 @@ import {
         CheckOut  ,
         TransferConfirm,
         PaymentSuccess,
-        ScrollToTop
+        ScrollToTop,
+        LandingPage
       } from './Pages'
 
 // COMPONENT 
@@ -150,6 +151,7 @@ function App () {
             />
             <Route path="/transfer-confirm" component={TransferConfirm}/>
             <Route path="/payment=true" component={PaymentSuccess}/>
+            <Route path="/landing-page" component={LandingPage}/>
             {/* <Route path="/" exact component={Home}/> */}
             <Route path="/" exact component={ProductList}/>
             <Route path="" component={Error404}/>

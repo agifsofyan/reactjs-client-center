@@ -5,13 +5,14 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 // COMPONENT
-import Loader from '../../../Components/Loader'
+// import Loader from '../../../Components/Loader'
 
 // HELPER
-import moneyConvert from '../../../Support/moneyConvert'
+// import moneyConvert from '../../../Support/moneyConvert'
 
 // STYLE
 import './style.css'
+import { responsiveMap } from 'antd/lib/_util/responsiveObserve';
 
 function ThirdContent (props) {
 
@@ -20,14 +21,30 @@ function ThirdContent (props) {
             coupons , 
             selectedCoupon , 
             setSelectedCoupon , 
-            handleOrder , 
-            loadingOrder,
-            price,
-            cart
+            sale,
+            setSale
+            // handleOrder , 
+            // loadingOrder,
+            // price,
+            // cart
         } = props
 
     // LOCAL STATE
     const [showMenu,setShowMenu] = useState(false)
+
+    // DISKON
+    const [disPre,setDisPre] = useState(null)
+
+    let handleCoupon = (el) => {
+        let { value } = el
+        let res = sale - value
+        let disk = value/sale * 100
+        // console.log(disk , ' <<<< DISK')
+        setDisPre( Math.ceil(disk))
+        setSale(res)
+        setSelectedCoupon(el)
+        setShowMenu(false)
+    }
 
     // RENDER MENU
     let renderMenu = () => {
@@ -37,7 +54,7 @@ function ThirdContent (props) {
                     key={index} 
                     style={{height : 48}} 
                     className="card-06-tc-c1-2"
-                    onClick={e=>setSelectedCoupon(el)}
+                    onClick={e=>handleCoupon(el)}
                 >
                     {
                         el.code
@@ -51,7 +68,7 @@ function ThirdContent (props) {
         <div className="card-06-tc-container">
             <div style={{height : showMenu && 220, overflowY : showMenu && "scroll"}}  className="card-06-tc-c1">
                 <div style={{height : showMenu &&  48, marginTop : showMenu && 6.5}} className="card-06-tc-c1-1">
-                    <span>{selectedCoupon.code}</span>
+                    <span>{ selectedCoupon ? selectedCoupon.code : "Pilih Kupon"}</span>
                     {
                         showMenu ? 
                             <ExpandLessIcon onClick={e=>setShowMenu(false)} className="card-06-tc-c1-1-icon"/> :
@@ -63,9 +80,12 @@ function ThirdContent (props) {
                     renderMenu()
                 }
             </div>
-            <div className="card-06-tc-c2">
-                Mendapat diskon sebesar 75%
-            </div>
+            {
+                disPre ?
+                <div className="card-06-tc-c2">
+                    Mendapat diskon sebesar {disPre}%
+                </div> : null
+            }
             {/* <div className="card-06-tc-c3">
                 <div className="c06-tc-c3-1">
                     <div className="c06-tc-c3-1-ta" style={{marginTop :0}}>

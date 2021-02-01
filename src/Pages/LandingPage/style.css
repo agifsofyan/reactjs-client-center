@@ -1,0 +1,336 @@
+.lp-10-container {
+    width: 100%;
+    background-color: #ffffff;
+    /* min-height: 99vh; */
+    height: auto;
+    /* padding-bottom: 40px; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* FIRST CONTENT */
+
+.lp-10-c1 {
+    background: #FFFFFF;
+    border: 3px solid #FF4500;
+    box-shadow: 0px 0px 6px rgba(96, 96, 96, 0.25);
+    border-radius: 15px;
+    width: 90%;
+    height: 650px;
+    margin: 30px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lp-10-c1 > .img-1 {
+    height: 480px;
+    width: 100%;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    object-fit: cover;
+}
+
+
+.lp-10-c1 > .img-2 {
+    width: 143.48px;
+    height: 30px;
+    object-fit: contain;
+    margin: 30px 0 0 0;
+}
+
+.lp-10-c1 > h1 {
+    font-family: 'Rubik', sans-serif;
+    color: #033E66;
+    font-size: 26px;
+    line-height: 31px;
+    margin: 25px 0 0 0;
+    padding: 0;
+    text-align: center;
+    width: 50%;
+}
+
+
+/* SECOND CONTENT */
+.lp-10-c2 {
+    width: 90%;
+    height: 510px;
+    border-radius: 16px;
+    margin: 50px 0 0 0;
+    border: 0.1px solid #f3f3f3;
+    background-color:#f3f3f3;
+}
+
+.lp-10-c2 > * {
+    height: 100%;
+}
+
+.lp-10-container > h2{
+    margin: 50px 0 0 0;
+    padding: 0;
+    font-size: 25px;
+    font-weight: bold;
+    font-family: 'Rubik', sans-serif;
+    line-height: 28px;
+}
+
+.lp-10-container > h3{
+    margin: 50px 0 0 0;
+    padding: 0;
+    font-family: 'Rubik', sans-serif;
+    font-size: 28px;
+    line-height: 32px;
+    width: 90%;
+    font-weight: 700;
+}
+
+.lp-10-container > h4{
+    margin: 10px 0 0 0;
+    font-size: 22px;
+    line-height: 24px;
+    font-family: 'Rubik', sans-serif;
+    width: 90%;
+    height: 60px;
+}
+
+/* CONTENT THIRD */
+
+.lp-10-c3 {
+    width: 90%;
+    /* height: 240px; */
+    display: flex;
+    flex-wrap: wrap;
+    margin: 10px 0 0 0;
+    justify-content: space-between;
+    /* margin-left: 5%; */
+}
+
+.lp-10-c3 > div {
+    height: auto;
+    width: 47.1%;
+    /* margin-right: 5%; */
+    background: #F1F6FF;
+    border-radius: 15px;
+    margin-top: 30px;
+    padding: 20px 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lp-10-c3 > div > img {
+    width: 95px;
+    height: 95px;
+}
+
+.lp-10-c3 > div > .t1 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 24px;
+    line-height: 26px;
+    text-align: center;
+    margin: 20px 0 0 0;
+    font-weight: bold;
+    width: 80%;
+}
+
+.lp-10-c3 > div > .t2 {
+    font-family: 'Rubik', sans-serif;
+    font-size: 21px;
+    line-height: 24px;
+    text-align: center;
+    font-weight: 200;
+    margin: 20px 0 0 0;
+    width: 69%;
+}
+
+/* CONTENT FOURTH */
+.lp-10-c4 {
+    width: 90%;
+    height: 510px;
+    object-fit: cover;
+    margin: 50px 0 0 0;
+    border-radius: 16px;
+}
+
+/* CONTENT FIFTH */
+
+.lp-10-c5 {
+    width: 100%;
+    height: auto;
+    background-color: #063E60;
+    margin: 50px 0 0 0;
+    padding: 31px 0 18px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lp-10-c5 > span {
+    font-family: 'Rubik', sans-serif;
+    color: #FFFFFF;
+    font-weight: 300;
+    font-size: 19px;
+    line-height: 22px;
+}
+
+.lp-10-c5 > div {
+    display: flex;
+    align-items: center;
+    /* width: 90%; */
+    margin: 15px 0 0 0;
+}
+
+.lp-10-c5 > div > img {
+    width: 34px;
+    height: 34px;
+}
+
+.lp-10-c5 > div > span {
+    font-family: 'Rubik', sans-serif;
+    color: #FFFFFF;
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 22px;
+    margin: 0 0 0 15px;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .lp-10-c1 {
+        height: 600px;
+    }
+
+    .lp-10-c1 > h1 {
+        font-size: 24px;
+        font-weight: 29px;
+    }
+
+
+    .lp-10-c1 > .img-1 {
+        height: 430px;
+    }
+
+    .lp-10-container > h2{
+        font-size: 22px;
+        line-height: 26px;
+    }
+
+    .lp-10-c3 > div {
+        height: auto;
+        padding: 13px 0 13px 0;
+    }
+
+    .lp-10-c3 > div > img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .lp-10-c3 > div > .t1 {
+        margin: 13px 0 0 0;
+        font-size: 18px;
+        line-height: 20px;
+        width: 80%;
+    }
+
+    .lp-10-c3 > div > .t2 {
+        margin: 13px 0 0 0;
+        width: 60%;
+        font-size: 16px;
+        line-height: 18px;
+    }   
+
+    .lp-10-c2 {
+        height: 440px;
+    }
+
+    .lp-10-c4 {
+        height: 440px;
+        border-radius: 15px;
+    }
+
+    .lp-10-container > h3{
+        margin: 50px 0 0 0;
+        font-size: 26px;
+        line-height: 30px;
+    }
+    
+    .lp-10-container > h4{
+        margin: 10px 0 0 0;
+        font-size: 20px;
+        line-height: 22px;
+        height: 65px;
+    }
+
+    .lp-10-c5 > span {
+        font-size: 17px;
+        line-height: 20px;
+    }
+    
+    .lp-10-c5 > div > img {
+        width: 29px;
+        height: 29px;
+    }
+    
+    .lp-10-c5 > div > span {
+        font-size: 17px;
+        line-height: 20px;
+        margin: 0 0 0 15px;
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+
+    .lp-10-c5 > span {
+        font-size: 16px;
+        line-height: 19px;
+    }
+    
+    .lp-10-c5 > div > img {
+        width: 27px;
+        height: 27px;
+    }
+    
+    .lp-10-c5 > div > span {
+        font-size: 16px;
+        line-height: 19px;
+        margin: 0 0 0 15px;
+    }
+
+    .lp-10-c3 > div > .t1 {
+        margin: 13px 0 0 0;
+        font-size: 17px;
+        line-height: 19px;
+        width: 80%;
+    }
+
+    .lp-10-c3 > div > .t2 {
+        margin: 13px 0 0 0;
+        width: 90%;
+        font-size: 15px;
+        line-height: 17px;
+    }   
+
+    .lp-10-c1 {
+        height: 560px;
+    }
+
+    .lp-10-c1 > .img-1 {
+        height: 380px;
+    }
+
+    .lp-10-container > h3{
+        margin: 50px 0 0 0;
+        font-size: 25px;
+        line-height: 29px;
+    }
+    
+    .lp-10-container > h4{
+        margin: 10px 0 10px 0;
+        font-size: 19px;
+        line-height: 21px;
+        height: 65px;
+    }
+
+}
