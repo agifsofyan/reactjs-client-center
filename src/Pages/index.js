@@ -13,6 +13,7 @@ import TransferConfirm from './TransferConfirm'
 import PaymentSuccess from './PaymentSuccess'
 import LandingPage from './LandingPage'
 import ScrollToTop from './ScrollToTop'
+import OrderHistory from './OrderHistory'
 
 export {
     Auth,
@@ -29,5 +30,6 @@ export {
     TransferConfirm,
     PaymentSuccess,
     LandingPage,
-    ScrollToTop
+    ScrollToTop,
+    OrderHistory
 }

@@ -24,6 +24,7 @@ function ScrollToTop({ history, children }) {
   }, [history,dispatch]);
 
   return <Fragment>{children}</Fragment>;
+  
 }
 
 export default withRouter(ScrollToTop);

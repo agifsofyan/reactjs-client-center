@@ -3,7 +3,7 @@ import React , { useEffect , useState }  from 'react'
 // MODULE
 import { Switch, Route   } from 'react-router-dom';
 import axios from 'axios'
-import { useDispatch } from 'react-redux'
+import { useDispatch , useSelector } from 'react-redux'
 
 // PAGES
 import { 
@@ -19,13 +19,14 @@ import {
         TransferConfirm,
         PaymentSuccess,
         ScrollToTop,
-        LandingPage
+        LandingPage,
+        OrderHistory
       } from './Pages'
 
 // COMPONENT 
 import Navbar from './Components/Navbar'
 import Modal from './Components/Modal'
-import Advertisement from './Components/Advertisement'
+import Advertisement from './Components/Advertisement/index'
 
 // GLOBAL ACTION
 import { changeValue , changeValueUser } from './Redux/Actions/index'
@@ -40,6 +41,9 @@ function App () {
 
   // USE DISPATCH
   const dispatch = useDispatch()
+
+  // GLOGAL STATE
+  const productHeader = useSelector(state=>state.product.productHeader)
 
   // LOCAL STATE
   const [showModal,setShowModal] = useState(false)
@@ -78,6 +82,8 @@ function App () {
               console.log(e.sale_price , ' <<< SALE PRICE')
             }
             if (e.feature.active_header || e.feature.active_page) {
+              // console.log("HERE >>>>")
+              console.log(e.feature.feature_onheader , ' <<< value')
               dispatch(changeValue("productHeader",e))
             }
           })
@@ -127,7 +133,7 @@ function App () {
           setShowModal={setShowModal}
         />
         {
-          showAdv &&
+          showAdv && productHeader &&
           <Advertisement
             setShowAdv={setShowAdv}
           />
@@ -151,6 +157,7 @@ function App () {
             />
             <Route path="/transfer-confirm" component={TransferConfirm}/>
             <Route path="/payment=true" component={PaymentSuccess}/>
+            {/* <Route path="/order-history" component={OrderHistory}/> */}
             <Route path="/landing-page" component={LandingPage}/>
             {/* <Route path="/" exact component={Home}/> */}
             <Route path="/" exact component={ProductList}/>

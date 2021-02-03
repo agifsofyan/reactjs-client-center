@@ -94,11 +94,12 @@ function ProductDetail (props) {
                 if (e.slug === params ) {
                     let {price,sale_price} = e
                     let min = price - sale_price
-                    console.log(price , ' <<< PRICE')
-                    console.log(sale_price , ' <<< SALE PRICE')
-                    console.log(min , ' <<<< MIN')
+                    // console.log(price , ' <<< PRICE')
+                    // console.log(sale_price , ' <<< SALE PRICE')
+                    // console.log(min , ' <<<< MIN')
                     let presentase = min/price * 100
-                    console.log( Math.round(presentase) , ' <<<< FIX')
+                    // console.log( Math.round(presentase) , ' <<<< FIX')
+                    console.log(e._id , ' <<<< ID')
                     setDiskP(Math.round(presentase))
                     setDetail(e)
                 }

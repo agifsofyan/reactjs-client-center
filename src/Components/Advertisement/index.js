@@ -1,4 +1,4 @@
-import React  from 'react'
+import React , { useEffect }  from 'react'
 
 // MODULES
 import { useLocation  } from 'react-router-dom';
@@ -21,6 +21,10 @@ function Advertisement (props) {
     // GLOBAL STATE
     const productHeader = useSelector(state=>state.product.productHeader)
 
+    // useEffect(()=>{
+    //     console.log(productHeader , ' <<< PRODUCT HEADER >>>>')
+    // },[productHeader])
+
     // RESPONSIVE
 
     if (
@@ -33,11 +37,12 @@ function Advertisement (props) {
             location.pathname === '' ||
             location.pathname === '/transfer-confirm' ||
             location.pathname === '/payment=true'||
-            location.pathname === '/landing-page'
+            location.pathname === '/landing-page' ||
+            location.pathname === "/order-history"
         ) 
     {
-        return null
-    }else if (productHeader) {
+        return <></>
+    }else  {
         return (
             <div className="adv-container"  id="adv-cont">
                 <div
@@ -57,8 +62,12 @@ function Advertisement (props) {
                 </div>
             </div>
         )
+        // if (productHeader) {
+        // }
     }
-    return null
+    // else {
+    //     return <></>
+    // }
 
 
 }

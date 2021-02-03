@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 
 
 // COMPONENT 
-import { List , FirstContent, SecondContent , ThirdContent , Menu } from '../../Components/Card'
+import { List , FirstContent, SecondContent , ThirdContent , Menu , InputAddress } from '../../Components/Card'
 import Loader from '../../Components/Loader'
 
 // API
@@ -51,6 +51,9 @@ function Cart () {
     // FOR CHILDREN STATE
     const [loadingOrder,setLoadingOrder] = useState(false)
 
+    // LOCAL STATE CHECK VALIDATION INPUT ADDRESS
+    const [inputNext,setInputNext] = useState(true)
+
     useEffect(()=>{
 
         let priceNum = 0
@@ -76,6 +79,7 @@ function Cart () {
                 let check = e.product_info.type
                 if (check === 'ecommerce') {
                     setIsEcommerce(true)
+                    setInputNext(false)
                 }
                 // if (e.product_info.sale_price) {
                 //     priceNum += e.product_info.sale_price
@@ -174,7 +178,7 @@ function Cart () {
             data : {
                 items : resultCart,
                 coupon : {
-                    code : selectedCoupon.code
+                    code : selectedCoupon ? selectedCoupon.code : null
                 },
                 shipment : {
                     address_id : selectedAddress && isEcommerce ? selectedAddress._id : null,
@@ -193,6 +197,40 @@ function Cart () {
             setLoadingOrder(false)
             console.log(err.response , ' <<< ERROR DI ORDER >>>')
         })
+    }
+
+    let validationCommerce = () => {
+        if (isEcommerce && !address) {
+            const el = document.getElementById('InputRef')
+            el.scrollIntoView({ behavior: 'smooth' })
+            // alert('JNFSJNSJDSJFNJSDN')
+            console.log('HERE 1')
+        }else {
+            console.log('HERE 2')
+            handleOrder()
+        }
+    }
+
+    // RENDER CONDITIONAL SELECT ADDRESS OR INPUT ADDRESS
+    let renderAdrInput = () => {
+        if (address) {
+            return (
+                <Menu
+                    showMenu={showMenu}
+                    setShowMenu={setShowMenu}
+                    address={address}
+                    selectedAddress={selectedAddress}
+                    setSelectedAddress={setSelectedAddress}
+                />            
+            )
+        }else {
+            return (
+                <InputAddress
+                    setInputNext={setInputNext}
+                    setParent2={setAddress}
+                />
+            )
+        }
     }
 
     return (
@@ -223,7 +261,7 @@ function Cart () {
 
                 </div>
             }
-            {
+            {/* {
                 address && isEcommerce &&
                 <Menu
                     showMenu={showMenu}
@@ -232,6 +270,10 @@ function Cart () {
                     selectedAddress={selectedAddress}
                     setSelectedAddress={setSelectedAddress}
                 />
+            } */}
+            {
+                isEcommerce &&
+                renderAdrInput()
             }
              {
                    selectedAddress && isEcommerce &&
@@ -266,7 +308,7 @@ function Cart () {
                     selectedCoupon={selectedCoupon} 
                     setSelectedCoupon={setSelectedCoupon}
                     coupons={coupons}
-                    handleOrder={handleOrder}
+                    handleOrder={validationCommerce}
                     loadingOrder={loadingOrder}
                     price={price}
                     cart={cart}
@@ -291,7 +333,7 @@ function Cart () {
                             { price && moneyConvert(price.toString(),"Rp. ") }
                         </div>
                     </div>
-                    <div className="product-detail-c14-sc" onClick={e=>handleOrder(e)}>
+                    <div className="product-detail-c14-sc" onClick={e=>validationCommerce(e)}>
                         <div style={{fontSize : 22}}>
                             {
                                 loadingOrder ?

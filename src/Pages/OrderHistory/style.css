@@ -1,0 +1,136 @@
+.order-11-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    min-height: 99vh;
+    width: 100%;
+}
+
+.order-11-container > h1 {
+    font-size: 22px;
+    font-family: 'Rubik', sans-serif;
+    margin: 16px 0 0 0;
+    font-weight: 500;
+}
+
+
+.order-11-container > .hr {
+    background-color: #000000;
+    width: 100%;
+    height: 0.5px;
+    margin: 14px 0 0 0;
+}
+
+.order-11-container > .c1 {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    margin: 16px 0 0 0;
+}
+
+.order-11-container > .c1 > .btn {
+    width: auto;
+    height: 30px;
+    background: #FF4500;
+    border-radius: 2px;
+    margin: 0 0 0 20px ;
+    font-size: medium;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 7px 0 7px;
+}
+
+.order-11-container > .c2 {
+    width: 90%;
+    padding: 16px 0 16px 0;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.order-11-container > .c2 > .s1 {
+    background: #FFF5AC;
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    height: 48px;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 19px;
+    font-weight: 300;
+}
+
+.order-11-container > .c2 > .s2 {
+    margin: 12px 0 0 0;
+    color: #606060;
+    font-size: 18px;
+    font-weight: 300;
+    font-family: 'Rubik', sans-serif;
+    width: 90%;
+}
+
+.order-11-container-c2-s3 {
+    width: 90%;
+    display: flex;
+    color: #000000;
+    font-family: 'Rubik', sans-serif;
+    margin: 12px 0 0 0;
+    font-size: 18px;
+    line-height: 20px;
+    /* overflow: hidden; */
+    height: 100px;
+    /* overflow-wrap: break-word;
+    overflow-wrap: break-word; */
+}
+
+.order-11-container > .c2 > .s4 {
+    margin: 12px 0 0 0;
+    display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .order-11-container > h1 {
+        font-size: 20px;
+    }
+
+    .order-11-container > .c1 > .btn {
+        width: auto;
+        height: 25px;
+        margin: 0 0 0 17px ;
+    }
+
+    .order-11-container > .c2 {
+        width: 90%;
+        padding: 12px 0 12px 0;
+        border-radius: 15px;
+    }
+
+    .order-11-container > .c2 > .s1 {
+        height: 38px;
+        font-size: 17px;
+    }
+
+    .order-11-container > .c2 > .s2 {
+        margin: 10px 0 0 0;
+        font-size: 15px;
+    }
+
+    .order-11-container > .c2 > .s3 {
+        margin: 10px 0 0 0;
+    }
+
+    .order-11-container > .c2 > .s4 {
+        margin: 10px 0 0 0;
+    }
+
+}
