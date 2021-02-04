@@ -1,4 +1,4 @@
-import React   from 'react'
+import React , {useEffect}  from 'react'
 
 // MODULES
 import { useLocation  } from 'react-router-dom';
@@ -21,9 +21,9 @@ function Advertisement (props) {
     // GLOBAL STATE
     const productHeader = useSelector(state=>state.product.productHeader)
 
-    // useEffect(()=>{
-    //     console.log(productHeader , ' <<< PRODUCT HEADER >>>>')
-    // },[productHeader])
+    useEffect(()=>{
+        console.log(productHeader.feature.feature_onheader , ' <<< PRODUCT HEADER >>>>')
+    },[productHeader])
 
     // RESPONSIVE
 
@@ -49,8 +49,9 @@ function Advertisement (props) {
                     className="adv-content"
                 >
                     <div className="adv-root">
-                        <div className="adv-content">
-                            {productHeader.feature.feature_onheader}
+                        <div className="adv-content-1">
+                            {productHeader.feature.feature_onheader }
+                            {/* bla bla bla bla bla */}
                         </div>
                     </div>
                     <CloseIcon

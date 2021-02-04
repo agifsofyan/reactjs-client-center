@@ -33,7 +33,7 @@ function DropDown (props) {
             <div
                 style={{
                     height : showMenu && 157, 
-                    overflowY : showMenu && "auto",
+                    // overflowY : showMenu && "auto",
                     paddingTop : !showMenu ? 3 : 4.5,
                     border : isError && "1px solid #ff3333"
                 }}

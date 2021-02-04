@@ -81,9 +81,14 @@ function App () {
               console.log(e.price , ' <<<< PRICE')
               console.log(e.sale_price , ' <<< SALE PRICE')
             }
+            // console.log(e, ' <<<< ELEMENT')
             if (e.feature.active_header || e.feature.active_page) {
+              // console.log(e.name , "  <<<<< NAME")
+              // console.log(e.feature.active_header ,' <<< k')
+              // console.log(e.feature.active_page ,' <<< k')
               // console.log("HERE >>>>")
-              console.log(e.feature.feature_onheader , ' <<< value')
+              // console.log(e , ' <<< PRODUCT HEADER >>> ---')
+              console.log(e._id , ' <<< ID')
               dispatch(changeValue("productHeader",e))
             }
           })

@@ -9,6 +9,9 @@ import { SWAGGER_URL } from '../../Support/API_URL'
 // IMAGES 
 import prImg from '../../Assets/Images/product.png'
 
+// HELPER
+import moneyConvert from '../../Support/moneyConvert'
+
 // STYLE
 import './style.css'
 
@@ -52,7 +55,7 @@ function OrderHistory () {
 
                     <div>
                         <div className="t1">
-                            Marketing Mastery
+                            {e.product_info.name}
                         </div>
                         <div className="t2">
                             Total Pembayaran
@@ -69,42 +72,66 @@ function OrderHistory () {
 
     let renderData = () => {
         return data.map((e,index)=>{
-            return (
-                <div 
-                    className="c2" 
-                    style={{marginTop : index === 0 && 29}}
-                    key={index}
-                >
+            return e.items.map((e2,index)=>{
+
+                return (
                     <div 
-                        className="s1"
-                        style={{
-                            backgroundColor : e.status === "UNPAID" && "#FFDEDE"
-                        }}
+                        className="c2" 
+                        style={{marginTop : index === 0 && 29}}
+                        key={index}
                     >
-                        {
-                            e.status === 'PENDING' ?
-                            "Transaksi Ditunda" :
-                            "Transaksi Belum Dibayar"
-                        }
+                        <div 
+                            className="s1"
+                            style={{
+                                backgroundColor : e.status === "UNPAID" && "#FFDEDE"
+                            }}
+                        >
+                            {
+                                e.status === 'PENDING' ?
+                                "Transaksi Ditunda" :
+                                "Transaksi Belum Dibayar"
+                            }
+                            
+                        </div>
+    
+                        <div className="s2">
+                            {e.create_date && e.create_date.split('T')[0]}
+                        </div>
                         
+                        <p className="s3">
+                            {e.invoice}
+                        </p>
+                        <div 
+                            className="s4"
+                            key={index}
+                        >
+                            <img
+                                src={prImg}
+                                alt="product-order"
+                            />
+    
+                            <div>
+                                <div className="t1">
+                                {e2.product_info.name}
+                                </div>
+                                <div className="t2">
+                                    Total Pembayaran
+                                </div>
+                                <div className="t3">
+                                    {moneyConvert(e2.sub_price.toString(),"Rp. ")}
+                                </div>
+                            </div>
+    
+                        </div>
+                        {/* {renderItems(e.items)} */}
+    
+                        <button className="s5"> 
+                            Baca
+                        </button>
+    
                     </div>
-
-                    <div className="s2">
-                        {e.create_date && e.create_date.split('T')[0]}
-                    </div>
-                    
-                    <p className="s3">
-                        {e.invoice}
-                    </p>
-
-                    {renderItems(e.items)}
-
-                    <button className="s5"> 
-                        Detail
-                    </button>
-
-                </div>
-            )
+                )
+            })
         })
     }
 

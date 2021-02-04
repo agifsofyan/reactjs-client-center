@@ -48,7 +48,7 @@ function Carousel () {
             {   
                 list ?
                 <h1>
-                    {productHeader.name}
+                    {productHeader && productHeader.name}
                 </h1> :
                 <Skeleton duration={0.1} width={220} height={15} style={{marginTop : 15}} /> 
             }
@@ -56,7 +56,7 @@ function Carousel () {
             {
                 list ?
                 <h2>
-                    {productHeader.description}
+                    {productHeader && productHeader.description}
                 </h2> :
                 <Skeleton duration={0.1} width={200} height={15} style={{marginTop : 15}} /> 
             }
