@@ -12,7 +12,6 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 
 // STYLE
 import './style.css'
-import { responsiveMap } from 'antd/lib/_util/responsiveObserve';
 
 function ThirdContent (props) {
 

@@ -6,6 +6,9 @@ import axios from 'axios'
 // API
 import { SWAGGER_URL } from '../../Support/API_URL'
 
+// IMAGES 
+import prImg from '../../Assets/Images/product.png'
+
 // STYLE
 import './style.css'
 
@@ -27,12 +30,83 @@ function OrderHistory () {
         .then(({data})=>{
             let arr1 = data.data
             arr1 = arr1.filter(e=>e.status === 'PENDING' || e.status === 'UNPAID')
+            console.log(arr1 ,' <<< DATA FIX >>> HISTORY')
             setData(arr1)
         })
         .catch(err=>{
             console.log(err.response , ' <<< ERRR')
         })
     },[])
+
+    let renderItems = (data) => {
+        return data.map((e,index)=>{
+            return (
+                <div 
+                    className="s4"
+                    key={index}
+                >
+                    <img
+                        src={prImg}
+                        alt="product-order"
+                    />
+
+                    <div>
+                        <div className="t1">
+                            Marketing Mastery
+                        </div>
+                        <div className="t2">
+                            Total Pembayaran
+                        </div>
+                        <div className="t3">
+                            Rp. 1.200.000
+                        </div>
+                    </div>
+
+                </div>
+            )
+        })
+    }
+
+    let renderData = () => {
+        return data.map((e,index)=>{
+            return (
+                <div 
+                    className="c2" 
+                    style={{marginTop : index === 0 && 29}}
+                    key={index}
+                >
+                    <div 
+                        className="s1"
+                        style={{
+                            backgroundColor : e.status === "UNPAID" && "#FFDEDE"
+                        }}
+                    >
+                        {
+                            e.status === 'PENDING' ?
+                            "Transaksi Ditunda" :
+                            "Transaksi Belum Dibayar"
+                        }
+                        
+                    </div>
+
+                    <div className="s2">
+                        {e.create_date && e.create_date.split('T')[0]}
+                    </div>
+                    
+                    <p className="s3">
+                        {e.invoice}
+                    </p>
+
+                    {renderItems(e.items)}
+
+                    <button className="s5"> 
+                        Detail
+                    </button>
+
+                </div>
+            )
+        })
+    }
 
     return (
         <div className="order-11-container">
@@ -56,26 +130,9 @@ function OrderHistory () {
             <div className="hr" style={{margin : "26px 0 0 0"}}>
 
             </div>
-
-            <div className="c2" style={{marginTop : 25}}>
-
-                <div className="s1">
-                    Transaksi Ditunda
-                </div>
-
-                <div className="s2">
-                    2020-10-01
-                </div>
-                
-                <p className="order-11-container-c2-s3">
-                    051020SKU77761057982781120109561dfdfddfdfdfdfdfdfdfsdfsdfdsfdsfsdfdsfdssfdsfdsfdsfsdfsdfdsafsdafdsfdsfdsfsfsdfsd
-                </p>
-
-                <div className="s4">
-
-                </div>
-
-            </div>
+            {
+                data && renderData()
+            }
 
         </div>
     )

@@ -113,3 +113,5 @@
 [0203/060129.878:ERROR:file_io_win.cc(180)] CreateFile C:\Users\HP GAMING\AppData\Local\Google\Chrome\User Data\Crashpad\settings.dat: Access is denied. (0x5)
 [0203/160609.984:ERROR:registration_protocol_win.cc(130)] TransactNamedPipe: The pipe has been ended. (0x6D)
 [0203/160609.985:ERROR:file_io_win.cc(180)] CreateFile C:\Users\HP GAMING\AppData\Local\Google\Chrome\User Data\Crashpad\settings.dat: Access is denied. (0x5)
+[0204/050858.567:ERROR:registration_protocol_win.cc(130)] TransactNamedPipe: The pipe has been ended. (0x6D)
+[0204/050858.582:ERROR:file_io_win.cc(180)] CreateFile C:\Users\HP GAMING\AppData\Local\Google\Chrome\User Data\Crashpad\settings.dat: Access is denied. (0x5)

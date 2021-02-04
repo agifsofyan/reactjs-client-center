@@ -70,7 +70,6 @@ function Cart () {
             }
         }))
         .then(({data})=>{
-            setCart(data.data.items)
             console.log(data.data.items , ' <<<< CART ')
             let arr = data.data.items
             let bumpArr = []
@@ -92,7 +91,13 @@ function Cart () {
                 setBump(bumpArr)
                 setPrice(priceNum)
                 setSale(saleNum)
+                // e = {...e,isChecked : true}
             })
+            arr = arr.map(e=>{
+                return e = {isChecked : true,...e}
+            })
+            console.log(arr, ' <<<<< TES')
+            setCart(arr)
             console.log(bumpArr , ' <<< VALUE BUMP')
         })
         .catch(err=>{
@@ -156,14 +161,30 @@ function Cart () {
         console.log(selectedAddress , ' <<< SELECTED ADDRESS')
     },[selectedAddress])
 
+    useEffect(()=>{
+        let arr = cart
+        let priceNum = 0
+        let saleNum = 0
+        arr.forEach((e)=>{
+            if (e.isChecked) {
+                priceNum += e.product_info.price
+                saleNum += e.product_info.sale_price
+            }
+        })
+        setPrice(priceNum)
+        setSale(saleNum)
+    },[cart])
+
     let handleObjCart = (arr) => {
         let result = []
         arr.forEach(e=>{
-            let objR = { product_id : e.product_info._id , 
-                         utm : e.utm ,
-                         quantity : e.quantity
-                       }
-            result.push(objR)
+            if (e.isChecked) {
+                let objR = { product_id : e.product_info._id , 
+                             utm : e.utm ,
+                             quantity : e.quantity
+                           }
+                result.push(objR)
+            }
         })
         return result
     }

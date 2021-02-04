@@ -118,7 +118,7 @@ function App () {
   let handleAll = (e) => {
     // setTopScroll(document.body.scrollTop)
     e.stopPropagation()
-    e.nativeEvent.stopImmediatePropagation();
+    // e.nativeEvent.stopImmediatePropagation();
     dispatch(changeValueUser('top',document.body.scrollTop))
   }
  
@@ -157,7 +157,7 @@ function App () {
             />
             <Route path="/transfer-confirm" component={TransferConfirm}/>
             <Route path="/payment=true" component={PaymentSuccess}/>
-            {/* <Route path="/order-history" component={OrderHistory}/> */}
+            <Route path="/order-history" component={OrderHistory}/>
             <Route path="/landing-page" component={LandingPage}/>
             {/* <Route path="/" exact component={Home}/> */}
             <Route path="/" exact component={ProductList}/>

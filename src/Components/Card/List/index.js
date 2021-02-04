@@ -70,6 +70,19 @@ function List (props) {
         console.log(qty , ' <<< QUAN')
     }
 
+    let checkedCart = (id,status) => {
+        // let obj = 
+        let arr = [...cart]
+        arr = arr.map(e=>{
+            if (e._id === id) {
+                return e = { ...e ,isChecked : !status}
+            }else {
+                return e
+            }
+        })
+        setCart(arr)
+    }
+
     let renderData = () => {
         return cart.map((el,index)=>{
             return (
@@ -88,8 +101,9 @@ function List (props) {
                     <div className="cart-06-list1-fc">
 
                         <input
+                            onClick={e=>checkedCart(el._id,el.isChecked)}
                             type="checkbox"
-                            checked
+                            checked={el.isChecked}
                         />
 
                         <span>
