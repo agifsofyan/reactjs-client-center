@@ -31,11 +31,7 @@ function SecondContent (props) {
                     </div>
                 </div>
             </div>
-            <div className="card-06-sc-c4">
-                <div className="card-06-sc-c4-fc">
-                    Footer starting cats are CUTE little animals
-                </div>
-            </div>
+            
         </div>
     )
 

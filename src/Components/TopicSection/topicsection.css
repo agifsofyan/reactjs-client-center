@@ -1,0 +1,39 @@
+a {
+    text-decoration: none !important;
+}
+
+/* SECTION */
+.section-section {
+    padding: 0px 35px;
+    display: flex;
+}
+.section-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    color: #033E66;
+    text-transform: uppercase;
+    margin-right: 20px;
+}
+.section-title-active {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    color: #033E66;
+    text-transform: uppercase;
+    margin-right: 20px;
+    border-bottom: 2px solid #033E66;
+    background-color: #FFFFFF;
+}
+/* SECTION */
+
+/* MOBILE */
+@media only screen and (max-width: 600px) {
+    .section-section {
+        padding: 0px 35px;
+        display: flex;
+        overflow-y: auto;
+        overflow-x: scroll;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+    }
+}

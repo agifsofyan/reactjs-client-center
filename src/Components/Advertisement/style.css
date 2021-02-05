@@ -5,7 +5,7 @@
     /* align-items: center; */
     justify-content: center;
     align-items: center;
-    height: 80px;
+    height: 90px;
 }
 
 /* .adv-content {
@@ -21,6 +21,7 @@
     display: flex;
     width: 100%;
     height: 100%;
+    flex-direction: column;
     /* justify-content: center; */
     /* align-items: center; */
     /* margin-left: 20px; */

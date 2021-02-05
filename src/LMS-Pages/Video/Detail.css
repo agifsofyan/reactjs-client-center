@@ -1,0 +1,123 @@
+/* font-family: 'Rubik', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+.root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+}
+
+.divider-thin {
+    width: 100%;
+    height: 10px;
+    background-color: #E5E5E5;
+    margin: 20px 0px;
+}
+
+/* PLAYING */
+.playing-video {
+    width: 100%;
+}
+.description-container {
+    margin: 5px 25px;
+}
+.video-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: large;
+    margin-bottom: 5px;
+}
+.video-views {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+}
+.views-icon {
+    height: 17.5px;
+    margin-right: 7.5px;
+}
+.video-creation {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin-left: 15px;
+}
+.action-container {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 15px;
+}
+.action-group {
+    cursor: pointer;
+    text-align: center;
+}
+.action-icon {
+    height: 30px;
+}
+.action-text {
+    font-family: 'Rubik', sans-serif;
+    margin-top: 5px;
+}
+/* PLAYING */
+
+/* PLAYLIST */
+.playlist-header {
+    padding: 0px 35px;
+    font-family: 'Rubik', sans-serif;
+    font-size: x-large;
+    margin-top: 10px;
+    display: flex;
+}
+.play-next {
+    margin-right: 10px;
+}
+.playlist-groups {
+    margin-top: 20px;
+}
+.video-container {
+    cursor: pointer;
+    padding: 25px 35px;
+    display: flex;
+    align-items: center;
+}
+.video-container:hover {
+    background-color: #ECF0FD;
+}
+.active {
+    background-color: #ECF0FD;
+    border: none;
+}
+.active:hover {
+    background-color: #dddddd;
+}
+.video-playlist {
+    width: 40%;
+}
+.playlist-description {
+    flex-direction: column;
+    margin-left: 30px;
+}
+.playlist-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: large;
+    margin-bottom: 5px;
+}
+.playlist-part {
+    font-family: 'Rubik', sans-serif;
+    font-size: large;
+    margin-bottom: 5px;
+    font-weight: lighter;
+}
+/* PLAYLIST */
+
+/* COMMENTS */
+.comment-container {
+    cursor: pointer;
+    padding: 0px 35px;
+    margin: 15px 35px 35px 35px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 5px 0.5px #909090;
+}
+/* COMMENTS */

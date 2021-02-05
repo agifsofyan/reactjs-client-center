@@ -220,14 +220,14 @@ function ProductDetail (props) {
                     <Skeleton duration={0.5} width={300} height={15} style={{marginTop : 7}} /> 
                 </div>
                 <div style={{width : "100%",display : "flex",alignItems : "center",justifyContent : "center",marginTop : 17,flexDirection : "column"}}>
-                    <button 
+                    <div 
                         className="product-detail-c7"
                     >
                         {
                             loading?<Loader/>:
                             "JOIN SEKARANG"
                         }
-                    </button>
+                    </div>
                     <div className="product-detail-c8">
 
                     </div>
@@ -293,7 +293,7 @@ function ProductDetail (props) {
             <span className="product-detail-c6">
                 Hemat {diskP}% - 4 days left at this price!
             </span>
-            <button 
+            <div
                 className="product-detail-c7"
                 onClick={e=>handleAddCart()}
             >
@@ -301,7 +301,7 @@ function ProductDetail (props) {
                     loading?<Loader/>:
                     "JOIN SEKARANG"
                 }
-            </button>
+            </div>
             
             {/* ONLY LINE */}
             <div className="product-detail-c8">

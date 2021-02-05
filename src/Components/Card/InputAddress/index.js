@@ -17,7 +17,7 @@ import './style.css'
 function InputAddress (props) {
 
     const {
-        setInputNext,
+        // setInputNext,
         setParent2
     } = props
 
@@ -116,17 +116,17 @@ function InputAddress (props) {
             let arr = [address,province,city,district,subDistrict,detail,code]
             let arr2 = [setAddress2,setProvince2,setCity2,setDistrict2,setSubDistrict2,setDetail2,setCode2]
             let arr3 = ['Alamat','Provinsi','Kota',"Kecamatan","Kelurahan","Detail Alamat","Postcal Code"]
-            let next = true
+            // let next = true
             arr.forEach((e,i)=>{
                 if (!e) {
                     arr2[i](arr3[i] + " Harap di isi")
-                    next = false
+                    // next = false
                 }else {
                     arr2[i](null)
                 }
             })
         }
-    },[address,province,city,district,subDistrict,detail,code])
+    },[address,province,city,district,subDistrict,detail,code,isClick])
 
     let getCity = (el) => {
         setProvince(el)

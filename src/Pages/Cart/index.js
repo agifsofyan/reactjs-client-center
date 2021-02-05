@@ -52,7 +52,7 @@ function Cart () {
     const [loadingOrder,setLoadingOrder] = useState(false)
 
     // LOCAL STATE CHECK VALIDATION INPUT ADDRESS
-    const [inputNext,setInputNext] = useState(true)
+    // const [inputNext,setInputNext] = useState(true)
 
     useEffect(()=>{
 
@@ -78,7 +78,7 @@ function Cart () {
                 let check = e.product_info.type
                 if (check === 'ecommerce') {
                     setIsEcommerce(true)
-                    setInputNext(false)
+                    // setInputNext(false)
                 }
                 // if (e.product_info.sale_price) {
                 //     priceNum += e.product_info.sale_price
@@ -247,7 +247,7 @@ function Cart () {
         }else {
             return (
                 <InputAddress
-                    setInputNext={setInputNext}
+                    // setInputNext={setInputNext}
                     setParent2={setAddress}
                 />
             )

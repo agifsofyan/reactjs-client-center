@@ -1,0 +1,191 @@
+/* font-family: 'Rubik', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+.root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+}
+
+.divider {
+    width: 100%;
+    height: 10px;
+    background-color: #E5E5E5;
+    margin: 20px 0px;
+}
+
+/* ARTICLE */
+.article-section {
+    padding: 0px 35px;
+    margin-top: 10px;
+}
+.tipsdetail-breadcrumbs {
+    margin-bottom: 10px;
+}
+.tipsdetail-author-details {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.tipsdetail-author-picture {
+    height: 35px;
+    border-radius: 100px;
+}
+.tipsdetail-author-desc {
+    font-family: 'Rubik', sans-serif;
+    color: #505050;
+    margin-left: 10px;
+}
+.tipsdetail-article-section {
+    margin-bottom: 20px;
+}
+.tipsdetail-article-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: xx-large;
+    margin-bottom: 15px;
+}
+.tipsdetail-article-picture {
+    margin-bottom: 5px;
+    width: 100%;
+}
+.tipsdetail-article-social-share {
+    margin-bottom: 20px;
+}
+.tipsdetail-article-facebook {
+    border: none;
+    border-radius: 5px;
+    background-color: #1877F2;
+    color: #FFFFFF;
+    padding: 5px 20px;
+    margin-right: 5px;
+}
+.tipsdetail-article-whatsapp {
+    border: none;
+    border-radius: 5px;
+    background-color: #51BE76;
+    color: #FFFFFF;
+    padding: 5px 20px;
+    margin-right: 5px;
+}
+.tipsdetail-article-showoff {
+    font-family: 'Rubik', sans-serif;
+    font-size: larger;
+    font-style: italic;
+    margin-bottom: 20px;
+}
+.tipsdetail-article-paragraphs {
+    font-family: 'Rubik', sans-serif;
+    font-size: large;
+}
+.tipsdetail-comment-sort {
+    width: 40%;
+    margin-bottom: 15px;
+}
+.tipsdetail-comment-user-section {
+    display: flex;
+    margin-bottom: 10px;
+}
+.tipsdetail-comment-user-image {
+    height: 50px;
+    margin-right: 15px;
+    border-radius: 100px;
+}
+/* ARTICLE */
+
+/* SPOTLIGHT */
+.spotlight-section {
+    padding: 0px 35px;
+}
+.tipsdetail-spotlight-tag {
+    font-family: 'Rubik', sans-serif;
+    padding: 5px 15px;
+    background-color: #1080A8;
+    color: #FFFFFF;
+    border-radius: 3px;
+}
+.tipsdetail-spotlight-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: xx-large;
+    margin-top: 15px;
+}
+.tipsdetail-spotlight-image {
+    width: 100%;
+    margin-top: 15px;
+}
+.tipsdetail-spotlight-article {
+    font-family: 'Rubik', sans-serif;
+    font-size: large;
+    margin: 20px 0px;
+}
+/* SPOTLIGHT */
+
+/* BLOG */
+.larunoblog-section {
+    padding: 0px 35px;
+}
+.larunoblog-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+.larunoblog-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: x-large;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: #FF0000;
+}
+.larunoblog-see-more {
+    cursor: pointer;
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    color: #0000FF;
+}
+.larunoblog-see-more:hover {
+    color: #0000CA;
+    text-decoration: underline;
+    text-decoration-color: #0000FF;
+}
+.larunoblog-spotlight-renderer {
+    margin-top: 30px;
+}
+.larunoblog-spotlight-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+}
+.larunoblog-spotlight-product-image {
+    cursor: pointer;
+    width: 45%;
+}
+.larunoblog-spotlight-product-details {
+    cursor: pointer;
+    margin-left: 20px;
+}
+.larunoblog-spotlight-product-name {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin-bottom: 5px;
+}
+.larunoblog-spotlight-product-desc {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin-bottom: 15px;
+}
+.larunoblog-spotlight-author-section {
+    display: flex;
+    align-items: center;
+}
+.larunoblog-spotlight-author-image {
+    height: 35px;
+    border-radius: 100px;
+}
+.larunoblog-spotlight-author-desc {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin-left: 10px;
+}
+/* BLOG */

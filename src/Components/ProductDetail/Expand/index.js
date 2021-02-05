@@ -88,7 +88,7 @@ function Expand (props) {
                                 borderBottomLeftRadius : index === lastLength && 5,
                                 padding : "10px 10px 10px 10px"
                             }}>
-                                {el.content + "dsfjdslfj ds;kfjsdkjfdks jfda skjfdsklfjdksljfdksljf kdsljfdsklfjdskfjdskfjskadjfdskfjdskfjdsklfjsdklfjds klfjdsklfjdsklfjdsklfjdkslfjdkslfjdsklfjsdklfjdsklfjdslkfjdslkfjdslakfj"}
+                                {el.content }
                                 {/* Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy */}

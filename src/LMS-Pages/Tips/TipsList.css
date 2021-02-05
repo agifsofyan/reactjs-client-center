@@ -1,0 +1,147 @@
+/* font-family: 'Rubik', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+.root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+}
+
+.divider {
+    width: 100%;
+    height: 10px;
+    background-color: #E5E5E5;
+    margin: 20px 0px;
+}
+
+u {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+}
+
+/* SHIPMENT */
+.shipment-container {
+    padding: 15px 35px;
+}
+.shipment-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+}
+.shipping-items {
+    margin-top: 25px;
+}
+.ship-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.shipping-book {
+    width: 22.5%;
+}
+.ship-desc {
+    margin-left: 30px;
+}
+.ship-address {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin-bottom: 10px;
+}
+.ship-status {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin-bottom: 10px;
+}
+.view-button {
+    cursor: pointer;
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    border: 2.75px solid #FF4500;
+    background-color: white;
+    color: #FF4500;
+    border-radius: 5px;
+}
+/* SHIPMENT */
+
+/* FILTER */
+.filter-container {
+    padding: 10px 35px 15px 35px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+.filter {
+    cursor: pointer;
+    font-family: 'Rubik', 'sans-serif';
+    font-size: medium;
+    margin-right: 15px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: #000000;
+}
+.choosen {
+    background-color: #FF4500;
+    color: #FFFFFF;
+}
+/* FILTER */
+
+/* TIPS */
+.tips-container {
+    padding: 15px 35px;
+}
+.tips-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+}
+.tips-list {
+    margin-top: 25px;
+}
+.tips-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 25px;
+}
+.tips-book {
+    width: 22.5%;
+}
+.tips-desc {
+    margin-left: 30px;
+}
+.tips-detail {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin-bottom: 5px;
+    align-items: center;
+}
+.tips-checkmark {
+    margin-left: 10px;
+    height: 25px;
+}
+.tips-poin {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    color: #009A22;
+    margin-bottom: 5px;
+}
+.author-details {
+    display: flex;
+    align-items: center;
+}
+.author-profile {
+    border-radius: 50px;
+    overflow: hidden;
+    height: 30px;
+}
+.author-name-time {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    color: #888888;
+    margin-left: 10px;
+}
+/* TIPS */

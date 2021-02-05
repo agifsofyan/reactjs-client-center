@@ -37,7 +37,7 @@ function Navbar (props) {
         return (
             <div className="navbar-container">
                 <div className="navbar-content" >
-                    <MenuIcon onClick={e=>[e.preventDefault() , setShowModal(true)]} style={{ fontSize : 27 , color : "#033E66",cursor : 'pointer'}}/>
+                    <MenuIcon onClick={e=>[ setShowModal(true)]} style={{ fontSize : 27 , color : "#033E66",cursor : 'pointer'}}/>
                     <img
                         src={Logo}
                         alt="laruno"

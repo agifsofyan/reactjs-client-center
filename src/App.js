@@ -23,6 +23,22 @@ import {
         OrderHistory
       } from './Pages'
 
+      import { 
+        Dashboard, 
+        LMSHome, 
+        LMSWebinar, 
+        LMSVideoList, 
+        LMSVideoDetail, 
+        LMSTipsList, 
+        LMSTipsDetail, 
+        LMSModule, 
+        LMSGroup, 
+        LMSBonus, 
+        LMSReseller, 
+        LMSResellerMe, 
+        LMSProfile, 
+      } from './LMS-Pages';
+
 // COMPONENT 
 import Navbar from './Components/Navbar'
 import Modal from './Components/Modal'
@@ -164,6 +180,20 @@ function App () {
             <Route path="/payment=true" component={PaymentSuccess}/>
             <Route path="/order-history" component={OrderHistory}/>
             <Route path="/landing-page" component={LandingPage}/>
+            {/* LMS PAGE  */}
+            <Route path='/lms-dashboard' component={Dashboard} />
+            <Route path='/lms-home' component={LMSHome} />
+            <Route path='/lms-webinar' component={LMSWebinar} />
+            <Route path='/lms-video-list' component={LMSVideoList} />
+            <Route path='/lms-video-detail' component={LMSVideoDetail} />
+            <Route path='/lms-tips-list' component={LMSTipsList} />
+            <Route path='/lms-tips-detail' component={LMSTipsDetail} />
+            <Route path='/lms-module' component={LMSModule} />
+            <Route path='/lms-group' component={LMSGroup} />
+            <Route path='/lms-bonus' component={LMSBonus} />
+            <Route path='/lms-reseller' component={LMSReseller} />
+            <Route path='/lms-reseller-me' component={LMSResellerMe} />
+            <Route path='/lms-profile' component={LMSProfile} />
             {/* <Route path="/" exact component={Home}/> */}
             <Route path="/" exact component={ProductList}/>
             <Route path="" component={Error404}/>

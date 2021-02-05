@@ -23,14 +23,15 @@ function Modal (props) {
 
     let HandleModalClose = () => {
         setModalClose(true)
+        setShowModal(true)
         setTimeout(()=>{
             setModalClose(false)
             setShowModal(false)
-        },800)
+        },400)
     }
     if (modalClose) {
         return (
-            <div className="burger-menu-02">
+            <div onAnimationEnd={e=>alert('LOL')} className="burger-menu-02">
                 <div className="burger-menu-02-content">
 
                 </div>

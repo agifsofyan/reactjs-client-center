@@ -1,0 +1,105 @@
+/* font-family: 'Rubik', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+.root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+}
+
+.divider {
+    width: 100%;
+    height: 10px;
+    background-color: #E5E5E5;
+    margin: 20px 0px;
+}
+
+u {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+}
+
+/* JOIN TELEGRAM */
+.telegram-section {
+    padding: 0px 35px;
+    margin: 15px 0px 0px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.join-illustration {
+    width: 80%;
+}
+.join-button {
+    margin-top: 20px;
+    width: 80%;
+}
+/* JOIN TELEGRAM */
+
+/* SAME RANK */
+.same-section {
+    padding: 0px 35px;
+}
+.same-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+}
+.same-container {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.same-friends {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    width: 50%;
+}
+.friend-photo {
+    height: 80px;
+    border-radius: 50px;
+}
+.friend-badge {
+    height: 50px;
+    margin-left: 12.5px;
+    padding: 6px;
+    border-radius: 50px;
+    box-shadow: 0 0 5px 1.75px #E6E6E6;
+}
+.friend-details {
+    margin-left: 12.5px;
+}
+.friend-name {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+}
+.friend-job {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+}
+/* SAME RANK */
+
+/* MOBILE */
+@media only screen and (max-width: 600px) {
+    .same-container {
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .same-friends {
+        display: flex;
+        align-items: center;
+        margin-bottom: 25px;
+    }
+    .friend-badge {
+        margin-left: 20px;
+    }
+    .friend-details {
+        margin-left: 20px;
+    }
+}

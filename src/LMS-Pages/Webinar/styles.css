@@ -1,0 +1,235 @@
+/* font-family: 'Rubik', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+.root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+}
+
+.divider {
+    width: 100%;
+    height: 10px;
+    background-color: #E5E5E5;
+    margin: 20px 0px;
+}
+
+u {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+}
+
+/* NEAREST */
+.nearest-section {
+    padding: 0px 35px;
+    overflow: hidden;
+    margin: 10px 0px 0px 0px;
+}
+.nearest-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+}
+.nearest-webinar {
+    width: 100%;
+    margin-top: 20px;
+}
+.webinar-desc {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.mentor-img {
+    height: 60px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+.webinar-summary {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.webinar-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+}
+.mentor-name {
+    font-family: 'Rubik', sans-serif;
+    font-weight: lighter;
+}
+.webinar-countdown {
+    font-family: 'Rubik', sans-serif;
+    font-weight: normal;
+}
+.webinar-join {
+    cursor: pointer;
+    margin: 15px 0px;
+    width: 100%;
+    border: 3px solid #FF4500;
+    border-radius: 50px;
+    background-color: white;
+    color: #FF4500;
+    font-family: 'Rubik', sans-serif;
+    font-size: x-large;
+    padding: 5px 0px;
+    box-shadow: 0 0 7.5px 0.5px #FF4500;
+}
+/* NEAREST */
+
+/* PREVIOUS */
+.previous-section {
+    padding: 0px 35px;
+    overflow: hidden;
+    margin: 10px 0px 0px 0px;
+}
+.previous-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.webinar-section {
+    margin: 30px 0px;
+    display: flex;
+}
+.webinar-details {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 25px;
+}
+.previous-video {
+    width: 35%;
+}
+.webinar-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin: 1.25px 0px;
+}
+.webinar-audience {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin: 1.25px 0px;
+}
+.webinar-comment {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin: 1.25px 0px;
+}
+.webinar-point {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin: 1.25px 0px;
+}
+/* PREVIOUS */
+
+/* OTHERS */
+.others-section {
+    padding: 0px 35px;
+    overflow: hidden;
+    margin: 10px 0px 15px 0px;
+    display: flex;
+    flex-direction: column;
+}
+.others-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.other-texts {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 5px;
+}
+.other-live {
+    width: 100%;
+}
+.other-desc {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.other-mentor-img {
+    height: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+.other-summary {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.other-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+}
+.other-mentor-name {
+    font-family: 'Rubik', sans-serif;
+    font-weight: lighter;
+}
+.other-countdown {
+    font-family: 'Rubik', sans-serif;
+    font-weight: normal;
+}
+/* OTHERS */
+
+/* RECOMMENDED */
+.lmswebinar-recommended-section {
+    padding: 0px 35px;
+}
+.lmswebinar-recommended-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+    margin: 10px 0px;
+}
+.lmswebinar-recommended-renderer {
+    margin-top: 35px;
+}
+.lmswebinar-recommended-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 35px;
+}
+.lmswebinar-recommended-product-image {
+    width: 45%;
+}
+.lmswebinar-recommended-product-details {
+    margin-left: 20px;
+}
+.lmswebinar-recommended-product-name {
+    font-family: 'Rubik', sans-serif;
+    font-size: larger;
+    margin: 20px 0px;
+}
+.lmswebinar-recommended-product-price {
+    font-family: 'Rubik', sans-serif;
+    font-size: larger;
+    margin: 20px 0px;
+}
+.lmswebinar-recommended-product-sale-discount {
+    display: flex;
+    align-items: center;
+    margin: 20px 0px;
+}
+.lmswebinar-recommended-product-sale {
+    font-family: 'Rubik', sans-serif;
+    font-size: larger;
+}
+.lmswebinar-recommended-product-discount {
+    font-family: 'Rubik', sans-serif;
+    font-size: large;
+    background-color: #FF4500;
+    color: #FFFFFF;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-left: 15px;
+}
+/* RECOMMENDED */

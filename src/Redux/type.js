@@ -5,3 +5,14 @@ export const CHANGE_PRODUCT = "CHANGE_PRODUCT"
 // USER
 export const GET_SELECTED_USER = "GET_SELECTED_USER"
 export const CHANGE_TOP = "CHANGE_TOP"
+
+// LMS
+export const PRODUCT_START = 'PRODUCT_START';
+export const PRODUCT_LIST = 'PRODUCT_LIST';
+export const PRODUCT_BY_ID = 'PRODUCT_BY_ID';
+export const PRODUCT_FAILED = 'PRODUCT_FAILED';
+
+export const CONTENT_START = 'CONTENT_START';
+export const CONTENT_SUCCESS = 'CONTENT_SUCCESS';
+export const CONTENT_BY_ID = 'CONTENT_BY_ID';
+export const CONTENT_FAILED = 'CONTENT_FAILED';

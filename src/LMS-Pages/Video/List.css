@@ -1,0 +1,86 @@
+/* font-family: 'Rubik', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+.root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+}
+
+.divider {
+    width: 100%;
+    height: 10px;
+    background-color: #E5E5E5;
+    margin: 20px 0px;
+}
+
+/* FILTER */
+.filter-container {
+    padding: 10px 35px 30px 35px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+.filter {
+    font-family: 'Rubik', 'sans-serif';
+    font-size: medium;
+    margin-right: 15px;
+    padding: 5px 10px;
+    border-radius: 10px;
+    color: #000000;
+}
+.choosen {
+    background-color: #FF4500;
+    color: #FFFFFF;
+}
+/* FILTER */
+
+/* LISTS */
+.videos-section {
+    padding: 0px 35px;
+    overflow: hidden;
+    margin: 0px 0px 15px 0px;
+    display: flex;
+    flex-direction: column;
+}
+.videos-texts {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 5px;
+}
+.videos-live {
+    width: 100%;
+}
+.videos-desc {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+.videos-mentor-img {
+    height: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+.videos-summary {
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.videos-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    color: #000000;
+}
+.videos-mentor-name {
+    font-family: 'Rubik', sans-serif;
+    font-weight: lighter;
+    color: #000000;
+}
+.videos-countdown {
+    font-family: 'Rubik', sans-serif;
+    font-weight: normal;
+    color: #000000;
+}
+/* LISTS */

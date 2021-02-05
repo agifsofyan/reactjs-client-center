@@ -1,0 +1,98 @@
+/* COMPLETE */
+.complete-title {
+    padding-left: 35px;
+    font-family: 'Rubik', sans-serif;
+    font-size: large;
+    margin: 20px 0px 0px 0px;
+}
+.complete-todo {
+    padding-left: 35px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+    margin: 5px 0px;
+    color: #606060;
+}
+.complete-check {
+    margin: 0 15px;
+}
+.complete-complete-div {
+    padding-right: 35px;
+    display: flex;
+    justify-content: flex-end;
+}
+.complete-complete-btn {
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 5px 15px;
+    border-radius: 5px;
+    background: #E6E6E6;
+    border: none;
+    font-family: 'Rubik', 'sans-serif';
+    font-size: medium;
+    color: #606060;
+}
+.complete-later {
+    cursor: pointer;
+    padding-left: 35px;
+    font-family: 'Rubik', 'sans-serif';
+    margin-top: -20px;
+    color: #0887E3;
+    font-size: medium;
+    text-decoration: underline;
+}
+/* COMPLETE */
+
+/* PROFILE */
+.comp-profile-section {
+    padding: 30px 35px 15px 35px;
+}
+.comp-profile-top-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.comp-profile-photo-img {
+    height: 120px;
+    border-radius: 100px;
+}
+.comp-profile-details {
+    margin-left: 20px;
+}
+.comp-profile-name {
+    margin: 5px 0px;
+    font-family: 'Rubik', 'sans-serif';
+    font-size: larger;
+}
+.comp-profile-badge-rank {
+    display: flex;
+    align-items: center;
+    margin: 5px 0px;
+}
+.comp-profile-badge {
+    height: 40px;
+}
+.comp-profile-rank {
+    margin-left: 10px;
+    font-family: 'Rubik', 'sans-serif';
+    font-size: large;
+}
+.comp-profile-points {
+    margin: 5px 0px;
+    font-family: 'Rubik', 'sans-serif';
+    font-size: larger;
+}
+.comp-profile-stats-section {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+.comp-profile-stats-title {
+    font-family: 'Rubik', 'sans-serif';
+    font-size: larger;
+}
+.comp-profile-stats-count {
+    font-family: 'Rubik', 'sans-serif';
+    font-size: large;
+    text-align: center;
+}
+/* PROFILE */

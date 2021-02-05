@@ -53,6 +53,7 @@ function Advertisement (props) {
                             {productHeader.feature.feature_onheader }
                             {/* bla bla bla bla bla */}
                         </div>
+                        <div style={{marginTop : 4}}>1 days left!</div>
                     </div>
                     <CloseIcon
                         onClick={e=>setShowAdv(false)}

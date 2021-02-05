@@ -1,0 +1,28 @@
+.content-section {
+    padding-left: 35px;
+    padding-right: 35px;
+}
+.content-button-group {
+    display: flex;
+    justify-content: space-around;
+}
+.content-btn {
+    cursor: pointer;
+    background-color: #FFFFFF;
+    padding: 8px 20px;
+    border-radius: 50px;
+    border-color: #000000;
+    font-size: larger;
+    font-weight: 600;
+    text-align: center;
+}
+.active-btn {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+.content-video {
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 5px;
+    overflow: hidden;
+}

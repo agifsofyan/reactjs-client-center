@@ -41,35 +41,6 @@ function OrderHistory () {
         })
     },[])
 
-    let renderItems = (data) => {
-        return data.map((e,index)=>{
-            return (
-                <div 
-                    className="s4"
-                    key={index}
-                >
-                    <img
-                        src={prImg}
-                        alt="product-order"
-                    />
-
-                    <div>
-                        <div className="t1">
-                            {e.product_info.name}
-                        </div>
-                        <div className="t2">
-                            Total Pembayaran
-                        </div>
-                        <div className="t3">
-                            Rp. 1.200.000
-                        </div>
-                    </div>
-
-                </div>
-            )
-        })
-    }
-
     let renderData = () => {
         return data.map((e,index)=>{
             return e.items.map((e2,index)=>{

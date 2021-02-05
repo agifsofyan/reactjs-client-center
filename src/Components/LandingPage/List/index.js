@@ -2,9 +2,9 @@ import React from 'react'
 
 // IMAGES
 import image1 from '../../../Assets/Images/lp-1.png'
-import image2 from '../../../Assets/Images/lp-2.png'
-import image3 from '../../../Assets/Images/lp-3.png'
-import image4 from '../../../Assets/Images/lp-4.png'
+// import image2 from '../../../Assets/Images/lp-2.png'
+// import image3 from '../../../Assets/Images/lp-3.png'
+// import image4 from '../../../Assets/Images/lp-4.png'
 
 
 // STYLING DI pages/LandingPage

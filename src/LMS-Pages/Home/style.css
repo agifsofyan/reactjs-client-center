@@ -1,0 +1,187 @@
+/* font-family: 'Rubik', sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+
+.root {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #FFFFFF;
+}
+
+.divider {
+    width: 100%;
+    height: 10px;
+    background-color: #E5E5E5;
+    margin: 20px 0px;
+}
+
+u {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+}
+
+/* DETAIL */
+.detail-section {
+    padding: 0px 35px;
+    display: flex;
+    overflow: hidden;
+    margin: 10px 0px;
+}
+.product-image {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+.product-mentor {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin-bottom: 15px;
+}
+.product-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: large;
+    margin-bottom: 15px;
+}
+.product-description {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+}
+.separator {
+    margin: 20px 35px;
+    border-bottom-width: 0.75px;
+    border-bottom-style: solid;
+    border-bottom-color: #AFAFAF;
+}
+.rating-container {
+    margin: 10px 35px;
+    border: none;
+    box-shadow: 0 0 5px 1.75px #E6E6E6;
+    padding: 5px;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+.rating-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.rating-title {
+    margin: 0px 20px;
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+}
+.rate-number {
+    margin: 0px 20px;
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+}
+.comment-section {
+    margin: 10px 35px;
+}
+.comment-label {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin-bottom: 5px;
+}
+.commment-button-section {
+    display: flex;
+    justify-content: center;
+}
+.post-comment-button {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    color: white;
+    background-color: #FF4500;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+/* DETAIL */
+
+/* LEADERBOARD */
+.leaderboard-section {
+    overflow: hidden;
+    margin: 10px 0px 0px 0px;
+}
+.leaderboard-title {
+    font-family: 'Rubik', sans-serif;
+    font-size: x-large;
+    display: flex;
+    justify-content: center;
+}
+.weekly-section {
+    margin: 15px 0px;
+}
+.person-rank {
+    padding: 0px 35px;
+    margin: 25px 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.profile {
+    display: flex;
+    align-items: center;
+}
+.profile-photo {
+    height: 70px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+.person-position {
+    font-family: 'Rubik', sans-serif;
+    background-color: #FFFFFF;
+    border: 2px solid #808080;
+    color: #606060;
+    padding: 3px 8px;
+    border-radius: 5px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+.profile-namejob {
+    display: flex;
+    flex-direction: column;
+}
+.profile-name {
+    font-family: 'Rubik', sans-serif;
+    font-size: medium;
+    margin: 0px 15px;
+    display: flex;
+}
+.profile-job {
+    font-family: 'Rubik', sans-serif;
+    font-size: small;
+    margin: 0px 15px;
+    display: flex;
+}
+.profile-badge {
+    height: 50px;
+    width: 50px;
+    float: right;
+    clear: right;
+    border-radius: 50px;
+    box-shadow: 0 0 5px 1.75px #E6E6E6;
+    padding: 5px;
+    background-color: white;
+}
+.more-icon-container {
+    display: flex;
+    justify-content: center;
+}
+.more-icon {
+    width: 25px;
+}
+.person-rank-highlight {
+    padding: 20px 35px;
+    margin: 25px 0px 0px 0px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #FFF5D3;
+}
+/* LEADERBOARD */
