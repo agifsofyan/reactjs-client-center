@@ -8,6 +8,9 @@ RUN npm install
 
 COPY . ./
 
-EXPOSE 3000
+RUN npm run build
 
-CMD ["npm", "run", "start"]
+RUN yarn global add serve
+
+# Running on port 5000
+CMD ["serve", "-l", "5000", "-s", "build"]
