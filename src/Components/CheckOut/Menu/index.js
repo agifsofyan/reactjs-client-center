@@ -34,6 +34,7 @@ function Menu (props) {
                         height : showMenu ? 145 : style.height, 
                     }}  
             className="card-06-tc-c1"
+            onClick={e=>setShowMenu(!showMenu)}
         >
             <div style={{width : "100%" , height : showMenu &&  48, marginTop : showMenu && 6.5}} className="card-06-tc-c1-1">
                 <span style={{paddingLeft : 10 , color : "#959595", fontWeight : 400  ,...titleStyle}}>{ selected}</span>

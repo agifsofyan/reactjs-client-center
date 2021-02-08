@@ -33,6 +33,7 @@ function Menu (props) {
                         width : "86%"
                     }}  
             className="card-06-tc-c1"
+            onClick={e=>setShowMenu(!showMenu)}
         >
             <div style={{height : showMenu &&  48, marginTop : showMenu && 6.5}} className="card-06-tc-c1-1">
                 <span 

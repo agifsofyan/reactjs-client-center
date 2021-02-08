@@ -87,7 +87,9 @@ function Cart () {
                 // }
                 priceNum += e.product_info.price
                 saleNum += e.product_info.sale_price
-                bumpArr.push(...e.product_info.bump)
+                if (e && e.product_info) {
+                    bumpArr.push(...e.product_info.bump)
+                }
                 setBump(bumpArr)
                 setPrice(priceNum)
                 setSale(saleNum)
@@ -350,8 +352,11 @@ function Cart () {
                 >
                     <div className="product-detail-c14-fc">
                         <span>{ sale && moneyConvert(sale.toString(),"Rp. ")}</span>
+                        {
+                            
+                        }
                         <div>
-                            { price && moneyConvert(price.toString(),"Rp. ") }
+                            { price && price > 0 && sale > 0 && moneyConvert(price.toString(),"Rp. ") }
                         </div>
                     </div>
                     <div className="product-detail-c14-sc" onClick={e=>validationCommerce(e)}>

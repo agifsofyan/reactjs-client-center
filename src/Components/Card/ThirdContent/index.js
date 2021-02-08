@@ -65,7 +65,11 @@ function ThirdContent (props) {
 
     return (
         <div className="card-06-tc-container">
-            <div style={{height : showMenu && 220, overflowY : showMenu && "scroll"}}  className="card-06-tc-c1">
+            <div 
+                style={{height : showMenu && 220, overflowY : showMenu && "scroll"}}  
+                className="card-06-tc-c1"
+                onClick={e=>setShowMenu(!showMenu)}
+            >
                 <div style={{height : showMenu &&  48, marginTop : showMenu && 6.5}} className="card-06-tc-c1-1">
                     <span>{ selectedCoupon ? selectedCoupon.code : "Pilih Kupon"}</span>
                     {

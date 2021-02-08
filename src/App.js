@@ -186,7 +186,7 @@ function App () {
             <Route path='/lms-reseller-me' component={LMSResellerMe} />
             <Route path='/lms-profile' component={LMSProfile} />
             {/* <Route path="/" exact component={Home}/> */}
-            <Route path="/" exact component={ProductList}/>
+            <Route path="/" exact component={LandingPage}/>
             <Route path="" component={Error404}/>
           </Switch>
         </ScrollToTop>
@@ -197,6 +197,7 @@ function App () {
           modalClose={modalClose}
           setModalClose={setModalClose}
           setShowModal={setShowModal}
+          showModal={showModal}
         />
       }
     </div>

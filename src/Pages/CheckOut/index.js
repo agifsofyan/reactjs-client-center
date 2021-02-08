@@ -14,6 +14,9 @@ import Loader from '../../Components/Loader'
 // API
 import { SWAGGER_URL } from '../../Support/API_URL'
 
+// HELPER
+import moneyConvert from '../../Support/moneyConvert'
+
 // STYLE
 import './style.css'
 
@@ -34,7 +37,15 @@ function Order () {
     // LOCAL STATE LOADER
     const [loading,setLoading] = useState(false)
 
+    // PRICE
+    const [price,setPrice] = useState(0)
+    const [sale,setSale] = useState(0)
+    const [diskon,setDiskon] = useState(0)
+
     useEffect(()=>{
+
+        let priceNum = 0
+        let saleNum = 0
 
         axios({
             method : 'GET',
@@ -59,7 +70,25 @@ function Order () {
             }
         })
         .then(({data})=>{
-            console.log(data.data[0] , '   HMMM <><><><><><><><><>>')
+            console.log(data.data[0] , ' DATA ORDER')
+            let arr = data.data[0].items
+            let bumpArr = []
+            // ecommerce
+            arr.forEach(e=>{
+                priceNum += e.product_info.price
+                saleNum += e.product_info.sale_price
+                if (e && e.product_info && e.product_info.bump) {
+                    bumpArr.push(...e.product_info.bump)
+                }
+                // setBump(bumpArr)
+                // setPrice(priceNum)
+                // setSale(saleNum)
+                // e = {...e,isChecked : true}
+            })
+            setPrice(priceNum)
+            setSale(saleNum)
+            setDiskon(priceNum - saleNum)
+
             setOrder(data.data[0])
         })
         .catch(err=>{
@@ -129,7 +158,7 @@ function Order () {
                     Harga
                 </h5>
                 <h6>
-                    Rp. 210.000
+                    {price && moneyConvert(price ? price.toString() : "" ,"Rp. ")}
                 </h6>
             </div>
             <div className="order-08-price">
@@ -137,7 +166,7 @@ function Order () {
                     Diskon
                 </h5>
                 <h6>
-                    Rp. 210.000
+                    {diskon && moneyConvert(diskon ? diskon.toString() : "" ,"Rp. ")}
                 </h6>
             </div>
             <div className="order-08-price">
@@ -145,7 +174,7 @@ function Order () {
                     Total Harga
                 </h5>
                 <h6>
-                    Rp. 210.000
+                    {sale && moneyConvert(sale ? sale.toString() : "" ,"Rp. ")}
                 </h6>
             </div>
             <hr className="order-08-line"/>

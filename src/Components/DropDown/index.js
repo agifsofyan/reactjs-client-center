@@ -24,6 +24,7 @@ function DropDown (props) {
     return (
         <div
             className="dropdown-comp" 
+            onClick={e=>setShowMenu(!showMenu)}
             style={{
                     // flexDirection : showMenu ? "row" : "column",
                     ...style

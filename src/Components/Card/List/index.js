@@ -114,8 +114,8 @@ function List (props) {
 
                     <div className="cart-06-list1-sc">
                         <div className="cart-06-list1-sc-c1">
-                            <span>{ moneyConvert(el.product_info.price.toString(),"Rp. ") }</span>
-                            <div>{ moneyConvert(el.product_info.sale_price.toString(),"Rp. ")}</div>
+                            <span>{ el.product_info && moneyConvert( el.product_info.price ? el.product_info.price.toString() : "","Rp. ") }</span>
+                            <div>{ el.product_info && moneyConvert(el.product_info.sale_price ? el.product_info.sale_price.toString() : "","Rp. ")}</div>
                         </div>
                         <div className="cart-06-list1-sc-c2">
                             <div className="cart-06-list1-sc-c2-button">Hemat 80%</div>
