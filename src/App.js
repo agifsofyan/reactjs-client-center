@@ -90,20 +90,11 @@ function App () {
       })
       .then(({data})=>{
           data.data.forEach((e,index)=>{
-            // if (e.type === 'ecommerce') {
-            //   console.log(e.name , ' <<<<><><')
-            // }
             if (!e.price || !e.sale_price) {
               console.log(e.price , ' <<<< PRICE')
               console.log(e.sale_price , ' <<< SALE PRICE')
             }
-            // console.log(e, ' <<<< ELEMENT')
             if (e.feature.active_header || e.feature.active_page) {
-              // console.log(e.name , "  <<<<< NAME")
-              // console.log(e.feature.active_header ,' <<< k')
-              // console.log(e.feature.active_page ,' <<< k')
-              // console.log("HERE >>>>")
-              // console.log(e , ' <<< PRODUCT HEADER >>> ---')
               console.log(e._id , ' <<< ID')
               dispatch(changeValue("productHeader",e))
             }
