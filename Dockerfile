@@ -12,4 +12,5 @@ RUN yarn build
 
 RUN yarn global add serve
 
+# Running on port 5000
 CMD ["serve", "-l", "5000", "-s", "build"]
