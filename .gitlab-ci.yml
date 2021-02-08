@@ -1,0 +1,35 @@
+image: node:14-alpine
+
+services:
+    - docker:dind
+
+stages:
+    - deploy
+    - publish
+
+before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+
+deploy:
+    stage: deploy
+    tags:
+        - deploying
+    script:
+        - docker container stop -f laruno-client || true && docker container rm -f laruno-client || true
+        - docker image rm laruno/laruno-client
+        - echo "Building image.."
+        - docker build -t laruno/laruno-client .
+    only:
+        - master
+
+publish:
+    stage: publish
+    tags:
+        - publishing
+    script:
+        #- docker container stop -f laruno-client || true && docker container rm -f laruno-client || true
+        - docker run --name laruno-client -p 3000:3000 -d laruno/laruno-client
+        - docker container prune -f
+        - docker image prune -f
+    only:
+        - master
