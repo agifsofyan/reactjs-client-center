@@ -4,10 +4,12 @@ WORKDIR ./
 
 COPY package*.json ./
 
-RUN npm install
+RUN yarn install
 
 COPY . ./
 
-EXPOSE 3000
+RUN yarn build
 
-CMD ["npm", "run", "start"]
+RUN yarn global add serve
+
+CMD ["serve", "-l", "5000", "-s", "build"]

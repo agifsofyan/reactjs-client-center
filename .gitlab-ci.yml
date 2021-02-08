@@ -27,8 +27,7 @@ publish:
     tags:
         - publishing
     script:
-        #- docker container stop -f laruno-client || true && docker container rm -f laruno-client || true
-        - docker run --name laruno-client -p 3000:3000 -d laruno/laruno-client
+        - docker run --name laruno-client -p 5000:5000 -d laruno/laruno-client
         - docker container prune -f
         - docker image prune -f
     only:
