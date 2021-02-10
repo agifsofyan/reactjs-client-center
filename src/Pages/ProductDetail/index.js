@@ -110,25 +110,26 @@ function ProductDetail (props) {
     // RENDER ELEMENT
     let renderSection = () => {
         return detail.section.map((el,index)=>{
+            console.log(el , ' <<< PER SECTION')
             return (
                 <div className="product-detail-section-57">
                     {/* TITLE */}
                     <span className="product-detail-c9">
-                        {el.title}
+                        { el && el.title}
                     </span>
     
                     <img
-                        src={el.image}
+                        src={ el&& el.image}
                         className="product-detail-c13"
                         alt="dummy"
                     />
     
-                    <div className="product-detail-c10">
-                        #1 MOST PURCHASED BUSINESS COURSE ON UDEMY! ** OVER 350,000 STUDENTS IN 195 COUNTRIES
-                    </div>
+                    {/* <div className="product-detail-c10">
+                        { el && el.title}
+                    </div> */}
                     <div className="product-detail-c11">
                        {
-                           el.content
+                         el &&  el.content
                        }
                     </div>
                     {/* ONLY LINE */}
@@ -201,6 +202,45 @@ function ProductDetail (props) {
         }
     }
 
+    let renderVideo = () => {
+        console.log(detail.media_url ,  ' <<<< MEDIA URL')
+        if (detail.media_url) {
+            return (
+                 <video className="product-detail-c4" controls={true} autoPlay={true}>
+                    <source src={`${detail.media_url}`} type="video/mp4"/>
+                </video> 
+            )
+        }else {
+            return (
+                <div className="product-detail-c4">
+
+                </div>
+                // <iframe 
+                //     className="product-detail-c4" 
+                //     title={"p"}
+                //     // src={`${detail.media_url}`}
+                //     src={"https://www.youtube.com/embed/tT0w1KN0mjM"}
+                // >
+                // </iframe>
+            )
+        }
+    }
+
+    let renderTopic = () => {
+        return detail.topic.map((e,index)=>{
+            return (
+                <div 
+                    className="pdc3-button"
+                    style={{marginLeft : index > 0 && 11}}
+                >
+                    {
+                        e.name
+                    }
+                </div>
+            )
+        })
+    }
+
     if (!detail) {
         return (
             <div className="product-detail-root" style={{height : "99vh",alignItems : "flex-start"}}>
@@ -250,13 +290,9 @@ function ProductDetail (props) {
             </h3>
             <div className="product-detail-c3">
 
-                <div className="pdc3-button">
-                    Best Seller
-                </div>
-
-                <div className="pdc3-button" style={{marginLeft : 11}}>
-                    Bisnis
-                </div>
+                {
+                    detail && renderTopic()
+                }
 
                 <div className="pdc3-button-2" style={{marginLeft : 11}}>
                     <span className="fa fa-star checked" ></span>
@@ -267,13 +303,9 @@ function ProductDetail (props) {
             {/* <video className="product-detail-c4" controls={true} autoPlay={true}>
                 <source src={`${detail.media_url}`} type="video/mp4"/>
             </video> */}
-            <iframe 
-                className="product-detail-c4" 
-                title={"p"}
-                // src={`${detail.media_url}`}
-                src={"https://www.youtube.com/embed/tT0w1KN0mjM"}
-            >
-            </iframe>
+            {
+                detail && renderVideo()
+            }
             {/* <div className="product-detail-c4">
             </div> */}
             
@@ -291,7 +323,7 @@ function ProductDetail (props) {
                 </span>
             </div>
             <span className="product-detail-c6">
-                Hemat {diskP}% - 4 days left at this price!
+                Hemat {diskP}% - Khusus minggu ini promo hemat {diskP}%!
             </span>
             <div
                 className="product-detail-c7"
@@ -310,16 +342,21 @@ function ProductDetail (props) {
 
             {/* TITLE */}
             <span  className="product-detail-c9">
-                {detail.headline}
+                { detail && detail.headline}
             </span>
-
-            <Carousel/>
+            
+            {
+                detail &&
+                <Carousel
+                    detail={detail}
+                />
+            }
 
             <div  className="product-detail-c10">
-                {detail.subheadline}
+                { detail && detail.subheadline}
             </div>
             <div className="product-detail-c11">
-               {detail.description}
+               { detail && detail.description.replace(/<\/?[^>]+(>|$)/g, "")}
             </div>
             
             {/* ONLY LINE */}

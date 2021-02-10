@@ -1,5 +1,8 @@
 import React , { useState , useEffect } from 'react'
 
+// MODULE
+import { useHistory , useLocation } from 'react-router-dom'
+
 // MATERIAL ICONS
 import CloseIcon from '@material-ui/icons/Close';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -13,14 +16,20 @@ import './style.css'
 
 function Modal (props) {
 
-    const [animationEnd,setAnimationEnd] = useState(false)
+    // HISTORY
+    const history = useHistory()
+
+    // LOCATION
+    const location = useLocation()
+
+    // const [animationEnd,setAnimationEnd] = useState(false)
     
     // WIDTH
     const [width,setWidth] = useState(0)
 
     const {
-        modalClose,
-        setModalClose,
+        // modalClose,
+        // setModalClose,
         showModal,
         setShowModal
     } = props
@@ -45,6 +54,8 @@ function Modal (props) {
                 // setWidth(100)
             },1000)
         }
+        // console.log(animationEnd)
+        // animationEnd()
     },[showModal])
 
     let handleModalClose = () => {
@@ -54,18 +65,45 @@ function Modal (props) {
         },900)
     }
 
+    let handleChangePage = (route) => {
+        history.push(route)
+        handleModalClose()
+    }
+
+    let checkSelected = (current) => {
+        if (location.pathname === current) {
+            return "bmc-content-4-selected"
+        }else {
+            return "bmc-content-4"
+        }
+    }
+
     if (width !== 100) {
         return (
-            <div className="burger-menu-01"  onAnimationEnd={e=>setAnimationEnd(true)}>
-                <div style={{width : `${width}%`}}  className="burger-menu-01-content" onTransitionEnd={e=>setAnimationEnd(true)}>
+            <div 
+                className="burger-menu-01" 
+                // onAnimationEnd={e=>setAnimationEnd(true)}
+            >
+                <div 
+                    style={{width : `${width}%`}}  
+                    className="burger-menu-01-content" 
+                    // onTransitionEnd={e=>setAnimationEnd(true)}
+                >
 
                 </div>
             </div>
         )
     }else {
         return (
-            <div className="burger-menu-01"  onAnimationEnd={e=>setAnimationEnd(true)}>
-                <div style={{width : `${width}%`}}  className="burger-menu-01-content" onTransitionEnd={e=>setAnimationEnd(true)}>
+            <div 
+                className="burger-menu-01" 
+                // onAnimationEnd={e=>setAnimationEnd(true)}
+            >
+                <div 
+                    style={{width : `${width}%`}}  
+                    className="burger-menu-01-content" 
+                    // onTransitionEnd={e=>setAnimationEnd(true)}
+                >
 
                     <div className="bmc-content-1">
                         <div className="bmc-content-1-c1">
@@ -94,7 +132,11 @@ function Modal (props) {
 
                     <div style={{marginTop : 20}} className="bmc-content-3"></div>
 
-                    <div className="bmc-content-4" style={{marginTop : 19}}>
+                    <div 
+                        style={{marginTop : 19}}
+                        className={checkSelected("/product-list")}
+                        onClick={e=>handleChangePage('/product-list')}
+                    >
                         Beranda
                     </div>
 
@@ -102,12 +144,33 @@ function Modal (props) {
                         Tentang Laruno
                     </div>
 
-                    <div className="bmc-content-4-selected">
+                    <div
+                        className={checkSelected("/auth")}
+                        onClick={e=>handleChangePage('/auth')} 
+                    >
                         Login & Register Akun
                     </div>
 
-                    <div className="bmc-content-4" style={{marginTop : 19}}>
+                    <div className="bmc-content-4" >
                         Tentang Laruno
+                    </div>
+
+                    {/* <div className="bmc-content-4" >
+                        Topik Belajar Laruno
+                    </div> */}
+
+                    <div
+                        className={checkSelected("/order-history")}
+                        onClick={e=>handleChangePage('/order-history')}   
+                    >
+                        History Transaksi
+                    </div>
+
+                    <div
+                        className={checkSelected("/lms-dashboard")}
+                        onClick={e=>handleChangePage('/lms-dashboard')}
+                    >
+                        LMS
                     </div>
 
                 </div>

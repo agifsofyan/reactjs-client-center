@@ -37,6 +37,9 @@ function Cart () {
     const [bump,setBump] = useState(null)
     const [user,setUser] = useState(null)
 
+    // CEK GET DATA
+    const [isData,setIsData] = useState(false)
+
     // PRICE
     const [price,setPrice] = useState(0)
     const [sale,setSale] = useState(0)
@@ -100,6 +103,7 @@ function Cart () {
             })
             console.log(arr, ' <<<<< TES')
             setCart(arr)
+            setIsData(true)
             console.log(bumpArr , ' <<< VALUE BUMP')
         })
         .catch(err=>{
@@ -261,6 +265,7 @@ function Cart () {
             <h1 className="cwr-99-1 cart-06-title1">User Data</h1>
             <FirstContent
                 user={user}
+                isData={isData}
             />
             <div className="cart-06-1 cart-06-c2">
 

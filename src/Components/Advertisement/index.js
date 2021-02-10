@@ -38,7 +38,10 @@ function Advertisement (props) {
             location.pathname === '/transfer-confirm' ||
             location.pathname === '/payment=true'||
             location.pathname === '/landing-page' ||
-            location.pathname === "/order-history"
+            location.pathname === "/order-history" ||
+            location.pathname === "/" ||
+            location.pathname.split('-')[0] === "/lms" ||
+            !productHeader
         ) 
     {
         return <></>

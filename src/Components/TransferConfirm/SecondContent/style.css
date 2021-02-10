@@ -49,17 +49,55 @@
     margin: 6% 0 0 0;
 }
 
-.transfer-08-sc-2 > div > img {
+.transfer-08-sc-2 > div  img {
     width: 70px;
     height: 24.5px;
     object-fit: contain;
 }
 
-.transfer-08-sc-2 > div > .icon-copy {
+.transfer-08-sc-2 > div > div > .icon-copy {
     width: 17px !important;
     height: 17px !important;
     cursor: pointer;
     object-fit: contain;
+}
+
+.transfer-08-sc-2 > div > div  {
+    position: relative;
+    display: inline-block;
+}
+
+.transfer-08-sc-2 > div > div > .tooltiptext {
+    visibility: hidden;
+    min-width: 120px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 5px 5px 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.transfer-08-sc-2 > div > div > .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.transfer-08-sc-2 > div > div:hover > .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 
 .transfer-08-sc-2 > div > span {
@@ -67,6 +105,20 @@
     font-size: 18px;
     line-height: 20.5px;
     font-weight: 400;
+}
+
+.transfer-08-sc-2 > div > input {
+    color: #5F5F5F;
+    font-size: 18px;
+    line-height: 20.5px;
+    font-weight: 400;
+    border: none;
+    background-color: #ffffff;
+    /* padding-left: 0 auto; */
+    width: auto !important;
+    /* padding-left: 30px; */
+    text-align: center;
+    outline: none;
 }
 
 .transfer-08-sc-icon {

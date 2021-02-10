@@ -8,39 +8,43 @@
 
 .plc-carousel-fc {
     display: flex;
-    width: 83%;
+    width: 86%;
     justify-content: space-between;
     align-items: center;
         /* justify-content: center; */
 }
 
 .plc-carousel-fc > img {
-    width: 250px;
-    height: 247px;
+    width: 278px;
+    height: 253px;
     border-radius: 7px;
+    -webkit-transition: opacity 1s ease-in-out;
+    -moz-transition: opacity 1s ease-in-out;
+    -o-transition: opacity 1s ease-in-out;
+    transition: opacity 1s ease-in-out;
 }
 
 .plc-carousel-container >  h1 {
     font-weight: 700;
-    font-size: 20px;
+    font-size: 24px;
     text-align: center;
     width: 100%;
-    margin: 15px 0 0 0;
+    margin: 16.5px 0 0 0;
     padding: 0 0 0 0;
 }
 
 .plc-carousel-container >  h2 {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 20px;
     width: 100%;
     text-align: center;
-    margin: 5px 0 0 0;
+    margin: 6.5px 0 0 0;
     padding: 0 0 0 0;
 }
 
 .plc-carousel-container > button {
-    width: 209px;
-    height: 30px;
+    width: 220px;
+    height: 32px;
     background-color: #FF4500;
     border-radius: 7px;
     border: none;
@@ -52,7 +56,7 @@
     font-weight: bold;
     font-size: 17px;
     line-height: 19px;
-    margin: 13px 0 0 0  ;
+    margin: 14.5px 0 0 0  ;
 }
 
 .plc-carousel-container-pagination {
@@ -100,6 +104,10 @@
         width: 197px;
         height: 194px;
         border-radius: 6px;
+    }
+    .plc-carousel-container > button {
+        width: 209px;
+        height: 30px;
     }
 }
 

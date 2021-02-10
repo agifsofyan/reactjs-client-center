@@ -27,7 +27,7 @@ function ProductList () {
             </div>
             <span 
                 className="plc-p-title"
-                style={{marginTop : 15}}
+                style={{marginTop : 12}}
             >
                 Business
             </span>

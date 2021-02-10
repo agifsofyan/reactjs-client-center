@@ -4,6 +4,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import Skeleton from 'react-loading-skeleton';
+import axios from 'axios';
 
 // ANT DESIGN 
 import { Rate } from 'antd';
@@ -32,9 +33,37 @@ function Content (props) {
     // LOCAL ACTION
     let renderDot = (name) => {
         if (name.length >= 27) {
-            return "......"
+            return "..."
         }else {
             return ""
+        }
+    }
+
+    let handleDescription = (el) => {
+        if (el.description[0] === "<" && el.description[1] === 'p' && el.description[2] === '>' ) {
+            return el.description.replace(/<\/?[^>]+(>|$)/g, "").slice(0,36) + "" + renderDot(el.description)
+        }else {
+            return el.description.slice(0,36) + "" + renderDot(el.description)
+        }
+    }
+
+    let imageExists = (image_url) => {
+
+        // var http = new XMLHttpRequest();
+        // http.open('HEAD', image_url , true);
+        // http.send();
+        // // console.log(http.status , ' <<< STATUS')
+        // return http.status != 404;
+        return true
+    }
+
+
+    let checkArr = (img) => {
+        let status = Array.isArray(img)
+        if (status) {
+            return img[0]
+        }else {
+            return img
         }
     }
 
@@ -48,25 +77,30 @@ function Content (props) {
             >
                 <img 
                     className="slides-3-content-c1"
-                    src={productRecom}
-                    alt={'recom'}
+                    src={ imageExists(el.image_url) ? checkArr(el.image_url) : productRecom}
+                    alt={'Image Not Found'}
                 />
                 <span className="slides-3-content-c2">
                     {
-                        el.name.slice(0,23) + "" + renderDot(el.name)
+                      el.name && el.name.slice(0,23) + "" + renderDot(el.name)
                     }
                 </span>
                 <div className="slides-3-content-c3">
                     {
-                        el.description.slice(0,23) + "" + renderDot(el.name)
+                        el.description && handleDescription(el)
                     }
                 </div>
                 <div className="slides-3-content-c4">
-                    <Rate 
+                    {/* <Rate 
                         allowHalf 
                         defaultValue={5} 
                         style={{color : "#EB8A2F",fontSize : 20}}
-                    />
+                    /> */}
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked"></span>
+                    <span class="fa fa-star checked" style={{marginRight : 0}}></span>
                     <div className="slides-3-content-c4-t">
                         (5) 1.200
                     </div>

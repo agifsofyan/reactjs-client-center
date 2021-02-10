@@ -8,7 +8,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 // import Loader from '../../../Components/Loader'
 
 // HELPER
-// import moneyConvert from '../../../Support/moneyConvert'
+import moneyConvert from '../../../Support/moneyConvert'
 
 // STYLE
 import './style.css'
@@ -55,9 +55,14 @@ function ThirdContent (props) {
                     className="card-06-tc-c1-2"
                     onClick={e=>handleCoupon(el)}
                 >
-                    {
-                        el.code
-                    }
+                    <div>
+                        {
+                            el.code
+                        }
+                    </div>
+                    <div>
+                        { el.max_discount && `Mendapatkan diskon sebesar ${ moneyConvert(el.max_discount.toString(),"Rp. ")}`}
+                    </div>
                 </div>
             )
         })

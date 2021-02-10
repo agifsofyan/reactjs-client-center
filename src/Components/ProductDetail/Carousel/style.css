@@ -1,15 +1,27 @@
 .product-detail-carousel {
-    width: 90%;
-    height: 187px;
+    width: 92%;
+    height: 300px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 11px;
+    margin-top: 19px;
 }
 
 .pdc-carousel-55 {
-    width: 280px;
+    width: 360px;
     height: 100%;
     background-color: #c4c4c4;   
     border-radius: 6px;
+}
+
+@media only screen and (max-width: 600px) {
+    .pdc-carousel-55 {
+        width: 280px;
+        height: 100%;
+        background-color: #c4c4c4;   
+        border-radius: 6px;
+    }
+    .product-detail-carousel {
+        height: 187px;
+    }
 }

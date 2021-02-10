@@ -29,6 +29,12 @@ function LandingPage () {
     // LOCAL STATE
     const [video,setVideo] = useState(null)
 
+    // LOCAL STATE INPUT
+    const [topic,setTopic] = useState(null)
+    const [email,setEmail] = useState(null)
+    const [name,setName] = useState(null)
+    const [phone,setPhone] = useState(null)
+
     useEffect(()=>{
         axios({
             method : "GET",
@@ -45,7 +51,11 @@ function LandingPage () {
         })
     },[])
 
-    console.log(window.matchMedia("(max-width: 600px)") , ' <<<< SCREEN')
+    let handleClick = () => {
+        
+    }
+
+    // console.log(window.matchMedia("(max-width: 600px)") , ' <<<< SCREEN')
 
     return (
         <div className="lp-10-container">
@@ -99,16 +109,23 @@ function LandingPage () {
             <Input
                 text={"Topic"}
                 style={{width : "90%",borderRadius : 20,marginTop : 1}}
+                // setter={se}
             />
             <Input
+                setter={setEmail}
+                value={email}
                 text={"Email"}
                 style={{width : "90%",borderRadius : 20}}
             />
-            <Input
+            <Input 
+                setter={setName}
+                value={name}
                 text={"Nama"}
                 style={{width : "90%",borderRadius : 20}}
             />
             <Input
+                setter={setPhone}
+                value={phone}
                 text={"Nomor Hp"}
                 style={{width : "90%",borderRadius : 20}}
             />

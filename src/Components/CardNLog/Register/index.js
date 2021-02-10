@@ -240,14 +240,23 @@ function Register (props) {
                     className="auth-checkbox"
                     onClick={e=>setCheck1(!check1)}
                 />
-                <label  style={{marginLeft : 10}}>Saya telah membaca dan menyetujui Aturan Penggunaan dan kebijakan Privasi Larunocom</label>
+                <label  style={{marginLeft : 10}}>Saya telah membaca dan menyetujui Kebijakan Privasi dan Syarat & Ketentuan Pengguna Larunocom</label>
             </div>
+            {/* {
+                isClick && !check1 &&
+                <div
+                    style={{fontSize : 16,color : "#ff3333"}}
+                >
+                    Harap Centang
+                </div>
+            } */}
             <Button
                 text={'Lanjut'}
-                style={{width : "82%",marginTop : 15,marginBottom : 40}}
+                style={{width : "82%",marginTop : 15,marginBottom : 20}}
                 fn={handleValidation}
                 loader={loading}
             />
+           
 
         </form>
     )
