@@ -41,11 +41,15 @@ function Advertisement (props) {
             location.pathname === "/order-history" ||
             location.pathname === "/" ||
             location.pathname.split('-')[0] === "/lms" ||
-            !productHeader
+            !productHeader ||
+            !productHeader.feature
         ) 
     {
         return <></>
-    }else  {
+    }else if (!productHeader.feature.feature_onheader) {
+        return null
+    }
+    else  {
         return (
             <div className="adv-container"  id="adv-cont">
                 <div

@@ -28,15 +28,18 @@ function Carousel () {
     // LOCAL STATE
     const [arrImg] = useState([image1,image2,image3,image4])
     const [selected,setSelected] = useState(0)
-    const [lastLen] = useState(arrImg.length -1)
+    const [lastLen,setlastLen] = useState(arrImg.length -1)
 
     // HISTORY
     const history = useHistory()
 
     useEffect(()=>{
-        console.log(selected , ' <<<< VALUE SELECTED >>>')
-        console.log(lastLen , ' <<< LAST LEN')
-    },[selected,lastLen])
+        if (productHeader) {
+            if (productHeader.image_url) {
+                setlastLen(productHeader.image_url.length -1)
+            }
+        }
+    },[productHeader])
 
     let handlePlus = () => {
         if (selected !== lastLen) {
@@ -54,28 +57,65 @@ function Carousel () {
         }
     }
 
-    console.log(productHeader , ' <<<< HEADER')
+    let renderNav = () => {
+        let arr;
+        if (productHeader ) {
+            if (productHeader.image_url) {
+                arr = productHeader.image_url
+            }else {
+                arr = arrImg
+            }
+        }else {
+            arr = arrImg
+        }
+        return arr.map((el,index)=>{
+            if (index === selected) {
+                return (
+                    <main style={{marginLeft : index === 0 && 0}}>
+
+                    </main>
+                )
+            }else {
+                return (
+                    <div style={{marginLeft : index === 0 && 0}}>
+        
+                    </div>
+                )
+            }
+        })
+    }
 
     return (
         <div className="plc-carousel-container">
             
-            <div className="plc-carousel-fc">
-                <NavigateBeforeIcon
-                    onClick={e=>handleMin()}
-                    style={{fontSize : 44,cursor : 'pointer'}}
-                />
-                    {
-                        list ?
-                        <img
-                            src={arrImg[selected]}
-                            alt="list-p"
-                        />  :
-                        <Skeleton duration={0.3} height={194} width={197} style={{borderRadius : 6}}/> 
-                    }
-                <NavigateNextIcon
-                    onClick={e=>handlePlus()}
-                    style={{fontSize : 40,cursor : 'pointer'}}
-                />
+            <div 
+                style={{
+                    justifyContent : lastLen < 1 && "center"
+                }}
+                className="plc-carousel-fc"
+            >
+                {
+                    lastLen >= 1 &&
+                    <NavigateBeforeIcon
+                        onClick={e=>handleMin()}
+                        style={{fontSize : 44,cursor : 'pointer'}}
+                    />
+                }
+                {
+                    list ?
+                    <img
+                        src={ productHeader ? productHeader.image_url[selected] : arrImg[selected]}
+                        alt="list-p"
+                    />  :
+                    <Skeleton duration={0.3} height={194} width={197} style={{borderRadius : 6}}/> 
+                }
+                {
+                    lastLen >= 1 &&
+                    <NavigateNextIcon
+                        onClick={e=>handlePlus()}
+                        style={{fontSize : 40,cursor : 'pointer'}}
+                    />
+                }
             </div>
             {   
                 list ?
@@ -88,7 +128,7 @@ function Carousel () {
             {
                 list ?
                 <h2>
-                    {productHeader && productHeader.description}
+                    {productHeader && productHeader.description.replace(/<\/?[^>]+(>|$)/g, "")}
                 </h2> :
                 <Skeleton duration={0.1} width={200} height={15} style={{marginTop : 15}} /> 
             }
@@ -101,23 +141,8 @@ function Carousel () {
 
             <div className="plc-carousel-container-pagination">
                 {
-                    arrImg.map((el,index)=>{
-                        if (index === selected) {
-                            return (
-                                <main style={{marginLeft : index === 0 && 0}}>
-
-                                </main>
-                            )
-                        }else {
-                            return (
-                                <div style={{marginLeft : index === 0 && 0}}>
-                    
-                                </div>
-                            )
-                        }
-                    })
+                    renderNav()
                 }
-
             </div>
 
         </div>

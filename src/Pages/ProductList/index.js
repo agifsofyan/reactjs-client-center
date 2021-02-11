@@ -1,4 +1,4 @@
-import React , { useEffect } from 'react'
+import React , { useEffect , useState } from 'react'
 
 // STYLE
 import './style.css'
@@ -11,6 +11,12 @@ import Content1 from '../../Assets/Images/content-1.png'
 
 function ProductList () {
 
+    // SELECTED TOPIC
+    const [arrTopic,setArrTopic] = useState([])
+
+    // LOCAL STATE
+    const [showMenu,setShowMenu] = useState()
+
     useEffect(()=>{
         if (typeof window !== "undefined") {
             if (window.fbq != null) { 
@@ -19,8 +25,21 @@ function ProductList () {
         }
     },[])
 
+    useEffect(()=>{
+        if (!showMenu) {
+            // let el = document.getElementById('product-list-root')
+            // el.removeEventListener('click',e=>setShowMenu(false))
+            // setTimeout(()=>{
+            // },200)
+        }
+    },[showMenu])
+
     return (
-        <div className="product-list-container">
+        <div 
+            className="product-list-container"
+            // onClick={e=>[e.preventDefault() , e.stopPropagation() ,setShowMenu(false)]}
+            // id="product-list-root"
+        >
             <Carousel/>
             <div className="plc-p-line" >
 
@@ -58,8 +77,13 @@ function ProductList () {
 
             </div>
 
-            <TopicSort/>
-            <Content style={{marginTop : 21}}/>
+            <TopicSort
+                arrTopic={arrTopic}
+                setArrTopic={setArrTopic}
+                showMenu={showMenu}
+                setShowMenu={setShowMenu}
+            />
+            <Content isFilter={ arrTopic.length > 0 &&true} filterData={arrTopic} style={{marginTop : arrTopic.length > 0 ?30 : 20}}/>
             <div className="plc-p-line" style={{marginTop : 25}}>
 
             </div>

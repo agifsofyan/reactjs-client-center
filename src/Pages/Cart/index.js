@@ -43,6 +43,7 @@ function Cart () {
     // PRICE
     const [price,setPrice] = useState(0)
     const [sale,setSale] = useState(0)
+    const [saleBef,setSaleBef] = useState(0)
     // const []
 
     // LOCAL STATE CHECK ECOMMERCE
@@ -73,7 +74,7 @@ function Cart () {
             }
         }))
         .then(({data})=>{
-            console.log(data.data.items , ' <<<< CART ')
+            // console.log(data.data.items , ' <<<< CART ')
             let arr = data.data.items
             let bumpArr = []
             // ecommerce
@@ -91,20 +92,27 @@ function Cart () {
                 priceNum += e.product_info.price
                 saleNum += e.product_info.sale_price
                 if (e && e.product_info) {
-                    bumpArr.push(...e.product_info.bump)
+                    // console.log(e.product_info.bump , ' <<< PER BUMP')
+                    if (e.product_info.bump) {
+                        e.product_info.bump.forEach((e2,index)=>{
+                            bumpArr.push({...e2,isSelected : false})
+                        })
+                    }
                 }
-                setBump(bumpArr)
-                setPrice(priceNum)
-                setSale(saleNum)
+
                 // e = {...e,isChecked : true}
             })
+            setBump(bumpArr)
+            setPrice(priceNum)
+            setSale(saleNum)
+            setSaleBef(saleNum)
             arr = arr.map(e=>{
                 return e = {isChecked : true,...e}
             })
-            console.log(arr, ' <<<<< TES')
+            // console.log(arr, ' <<<<< TES')
             setCart(arr)
             setIsData(true)
-            console.log(bumpArr , ' <<< VALUE BUMP')
+            // console.log(bumpArr , ' <<< VALUE BUMP')
         })
         .catch(err=>{
             console.log(err ,' << ERROR ')
@@ -117,7 +125,6 @@ function Cart () {
         })
         .then(({data})=>{
             setCoupons(data.data )
-            console.log(data , ' <<<< COUPON')
             // setSelectedCoupon(data.data[0])
         })
         .catch(err=>{
@@ -260,6 +267,27 @@ function Cart () {
         }
     }
 
+    // LISTEN CHANGE LOCAL STATE BUMP
+    // useEffect(()=>{
+    //     let num = 0
+    //     if (bump) {
+    //         bump.forEach((e,index)=>{
+    //             if (e.isSelected) {
+    //                 console.log('@@@@@@@LOL ><><><><><><><)()()())')
+    //                 num = num + e.bump_price
+    //                 console.log(num , ' <<< VALUE NUM')
+    //             }
+    //         })
+    //         setPrice(price + num)
+    //         setSale(sale + num)
+    //     }
+    // },[bump])
+
+    useEffect(()=>{
+        // console.log(price , ' <<< VALUE PRICE')
+        // console.log(sale, ' << VALUE SALE')
+    },[price,sale])
+
     return (
         <div className="cart-container-06">
             <h1 className="cwr-99-1 cart-06-title1">User Data</h1>
@@ -322,10 +350,17 @@ function Cart () {
             {
                 bump &&
                 bump.map((e,index)=>{
+                    // console.log(e , ' <<<< VALUE BUMP')
                     return (
                         <SecondContent
                             bump={e}
+                            setBump={setBump}
                             index={index}
+                            bumpArr={bump}
+                            sale={sale}
+                            setSale={setSale}
+                            price={price}
+                            setPrice={setPrice}
                         />
                     )
                 })
@@ -342,6 +377,7 @@ function Cart () {
                     cart={cart}
                     sale={sale}
                     setSale={setSale}
+                    saleBef={saleBef}
                 />
             }
 

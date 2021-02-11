@@ -122,7 +122,6 @@ function Order () {
                 setLoading(false)
                 let type = data.data.payment.method.info;
                 let total = data.data.total_price
-                console.log(total ,  ' <<< TOTAL')
                 if (type === "Bank-Transfer") {
                     console.log('TRUEE')
                     if (typeof window !== "undefined") {

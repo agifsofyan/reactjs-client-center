@@ -16,7 +16,7 @@ function Button (props) {
     } = props
 
     return (
-       <button
+       <div
         className="button-comp-style"
         onClick={e=>fn(e)}
         style={{...style}}
@@ -26,7 +26,7 @@ function Button (props) {
              <Loader/> :
              text
            }
-       </button>
+       </div>
     )
 
 }

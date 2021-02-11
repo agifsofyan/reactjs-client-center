@@ -22,13 +22,15 @@ import productRecom from '../../../Assets/Images/recommended.png'
 function Content (props) {
 
     // PARENT PROPS
-    const { style } = props 
+    const { style , isFilter , filterData } = props 
 
     // DECLARE HISTORY
     const history = useHistory()
 
     // GLOBAL STATE
     const list = useSelector(state=>state.product.productList)
+
+    console.log(list , ' << VALUE LIST')
 
     // LOCAL ACTION
     let renderDot = (name) => {
@@ -40,11 +42,7 @@ function Content (props) {
     }
 
     let handleDescription = (el) => {
-        if (el.description[0] === "<" && el.description[1] === 'p' && el.description[2] === '>' ) {
-            return el.description.replace(/<\/?[^>]+(>|$)/g, "").slice(0,36) + "" + renderDot(el.description)
-        }else {
-            return el.description.slice(0,36) + "" + renderDot(el.description)
-        }
+        return el.description.replace(/<\/?[^>]+(>|$)/g, "").slice(0,32) + "" + renderDot(el.description)
     }
 
     let imageExists = (image_url) => {
@@ -69,67 +67,100 @@ function Content (props) {
 
     // LOCAL ACTION
     let renderList = () => {
-        return list.map((el,index)=>{
+        let arr 
+        if (isFilter) {
+            let result = []
+            list.forEach(el1=>{
+                let status = false
+                // console.log(el1 , " <<<< VALUE el 1")
+                el1.topic.forEach(el2=>{
+                    console.log(el2.name , ' <<<<2')
+                    filterData.forEach(el3=>{
+                        console.log(el3.name , ' <<<<3')
+                        if (el2.name === el3.name) {
+                            status = true
+                        }
+                    })
+                })
+                if (status) {
+                    result.push(el1)
+                }
+            })
+            arr = result
+            // arr = list.filter(e=>e.)
+        }else {
+            arr = list
+        }
+        if (arr.length === 0) {
             return (
-            <div
-                // onClick={e=>history.push(`/product-detail?utm=origin&id=${el._id}`)}
-                onClick={e=>history.push(`/product-detail/${el.slug}?utm=origin`)}
-            >
-                <img 
-                    className="slides-3-content-c1"
-                    src={ imageExists(el.image_url) ? checkArr(el.image_url) : productRecom}
-                    alt={'Image Not Found'}
-                />
-                <span className="slides-3-content-c2">
-                    {
-                      el.name && el.name.slice(0,23) + "" + renderDot(el.name)
-                    }
-                </span>
-                <div className="slides-3-content-c3">
-                    {
-                        el.description && handleDescription(el)
-                    }
+                <div style={{width : "100%",display :"flex",justifyContent :"center",alignItems : "center"}}>
+                    data tidak ada
                 </div>
-                <div className="slides-3-content-c4">
-                    {/* <Rate 
-                        allowHalf 
-                        defaultValue={5} 
-                        style={{color : "#EB8A2F",fontSize : 20}}
-                    /> */}
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked" style={{marginRight : 0}}></span>
-                    <div className="slides-3-content-c4-t">
-                        (5) 1.200
-                    </div>
-                </div>
-                <div className="slides-3-content-c5">
-                    {
-                        el.sale_price >0 &&
-                        <span>
-                            {
-                                moneyConvert(el.price.toString(),'Rp. ')
-                            }
-                        </span>
-                    }
-                    <div
-                        style={{
-                            marginLeft : el.sale_price <= 0 ? 0 : null 
-                        }}
-                    >
+            )
+        }else {
+
+            return arr.map((el,index)=>{
+                return (
+                <div
+                    // onClick={e=>history.push(`/product-detail?utm=origin&id=${el._id}`)}
+                    onClick={e=>history.push(`/product-detail/${el.slug}?utm=origin`)}
+                >
+                    <img 
+                        className="slides-3-content-c1"
+                        src={ imageExists(el.image_url) ? checkArr(el.image_url) : productRecom}
+                        alt={'Image Not Found'}
+                    />
+                    <span className="slides-3-content-c2">
                         {
-                            el.sale_price > 0 ? moneyConvert(el.sale_price.toString(),'Rp. ')  : moneyConvert(el.price.toString(),'Rp. ')
+                          el.name && el.name.slice(0,23) + "" + renderDot(el.name)
+                        }
+                    </span>
+                    <div className="slides-3-content-c3">
+                        {
+                            el.description && handleDescription(el)
                         }
                     </div>
+                    <div className="slides-3-content-c4">
+                        {/* <Rate 
+                            allowHalf 
+                            defaultValue={5} 
+                            style={{color : "#EB8A2F",fontSize : 20}}
+                        /> */}
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked"></span>
+                        <span class="fa fa-star checked" style={{marginRight : 0}}></span>
+                        <div className="slides-3-content-c4-t">
+                            (5) 1.200
+                        </div>
+                    </div>
+                    <div className="slides-3-content-c5">
+                        {
+                            el.sale_price >0 &&
+                            <span>
+                                {
+                                    moneyConvert(el.price.toString(),'Rp. ')
+                                }
+                            </span>
+                        }
+                        <div
+                            style={{
+                                marginLeft : el.sale_price <= 0 ? 0 : null 
+                            }}
+                        >
+                            {
+                                el.sale_price > 0 ? moneyConvert(el.sale_price.toString(),'Rp. ')  : moneyConvert(el.price.toString(),'Rp. ')
+                            }
+                        </div>
+                    </div>
+                    <div className="slides-3-content-c6">
+                        Daftar
+                    </div>
                 </div>
-                <div className="slides-3-content-c6">
-                    Daftar
-                </div>
-            </div>
-            ) 
-        })
+                ) 
+            })
+        }
     }
 
     let renderSkeleton = () => {

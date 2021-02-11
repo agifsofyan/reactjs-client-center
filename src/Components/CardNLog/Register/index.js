@@ -11,6 +11,9 @@ import Button from '../../Button'
 // API
 import { SWAGGER_URL } from '../../../Support/API_URL'
 
+// STYLE
+import './style.css'
+
 function Register (props) {
 
     // PARENT PROPS
@@ -44,6 +47,9 @@ function Register (props) {
     // LOCAL STATE ERROR PASSWORD
     const [errorPass,setErrorPass] = useState(false)
     const [passMessage,setPassMessage] =  useState("")
+
+    // LOCAL STATE SET CHECKBOX ANIMATION
+    const [shake,setShake] = useState("")
 
     let handleError = (data) => {
 
@@ -194,6 +200,13 @@ function Register (props) {
         }
 
         if (!check1) {
+            if (isNext) {
+                setShake("shaker-animation-99")
+                setTimeout(()=>{
+                    setShake("")
+                },500)
+            }
+            // console.log('RUN')
             isNext = false
         } 
 
@@ -206,7 +219,7 @@ function Register (props) {
     return (
         <form className="cardn-auth-container" onSubmit={e=>handleValidation(e)}>
             <div className="cardn-container-07-title-1 ">
-                <h1>Silahkan isi data diri anda</h1>
+                <h1 >Silahkan isi data diri anda</h1>
             </div>
             <Input
                 text={"Name"}
@@ -234,13 +247,17 @@ function Register (props) {
                 isError={errorPass}
                 message={passMessage}
             />
-            <div style={{display : "flex",width : "82%" , marginTop : 15, alignItems : "center" , height : 30}}>
+            <div 
+                className="auth-cart-register-notlog"
+                // style={{display : "flex",width : "82%" , marginTop : 15, alignItems : "center" , height : 30}}
+            >
                 <input 
+                    className={ "auth-checkbox " + shake  }
                     type="checkbox" 
-                    className="auth-checkbox"
+                    // className="auth-checkbox"
                     onClick={e=>setCheck1(!check1)}
                 />
-                <label  style={{marginLeft : 10}}>Saya telah membaca dan menyetujui Kebijakan Privasi dan Syarat & Ketentuan Pengguna Larunocom</label>
+                <label className={shake}  style={{marginLeft : 10}}>Saya telah membaca dan menyetujui Kebijakan Privasi dan Syarat & Ketentuan Pengguna Larunocom</label>
             </div>
             {/* {
                 isClick && !check1 &&

@@ -8,7 +8,7 @@ import { useDispatch , useSelector } from 'react-redux'
 // PAGES
 import { 
         Auth , 
-        // Home , 
+        Home , 
         ProductList , 
         ChangePass , 
         ResetPass , 
@@ -185,7 +185,7 @@ function App () {
             <Route path='/lms-reseller' component={LMSReseller} />
             <Route path='/lms-reseller-me' component={LMSResellerMe} />
             <Route path='/lms-profile' component={LMSProfile} />
-            {/* <Route path="/" exact component={Home}/> */}
+            <Route path="/home" exact component={Home}/>
             <Route path="/" exact component={LandingPage}/>
             <Route path="" component={Error404}/>
           </Switch>

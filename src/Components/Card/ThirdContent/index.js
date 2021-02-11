@@ -21,7 +21,8 @@ function ThirdContent (props) {
             selectedCoupon , 
             setSelectedCoupon , 
             sale,
-            setSale
+            setSale,
+            saleBef
             // handleOrder , 
             // loadingOrder,
             // price,
@@ -35,12 +36,19 @@ function ThirdContent (props) {
     const [disPre,setDisPre] = useState(null)
 
     let handleCoupon = (el) => {
-        let { value } = el
-        let res = sale - value
-        let disk = value/sale * 100
+        let { value , max_discount } = el
+        // let res = sale - value
+        // let disk = value/sale * 100
+        console.log(el , ' <<<< VALUE EL')
+        let disk = Math.ceil((value / 100) * sale)
+        if (disk > max_discount ) {
+            console.log('HERE')
+            disk = max_discount
+        }
         // console.log(disk , ' <<<< DISK')
-        setDisPre( Math.ceil(disk))
-        setSale(res)
+        // setDisPre( Math.ceil(disk) )
+        setDisPre( value )
+        setSale( saleBef - disk)
         setSelectedCoupon(el)
         setShowMenu(false)
     }

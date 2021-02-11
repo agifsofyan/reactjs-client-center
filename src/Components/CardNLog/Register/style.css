@@ -1,0 +1,58 @@
+.shaker-animation-99 {
+    animation-name: shake !important;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    -webkit-animation: shake;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-duration: 1s;
+    /* animation: .8s shake infinite alternate; */
+}
+
+.auth-cart-register-notlog {
+    display: flex;
+    width: 82%;
+    margin: 15px 0 0 0;
+    align-items: center;
+    height: 30px;
+}
+
+@media only screen and (max-width: 600px) {
+    .auth-cart-register-notlog {
+        font-size: 12px !important;
+        margin: 17px 0 5px 0;
+    }
+    
+}
+
+@media only screen and (max-width: 340px) {
+    .auth-cart-register-notlog {
+        font-size: 11px !important;
+        margin: 17px 0 5px 0;
+    }
+}
+
+@keyframes shake {
+	/* 0% { -webkit-transform: translate(2px, 1px) rotate(0deg);  }
+	10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); }
+	20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); }
+	30% { -webkit-transform: translate(0px, 2px) rotate(0deg); }
+	40% { -webkit-transform: translate(1px, -1px) rotate(1deg); }
+	50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); }
+	60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); }
+	70% { -webkit-transform: translate(2px, 1px) rotate(-1deg); }
+	80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); }
+	90% { -webkit-transform: translate(2px, 2px) rotate(0deg); }
+    100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); } */
+
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    10% { transform: translate(-1px, -2px) rotate(-1deg); }
+    20% { transform: translate(-3px, 0px) rotate(1deg); }
+    30% { transform: translate(3px, 2px) rotate(0deg); }
+    40% { transform: translate(1px, -1px) rotate(1deg); }
+    50% { transform: translate(-1px, 2px) rotate(-1deg); }
+    60% { transform: translate(-3px, 1px) rotate(0deg); }
+    70% { transform: translate(3px, 1px) rotate(-1deg); }
+    80% { transform: translate(-1px, -1px) rotate(1deg); }
+    90% { transform: translate(1px, 2px) rotate(0deg); }
+    100% { transform: translate(1px, -2px) rotate(-1deg); }
+  }
