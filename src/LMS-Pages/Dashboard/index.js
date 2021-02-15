@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Profile from '../../Components/LMS-Profile';
+import TopicSection from '../../Components/TopicSection';
 // import Content from '../../Pages/ProductList/Content';
 import ContentSection from '../../Components/Content';
 import { message, Rate } from 'antd';
@@ -182,6 +183,12 @@ const Dashboard = () => {
         <div className='root'>
             {/* PROFILE CHECK */}
             <Profile complete={false} />
+
+            {/* DIVIDER */}
+            <div className='divider' />
+
+            {/* SECTION CAROUSEL */}
+            <TopicSection dashboardTab={true} />
 
             {/* DIVIDER */}
             <div className='divider' />

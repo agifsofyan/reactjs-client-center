@@ -7,6 +7,7 @@ import {
 const INITIAL_STATE = {
     reviewPost: [],
     isLoading: false,
+    success: false,
 };
 
 export const ReviewReducer = (state = INITIAL_STATE, action) => {
@@ -15,17 +16,20 @@ export const ReviewReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 isLoading: true,
+                success: false,
             };
         case REVIEW_SUCCESS:
             return {
                 ...state,
                 reviewPost: action.payload,
                 isLoading: false,
+                success: true,
             };
         case REVIEW_FAILED:
             return {
                 ...state,
                 isLoading: false,
+                success: false,
             };
         default: return state;
     };
