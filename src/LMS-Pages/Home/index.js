@@ -18,6 +18,8 @@ const LMSHome = (query) => {
     const productById = useSelector(({ product }) => product.productById);
     const queryId = query.location.search.split('=')[1];
 
+    console.log('LMS Home', productById);
+
     useEffect(() => {
         document.title = 'LMS Home';
         dispatch(getProductById(queryId));
@@ -125,6 +127,13 @@ const LMSHome = (query) => {
         mentorRate = value;
     };
 
+    let [reviewCourse, setReviewCourse] = useState({
+        product: '',
+        opini: '',
+    });
+
+    const handleChangeReviewCourse = () => {};
+
     return (
         <div className='root'>
             {/* WELCOME VIDEO */}
@@ -169,7 +178,7 @@ const LMSHome = (query) => {
                 <div className='comment-label'>
                     Komentar Positif Setelah Belajar
                 </div>
-                <TextArea rows={5} showCount={true} maxLength={300} />
+                <TextArea rows={5} showCount={true} maxLength={300} onChange={handleChangeReviewCourse} />
                 <div className='commment-button-section'>
                     <button className='post-comment-button'>
                         Tulis Komentar
