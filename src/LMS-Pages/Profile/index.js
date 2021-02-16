@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Profile from '../../Components/LMS-Profile';
+import Footer from '../../Components/LMSFooter';
 import silver from '../../Assets/Images/silver.png';
 import './lmsprofilepage.css';
 
@@ -161,6 +162,11 @@ const LMSProfile = () => {
                 <div className='same-container'>
                     {renderFriends()}
                 </div>
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'60px'}}>
+                <Footer />
             </div>
         </div>
     );

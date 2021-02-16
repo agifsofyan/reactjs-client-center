@@ -3,6 +3,7 @@ import { Rate, message } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
+import Footer from '../../Components/LMSFooter';
 import bronze from '../../Assets/Images/bronze.png';
 import silver from '../../Assets/Images/silver.png';
 import gold from '../../Assets/Images/gold.png';
@@ -226,6 +227,11 @@ const LMSHome = (query) => {
                     </div>
                     <img src={bronze} alt='badge' className='profile-badge' />
                 </div>
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'50px'}}>
+                <Footer />
             </div>
         </div>
     );

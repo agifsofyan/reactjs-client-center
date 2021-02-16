@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
+import Footer from '../../Components/LMSFooter';
 import JoinTelegram from '../../Assets/Images/join-telegram.svg';
 import silver from '../../Assets/Images/silver.png';
 import { CommentOutlined } from '@ant-design/icons';
@@ -74,6 +75,11 @@ const LMSGroup = () => {
                 <div className='same-container'>
                     {renderFriends()}
                 </div>
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'50px'}}>
+                <Footer />
             </div>
         </div>
     );

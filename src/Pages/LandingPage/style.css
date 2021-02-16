@@ -55,7 +55,7 @@
 /* SECOND CONTENT */
 .lp-10-c2 {
     width: 90%;
-    height: 510px;
+    /* height: 510px; */
     border-radius: 16px;
     margin: 50px 0 0 0;
     border: 0.1px solid #f3f3f3;
@@ -147,7 +147,7 @@
 /* CONTENT FOURTH */
 .lp-10-c4 {
     width: 90%;
-    height: 510px;
+    /* height: 510px; */
     object-fit: cover;
     margin: 50px 0 0 0;
     border-radius: 16px;

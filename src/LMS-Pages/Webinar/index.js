@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVideo } from '../../Redux/Actions';
-import moment from 'moment';
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
+import Footer from '../../Components/LMSFooter';
 import live from '../../Assets/Images/live-thumbnail.svg';
+import moment from 'moment';
 import './styles.css';
 
 const LMSWebinar = () => {
@@ -185,6 +186,11 @@ const LMSWebinar = () => {
                 <div className='lmswebinar-recommended-renderer'>
                     {renderRecommended()}
                 </div>
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'50px'}}>
+                <Footer />
             </div>
         </div>
     );

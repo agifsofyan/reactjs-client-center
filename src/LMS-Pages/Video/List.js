@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import TopicSection from '../../Components/TopicSection';
+import Footer from '../../Components/LMSFooter';
 import { getVideo } from '../../Redux/Actions';
 import moment from 'moment';
 import localization from 'moment/locale/id';
@@ -265,6 +266,11 @@ const List = () => {
                     : 
                     null
                 })}
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'40px'}}>
+                <Footer />
             </div>
         </div>
     );

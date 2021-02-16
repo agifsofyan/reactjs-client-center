@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
+import Footer from '../../Components/LMSFooter';
 import { getVideo } from '../../Redux/Actions';
 import { Checkbox } from 'antd';
 import './lmsreseller.css';
@@ -54,6 +55,11 @@ const LMSReseller = () => {
                 <button className='benefit-join'>
                     JOIN RESELLER LARUNO
                 </button>
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'50px'}}>
+                <Footer />
             </div>
         </div>
     );

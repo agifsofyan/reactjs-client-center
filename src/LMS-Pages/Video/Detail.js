@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getVideoById } from '../../Redux/Actions';
+import Footer from '../../Components/LMSFooter';
 import views from '../../Assets/Images/views.svg';
 import likethumb from '../../Assets/Images/like.svg';
 import likedthumb from '../../Assets/Images/liked.svg';
@@ -46,7 +47,7 @@ const Detail = (query) => {
         return videoById.slice(0,1).map((val,index) => {
             return (
                 <div key={index}>
-                    <div>{val._id}</div>
+                    {/* <div>{val._id}</div> */}
                     <video controls={true} className='playing-video'>
                         <source type='video/mp4' src={val.url} />
                     </video>
@@ -212,6 +213,11 @@ const Detail = (query) => {
                         </Tooltip>
                     }
                 />
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'50px'}}>
+                <Footer />
             </div>
         </div>
     );

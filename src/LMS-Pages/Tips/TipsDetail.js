@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import TopicSection from '../../Components/TopicSection';
+import Footer from '../../Components/LMSFooter';
 import { Breadcrumb, Select, Input, Comment, Tooltip, List } from 'antd';
 import moment from 'moment';
 import './TipsDetail.css';
@@ -240,6 +241,11 @@ const TipsDetail = () => {
                 <div className='larunoblog-spotlight-renderer'>
                     {renderBlogs()}
                 </div>
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'50px'}}>
+                <Footer />
             </div>
         </div>
     );

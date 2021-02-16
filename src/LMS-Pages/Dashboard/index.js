@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import Profile from '../../Components/LMS-Profile';
 import TopicSection from '../../Components/TopicSection';
-// import Content from '../../Pages/ProductList/Content';
 import ContentSection from '../../Components/Content';
+import Footer from '../../Components/LMSFooter';
 import { message, Rate } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -76,7 +76,7 @@ const Dashboard = () => {
     let renderDot = (name) => {
         if (name.length >= 27) {
             return "...";
-        }else {
+        } else {
             return "";
         }
     }
@@ -230,6 +230,11 @@ const Dashboard = () => {
                     Kelas yang Belum Anda Selesaikan
                 </div>
                 {renderUnfinish(15,211)}
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'60px'}}>
+                <Footer />
             </div>
         </div>
     );
