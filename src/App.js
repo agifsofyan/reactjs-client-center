@@ -41,7 +41,7 @@ import {
 
 // COMPONENT 
 import Navbar from './Components/Navbar'
-import Modal from './Components/Modal'
+import Drawer from './Components/Modal'
 import Advertisement from './Components/Advertisement/index'
 
 // GLOBAL ACTION
@@ -193,7 +193,7 @@ function App () {
       </div>
       {
         showModal &&
-        <Modal
+        <Drawer
           modalClose={modalClose}
           setModalClose={setModalClose}
           setShowModal={setShowModal}
