@@ -17,7 +17,7 @@ import { re } from '../../../Support/re'
 function Email (props) {
 
     // PARENT PROPS
-    const { email , setEmail , setSelectedTab   } = props
+    const { email , setEmail , setSelectedTab , landingPage , style } = props
 
     // LOCAL STATE
     const [loading1,setLoading1] = useState(false)
@@ -75,7 +75,11 @@ function Email (props) {
     }
 
     return (
-        <form className="cardn-auth-container">
+        <form 
+            style={{...style}}
+            className="cardn-auth-container"
+            onSubmit={e=>checkValidation(e)}
+        >
             <div className="cardn-container-07-title-1 ">
                 <h1>Silahkan isi email anda</h1>
             </div>

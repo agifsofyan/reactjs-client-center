@@ -15,7 +15,7 @@ import { SWAGGER_URL } from '../../../Support/API_URL'
 function Login (props) {
     
     // PARENT PROPS
-    const { email , setSelectedPage } = props
+    const { email , setSelectedPage ,  landingPage , style , finishFunction } = props
 
     // COOKIES
     const cookieId = Cookies.get('productId') ? Cookies.get('productId') : null;
@@ -80,7 +80,18 @@ function Login (props) {
                 }
             }
             // ACTION CHANGE TO CART LOGGED IN HERE
-            handleAddCart()
+            if (landingPage) {
+                finishFunction()
+                .then(data=>{
+                    console.log('MASUK RESOLVE <m<<')
+                    setIsLoading(false)
+                })
+                .catch(err=>{
+                    setIsLoading(false)
+                })
+            }else {
+                handleAddCart()
+            }
         })
         .catch(err=>{
             if (err.response.data)
@@ -112,7 +123,11 @@ function Login (props) {
     }
 
     return (
-        <div className="cardn-auth-container" form={e=>handleValidation(e)}>
+        <form 
+            className="cardn-auth-container" 
+            onSubmit={e=>handleValidation(e)}
+            style={{...style}}
+        >
             <div className="cardn-container-07-title-1 ">
                 <h1>Silahkan isi password anda</h1>
             </div>
@@ -137,7 +152,7 @@ function Login (props) {
             >
                 Lupa Password?
             </div>
-        </div>
+        </form>
     )
 
 }

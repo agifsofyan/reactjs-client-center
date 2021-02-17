@@ -1,0 +1,38 @@
+{/* 
+            <Input
+                text={"Topic"}
+                style={{width : "90%",borderRadius : 20,marginTop : 1}}
+                // setter={se}
+            />
+            <Input
+                setter={setEmail}
+                value={email}
+                text={"Email"}
+                style={{width : "90%",borderRadius : 20}}
+            />
+            <Input 
+                setter={setName}
+                value={name}
+                text={"Nama"}
+                style={{width : "90%",borderRadius : 20}}
+            />
+            <Input
+                setter={setPhone}
+                value={phone}
+                text={"Nomor Hp"}
+                style={{width : "90%",borderRadius : 20}}
+            />
+
+            <Button
+                text={"LANJUT"}
+                style={{width : "90%",marginTop : 22 }}
+            /> */}
+
+            
+            {/* <h3>
+                Isi Form Dibawah
+            </h3>
+
+            <h4>
+                Cari tahu apa saja topik favorit yang ingin kamu pelajari lebih lanjut.
+            </h4> */}

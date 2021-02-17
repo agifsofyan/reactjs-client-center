@@ -17,3 +17,12 @@
                         />    
 
                     </div>
+
+                        // let HandleModalClose = () => {
+    //     setModalClose(true)
+    //     setShowModal(true)
+    //     setTimeout(()=>{
+    //         setModalClose(false)
+    //         setShowModal(false)
+    //     },400)
+    // }

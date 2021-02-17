@@ -8,6 +8,7 @@ import List from '../../Components/LandingPage/List'
 import Input from '../../Components/Auth/Input'
 import Button from '../../Components/Button'
 import Footer from '../../Components/LandingPage/Footer'
+import { Email , Login , Register } from '../../Components/CardNLog'
 
 // IMAGES 
 import image1 from '../../Assets/Images/landing-page-fix.jpg'
@@ -30,10 +31,19 @@ function LandingPage () {
     const [video,setVideo] = useState(null)
 
     // LOCAL STATE INPUT
-    const [topic,setTopic] = useState(null)
     const [email,setEmail] = useState(null)
-    const [name,setName] = useState(null)
-    const [phone,setPhone] = useState(null)
+
+    // LOCAL STATE NAVIGATION 
+    const [selectedTab,setSelectedTab] = useState(0)
+
+    // LOCAL STATE DATA PRODUCT
+    const [product] = useState([{ 
+                product_id : "6024db550af735001c2b7e8d" , 
+                utm : "origin",
+                quantity : 1
+            }
+        ]
+    )
 
     useEffect(()=>{
         axios({
@@ -51,11 +61,90 @@ function LandingPage () {
         })
     },[])
 
-    let handleClick = () => {
+    let handleLogin = () => {
+        return new Promise((resolve,reject)=>{
+            axios({
+                method : 'POST',
+                url : `${SWAGGER_URL}/carts/add`,
+                data : {
+                    product_id : ["6024db550af735001c2b7e8d"],
+                },
+                headers : {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                }
+            })
+            .then(({data})=>{
+                return axios({
+                    method : 'POST',
+                    url : `${SWAGGER_URL}/orders/store`,
+                    data : {
+                        items : product,
+                        coupon : null
+                    },
+                    headers : {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                    }
+                })  
+            })
+            .then(({data})=>{
+                console.log(data , ' <<<< PALING PENTING IKI')
+                resolve(data)
+            })
+            .catch(err=>{
+                reject(err)
+                console.log(err.response ,  ' <<< ERROR')
+            })
+        })
+        // axios({
+        //     method : 'POST',
+        //     url : `${SWAGGER_URL}/orders/store`,
+        //     data : {
+        //         items : product,
+        //         coupon : null
+        //     },
+        //     headers : {
+        //         'Authorization': `Bearer ${localStorage.getItem('token')}`,
+        //     }
+        // })
+        // .then((data)=>{
+        //     console.log(data , ' <<<< VALUE DATA FIXXX >>>>')
+        // })
         
     }
 
-    // console.log(window.matchMedia("(max-width: 600px)") , ' <<<< SCREEN')
+    let renderPage = () => {
+        if (selectedTab === 0) {
+            return (
+                <Email
+                    email={email}
+                    setEmail={setEmail}
+                    setSelectedTab={setSelectedTab}
+                    landingPage={true}
+                    style={{width : "110%", marginTop : 35}}
+                />
+            )
+        }else if (selectedTab === 1) {
+            return (
+                <Login
+                    landingPage={true}
+                    email={email}
+                    style={{width : "110%", marginTop : 35}}
+                    finishFunction={handleLogin}
+                    // title={"Login"}
+                    // setSelectedPage={setSelectedPage}
+                />
+            )
+        }else {
+            return (
+                <Register
+                    landingPage={true}
+                    email={email}
+                    style={{width : "110%", marginTop : 35}}
+                    // setSelectedPage={setSelectedPage}
+                />
+            )
+        }
+    }
 
     return (
         <div className="lp-10-container">
@@ -86,9 +175,7 @@ function LandingPage () {
                 </div>
             }
 
-            <h2>
-                Lorem Ipsum Dolor
-            </h2>
+            <h2>Lorem Ipsum Dolor</h2>
 
             <List/>
 
@@ -98,42 +185,9 @@ function LandingPage () {
                 alt="landing-page-content"
             />
 
-            <h3>
-                Isi Form Dibawah
-            </h3>
-
-            <h4>
-                Cari tahu apa saja topik favorit yang ingin kamu pelajari lebih lanjut.
-            </h4>
-
-            <Input
-                text={"Topic"}
-                style={{width : "90%",borderRadius : 20,marginTop : 1}}
-                // setter={se}
-            />
-            <Input
-                setter={setEmail}
-                value={email}
-                text={"Email"}
-                style={{width : "90%",borderRadius : 20}}
-            />
-            <Input 
-                setter={setName}
-                value={name}
-                text={"Nama"}
-                style={{width : "90%",borderRadius : 20}}
-            />
-            <Input
-                setter={setPhone}
-                value={phone}
-                text={"Nomor Hp"}
-                style={{width : "90%",borderRadius : 20}}
-            />
-
-            <Button
-                text={"LANJUT"}
-                style={{width : "90%",marginTop : 22 }}
-            />
+            {
+                renderPage()
+            }
 
             <Footer/>
 

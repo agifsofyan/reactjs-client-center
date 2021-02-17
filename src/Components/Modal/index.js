@@ -3,16 +3,19 @@ import React , { useState , useEffect } from 'react'
 // MODULE
 import { useHistory , useLocation } from 'react-router-dom'
 
+// COMPONENT
+import Header from './Header'
+import WaContent from './WaContent'
+import Social from './Social'
+import Home from './Home'
+import LMS from './LMS'
+
 // MATERIAL ICONS
-import CloseIcon from '@material-ui/icons/Close';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-
-// IMAGES
-import Logo from '../../Assets/Images/laruno.png'
 
 // STYLE
 import './style.css'
+import './drawer.css'
 
 function Modal (props) {
 
@@ -23,7 +26,7 @@ function Modal (props) {
     const location = useLocation()
 
     // const [animationEnd,setAnimationEnd] = useState(false)
-    
+
     // WIDTH
     const [width,setWidth] = useState(0)
 
@@ -33,15 +36,6 @@ function Modal (props) {
         showModal,
         setShowModal
     } = props
-
-    // let HandleModalClose = () => {
-    //     setModalClose(true)
-    //     setShowModal(true)
-    //     setTimeout(()=>{
-    //         setModalClose(false)
-    //         setShowModal(false)
-    //     },400)
-    // }
     
     useEffect(()=>{
         if (showModal) {
@@ -54,8 +48,6 @@ function Modal (props) {
                 // setWidth(100)
             },1000)
         }
-        // console.log(animationEnd)
-        // animationEnd()
     },[showModal])
 
     let handleModalClose = () => {
@@ -63,19 +55,6 @@ function Modal (props) {
         setTimeout(()=>{
             setShowModal(false)
         },900)
-    }
-
-    let handleChangePage = (route) => {
-        history.push(route)
-        handleModalClose()
-    }
-
-    let checkSelected = (current) => {
-        if (location.pathname === current) {
-            return "bmc-content-4-selected"
-        }else {
-            return "bmc-content-4"
-        }
     }
 
     if (width !== 100) {
@@ -105,20 +84,10 @@ function Modal (props) {
                     // onTransitionEnd={e=>setAnimationEnd(true)}
                 >
 
-                    <div className="bmc-content-1">
-                        <div className="bmc-content-1-c1">
-                            <img
-                                src={Logo}
-                                alt="laruno"
-                            />
-                            <CloseIcon
-                                style={{  cursor : "pointer" }}
-                                // onClick={e=>HandleModalClose()}
-                                onClick={e=> handleModalClose() }
-                            /> 
-                        </div>
-                    </div>
-
+                    <Header
+                        handleModalClose={handleModalClose}
+                    />
+                    
                     <div className="bmc-content-2">
                         Mau belajar online yang menyenangkan, efektif dan interaktif? 
                     </div>
@@ -132,49 +101,44 @@ function Modal (props) {
 
                     <div style={{marginTop : 20}} className="bmc-content-3"></div>
 
-                    <div 
-                        style={{marginTop : 19}}
-                        className={checkSelected("/product-list")}
-                        onClick={e=>handleChangePage('/product-list')}
-                    >
-                        Beranda
+                    {/* HOME MENU DRAWER */}
+
+                    {
+                        location.pathname.split('-')[0] === "/lms" ?
+                        <LMS
+                            history={history}
+                            location={location}
+                            handleModalClose={handleModalClose}
+                        /> :
+                        <Home
+                            history={history}
+                            location={location}
+                            handleModalClose={handleModalClose}
+                        />
+                    }
+                    
+                    <div style={{marginTop : 5}} className="bmc-content-3"></div>
+
+                    <WaContent/>
+
+                    <div style={{marginTop : 15}} className="bmc-content-3"></div>
+
+                    <Social/>
+                    
+                    <div style={{marginTop : 15}} className="bmc-content-3"></div>
+
+                    <div className="bmc-content-7">
+                        <div>
+                            Privacy Policy
+                        </div>
+                        <div style={{marginLeft : 20}}>
+                            Terms & Condition
+                        </div>
                     </div>
-
-                    <div className="bmc-content-4" >
-                        Tentang Laruno
+                    <div className="bmc-content-8">
+                        Copyright @ 2021 larunocom
                     </div>
-
-                    <div
-                        className={checkSelected("/auth")}
-                        onClick={e=>handleChangePage('/auth')} 
-                    >
-                        Login & Register Akun
-                    </div>
-
-                    <div className="bmc-content-4" >
-                        Tentang Laruno
-                    </div>
-
-                    {/* <div className="bmc-content-4" >
-                        Topik Belajar Laruno
-                    </div> */}
-
-                    <div
-                        className={checkSelected("/order-history")}
-                        onClick={e=>handleChangePage('/order-history')}   
-                    >
-                        History Transaksi
-                    </div>
-
-                    <div
-                        className={checkSelected("/lms-dashboard")}
-                        onClick={e=>handleChangePage('/lms-dashboard')}
-                    >
-                        LMS
-                    </div>
-
                 </div>
-                     {/* <div className="burger-menu-01-content"></div> */}
 
             </div>
         )

@@ -17,7 +17,7 @@ import './style.css'
 function Register (props) {
 
     // PARENT PROPS
-    const { email , setSelectedPage } = props
+    const { email , setSelectedPage ,  landingPage , style  } = props
     
     // COOKIES
     const cookieId = Cookies.get('productId') ? Cookies.get('productId') : null;
@@ -131,7 +131,11 @@ function Register (props) {
             // setLoading(false)
             let tokenR = data.data.accessToken
             localStorage.setItem('token',tokenR)
-            handleAddCart()
+            if (landingPage) {
+
+            }else {
+                handleAddCart()
+            }
         })
         .catch(err=>{
             handleError(err.response)
@@ -217,7 +221,11 @@ function Register (props) {
 
 
     return (
-        <form className="cardn-auth-container" onSubmit={e=>handleValidation(e)}>
+        <form 
+            className="cardn-auth-container" 
+            onSubmit={e=>handleValidation(e)}
+            style={{...style}}
+        >
             <div className="cardn-container-07-title-1 ">
                 <h1 >Silahkan isi data diri anda</h1>
             </div>
