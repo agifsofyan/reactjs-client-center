@@ -91,6 +91,7 @@ u {
     justify-content: center;
 }
 .post-comment-button {
+    cursor: pointer;
     font-family: 'Rubik', sans-serif;
     font-size: medium;
     color: white;

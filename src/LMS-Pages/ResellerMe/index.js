@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Footer from '../../Components/LMSFooter';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import { Select, Collapse } from 'antd';
 import './lmsresellerme.css';
@@ -179,6 +180,11 @@ const LMSResellerMe = () => {
                 <div style={{marginTop:'20px'}}>
                     {renderSellables()}
                 </div>
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'40px'}}>
+                <Footer />
             </div>
         </div>
     );

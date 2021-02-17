@@ -5,13 +5,10 @@ const INTITAL_STATE = {
     top : 0
 }
 
-let stateGlobal = (state = INTITAL_STATE,action) => {
+export const UserReducer = (state = INTITAL_STATE,action) => {
     switch (action.type) {
         case GET_SELECTED_USER:
             return {...state,[action.payload.key] : action.payload.value}
-        default:
-            return state
-    }
-}
-
-export default stateGlobal
+        default: return state;
+    };
+};

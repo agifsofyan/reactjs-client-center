@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
+import Footer from '../../Components/LMSFooter';
 import './TipsList.css';
 import { Link } from 'react-router-dom';
 
@@ -273,6 +274,11 @@ const Tips = () => {
                         })}
                     </Link>
                 </div>
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'40px'}}>
+                <Footer />
             </div>
         </div>
     );

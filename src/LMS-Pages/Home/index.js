@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { Rate } from 'antd';
+import { Rate, message } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
+import Footer from '../../Components/LMSFooter';
 import bronze from '../../Assets/Images/bronze.png';
 import silver from '../../Assets/Images/silver.png';
 import gold from '../../Assets/Images/gold.png';
 import obsidian from '../../Assets/Images/obsidian.png';
 import diamond from '../../Assets/Images/diamond.png';
 import { useDispatch, useSelector } from 'react-redux';
+import { getProductById, postReviewCourse } from '../../Redux/Actions';
 import './style.css';
-import { getProductById } from '../../Redux/Actions';
 
 const LMSHome = (query) => {
     const dispatch = useDispatch();
@@ -44,10 +45,10 @@ const LMSHome = (query) => {
                     Mentored by <b>{detail.mentor}</b>
                 </div>
                 <div className='product-title'>
-                    <b>{detail.title}</b>
+                    <b>{productById.name}</b>
                 </div>
                 <div className='product-description'>
-                    {detail.description}
+                    {productById.description}
                 </div>
             </div>
         );
@@ -125,6 +126,24 @@ const LMSHome = (query) => {
         mentorRate = value;
     };
 
+    let [reviewCourse, setReviewCourse] = useState({
+        product: '',
+        opini: '',
+    });
+
+    const handleChangeReviewCourse = (e) => {
+        setReviewCourse({
+            ...reviewCourse,
+            product: productById._id,
+            [e.target.name]: e.target.value,
+        });
+    };
+
+    const handleSubmitReview = () => {
+        dispatch(postReviewCourse(reviewCourse));
+        message.success('Your review has been submitted');
+    };
+
     return (
         <div className='root'>
             {/* WELCOME VIDEO */}
@@ -134,7 +153,7 @@ const LMSHome = (query) => {
             <div className='divider' />
 
             {/* SECTION CAROUSEL */}
-            <TopicSection homeTab={true} />
+            <TopicSection dashboardTab={true} />
 
             {/* DIVIDER */}
             <div className='divider' />
@@ -169,9 +188,9 @@ const LMSHome = (query) => {
                 <div className='comment-label'>
                     Komentar Positif Setelah Belajar
                 </div>
-                <TextArea rows={5} showCount={true} maxLength={300} />
+                <TextArea name='opini' rows={5} showCount={true} maxLength={300} onChange={handleChangeReviewCourse} />
                 <div className='commment-button-section'>
-                    <button className='post-comment-button'>
+                    <button className='post-comment-button' onClick={handleSubmitReview}>
                         Tulis Komentar
                     </button>
                 </div>
@@ -208,6 +227,11 @@ const LMSHome = (query) => {
                     </div>
                     <img src={bronze} alt='badge' className='profile-badge' />
                 </div>
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'50px'}}>
+                <Footer />
             </div>
         </div>
     );

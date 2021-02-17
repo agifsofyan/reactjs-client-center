@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
+import Footer from '../../Components/LMSFooter';
 import moduleArt from '../../Assets/Images/module.jpg';
 import './module.css';
 
@@ -178,6 +179,11 @@ const Module = () => {
                     :
                     null
                 })}
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'10px'}}>
+                <Footer />
             </div>
         </div>
     );

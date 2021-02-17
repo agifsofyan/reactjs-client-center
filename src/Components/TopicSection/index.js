@@ -3,7 +3,7 @@ import './topicsection.css';
 
 const TopicSection = (props) => {
     const {
-        homeTab,
+        dashboardTab,
         webinarTab,
         videoTab,
         tipsTab,
@@ -15,9 +15,9 @@ const TopicSection = (props) => {
 
     const sectionTopic = [
         {
-            title: 'Home',
-            active: homeTab,
-            href: '/lms-home',
+            title: 'Dashboard',
+            active: dashboardTab,
+            href: '/lms-dashboard',
         },
         {
             title: 'Webinar',

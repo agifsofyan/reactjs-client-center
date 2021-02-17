@@ -1,0 +1,21 @@
+.footer-root {
+    display: flex;
+    justify-content: center;
+}
+
+.footer-container {
+    display: flex;
+    position: absolute;
+    bottom: 10px;
+    border: 1px solid #DFDFDF;
+    padding: 15px 15px;
+    border-radius: 100px;
+    color: #020303;
+    background-color: #F2F2F2;
+    font-weight: bold;
+}
+
+.footer-icons-group {
+    cursor: pointer;
+    margin: 0px 15px;
+}

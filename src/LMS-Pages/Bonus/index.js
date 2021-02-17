@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
+import Footer from '../../Components/LMSFooter';
 import './lmsbonus.css';
 
 const Content = () => {
@@ -63,6 +64,11 @@ const LMSBonus = () => {
                     Bonus Tips untuk Anda Hari Ini
                 </div>
                 {Content()}
+            </div>
+
+            {/* FOOTER */}
+            <div style={{marginTop:'30px'}}>
+                <Footer />
             </div>
         </div>
     );
