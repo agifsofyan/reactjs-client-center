@@ -9,7 +9,7 @@ import './style.css'
 // IMAGE
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
-import Logo from '../../Assets/Images/laruno.png'
+import Logo from '../../Assets/Images/laruno-fix.png'
 
 function Navbar (props) {
 

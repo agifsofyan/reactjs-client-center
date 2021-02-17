@@ -33,12 +33,15 @@ function Home (props) {
                 Tentang Laruno
             </div>
 
-            <div
-                className={checkSelected("/auth")}
-                onClick={e=>handleChangePage('/auth')} 
-            >
-                Login & Register Akun
-            </div>
+            {
+                !localStorage.getItem('token') &&
+                <div
+                    className={checkSelected("/auth")}
+                    onClick={e=>handleChangePage('/auth')} 
+                >
+                    Login & Register Akun
+                </div>
+            }
 
             <div className="bmc-content-4" >
                 Tentang Laruno
@@ -54,19 +57,24 @@ function Home (props) {
             >
                 Produk Pembelajaran Laruno
             </div>
-            {/* <div
-                className={checkSelected("/order-history")}
-                onClick={e=>handleChangePage('/order-history')}   
-            >
-                History Transaksi
-            </div>
-
-            <div
-                className={checkSelected("/lms-dashboard")}
-                onClick={e=>handleChangePage('/lms-dashboard')}
-            >
-                LMS
-            </div> */}
+            {
+                localStorage.getItem('token') &&
+                <div
+                    className={checkSelected("/order-history")}
+                    onClick={e=>handleChangePage('/order-history')}   
+                >
+                    History Transaksi
+                </div>
+            }
+            {
+                localStorage.getItem('token') &&
+                <div
+                    className={checkSelected("/lms-dashboard")}
+                    onClick={e=>handleChangePage('/lms-dashboard')}
+                >
+                    LMS
+                </div>
+            }
 
         </div>
     )

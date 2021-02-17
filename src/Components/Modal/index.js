@@ -92,8 +92,8 @@ function Modal (props) {
                         Mau belajar online yang menyenangkan, efektif dan interaktif? 
                     </div>
 
-                    <div style={{marginTop : 20 , width : 180, height : 26 , borderRadius : 5}} className="card-06-tc-c1">
-                        <div className="card-06-tc-c1-1">
+                    <div style={{marginTop : 20 , width : 180, height : 28 , borderRadius : 5}} className="card-06-tc-c1">
+                        <div className="card-06-tc-c1-1" style={{alignItems : "center",height : "100%"}}>
                             <span style={{fontSize :  12 , fontWeight : 300}}>Sort By Topic</span>
                             <ExpandMoreIcon className="card-06-tc-c1-1-icon"/>
                         </div>
