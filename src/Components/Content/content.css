@@ -4,7 +4,7 @@
 }
 .content-button-group {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .content-btn {
     cursor: pointer;

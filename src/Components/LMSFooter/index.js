@@ -18,7 +18,9 @@ const LMSFooter = () => {
                 <a href='/lms-profile'>
                     <img src={profile} alt='footer icon' height={25} className='footer-icons-group' />
                 </a>
-                <img src={reseller} alt='footer icon' height={25} className='footer-icons-group' />
+                <a href='/lms-reseller-me'>
+                    <img src={reseller} alt='footer icon' height={25} className='footer-icons-group' />
+                </a>
             </React.Fragment>
         );
     };
