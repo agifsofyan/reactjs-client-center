@@ -1,13 +1,17 @@
 import {
     CONTENT_START,
-    CONTENT_SUCCESS,
-    CONTENT_BY_ID,
+    CONTENT_VIDEO_LIST,
+    CONTENT_VIDEO_BY_ID,
+    CONTENT_BLOG_LIST,
+    CONTENT_BLOG_BY_ID,
     CONTENT_FAILED,
 } from '../type';
 
 const INITIAL_STATE = {
     videoList: [],
     videoById: [],
+    blogList: [],
+    blogById: [],
     loading: false,
 };
 
@@ -18,16 +22,28 @@ export const ContentReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: true,
             };
-        case CONTENT_SUCCESS:
+        case CONTENT_VIDEO_LIST:
             return {
                 ...state,
                 videoList: action.payload,
                 loading: false,
             };
-        case CONTENT_BY_ID:
+        case CONTENT_VIDEO_BY_ID:
             return {
                 ...state,
                 videoById: action.payload,
+                loading: false,
+            };
+        case CONTENT_BLOG_LIST:
+            return {
+                ...state,
+                blogList: action.payload,
+                loading: false,
+            };
+        case CONTENT_BLOG_BY_ID:
+            return {
+                ...state,
+                blogById: action.payload,
                 loading: false,
             };
         case CONTENT_FAILED:

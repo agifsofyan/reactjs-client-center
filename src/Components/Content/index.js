@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         marginBottom: '20px',
         boxShadow: '0 0 5px 1.25px #E6E6E6',
-        // borderRadius: 15,
     },
 }));
 
