@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import TopicSection from '../../Components/TopicSection';
 import Footer from '../../Components/LMSFooter';
 import { Form, FormGroup, Label, Input } from 'reactstrap';
 import { Select, Collapse } from 'antd';
@@ -121,6 +122,12 @@ const LMSResellerMe = () => {
             <div className='resellerme-profile-section'>
                 {renderProfile()}
             </div>
+
+            {/* DIVIDER */}
+            <div className='divider' />
+
+            {/* SECTION CAROUSEL */}
+            <TopicSection resellerTab={true} />
 
             {/* DIVIDER */}
             <div className='divider' />

@@ -5,45 +5,67 @@ import TopicSection from '../../Components/TopicSection';
 import Footer from '../../Components/LMSFooter';
 import './TipsList.css';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { getBlogList } from '../../Redux/Actions';
 
 const author = 'https://i.pinimg.com/originals/e0/bc/5c/e0bc5cd4f1d7cff7116a325490b3010d.png';
 const ago = moment().utc('2019-12-04 12:00:24').local().startOf('seconds').fromNow();
 const tick = 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Flat_tick_icon.svg/768px-Flat_tick_icon.svg.png';
 
 const Terbaru = () => {
-    return [0,1,2,3,4].map((val,index) => {
-        return (
-            <div key={index} className='tips-group'>
-                <img 
-                    src='https://static-cse.canva.com/blob/142565/Blue-Orange-and-Yellow-Cool-Memoir_Inspirational-Book-Cover.jpg' 
-                    alt='book on shipping' 
-                    className='tips-book' 
-                />
-                <div className='tips-desc'>
-                    <div className='tips-detail'>
-                        <b>To Kill a Mockingbird</b>
-                        {
-                            index === 0
-                            ?
-                            <img src={tick} alt='tick' className='tips-checkmark' />
-                            :
-                            null
-                        }
-                        <br/> it is set in the mid-1930s in the small town of Maycomb, Alabama. It is narrated by Scout Finch, a six-year-old tomboy who lives with her lawyer father Atticus and her ten-year-old brother Jem, trying to make a scene.
-                    </div>
-                    <div className='tips-poin'>
-                        <b>+3 Poin</b>
-                    </div>
-                    <div className='author-details'>
-                        <img src={author} alt='author' className='author-profile' />
-                        <div className='author-name-time'>
-                            John Doe ● {ago} ● 5 min read
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getBlogList());
+    }, [dispatch]);
+
+    const blogList = useSelector(({ content }) => content.blogList);
+
+    const renderBlogList = () => {
+        return blogList.map((val,index) => {
+            return (
+                <a href={`/lms-tips-detail?id=${val._id}`} style={{color:'black'}}>
+                    <div key={index} className='tips-group'>
+                        <img 
+                            src='https://static-cse.canva.com/blob/142565/Blue-Orange-and-Yellow-Cool-Memoir_Inspirational-Book-Cover.jpg' 
+                            alt='book on shipping' 
+                            className='tips-book' 
+                        />
+                        <div className='tips-desc'>
+                            <div className='tips-detail'>
+                                <b>{val.title}</b>
+                                {
+                                    index === 0
+                                    ? <img src={tick} alt='tick' className='tips-checkmark' />
+                                    : null
+                                }
+                                <br/>
+                                {val.desc}
+                            </div>
+                            <div className='tips-poin'>
+                                <b>+3 Poin</b>
+                            </div>
+                            <div className='author-details'>
+                                <img src={author} alt='author' className='author-profile' />
+                                <div className='author-name-time'>
+                                    John Doe ● {ago} ● 5 min read
+                                </div>
+                            </div>
+                            <div style={{marginTop:'10px'}}>
+                                {val._id}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        );
-    });
+                </a>
+            );
+        });
+    };
+
+    return (
+        <div>
+            {renderBlogList()}
+        </div>
+    );
 };
 
 const Rekomendasi = () => {
@@ -264,15 +286,11 @@ const Tips = () => {
                     )}
                 </div>
                 <div className='tips-list'>
-                    <Link to='/lms-tips-detail'>
-                        {tabList.map(({ id, content }) => {
-                            return active === id
-                            ?
-                            content
-                            :
-                            null
-                        })}
-                    </Link>
+                    {tabList.map(({ id, content }) => {
+                        return active === id
+                        ? content
+                        : null
+                    })}
                 </div>
             </div>
 

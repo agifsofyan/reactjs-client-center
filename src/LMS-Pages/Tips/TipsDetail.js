@@ -2,15 +2,25 @@ import React, { useEffect } from 'react';
 import TopicSection from '../../Components/TopicSection';
 import Footer from '../../Components/LMSFooter';
 import { Breadcrumb, Select, Input, Comment, Tooltip, List } from 'antd';
+import { getBlogById, getBlogList } from '../../Redux/Actions';
+import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
 import './TipsDetail.css';
 
 const { Option } = Select;
 
-const TipsDetail = () => {
+const TipsDetail = (query) => {
+    const dispatch = useDispatch();
+
+    const blogList = useSelector(({ content }) => content.blogList);
+    const blogById = useSelector(({ content }) => content.blogById);
+    const queryId = query.location.search.split('=')[1];
+
     useEffect(() => {
         document.title = 'LMS Tips Detail';
-    });
+        dispatch(getBlogById(queryId));
+        dispatch(getBlogList());
+    }, [dispatch, queryId]);
 
     const breadCrumbs = [
         "Laruno",
@@ -56,95 +66,93 @@ const TipsDetail = () => {
     ];
 
     const renderArticle = () => {
-        return [0].map((val,index) => {
-            return (
-                <div key={index}>
-                    <Breadcrumb className='tipsdetail-breadcrumbs'>
-                        <Breadcrumb.Item>
-                            {breadCrumbs[0]}
-                        </Breadcrumb.Item>
-                        <Breadcrumb.Item>
-                            {breadCrumbs[1]}
-                        </Breadcrumb.Item>
-                        <Breadcrumb.Item>
-                            {breadCrumbs[2]}
-                        </Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div className='tipsdetail-author-details'>
-                        <img 
-                            src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' 
-                            alt='author' 
-                            className='tipsdetail-author-picture' 
-                        />
-                        <div className='tipsdetail-author-desc'>
-                            John Doe ● 4h ago ● 5 min read
-                        </div>
+        return (
+            <div>
+                <Breadcrumb className='tipsdetail-breadcrumbs'>
+                    <Breadcrumb.Item>
+                        {breadCrumbs[0]}
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                        {breadCrumbs[1]}
+                    </Breadcrumb.Item>
+                    <Breadcrumb.Item>
+                        {blogById.title}
+                    </Breadcrumb.Item>
+                </Breadcrumb>
+                <div className='tipsdetail-author-details'>
+                    <img 
+                        src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' 
+                        alt='author' 
+                        className='tipsdetail-author-picture' 
+                    />
+                    <div className='tipsdetail-author-desc'>
+                        John Doe ● 4h ago ● 5 min read
                     </div>
-                    <div className='tipsdetail-article-section'>
-                        <div className='tipsdetail-article-title'>
-                            <b>Inside ByteDance's edtech expansion</b>
-                        </div>
-                        <img 
-                            src="https://img.freepik.com/free-photo/front-view-shopping-cart-with-lots-coins-jar_23-2148569118.jpg?size=626&ext=jpg"
-                            alt="article illustration" 
-                            className="tipsdetail-article-picture"
-                        />
-                        <div className='tipsdetail-article-social-share'>
-                            <button className='tipsdetail-article-facebook'>
-                                Facebook
-                            </button>
-                            <button className='tipsdetail-article-whatsapp'>
-                                Whatsapp
-                            </button>
-                        </div>
-                        <div className='tipsdetail-article-showoff'>
-                            Every day, 100k+ smart people read our newsletter. You can sign up here. 🔥
-                        </div>
-                        <div className='tipsdetail-article-paragraphs'>
-                            Hello readers, <br/> Have you ever seen a mom drag a screaming kid to a tuition center? Because I’m that kid. I hated going to these extra classes and cried a ton on the way there. But that never deterred my Asian mom from signing me up for them – heck, I even had tuition for arts and crafts when I was young. <br/> So when people say that there’s money to be made in edtech, you can bet your life I believe them. TikTok parent company ByteDance is also a believer – it has allocated over US$600 million to its online education-related efforts this year. With a lot of money to burn, can it produce a TikTok-equivalent in the edtech market?
-                        </div>
+                </div>
+                <div className='tipsdetail-article-section'>
+                    <div className='tipsdetail-article-title'>
+                        <b>{blogById.title}</b>
                     </div>
-                    <div>
-                        <Select
-                            showSearch
-                            className='tipsdetail-comment-sort'
-                            placeholder="Sort by"
-                            filterOption={(input, option) =>
-                                option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
-                            }
-                        >
-                            <Option>Newest</Option>
-                            <Option>Oldest</Option>
-                        </Select>
-                        <div className='tipsdetail-comment-user-section'>
-                            <img
-                                src='https://i.pinimg.com/originals/2d/0a/ee/2d0aee4df7929611bd7bea99af17283f.jpg'
-                                alt='user'
-                                className='tipsdetail-comment-user-image'
-                            />
-                            <Input placeholder="Your comment here..." />
-                        </div>
-                        <List
-                            className="comment-list"
-                            header={`${comments.length} replies`}
-                            itemLayout="horizontal"
-                            dataSource={comments}
-                            renderItem={item => (
-                                <li>
-                                    <Comment
+                    <img 
+                        src="https://img.freepik.com/free-photo/front-view-shopping-cart-with-lots-coins-jar_23-2148569118.jpg?size=626&ext=jpg"
+                        alt="article illustration" 
+                        className="tipsdetail-article-picture"
+                    />
+                    <div className='tipsdetail-article-social-share'>
+                        <button className='tipsdetail-article-facebook'>
+                            Facebook
+                        </button>
+                        <button className='tipsdetail-article-whatsapp'>
+                            Whatsapp
+                        </button>
+                    </div>
+                    <div className='tipsdetail-article-showoff'>
+                        Every day, 100k+ smart people read our newsletter. You can sign up here. 🔥
+                    </div>
+                    <div className='tipsdetail-article-paragraphs'>
+                        Hello readers, <br/> {blogById.desc}
+                    </div>
+                </div>
+                <div>
+                    <Select
+                        showSearch
+                        className='tipsdetail-comment-sort'
+                        placeholder="Sort by"
+                        filterOption={(input, option) =>
+                            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                        }
+                    >
+                        <Option>Newest</Option>
+                        <Option>Oldest</Option>
+                    </Select>
+                    <div className='tipsdetail-comment-user-section'>
+                        <img
+                            src='https://i.pinimg.com/originals/2d/0a/ee/2d0aee4df7929611bd7bea99af17283f.jpg'
+                            alt='user'
+                            className='tipsdetail-comment-user-image'
+                        />
+                        <Input placeholder="Your comment here..." />
+                    </div>
+                    <List
+                        className="comment-list"
+                        header={`${comments.length} replies`}
+                        itemLayout="horizontal"
+                        dataSource={comments}
+                        renderItem={item => (
+                            <li>
+                                <Comment
                                     actions={item.actions}
                                     author={item.author}
                                     avatar={item.avatar}
                                     content={item.content}
                                     datetime={item.datetime}
-                                    />
-                                </li>
-                            )}
-                        />
-                    </div>
+                                />
+                            </li>
+                        )}
+                    />
                 </div>
-            );
-        });
+            </div>
+        );
     };
 
     const renderSpotlight = () => {
@@ -171,7 +179,7 @@ const TipsDetail = () => {
     };
 
     const renderBlogs = () => {
-        return [0,1,2].map(() => {
+        return blogList.map((val,index) => {
             return (
                 <div className='larunoblog-spotlight-container'>
                     <img 
@@ -181,10 +189,10 @@ const TipsDetail = () => {
                     />
                     <div className='larunoblog-spotlight-product-details'>
                         <div className='larunoblog-spotlight-product-name'>
-                            <b>Inside ByteDance's edtech expansion</b>
+                            <b>{val.title}</b>
                         </div>
                         <div className='larunoblog-spotlight-product-desc'>
-                            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.
+                            {val.desc}
                         </div>
                         <div className='larunoblog-spotlight-author-section'>
                             <img 
