@@ -14,7 +14,7 @@ function WaContent () {
                 Chat via Whatsapp :
             </div>
             <div className="t2">
-                081178520139
+                087878500139
             </div>
         </div>
     )

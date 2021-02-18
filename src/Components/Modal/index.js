@@ -11,7 +11,9 @@ import Home from './Home'
 import LMS from './LMS'
 
 // MATERIAL ICONS
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 // STYLE
 import './style.css'
@@ -93,9 +95,14 @@ function Modal (props) {
                     </div>
 
                     <div style={{marginTop : 20 , width : 180, height : 28 , borderRadius : 5}} className="card-06-tc-c1">
-                        <div className="card-06-tc-c1-1" style={{alignItems : "center",height : "100%"}}>
+                        <div 
+                            className="card-06-tc-c1-1" 
+                            style={{alignItems : "center",height : "100%"}}
+                            onClick={e=>[history.push("/topic-list"),handleModalClose()]}
+                        >
                             <span style={{fontSize :  12 , fontWeight : 300}}>Sort By Topic</span>
-                            <ExpandMoreIcon className="card-06-tc-c1-1-icon"/>
+                            {/* <ExpandMoreIcon className="card-06-tc-c1-1-icon"/> */}
+                            <NavigateNextIcon className="card-06-tc-c1-1-icon"/>
                         </div>
                     </div>
 

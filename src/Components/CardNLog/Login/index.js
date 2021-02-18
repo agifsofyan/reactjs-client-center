@@ -84,6 +84,7 @@ function Login (props) {
                 finishFunction()
                 .then(data=>{
                     console.log('MASUK RESOLVE <m<<')
+                    history.push('/lms-dashboard')
                     setIsLoading(false)
                 })
                 .catch(err=>{

@@ -39,7 +39,7 @@ function LandingPage () {
 
     // LOCAL STATE DATA PRODUCT
     const [product] = useState([{ 
-                product_id : "6024db550af735001c2b7e8d" , 
+                product_id : "602dda671e352b12bc226dfd" , 
                 utm : "origin",
                 quantity : 1
             }
@@ -47,6 +47,7 @@ function LandingPage () {
     )
 
     useEffect(()=>{
+        document.title = "Landing Page"
         axios({
             method : "GET",
             url : `${SWAGGER_URL}/uploads/media/list`
@@ -68,7 +69,7 @@ function LandingPage () {
                 method : 'POST',
                 url : `${SWAGGER_URL}/carts/add`,
                 data : {
-                    product_id : ["6024db550af735001c2b7e8d"],
+                    product_id : ["602dda671e352b12bc226dfd"],
                 },
                 headers : {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -141,6 +142,7 @@ function LandingPage () {
                     landingPage={true}
                     email={email}
                     style={{width : "110%", marginTop : 25}}
+                    finishFunction={handleLogin}
                     // setSelectedPage={setSelectedPage}
                 />
             )

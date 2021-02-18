@@ -14,6 +14,7 @@ import PaymentSuccess from './PaymentSuccess'
 import LandingPage from './LandingPage'
 import ScrollToTop from './ScrollToTop'
 import OrderHistory from './OrderHistory'
+import TopicList from './TopicList'
 
 export {
     Auth,
@@ -31,5 +32,6 @@ export {
     PaymentSuccess,
     LandingPage,
     ScrollToTop,
-    OrderHistory
+    OrderHistory,
+    TopicList
 }

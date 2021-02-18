@@ -23,8 +23,8 @@ function Home (props) {
         <div className="bmc-drawer-9">
             <div 
                 style={{marginTop : 19}}
-                className={checkSelected("/home")}
-                onClick={e=>handleChangePage('/home')}
+                className={checkSelected("/")}
+                onClick={e=>handleChangePage('/')}
             >
                 Beranda
             </div>

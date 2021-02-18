@@ -3,6 +3,7 @@ import React , { useState , useEffect } from 'react'
 // MODULE
 import axios from 'axios'
 import Cookies from 'js-cookie';
+import { useHistory } from 'react-router-dom'
 
 // COMPONENT
 import Input from '../../Auth/Input' 
@@ -17,7 +18,7 @@ import './style.css'
 function Register (props) {
 
     // PARENT PROPS
-    const { email , setSelectedPage ,  landingPage , style  } = props
+    const { email , setSelectedPage ,  landingPage , style , finishFunction } = props
     
     // COOKIES
     const cookieId = Cookies.get('productId') ? Cookies.get('productId') : null;
@@ -50,6 +51,9 @@ function Register (props) {
 
     // LOCAL STATE SET CHECKBOX ANIMATION
     const [shake,setShake] = useState("")
+
+    // HISTORY 
+    const history = useHistory()
 
     let handleError = (data) => {
 
@@ -132,7 +136,15 @@ function Register (props) {
             let tokenR = data.data.accessToken
             localStorage.setItem('token',tokenR)
             if (landingPage) {
-
+                finishFunction()
+                .then(data=>{
+                    console.log('MASUK RESOLVE <m<<')
+                    setLoading(false)
+                    history.push("/lms-dashboard")
+                })
+                .catch(err=>{
+                    setLoading(false)
+                })
             }else {
                 handleAddCart()
             }

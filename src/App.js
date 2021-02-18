@@ -20,7 +20,8 @@ import {
         PaymentSuccess,
         ScrollToTop,
         LandingPage,
-        OrderHistory
+        OrderHistory,
+        TopicList
       } from './Pages'
 
       import { 
@@ -171,6 +172,7 @@ function App () {
             <Route path="/payment=true" component={PaymentSuccess}/>
             <Route path="/order-history" component={OrderHistory}/>
             <Route path="/landing-page" component={LandingPage}/>
+            <Route path="/topic-list" component={TopicList}/>
             {/* LMS PAGE  */}
             <Route path='/lms-dashboard' component={Dashboard} />
             <Route path='/lms-home' component={LMSHome} />

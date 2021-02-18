@@ -217,7 +217,7 @@
     }
 
     .lp-10-c1 > img {
-        height: 440px;
+        height: 100%;
         border-radius: 9px;
     }
     
@@ -264,7 +264,8 @@
 
     .lp-10-c2 {
         margin: 38px 0 0 0;
-        height: 400px;
+        height: 100%;
+        border-radius: 8px;
     }
 
     .lp-10-c4 {
@@ -306,7 +307,7 @@
 @media only screen and (max-width: 400px) {
 
     .lp-10-c1 > img {
-        height: 420px;
+        height: 100%;
         border-radius: 8.5px;
     }
 
