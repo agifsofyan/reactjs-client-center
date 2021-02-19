@@ -86,6 +86,10 @@ u {
     font-size: medium;
     margin-bottom: 5px;
 }
+.comment-from-user-product {
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+}
 .commment-button-section {
     display: flex;
     justify-content: center;

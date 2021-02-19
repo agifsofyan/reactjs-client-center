@@ -75,54 +75,53 @@ const Dashboard = () => {
 
     const history = useHistory();
 
-    const list = useSelector(state => state.product.productList);
     const paidList = useSelector(({ order }) => order.paidList);
-    console.log(paidList);
 
     let renderList = () => {
-        return paidList.map((el,index)=>{
-            return (
-                <div
-                    onClick={e=>history.push(`/lms-home?id=${el._id}`)}
-                >
-                    <img 
-                        className="slides-3-content-c1"
-                        src={productRecom}
-                        alt={'recom'}
-                    />
-                    <span className="slides-3-content-c2">
-                        {/* {
-                            el.name.slice(0,27) + "" + renderDot(el.name)
-                        } */}
-                        ehe te nandayo
-                    </span>
-                    <div className="slides-3-content-c3">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                        Lorem Ipsum has been the  
-                    </div>
-                    <div className="slides-3-content-c4">
-                        <Rate 
-                            allowHalf 
-                            defaultValue={4.5} 
-                            style={{color : "#EB8A2F",fontSize : 20}}
+        return paidList.map((el,index) => {
+            const items = el.items;
+            return items.map((val,index) => {
+                return (
+                    <div
+                        key={index}
+                        onClick={(e) => history.push(`/lms-home?id=${val.product_info._id}`)}
+                    >
+                        <img 
+                            className="slides-3-content-c1"
+                            src={productRecom}
+                            alt={'recom'}
                         />
-                        <div className="slides-3-content-c4-t">
-                            (5) 1.200
-                        </div>
-                    </div>
-                    <div className="slides-3-content-c5">
-                        <span>
-                            Rp. 1.900.000,00
+                        <span className="slides-3-content-c2">
+                            {val.product_info.name.slice(0,27) + "" + renderDot(val.product_info.name)}
                         </span>
-                        <div>
-                            Rp. 9.000.00,00
+                        <div className="slides-3-content-c3">
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                            Lorem Ipsum has been the  
+                        </div>
+                        <div className="slides-3-content-c4">
+                            <Rate 
+                                allowHalf 
+                                defaultValue={4.5} 
+                                style={{color : "#EB8A2F",fontSize : 20}}
+                            />
+                            <div className="slides-3-content-c4-t">
+                                (5) 1.200
+                            </div>
+                        </div>
+                        <div className="slides-3-content-c5">
+                            <span>
+                                Rp {val.product_info.price.toLocaleString('id-ID')}
+                            </span>
+                            <div>
+                                Rp {val.product_info.sale_price.toLocaleString('id-ID')}
+                            </div>
+                        </div>
+                        <div className="slides-3-content-c6">
+                            Daftar
                         </div>
                     </div>
-                    <div className="slides-3-content-c6">
-                        Daftar
-                    </div>
-                </div>
-            );
+                );
+            });
         });
     };
 
