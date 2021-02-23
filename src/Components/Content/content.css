@@ -4,12 +4,14 @@
 }
 .content-button-group {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    justify-content: center;
 }
 .content-btn {
     cursor: pointer;
     background-color: #FFFFFF;
     padding: 8px 20px;
+    margin: 0px 10px;
     border-radius: 50px;
     border-color: #000000;
     font-size: larger;

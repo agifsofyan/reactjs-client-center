@@ -22,6 +22,8 @@ const LMSHome = (query) => {
     const productById = useSelector(({ product }) => product.productById);
     const queryId = query.location.search.split('=')[1];
 
+    console.log(reviewUserProduct);
+
     useEffect(() => {
         document.title = 'LMS Home';
         dispatch(getProductById(queryId));
@@ -207,15 +209,23 @@ const LMSHome = (query) => {
                         {reviewUserProduct.opini}
                     </div>
                     :
-                    <div>
-                        <TextArea name='opini' rows={5} showCount={true} maxLength={300} onChange={handleChangeReviewCourse} />
-                        <div className='commment-button-section'>
-                            <button className='post-comment-button' onClick={handleSubmitReview}>
-                                Tulis Komentar
-                            </button>
-                        </div>
-                    </div>
+                    null
                 }
+                <div>
+                    <TextArea 
+                        name='opini' 
+                        rows={5} 
+                        showCount={true} 
+                        maxLength={300} 
+                        disabled={reviewUserProduct !== [] ? true : false} 
+                        onChange={handleChangeReviewCourse} 
+                    />
+                    <div className='commment-button-section'>
+                        <button className='post-comment-button' onClick={handleSubmitReview}>
+                            Tulis Komentar
+                        </button>
+                    </div>
+                </div>
             </div>
 
             {/* DIVIDER */}

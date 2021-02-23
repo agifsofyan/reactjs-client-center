@@ -45,7 +45,7 @@ function Home (props) {
             <div style={{
                 backgroundColor:'#E9E9E9',
                 width:'90%',
-                height:'4px',
+                height:'7px',
             }} />
 
             <div className='bmc-content-4'>
@@ -67,7 +67,7 @@ function Home (props) {
             <div style={{
                 backgroundColor:'#E9E9E9',
                 width:'90%',
-                height:'4px',
+                height:'7px',
             }} />
 
             <div className='bmc-content-4'>
@@ -76,6 +76,10 @@ function Home (props) {
 
             <div className='bmc-content-4'>
                 Topik Favorit Saya
+            </div>
+
+            <div className='bmc-content-4'>
+                Keluar Akun
             </div>
         </div>
     );
