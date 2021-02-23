@@ -11,16 +11,36 @@ const LMSFooter = () => {
         return (
             <React.Fragment>
                 <a href='/order-history'>
-                    <img src={giftbox} alt='footer icon' height={25} className='footer-icons-group' />
+                    <img 
+                        src={giftbox} 
+                        alt='footer icon'
+                        className='footer-icons' 
+                    />
                 </a>
-                <img src={save} alt='footer icon' height={25} className='footer-icons-group' />
+                <img 
+                    src={save} 
+                    alt='footer icon'
+                    className='footer-icons' 
+                />
                 <a href='/lms-dashboard'>
-                    <img src={home} alt='footer icon' height={25} className='footer-icons-group' />
+                    <img 
+                        src={home} 
+                        alt='footer icon'
+                        className='footer-icons' 
+                    />
                 </a>
                 <a href='/lms-profile'>
-                    <img src={profile} alt='footer icon' height={25} className='footer-icons-group' />
+                    <img 
+                        src={profile} 
+                        alt='footer icon'
+                        className='footer-icons' 
+                    />
                 </a>
-                <img src={ranking} alt='footer icon' height={25} className='footer-icons-group' />
+                <img 
+                    src={ranking} 
+                    alt='footer icon'
+                    className='footer-icons' 
+                />
             </React.Fragment>
         );
     };

@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserWhoAmI } from '../../../Redux/Actions/userAction';
+import React from 'react'
+import { useDispatch } from 'react-redux';
+import Swal from 'sweetalert2';
+import { logOut } from '../../../Redux/Actions/userAction';
 
 // STYLING DI ../drawer.css
 
@@ -23,11 +24,26 @@ function Home (props) {
 
     const dispatch = useDispatch();
 
-    const userInfo = useSelector(({ user }) => user.userMe);
-
-    useEffect(() => {
-        dispatch(getUserWhoAmI());
-    }, [dispatch]);
+    const handleLogOut = () => {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You are going to log out from this account.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Log Out'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                dispatch(logOut());
+                Swal.fire(
+                    'Success!',
+                    'You have been logged out.',
+                    'success',
+                );
+            }
+        })
+    };
 
     return (
         <div className="bmc-drawer-9">
@@ -78,7 +94,7 @@ function Home (props) {
                 Topik Favorit Saya
             </div>
 
-            <div className='bmc-content-4'>
+            <div className='bmc-content-4' onClick={handleLogOut}>
                 Keluar Akun
             </div>
         </div>

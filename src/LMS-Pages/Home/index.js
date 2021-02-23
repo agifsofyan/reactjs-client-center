@@ -22,7 +22,7 @@ const LMSHome = (query) => {
     const productById = useSelector(({ product }) => product.productById);
     const queryId = query.location.search.split('=')[1];
 
-    console.log(reviewUserProduct);
+    console.log(userInfo._id);
 
     useEffect(() => {
         document.title = 'LMS Home';
@@ -34,8 +34,8 @@ const LMSHome = (query) => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(getReviewByUser(productById._id));
-    }, [dispatch, productById._id]);
+        dispatch(getReviewByUser(userInfo._id));
+    }, [dispatch, productById._id, userInfo._id]);
 
     const detail = {
         image: 'https://c0.wallpaperflare.com/preview/494/520/839/russia-moscow-sunset-mood.jpg',
@@ -202,30 +202,28 @@ const LMSHome = (query) => {
                 </div>
                 {
                     reviewUserProduct
-                    // &&
-                    // reviewUserProduct.user._id === userInfo.user._id
                     ?
                     <div className='comment-from-user-product'>
                         {reviewUserProduct.opini}
                     </div>
                     :
-                    null
-                }
-                <div>
-                    <TextArea 
-                        name='opini' 
-                        rows={5} 
-                        showCount={true} 
-                        maxLength={300} 
-                        disabled={reviewUserProduct !== [] ? true : false} 
-                        onChange={handleChangeReviewCourse} 
-                    />
-                    <div className='commment-button-section'>
-                        <button className='post-comment-button' onClick={handleSubmitReview}>
-                            Tulis Komentar
-                        </button>
+                    // null
+                    <div>
+                        <TextArea 
+                            name='opini' 
+                            rows={5} 
+                            showCount={true} 
+                            maxLength={300} 
+                            disabled={reviewUserProduct !== [] ? true : false} 
+                            onChange={handleChangeReviewCourse} 
+                        />
+                        <div className='commment-button-section'>
+                            <button className='post-comment-button' onClick={handleSubmitReview}>
+                                Tulis Komentar
+                            </button>
+                        </div>
                     </div>
-                </div>
+                }
             </div>
 
             {/* DIVIDER */}

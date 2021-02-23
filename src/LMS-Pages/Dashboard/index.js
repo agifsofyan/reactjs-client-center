@@ -8,14 +8,18 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import productRecom from '../../Assets/Images/recommended.png';
 import { getPaidList } from '../../Redux/Actions';
+import { getUserWhoAmI } from '../../Redux/Actions/userAction';
 import './style.css';
 
 const Dashboard = () => {
     const dispatch = useDispatch();
 
+    const userInfo = useSelector(({ user }) => user.userMe);
+
     useEffect(() => {
         document.title = 'Dashboard';
         dispatch(getPaidList());
+        dispatch(getUserWhoAmI());
     }, [dispatch]);
 
     const storyImg = 'https://www.digitalartsonline.co.uk/cmsdata/slideshow/3784651/01_idea.jpg';
@@ -215,7 +219,8 @@ const Dashboard = () => {
 
             {/* PAID ITEMS */}
             <div className='paid-greeting'>
-                Hi, `name` 👋
+                {/* Hi, `name` 👋 */}
+                Hi, {userInfo.name} 👋
             </div>
             <div className='paid-description'>
                 Dapatkan content dari product
