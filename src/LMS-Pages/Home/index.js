@@ -10,12 +10,15 @@ import gold from '../../Assets/Images/gold.png';
 import obsidian from '../../Assets/Images/obsidian.png';
 import diamond from '../../Assets/Images/diamond.png';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProductById, postReviewCourse } from '../../Redux/Actions';
+import { getProductById, getReviewByUser, postReviewCourse } from '../../Redux/Actions';
+import { getUserWhoAmI } from '../../Redux/Actions/userAction';
 import './style.css';
 
 const LMSHome = (query) => {
     const dispatch = useDispatch();
 
+    const userInfo = useSelector(({ user }) => user.userMe);
+    const reviewUserProduct = useSelector(({ review }) => review.reviewUserProduct);
     const productById = useSelector(({ product }) => product.productById);
     const queryId = query.location.search.split('=')[1];
 
@@ -24,17 +27,24 @@ const LMSHome = (query) => {
         dispatch(getProductById(queryId));
     }, [dispatch, queryId]);
 
-    const detail = {
-            image: 'https://c0.wallpaperflare.com/preview/494/520/839/russia-moscow-sunset-mood.jpg',
-            mentor: 'John Doe',
-            title: 'BOE Business Master',
-            description: (
-                <span>
-                    [Goal of Product] <br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut augue lectus. Quisque placerat est aliquam, auctor ex et, elementum ante. Curabitur metus orci, condimentum condimentum viverra a, ornare vel nunc. Etiam quis rhoncus mauris. Suspendisse hendrerit felis eget justo egestas, ornare blandit arcu imperdiet. Aliquam ac egestas orci, vel venenatis nunc. Maecenas dapibus purus vestibulum posuere auctor. Fusce scelerisque viverra faucibus. Suspendisse.
-                </span>
-            ),
-        };
+    useEffect(() => {
+        dispatch(getUserWhoAmI());
+    }, [dispatch]);
 
+    useEffect(() => {
+        dispatch(getReviewByUser(productById._id));
+    }, [dispatch, productById._id]);
+
+    const detail = {
+        image: 'https://c0.wallpaperflare.com/preview/494/520/839/russia-moscow-sunset-mood.jpg',
+        mentor: 'John Doe',
+        title: 'BOE Business Master',
+        description: (
+            <span>
+                [Goal of Product] <br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut augue lectus. Quisque placerat est aliquam, auctor ex et, elementum ante. Curabitur metus orci, condimentum condimentum viverra a, ornare vel nunc. Etiam quis rhoncus mauris. Suspendisse hendrerit felis eget justo egestas, ornare blandit arcu imperdiet. Aliquam ac egestas orci, vel venenatis nunc. Maecenas dapibus purus vestibulum posuere auctor. Fusce scelerisque viverra faucibus. Suspendisse.
+            </span>
+        ),
+    };
 
     const renderDetail = () => {
         return (
@@ -186,14 +196,26 @@ const LMSHome = (query) => {
             <div className='separator' />
             <div className='comment-section'>
                 <div className='comment-label'>
-                    Komentar Positif Setelah Belajar
+                    Komentar Positif Setelah Belajar :
                 </div>
-                <TextArea name='opini' rows={5} showCount={true} maxLength={300} onChange={handleChangeReviewCourse} />
-                <div className='commment-button-section'>
-                    <button className='post-comment-button' onClick={handleSubmitReview}>
-                        Tulis Komentar
-                    </button>
-                </div>
+                {
+                    reviewUserProduct
+                    // &&
+                    // reviewUserProduct.user._id === userInfo.user._id
+                    ?
+                    <div className='comment-from-user-product'>
+                        {reviewUserProduct.opini}
+                    </div>
+                    :
+                    <div>
+                        <TextArea name='opini' rows={5} showCount={true} maxLength={300} onChange={handleChangeReviewCourse} />
+                        <div className='commment-button-section'>
+                            <button className='post-comment-button' onClick={handleSubmitReview}>
+                                Tulis Komentar
+                            </button>
+                        </div>
+                    </div>
+                }
             </div>
 
             {/* DIVIDER */}

@@ -1,10 +1,13 @@
 // PRODUCT
-export const FETCH_PRODUCT = "FETCH_PRODUCT"
-export const CHANGE_PRODUCT = "CHANGE_PRODUCT"
+export const FETCH_PRODUCT = "FETCH_PRODUCT";
+export const CHANGE_PRODUCT = "CHANGE_PRODUCT";
 
 // USER
-export const GET_SELECTED_USER = "GET_SELECTED_USER"
-export const CHANGE_TOP = "CHANGE_TOP"
+export const GET_SELECTED_USER = "GET_SELECTED_USER";
+export const CHANGE_TOP = "CHANGE_TOP";
+export const USER_START = 'USER_START';
+export const USER_ME = 'USER_ME';
+export const USER_FAILED = 'USER_FAILED';
 
 // LMS
 export const PRODUCT_START = 'PRODUCT_START';
@@ -23,6 +26,7 @@ export const CONTENT_FAILED = 'CONTENT_FAILED';
 // REVIEW
 export const REVIEW_START = 'REVIEW_START';
 export const REVIEW_SUCCESS = 'REVIEW_SUCCESS';
+export const REVIEW_BY_USER_PER_PRODUCT = 'REVIEW_BY_USER_PER_PRODUCT';
 export const REVIEW_FAILED = 'REVIEW_FAILED';
 
 // ORDER

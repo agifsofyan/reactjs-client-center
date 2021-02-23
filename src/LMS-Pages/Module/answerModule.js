@@ -4,7 +4,10 @@ import TopicSection from '../../Components/TopicSection';
 import Footer from '../../Components/LMSFooter';
 import moduleArt from '../../Assets/Images/module.jpg';
 import { Link } from 'react-router-dom';
+import { Input } from 'antd';
 import './module.css';
+
+const { TextArea } = Input;
 
 const ActionPlan = () => {
     return [0,1,2,3,4,5,6,7,8].map((val, index) => {
@@ -29,25 +32,43 @@ const ActionPlan = () => {
 };
 
 const JawabPertanyaan = () => {
-    return [0,1,2,3,4,5,6,7,8].map((val, index) => {
+    return [0].map((val, index) => {
         return (
-            <Link to='/lms-module-answer' style={{textDecoration:'none', color:'black'}}>
-                <div className='action-card'>
-                    <div className='action-txt'>
-                        Lorem ipsum dolor sit amet. kok dummy text gini amat ya, udah kehabisan ide, maap ya hehehe.
-                    </div>
-                    <div className='action-icon-button'>
-                        <img 
-                            src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Noun_Project_question_mark_icon_1101884_cc.svg/1200px-Noun_Project_question_mark_icon_1101884_cc.svg.png' 
-                            alt='icon' 
-                            className='action-icon' 
-                        />
-                        <button className='action-button'>
-                            JAWAB
-                        </button>
-                    </div>
+            <div>
+                <Link to='/lms-module' style={{
+                    textDecoration:'none',
+                    color:'black',
+                }}>
+                    <button style={{
+                        marginBottom:'10px',
+                    }}>
+                        Back
+                    </button>
+                </Link>
+                <div style={{
+                    padding:'10px 15px',
+                    border:'1px solid grey',
+                    borderRadius:'5px',
+                    marginBottom:'10px',
+                }}>
+                    Lorem Ipsum dolor sit amet. kok dummy text gini amat sih ya wkwkwk. Hmm oke deh gapapa.
                 </div>
-            </Link>
+                <TextArea rows={4} placeholder='Jawaban anda disini...' style={{marginBottom:'10px'}} />
+                <div style={{
+                    display:'flex',
+                    justifyContent:'flex-end',
+                }}>
+                    <button style={{
+                        backgroundColor:'#FF4500',
+                        color:'white',
+                        borderRadius:'5px',
+                        padding:'7.5px 15px',
+                        border:'none',
+                    }}>
+                        Jawab
+                    </button>
+                </div>
+            </div>
         );
     });
 };
@@ -128,12 +149,13 @@ const FilterTab = ({
     );
 };
 
-const Module = () => {
+const AnswerModule = () => {
     useEffect(() => {
         document.title = 'LMS Module';
+        window.scrollTo(0,0);
     });
 
-    const [active, setActive] = useState(1);
+    const [active, setActive] = useState(2);
 
     return (
         <div className='root'>
@@ -190,4 +212,4 @@ const Module = () => {
     );
 };
 
-export default Module;
+export default AnswerModule;
