@@ -10,6 +10,8 @@ function FirstContent (props) {
 
     const { user , isData } = props
 
+    console.log(user , '  <<<<<< USER .,.,.,.,')
+
     let selector = document.getElementById('cart-user-id')
     console.log(selector && selector.offsetWidth , ' <<<<< VALUE')
     if (!isData) {

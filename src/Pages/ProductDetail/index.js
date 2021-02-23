@@ -380,7 +380,15 @@ function ProductDetail (props) {
 
             {renderSection()}
 
-            <Bonus/>
+            {
+                detail.bonus ?
+                <Bonus/> :
+                <div
+                    style={{marginBottom : 150}}
+                >
+
+                </div>
+            }
 
             <Payment detail={detail} loading={loading} handleAddCart={handleAddCart} topScroll={topScroll}/>
 

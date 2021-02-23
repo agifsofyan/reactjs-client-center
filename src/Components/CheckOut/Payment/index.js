@@ -62,7 +62,7 @@ function Payment (props) {
 
             <div style={{marginTop : 30}}>
                 <header>Bank Transfer</header>
-                <main>Bayar dengan akhir nominal 4 angka verifikasi</main>
+                {/* <main>Bayar dengan akhir nominal 4 angka verifikasi</main> */}
                 <section></section>
                 {
                     renderData("Bank-Transfer")

@@ -79,12 +79,13 @@
 }
 
 .cart-06-list1-sc-c2 {
-    width: 100%;
+    width: 125px;
+    /* background-color: black; */
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     margin-top: 4px;
-    margin-right: 23.5%;
+    /* margin-right: 23.5%; */
 }
 
 .cart-06-list1-sc-c2-button {
@@ -104,10 +105,14 @@
 }
 
 .cart-06-list1-sc-c3 {
-    width: 100%;
+    width: 125px;
+    /* background-color: pink; */
     display: flex;
     justify-content: flex-end;
+    /* justify-content: space-between; */
+    /* justify-content: center; */
     margin-top: 10px;
+    /* align-items: center; */
 }
 
 .cart-06-list1-sc-c3-box {

@@ -7,7 +7,7 @@ import axios from 'axios'
 import List from '../../Components/LandingPage/List'
 import Input from '../../Components/Auth/Input'
 import Button from '../../Components/Button'
-import Footer from '../../Components/LandingPage/Footer'
+import Footer from '../../Components/LandingPage/Footer2'
 import { Email , Login , Register } from '../../Components/CardNLog'
 
 // IMAGES 

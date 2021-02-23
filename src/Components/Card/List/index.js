@@ -65,8 +65,18 @@ function List (props) {
         })
     }
 
-    let editQty = (data) => {
+    let editQty = (data,num) => {
         let qty = data.quantity
+        if (qty >=1) {
+            // if (data._id ==)
+            let arr = [...cart]
+            arr.forEach(e=>{
+                if (data.product_info._id === e.product_info._id) {
+                    data.quantity = data.quantity + num
+                }
+            })
+            setCart(arr)
+        }
         console.log(qty , ' <<< QUAN')
     }
 
@@ -83,8 +93,16 @@ function List (props) {
         setCart(arr)
     }
 
+    let renderDiskon = (data) => {
+        let {price,sale_price} = data
+        let min = price - sale_price
+        let presentase = min/price * 100
+        return Math.round(presentase)
+    }
+
     let renderData = () => {
         return cart.map((el,index)=>{
+            console.log(el , ' <<<< VALUE EL >>>>')
             return (
                 <div 
                     key={index}
@@ -107,7 +125,7 @@ function List (props) {
                         />
 
                         <span>
-                            {el.product_info.slug}
+                            {el.product_info.name}
                         </span>
 
                     </div>
@@ -118,33 +136,61 @@ function List (props) {
                             <div>{ el.product_info && moneyConvert(el.product_info.sale_price ? el.product_info.sale_price.toString() : "","Rp. ")}</div>
                         </div>
                         <div className="cart-06-list1-sc-c2">
-                            <div className="cart-06-list1-sc-c2-button">Hemat 80%</div>
+                            <div className="cart-06-list1-sc-c2-button">Hemat {renderDiskon(el.product_info)}%</div>
                         </div>
                         <div className="cart-06-list1-sc-c3">
-                            <div className="cart-06-list1-sc-c3-box">
-                                <RemoveIcon
-                                    // onClick={e=>handleChangeNum(num - 1)}
-                                    // onClick={e=>editQty(el.quantity)}
-                                    onClick={e=>editQty(el,-1)}
-                                    className="cart-06-list1-sc-c3-icon"
+                            {
+                                el.product_info.type === "ecommerce" &&
+                                <div className="cart-06-list1-sc-c3-box">
+                                    <RemoveIcon
+                                        // onClick={e=>handleChangeNum(num - 1)}
+                                        // onClick={e=>editQty(el.quantity)}
+                                        onClick={e=>editQty(el,-1)}
+                                        className="cart-06-list1-sc-c3-icon"
+                                    />
+                                </div>
+                            }
+
+                            {
+                                el.product_info.type === "ecommerce" &&
+                                <div 
+                                    className="cart-06-list1-sc-c3-num" 
+                                    style={
+                                            {
+                                                marginLeft : el.product_info.type === "ecommerce" && 9,
+                                                width : el.product_info.type !== "ecommerce" && 0,
+                                                borderBottom : el.product_info.type !== "ecommerce" && "none",
+                                                marginRight : el.product_info.type !== "ecommerce" && "24%",
+                                                fontSize : el.product_info.type !== "ecommerce" && 16,
+                                                paddingTop : el.product_info.type !== "ecommerce" && 2,
+                                            }
+                                        }
+                                >
+                                    {
+                                        el.quantity
+                                    }
+                                </div>
+                            }
+
+
+                            {
+                                el.product_info.type === "ecommerce" &&
+                                <div className="cart-06-list1-sc-c3-box" style={{marginLeft : 9}}>
+                                    <AddIcon
+                                        // onClick={e=>handleChangeNum(num + 1)}
+                                        onClick={e=>editQty(el,1)}
+                                        className="cart-06-list1-sc-c3-icon"
+                                    />
+                                </div>
+                            }
+
+                            {
+                                el.product_info.type === "ecommerce" &&
+                                <DeleteIcon
+                                    onClick={e=>deleteCart(el.product_info._id)}
+                                    className="cart-06-list1-sc-c3-icon-2"
                                 />
-                            </div>
-                            <div className="cart-06-list1-sc-c3-num" style={{marginLeft : 9}}>
-                                {
-                                    el.quantity
-                                }
-                            </div>
-                            <div className="cart-06-list1-sc-c3-box" style={{marginLeft : 9}}>
-                                <AddIcon
-                                    // onClick={e=>handleChangeNum(num + 1)}
-                                    onClick={e=>editQty(el,1)}
-                                    className="cart-06-list1-sc-c3-icon"
-                                />
-                            </div>
-                            <DeleteIcon
-                                onClick={e=>deleteCart(el.product_info._id)}
-                                className="cart-06-list1-sc-c3-icon-2"
-                            />
+                            }
                         </div>
                     </div>
 

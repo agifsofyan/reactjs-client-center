@@ -15,6 +15,8 @@ import LandingPage from './LandingPage'
 import ScrollToTop from './ScrollToTop'
 import OrderHistory from './OrderHistory'
 import TopicList from './TopicList'
+import AboutUs from './AboutUs'
+import Privacy from './Privacy'
 
 export {
     Auth,
@@ -33,5 +35,7 @@ export {
     LandingPage,
     ScrollToTop,
     OrderHistory,
-    TopicList
+    TopicList,
+    AboutUs,
+    Privacy
 }

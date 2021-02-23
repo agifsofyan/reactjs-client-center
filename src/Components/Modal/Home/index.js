@@ -29,25 +29,27 @@ function Home (props) {
                 Beranda
             </div>
 
-            <div className="bmc-content-4" >
-                Tentang Laruno
-            </div>
-
             {
                 !localStorage.getItem('token') &&
                 <div
                     className={checkSelected("/auth")}
                     onClick={e=>handleChangePage('/auth')} 
                 >
-                    Login & Register Akun
+                    Daftar Sekarang Gratis 3 Bulan
                 </div>
             }
 
-            <div className="bmc-content-4" >
+            <div 
+                className={checkSelected("/about-us")}
+                onClick={e=>handleChangePage('/about-us')} 
+            >
                 Tentang Laruno
             </div>
 
-            <div className="bmc-content-4" >
+            <div 
+                className={checkSelected("/topic-list")}
+                onClick={e=>handleChangePage('/topic-list')} 
+            >
                 Topik Belajar Laruno
             </div>
 

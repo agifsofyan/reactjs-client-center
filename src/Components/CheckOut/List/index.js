@@ -27,11 +27,25 @@ function List (props) {
                         borderBottomLeftRadius : (index === lastLength || cart.length === 1 ) && 12,
                     }}
                 >
-                    <h3>{e.product_info.name}</h3>
-                    {/* <h4>{e.product_info.sale_price ? "Rp. " +  e.product_info.sale_price : "Rp. " + e.product_info.price  }</h4> */}
-                    <h4>
-                        {e.product_info.sale_price  && moneyConvert(e.product_info.sale_price  ? e.product_info.sale_price.toString() : "" ,"Rp. ")}
-                    </h4>
+                    <div>
+                        <h3>{e.product_info.name}</h3>
+                        {/* <h4>{e.product_info.sale_price ? "Rp. " +  e.product_info.sale_price : "Rp. " + e.product_info.price  }</h4> */}
+                        <h4>
+                            {e.product_info.sale_price  && moneyConvert(e.product_info.sale_price  ? e.product_info.sale_price.toString() : "" ,"Rp. ")}
+                        </h4>
+                    </div>
+                    {
+                        e.is_bump &&
+                        <div
+                            style={{marginTop : 20}}
+                        >
+                            <h3>{e.product_info.bump[0] && e.product_info.bump[0].bump_name}</h3>
+                            {/* <h4>{e.product_info.sale_price ? "Rp. " +  e.product_info.sale_price : "Rp. " + e.product_info.price  }</h4> */}
+                            <h4>
+                                {e.product_info.bump[0]  && moneyConvert(e.product_info.bump[0].bump_price  ? e.product_info.bump[0].bump_price.toString() : "" ,"Rp. ")}
+                            </h4>
+                        </div>
+                    }
 
                 </div>
             )

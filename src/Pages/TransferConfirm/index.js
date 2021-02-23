@@ -40,6 +40,9 @@ function TransferBank () {
     // LOADING
     const [loading,setLoading] = useState(false)
 
+    // LOCAL STATE DATA USER
+    const [user,setUser] = useState(null)
+
     useEffect(()=>{
         // GET ORDER
         axios({
@@ -58,6 +61,26 @@ function TransferBank () {
        .catch(err=>{
            console.log(err ,  ' <<< ERROR GET ORDER LIST')
        })
+
+       axios({
+            method : 'GET',
+            url : `${SWAGGER_URL}/users/me`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            if (data && data.data) {
+                console.log(data.data.user , ' <<, fix <><>>< pppp')
+                setUser(data.data.user)
+            } 
+        })
+        .catch(err=>{
+            console.log(err.response , ' <<<< ERORR')
+        })
+
     },[])
 
     let handleConfirmation = () => {
@@ -144,7 +167,7 @@ function TransferBank () {
 
     return (
         <div className="transfer-08-container">
-            <h1>Hi, John Doe</h1>
+            <h1>Hi, {user && user.name}</h1>
             <div className="transfer-08-line"></div>
             <h2>Order Anda Sedang Diproses</h2>
             <img

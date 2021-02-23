@@ -65,7 +65,7 @@ function ThirdContent (props) {
                 >
                     <div>
                         {
-                            el.code
+                            el.name
                         }
                     </div>
                     <div>
@@ -79,7 +79,7 @@ function ThirdContent (props) {
     return (
         <div className="card-06-tc-container">
             <div 
-                style={{height : showMenu && 220, overflowY : showMenu && "scroll"}}  
+                style={{height : showMenu && 220, overflowY : showMenu && "auto"}}  
                 className="card-06-tc-c1"
                 onClick={e=>setShowMenu(!showMenu)}
             >

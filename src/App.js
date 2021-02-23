@@ -21,7 +21,9 @@ import {
         ScrollToTop,
         LandingPage,
         OrderHistory,
-        TopicList
+        TopicList,
+        AboutUs,
+        Privacy
       } from './Pages'
 
       import { 
@@ -173,6 +175,8 @@ function App () {
             <Route path="/order-history" component={OrderHistory}/>
             <Route path="/landing-page" component={LandingPage}/>
             <Route path="/topic-list" component={TopicList}/>
+            <Route path="/about-us" component={AboutUs}/>
+            <Route path="/privacy-policy" component={Privacy}/>
             {/* LMS PAGE  */}
             <Route path='/lms-dashboard' component={Dashboard} />
             <Route path='/lms-home' component={LMSHome} />
