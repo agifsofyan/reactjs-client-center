@@ -143,7 +143,7 @@ function Modal (props) {
                             Privacy Policy
                         </div>
                         <div 
-                            onClick={e=> [history.push('/privacy-policy'),handleModalClose()]}
+                            onClick={e=> [history.push('/terms-and-condition'),handleModalClose()]}
                             style={{marginLeft : 20}}
                         >
                             Terms & Condition

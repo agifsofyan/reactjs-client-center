@@ -1,7 +1,7 @@
 import React , { useEffect , useState }  from 'react'
 
 // MODULE
-import { Switch, Route   } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 import axios from 'axios'
 import { useDispatch , useSelector } from 'react-redux'
 
@@ -23,7 +23,8 @@ import {
         OrderHistory,
         TopicList,
         AboutUs,
-        Privacy
+        Privacy,
+        Terms
       } from './Pages'
 
       import { 
@@ -59,6 +60,9 @@ import {  SWAGGER_URL } from './Support/API_URL'
 import './index.css'
 
 function App () {
+
+  // USE LOCATION
+  const location = useLocation()
 
   // USE DISPATCH
   const dispatch = useDispatch()
@@ -138,6 +142,40 @@ function App () {
     // e.nativeEvent.stopImmediatePropagation();
     dispatch(changeValueUser('top',document.body.scrollTop))
   }
+
+  let handleSiteRoute = () => {
+    let params = location.pathname
+    let res = params.split('').filter((e,i)=> i > 0)
+    let arrP = res.join('').split('-')
+    let strR = ""
+
+    for (let i in arrP) {
+      let e = arrP[i]
+      for (let j in e) {
+        let e2 = e[j]
+        if ( j === "0") {
+          console.log('HERE jfdjfnjsdfnsjdfndsjfn')
+          strR += e2.toUpperCase()
+        }else if (e2 === "/") {
+          strR += " | "
+        }
+        else {
+          strR += e2
+        }
+      }
+      strR += " "
+    }
+    return strR
+  }
+
+  useEffect(()=>{
+    console.log('KNDSFNJSDNFSJDFNJSNFJDSN ***')
+    if (location.pathname!== "/") {
+      document.title = handleSiteRoute() + " - " + "#1 Gamification-Based Education in Indonesia"
+    }else {
+      document.title = "#1 Gamification-Based Education in Indonesia"
+    }
+  },[location])
  
   return (
     <div
@@ -179,6 +217,7 @@ function App () {
             <Route path="/topic-list" component={TopicList}/>
             <Route path="/about-us" component={AboutUs}/>
             <Route path="/privacy-policy" component={Privacy}/>
+            <Route path="/terms-and-condition" component={Terms}/>
             {/* LMS PAGE  */}
             <Route path='/lms-dashboard' component={Dashboard} />
             <Route path='/lms-home' component={LMSHome} />

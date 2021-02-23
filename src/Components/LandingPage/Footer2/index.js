@@ -1,5 +1,8 @@
 import React from 'react'
 
+// MODULE
+import { useHistory } from 'react-router-dom'
+
 // IMAGES 
 import Wa from '../../../Assets/Images/Whatsapp.png'
 
@@ -13,6 +16,9 @@ import tt from '../../../Assets/Images/tt.png'
 // STYLING DI pages/LandingPage
 
 function Footer () {
+
+    // HISTORY
+    const history = useHistory()
 
     return (
         <div className="lp-10-c5">
@@ -59,10 +65,15 @@ function Footer () {
                 </div>
             </div>
             <div className="bmc-content-7">
-                <div>
+                <div
+                    onClick={e=> history.push('/privacy-policy')}
+                >
                     Privacy Policy
                 </div>
-                <div style={{marginLeft : 20}}>
+                <div 
+                    onClick={e=>history.push('/terms-and-condition')}
+                    style={{marginLeft : 20}}
+                >
                     Terms & Condition
                 </div>
                 </div>

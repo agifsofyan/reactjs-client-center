@@ -411,6 +411,15 @@ function Cart () {
                     )
                 })
             }
+            <div className="cart-06-1 cart-06-c2">
+
+            </div>
+            {
+                cart && cart.length > 0 &&
+                <h3>
+                    Mau dapet potongan Harga silahkan pilih kupon Anda
+                </h3>
+            }
             {
                 coupons  && cart.length > 0 &&
                 <ThirdContent 

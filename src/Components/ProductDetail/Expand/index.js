@@ -14,7 +14,7 @@ function Expand (props) {
 
     // const [data] = useState([0,1,2,3,4])
     const [lastLength] = useState(data.length-1)
-    const [isShow,setIsShow] = useState([])
+    const [isShow,setIsShow] = useState( [data[0] ])
 
     let handleAccordionPush = (res) => {
         let result = [...isShow]

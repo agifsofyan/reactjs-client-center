@@ -47,7 +47,6 @@ function LandingPage () {
     )
 
     useEffect(()=>{
-        document.title = "Landing Page"
         axios({
             method : "GET",
             url : `${SWAGGER_URL}/uploads/media/list`

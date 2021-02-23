@@ -54,10 +54,10 @@ function Home (props) {
             </div>
 
             <div
-                className={checkSelected("/product-list")}
-                onClick={e=>handleChangePage('/product-list')}
+                className={checkSelected("/auth")}
+                onClick={e=>handleChangePage('/auth')}
             >
-                Produk Pembelajaran Laruno
+                Masuk ke Akun Anda
             </div>
             {
                 localStorage.getItem('token') &&
@@ -68,6 +68,7 @@ function Home (props) {
                     History Transaksi
                 </div>
             }
+
             {
                 localStorage.getItem('token') &&
                 <div
@@ -75,6 +76,16 @@ function Home (props) {
                     onClick={e=>handleChangePage('/lms-dashboard')}
                 >
                     LMS
+                </div>
+            }
+
+            {
+                localStorage.getItem('token') &&
+                <div
+                    className={checkSelected("")}
+                    onClick={e=>[handleChangePage('/'),localStorage.removeItem('token')]}
+                >
+                    Keluar
                 </div>
             }
 

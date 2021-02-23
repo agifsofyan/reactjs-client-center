@@ -84,7 +84,7 @@ function ThirdContent (props) {
                 onClick={e=>setShowMenu(!showMenu)}
             >
                 <div style={{height : showMenu &&  48, marginTop : showMenu && 6.5}} className="card-06-tc-c1-1">
-                    <span>{ selectedCoupon ? selectedCoupon.code : "Pilih Kupon"}</span>
+                    <span>{ selectedCoupon ? selectedCoupon.name : "Pilih Kupon"}</span>
                     {
                         showMenu ? 
                             <ExpandLessIcon onClick={e=>setShowMenu(false)} className="card-06-tc-c1-1-icon"/> :

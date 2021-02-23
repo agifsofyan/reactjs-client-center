@@ -1,7 +1,7 @@
 import React, { useEffect, Fragment } from 'react';
 
 // MODULE
-import { withRouter } from 'react-router-dom';
+import { withRouter  } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 
 // GLOBAL STATE

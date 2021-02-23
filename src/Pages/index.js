@@ -17,6 +17,7 @@ import OrderHistory from './OrderHistory'
 import TopicList from './TopicList'
 import AboutUs from './AboutUs'
 import Privacy from './Privacy'
+import Terms from './TermsCondition'
 
 export {
     Auth,
@@ -37,5 +38,6 @@ export {
     OrderHistory,
     TopicList,
     AboutUs,
-    Privacy
+    Privacy,
+    Terms
 }
