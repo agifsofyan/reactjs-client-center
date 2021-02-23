@@ -91,6 +91,7 @@ u {
     height: 50px;
 }
 .action-button {
+    cursor: pointer;
     background-color: #FFFFFF;
     box-shadow: 0 0 5px 1.75px #E6E6E6;
     border-radius: 10px;

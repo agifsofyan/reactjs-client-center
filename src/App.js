@@ -39,6 +39,8 @@ import {
         LMSProfile, 
       } from './LMS-Pages';
 
+import AnswerModule from './LMS-Pages/Module/answerModule';
+
 // COMPONENT 
 import Navbar from './Components/Navbar'
 import Drawer from './Components/Modal'
@@ -179,6 +181,7 @@ function App () {
             <Route path='/lms-video-detail' component={LMSVideoDetail} />
             <Route path='/lms-tips-list' component={LMSTipsList} />
             <Route path='/lms-tips-detail' component={LMSTipsDetail} />
+            <Route path='/lms-module-answer' component={AnswerModule} />
             <Route path='/lms-module' component={LMSModule} />
             <Route path='/lms-group' component={LMSGroup} />
             <Route path='/lms-bonus' component={LMSBonus} />
