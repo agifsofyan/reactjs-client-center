@@ -322,9 +322,12 @@ function ProductDetail (props) {
                     }
                 </span>
             </div>
-            <span className="product-detail-c6">
-                Hemat {diskP}% - Khusus minggu ini promo hemat {moneyConvert( (detail.price - detail.sale_price).toString(),"Rp. ")}!
-            </span>
+            {
+                detail.sale_price > 0 &&
+                <span className="product-detail-c6">
+                    Hemat {diskP}% - Khusus minggu ini promo hemat {moneyConvert( (detail.price - detail.sale_price).toString(),"Rp. ")}!
+                </span>
+            }
             <div
                 className="product-detail-c7"
                 onClick={e=>handleAddCart()}

@@ -5,8 +5,6 @@ import axios from 'axios'
 
 // COMPONENT
 import List from '../../Components/LandingPage/List'
-import Input from '../../Components/Auth/Input'
-import Button from '../../Components/Button'
 import Footer from '../../Components/LandingPage/Footer2'
 import { Email , Login , Register } from '../../Components/CardNLog'
 
@@ -14,7 +12,7 @@ import { Email , Login , Register } from '../../Components/CardNLog'
 // import image1 from '../../Assets/Images/landing-page-fix.jpg'
 // import image1Mobile from '../../Assets/Images/landing-page-1.png'
 // import image2 from '../../Assets/Images/laruno.png'
-import image3 from '../../Assets/Images/img-lp.png'
+// import image3 from '../../Assets/Images/img-lp.png'
 import Gamification from '../../Assets/Images/gamifikasi-fix.jpg'
 
 // API

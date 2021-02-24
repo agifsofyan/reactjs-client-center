@@ -6,7 +6,8 @@ function Home (props) {
 
     const { handleModalClose , history , location } = props
 
-    let handleChangePage = (route) => {
+    let handleChangePage = (route,e) => {
+        e.preventDefault()
         history.push(route)
         handleModalClose()
     }
@@ -21,77 +22,91 @@ function Home (props) {
 
     return (
         <div className="bmc-drawer-9">
-            <div 
+            <a
+                href="/" 
+                target="_blank"
                 style={{marginTop : 19}}
                 className={checkSelected("/")}
-                onClick={e=>handleChangePage('/')}
+                onClick={e=>handleChangePage('/',e)}
             >
                 Beranda
-            </div>
+            </a>
 
             {
                 !localStorage.getItem('token') &&
-                <div
+                <a
+                    href="/register" 
+                    target="_blank"
                     className={checkSelected("/register")}
-                    onClick={e=>handleChangePage('/register')} 
+                    onClick={e=>handleChangePage('/register',e)} 
                 >
                     Daftar Sekarang Gratis 3 Bulan
-                </div>
+                </a>
             }
 
-            <div 
+            <a 
+                href="/about-us" 
+                target="_blank"
                 className={checkSelected("/about-us")}
-                onClick={e=>handleChangePage('/about-us')} 
+                onClick={e=>handleChangePage('/about-us',e)} 
             >
                 Tentang Laruno
-            </div>
+            </a>
 
-            <div 
+            <a 
+                href="/topic-list" 
+                target="_blank"
                 className={checkSelected("/topic-list")}
-                onClick={e=>handleChangePage('/topic-list')} 
+                onClick={e=>handleChangePage('/topic-list',e)} 
             >
                 Topik Belajar Laruno
-            </div>
+            </a>
 
             {
                 !localStorage.getItem('token') &&
-                <div
+                <a
+                    href="/login" 
+                    target="_blank"
                     className={checkSelected("/login")}
-                    onClick={e=>handleChangePage('/login')}
+                    onClick={e=>handleChangePage('/login',e)}
                 >
                     Masuk ke Akun Anda
-                </div>
+                </a>
 
             }
 
             {
                 localStorage.getItem('token') &&
-                <div
+                <a
+                    href="/order-history" 
+                    target="_blank"
                     className={checkSelected("/order-history")}
-                    onClick={e=>handleChangePage('/order-history')}   
+                    onClick={e=>handleChangePage('/order-history',e)}   
                 >
                     History Transaksi
-                </div>
+                </a>
             }
 
             {
                 localStorage.getItem('token') &&
-                <div
+                <a
+                    href="/lms-dashboard" 
+                    target="_blank"
                     className={checkSelected("/lms-dashboard")}
-                    onClick={e=>handleChangePage('/lms-dashboard')}
+                    onClick={e=>handleChangePage('/lms-dashboard',e)}
                 >
                     LMS
-                </div>
+                </a>
             }
 
             {
                 localStorage.getItem('token') &&
-                <div
+                <a
                     className={checkSelected("")}
-                    onClick={e=>[handleChangePage('/'),localStorage.removeItem('token')]}
+                    onClick={e=>[handleChangePage('/',e),localStorage.removeItem('token')]}
                 >
                     Keluar
-                </div>
+                </a>
             }
 
         </div>

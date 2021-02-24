@@ -124,6 +124,10 @@
     height: 40px;
 }
 
+.bmc-content-4:hover {
+    color: #606060;
+}
+
 .bmc-content-4-selected {
     height: 40px;
     background-color: #E8F1FF;
