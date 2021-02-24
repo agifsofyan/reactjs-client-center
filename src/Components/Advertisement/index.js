@@ -29,6 +29,8 @@ function Advertisement (props) {
 
     if (
             location.pathname === '/auth' || 
+            location.pathname === '/login' || 
+            location.pathname === '/register' || 
             location.pathname === '/change-password' || 
             location.pathname === '/forget-password' || 
             location.pathname.split('/')[1] === "product-detail" ||

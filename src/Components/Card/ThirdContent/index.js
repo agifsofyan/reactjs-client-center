@@ -47,10 +47,16 @@ function ThirdContent (props) {
         }
         // console.log(disk , ' <<<< DISK')
         // setDisPre( Math.ceil(disk) )
-        setDisPre( value )
+        // let num = sale
+        // let num = 
+        console.log(saleBef , " , << SALE BEF")
+        console.log(sale , ' <<< VALUE SALE')
         setSale( saleBef - disk)
+
+        setDisPre( value )
         setSelectedCoupon(el)
         setShowMenu(false)
+
     }
 
     // RENDER MENU
@@ -77,7 +83,10 @@ function ThirdContent (props) {
     }
 
     return (
-        <div className="card-06-tc-container">
+        <div 
+            className="card-06-tc-container"
+            style={{marginBottom : showMenu && 150}}    
+        >
             <div 
                 style={{height : showMenu && 220, overflowY : showMenu && "auto"}}  
                 className="card-06-tc-c1"

@@ -169,7 +169,6 @@ function App () {
   }
 
   useEffect(()=>{
-    console.log('KNDSFNJSDNFSJDFNJSNFJDSN ***')
     if (location.pathname!== "/") {
       document.title = handleSiteRoute() + " - " + "#1 Gamification-Based Education in Indonesia"
     }else {
@@ -196,6 +195,8 @@ function App () {
         <ScrollToTop>
           <Switch>
             <Route path="/auth" component={Auth}/>
+            <Route path="/register" component={Auth}/>
+            <Route path="/login" component={Auth}/>
             <Route path="/product-list" component={ProductList}/>
             <Route path="/change-password"component={ChangePass}/>
             <Route path="/forget-password" component={ResetPass}/>

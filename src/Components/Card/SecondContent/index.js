@@ -5,7 +5,7 @@ import './style.css'
 
 function SecondContent (props) {
 
-    const { bump , index , bumpArr, setBump , sale,setSale ,price,setPrice } = props
+    const { bump , index , bumpArr, setBump , sale,setSale ,price,setPrice , saleBef , setSaleBef } = props
 
     let handleChanBox = (e) => {
         let arr = [...bumpArr]
@@ -16,9 +16,11 @@ function SecondContent (props) {
                 if (bump.isSelected) {
                     setPrice(price - e.bump_price)
                     setSale(sale - e.bump_price)
+                    setSaleBef(saleBef - e.bump_price)
                 }else {
                     setPrice(price + e.bump_price)
                     setSale(sale + e.bump_price)
+                    setSaleBef(saleBef + e.bump_price)
                 }
                 e.isSelected = res
             }

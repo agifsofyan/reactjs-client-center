@@ -57,7 +57,7 @@ function OtpEmail () {
         .then(({data})=>{
             setTimeout(()=>{
                 setIsLoading(false)
-                history.push('/auth')
+                history.push('/login')
             },4000)
 
             // OPEN NOTIFICATION
@@ -66,7 +66,7 @@ function OtpEmail () {
                 description:
                   'Selamat anda berhasil mengganti password, silahkan login untuk melanjutkan!!',
                 onClick: () => {
-                  history.push('/auth')
+                  history.push('/login')
                 },
             });
         })

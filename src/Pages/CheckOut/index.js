@@ -149,6 +149,7 @@ function Order () {
         if (order &&order.coupon) {
             let e1 = order.coupon
             let { value , max_discount } = e1
+            console.log(sale , ' <<< EL DI CHECKOUT')
             let disk = Math.ceil((value / 100) * sale)
             if (disk > max_discount ) {
                 disk = max_discount
@@ -180,7 +181,7 @@ function Order () {
                 order && order.coupon &&
                 <div className="order-08-price">
                     <h5>
-                        Diskon Kode
+                        {order.coupon.name}
                     </h5>
                     <h6>
                         {diskon && moneyConvert(renderCoupon() ? renderCoupon().toString() : "" ,"Rp. ")}

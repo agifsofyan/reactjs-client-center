@@ -58,7 +58,7 @@ function ChangePassword () {
             //  SET TIME OUT
             setTimeout(()=>{
                 setIsLoading(false)
-                history.push('/auth')
+                history.push('/login')
                 localStorage.removeItem('token')
             },4000)
 
@@ -68,7 +68,7 @@ function ChangePassword () {
                 description:
                   'Selamat anda berhasil mengganti password, silahkan login untuk melanjutkan!!',
                 onClick: () => {
-                  history.push('/auth')
+                  history.push('/login')
                 },
             });
 

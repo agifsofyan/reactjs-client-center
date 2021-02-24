@@ -32,8 +32,8 @@ function Home (props) {
             {
                 !localStorage.getItem('token') &&
                 <div
-                    className={checkSelected("/auth")}
-                    onClick={e=>handleChangePage('/auth')} 
+                    className={checkSelected("/register")}
+                    onClick={e=>handleChangePage('/register')} 
                 >
                     Daftar Sekarang Gratis 3 Bulan
                 </div>
@@ -53,12 +53,17 @@ function Home (props) {
                 Topik Belajar Laruno
             </div>
 
-            <div
-                className={checkSelected("/auth")}
-                onClick={e=>handleChangePage('/auth')}
-            >
-                Masuk ke Akun Anda
-            </div>
+            {
+                !localStorage.getItem('token') &&
+                <div
+                    className={checkSelected("/login")}
+                    onClick={e=>handleChangePage('/login')}
+                >
+                    Masuk ke Akun Anda
+                </div>
+
+            }
+
             {
                 localStorage.getItem('token') &&
                 <div

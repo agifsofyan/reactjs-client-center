@@ -187,6 +187,7 @@ function Cart () {
         })
         setPrice(priceNum)
         setSale(saleNum)
+        setSaleBef(saleNum)
     },[cart])
 
     useEffect(()=>{
@@ -330,9 +331,9 @@ function Cart () {
     // },[bump])
 
     useEffect(()=>{
-        // console.log(price , ' <<< VALUE PRICE')
-        // console.log(sale, ' << VALUE SALE')
-    },[price,sale])
+        console.log(sale, ' <<< ** VALUE SALE')
+        console.log(saleBef , ' <<< ** VALUE SALE BEF')
+    },[sale,saleBef])
 
     return (
         <div className="cart-container-06">
@@ -404,7 +405,9 @@ function Cart () {
                             index={index}
                             bumpArr={bump}
                             sale={sale}
+                            saleBef={saleBef}
                             setSale={setSale}
+                            setSaleBef={setSaleBef}
                             price={price}
                             setPrice={setPrice}
                         />
