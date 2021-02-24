@@ -295,7 +295,7 @@ const Tips = () => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'40px'}}>
+            <div className='lms-tips-list-footer'>
                 <Footer />
             </div>
         </div>

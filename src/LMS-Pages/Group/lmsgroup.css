@@ -83,6 +83,12 @@ u {
 }
 /* SAME RANK */
 
+/* FOOTER */
+.lms-group-footer {
+    margin-top: 50px;
+}
+/* FOOTER */
+
 /* MOBILE */
 @media only screen and (max-width: 600px) {
     .same-container {
@@ -101,5 +107,8 @@ u {
     }
     .friend-details {
         margin-left: 20px;
+    }
+    .lms-group-footer {
+        margin-top: 40px;
     }
 }

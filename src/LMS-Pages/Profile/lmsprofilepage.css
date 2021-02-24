@@ -81,3 +81,14 @@
     margin-top: 20px;
 }
 /* DETAILS */
+
+/* FOOTER */
+.lms-profile-footer {
+    margin-top: 60px;
+}
+@media only screen and (max-width: 600px) {
+    .lms-profile-footer {
+        margin-top: 50px;
+    }
+}
+/* FOOTER */

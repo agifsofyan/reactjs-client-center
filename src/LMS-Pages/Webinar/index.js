@@ -189,7 +189,7 @@ const LMSWebinar = () => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'50px'}}>
+            <div className='lms-webinar-footer'>
                 <Footer />
             </div>
         </div>

@@ -227,7 +227,7 @@ const Dashboard = () => {
             </div>
             <div className='paid-content'>
                 {/* <Content /> */}
-                <div className="slides-3">
+                <div className="slides-paid-list">
                     { paidList && renderList() }
                 </div>
             </div>
@@ -244,7 +244,7 @@ const Dashboard = () => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'60px'}}>
+            <div className='lms-dashboard-footer'>
                 <Footer />
             </div>
         </div>

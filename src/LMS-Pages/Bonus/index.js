@@ -67,7 +67,7 @@ const LMSBonus = () => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'30px'}}>
+            <div className='lms-bonus-footer'>
                 <Footer />
             </div>
         </div>

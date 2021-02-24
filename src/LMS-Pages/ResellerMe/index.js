@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import TopicSection from '../../Components/TopicSection';
 import Footer from '../../Components/LMSFooter';
-import { Form, FormGroup, Label, Input } from 'reactstrap';
-import { Select, Collapse } from 'antd';
+import { Form, FormGroup, Label } from 'reactstrap';
+import { Select, Collapse, Input } from 'antd';
 import './lmsresellerme.css';
 
 const { Option } = Select;
@@ -137,18 +137,33 @@ const LMSResellerMe = () => {
                 <div className='resellerme-comission-title'>
                     Data Pembayaran Komisi
                 </div>
-                <Form style={{marginTop:'20px'}}>
-                    <FormGroup>
-                        <Label>Nama Bank</Label>
-                        <Input type="text" placeholder="input value here..." />
+                <Form style={{marginTop:'10px'}}>
+                    <FormGroup style={{margin:'12.5px 0px'}}>
+                        <Label style={{
+                            fontFamily: 'Rubik, sans-serif',
+                            fontSize: 'medium',
+                        }}>
+                            Nama Bank
+                        </Label>
+                        <Input type="text" size="large" placeholder="input value here..." />
                     </FormGroup>
-                    <FormGroup>
-                        <Label>Nomor Rekening</Label>
-                        <Input type="text" placeholder="input value here..." />
+                    <FormGroup style={{margin:'12.5px 0px'}}>
+                        <Label style={{
+                            fontFamily: 'Rubik, sans-serif',
+                            fontSize: 'medium',
+                        }}>
+                            Nomor Rekening
+                        </Label>
+                        <Input type="text" size="large" placeholder="input value here..." />
                     </FormGroup>
-                    <FormGroup>
-                        <Label>Cabang Bank</Label>
-                        <Input type="text" placeholder="input value here..." />
+                    <FormGroup style={{margin:'12.5px 0px'}}>
+                        <Label style={{
+                            fontFamily: 'Rubik, sans-serif',
+                            fontSize: 'medium',
+                        }}>
+                            Cabang Bank
+                        </Label>
+                        <Input type="text" size="large" placeholder="input value here..." />
                     </FormGroup>
                 </Form>
                 <button className='resellerme-comission-update-btn'>
@@ -190,7 +205,7 @@ const LMSResellerMe = () => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'40px'}}>
+            <div className='lms-reseller-me-footer'>
                 <Footer />
             </div>
         </div>

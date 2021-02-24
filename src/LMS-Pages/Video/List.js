@@ -269,7 +269,7 @@ const List = () => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'40px'}}>
+            <div className='lms-video-list-footer'>
                 <Footer />
             </div>
         </div>

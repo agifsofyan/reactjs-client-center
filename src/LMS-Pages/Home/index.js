@@ -51,7 +51,7 @@ const LMSHome = (query) => {
     const renderDetail = () => {
         return (
             <div>
-                <div>{productById._id}</div>
+                {/* <div>{productById._id}</div> */}
                 <img src={detail.image} alt='product' className='product-image' />
                 <div className='product-mentor'>
                     Mentored by <b>{detail.mentor}</b>
@@ -214,6 +214,7 @@ const LMSHome = (query) => {
                             rows={5} 
                             showCount={true} 
                             maxLength={300} 
+                            allowClear={true}
                             disabled={reviewUserProduct !== [] ? true : false} 
                             onChange={handleChangeReviewCourse} 
                         />
@@ -260,7 +261,7 @@ const LMSHome = (query) => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'50px'}}>
+            <div className='lms-home-footer'>
                 <Footer />
             </div>
         </div>

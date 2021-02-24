@@ -58,7 +58,7 @@ const LMSReseller = () => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'50px'}}>
+            <div className='lms-reseller-footer'>
                 <Footer />
             </div>
         </div>

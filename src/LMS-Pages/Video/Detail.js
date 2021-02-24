@@ -216,7 +216,7 @@ const Detail = (query) => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'50px'}}>
+            <div className='lms-video-detail-footer'>
                 <Footer />
             </div>
         </div>

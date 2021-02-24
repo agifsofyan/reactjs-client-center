@@ -5,7 +5,7 @@
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
-    width: 100%;
+    width: 90%;
     margin-top: 18px;
 }
 
@@ -193,7 +193,7 @@
 
 @media only screen and (max-width: 600px) {
     .slides-3 {
-        width: 100%;
+        width: 90%;
     }
 
 

@@ -52,3 +52,14 @@ u {
     border-radius: 5px;
 }
 /* BENEFIT */
+
+/* FOOTER */
+.lms-reseller-footer {
+    margin-top: 55px;
+}
+@media only screen and (max-width: 600px) {
+    .lms-reseller-footer {
+        margin-top: 45px;
+    }
+}
+/* FOOTER */
