@@ -9,8 +9,8 @@
     width: 100%;
     height: auto;
     border-top: 1px solid #A4A4A4;
-    border-left: 1px solid #A4A4A4;
-    border-right: 1px solid #A4A4A4;
+    /* border-left: 1px solid #A4A4A4; */
+    /* border-right: 1px solid #A4A4A4; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -37,27 +37,29 @@
 .card-06-sc-c2 {
     width: 100%;
     /* border: 1px solid #A4A4A4; */
-    border-left: 1px solid #A4A4A4;
-    border-right: 1px solid #A4A4A4;
+    /* border-left: 1px solid #A4A4A4; */
+    /* border-right: 1px solid #A4A4A4; */
 }
 
 
-.card-06-sc-c2 img {
-    min-height: 210px;
-    max-height: 240px;
+.card-06-sc-c2 > img {
+    /* min-height: 210px;
+    max-height: 240px; */
     width: 100%;
+    height: 100%;
     object-fit: contain;
 }
 
 .card-06-sc-c3 {
     width: 100%;
-    height: 260px;
+    height: auto;
+    padding-bottom: 8px;
     display: flex;
     justify-content: center;
     /* align-items: center; */
     border-top: 1px solid #A4A4A4;
-    border-left: 1px solid #A4A4A4;
-    border-right: 1px solid #A4A4A4;
+    /* border-left: 1px solid #A4A4A4; */
+    /* border-right: 1px solid #A4A4A4; */
 }
 
 .card-06-sc-c3-fc {
@@ -66,7 +68,7 @@
     /* text-align: left; */
 }
 
-.card-06-sc-c3-fc h4 {
+.card-06-sc-c3-fc > h4 {
     font-weight: 400;
     font-size: 20px;
     font-family: 'Roboto Condensed', sans-serif;
@@ -75,7 +77,7 @@
     margin-top: 34px;
 }
 
-.card-06-sc-c3-fc div {
+.card-06-sc-c3-fc > div {
     font-size: 18px;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;

@@ -10,7 +10,7 @@ function SecondContent (props) {
     let handleChanBox = (e) => {
         let arr = [...bumpArr]
         let res = !bump.isSelected
-        let sel = 
+        // let sel = 
         arr.forEach((e,i)=>{
             if (i === index) {
                 if (bump.isSelected) {

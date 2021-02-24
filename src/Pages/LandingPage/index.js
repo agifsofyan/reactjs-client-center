@@ -7,14 +7,15 @@ import axios from 'axios'
 import List from '../../Components/LandingPage/List'
 import Input from '../../Components/Auth/Input'
 import Button from '../../Components/Button'
-import Footer from '../../Components/LandingPage/Footer'
+import Footer from '../../Components/LandingPage/Footer2'
 import { Email , Login , Register } from '../../Components/CardNLog'
 
 // IMAGES 
-import image1 from '../../Assets/Images/landing-page-fix.jpg'
-import image1Mobile from '../../Assets/Images/landing-page-1.png'
-import image2 from '../../Assets/Images/laruno.png'
+// import image1 from '../../Assets/Images/landing-page-fix.jpg'
+// import image1Mobile from '../../Assets/Images/landing-page-1.png'
+// import image2 from '../../Assets/Images/laruno.png'
 import image3 from '../../Assets/Images/img-lp.png'
+import Gamification from '../../Assets/Images/gamifikasi-fix.jpg'
 
 // API
 import { SWAGGER_URL } from '../../Support/API_URL'
@@ -38,7 +39,7 @@ function LandingPage () {
 
     // LOCAL STATE DATA PRODUCT
     const [product] = useState([{ 
-                product_id : "6024db550af735001c2b7e8d" , 
+                product_id : "602dda671e352b12bc226dfd" , 
                 utm : "origin",
                 quantity : 1
             }
@@ -67,7 +68,7 @@ function LandingPage () {
                 method : 'POST',
                 url : `${SWAGGER_URL}/carts/add`,
                 data : {
-                    product_id : ["6024db550af735001c2b7e8d"],
+                    product_id : ["602dda671e352b12bc226dfd"],
                 },
                 headers : {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
@@ -120,7 +121,7 @@ function LandingPage () {
                     setEmail={setEmail}
                     setSelectedTab={setSelectedTab}
                     landingPage={true}
-                    style={{width : "110%", marginTop : 35}}
+                    style={{width : "110%", marginTop : 25}}
                 />
             )
         }else if (selectedTab === 1) {
@@ -128,7 +129,7 @@ function LandingPage () {
                 <Login
                     landingPage={true}
                     email={email}
-                    style={{width : "110%", marginTop : 35}}
+                    style={{width : "110%", marginTop : 25}}
                     finishFunction={handleLogin}
                     // title={"Login"}
                     // setSelectedPage={setSelectedPage}
@@ -139,7 +140,8 @@ function LandingPage () {
                 <Register
                     landingPage={true}
                     email={email}
-                    style={{width : "110%", marginTop : 35}}
+                    style={{width : "110%", marginTop : 25}}
+                    finishFunction={handleLogin}
                     // setSelectedPage={setSelectedPage}
                 />
             )
@@ -150,6 +152,9 @@ function LandingPage () {
         <div className="lp-10-container">
             <div className="lp-10-c1">
                 <img
+                    src={Gamification}
+                />
+                {/* <img
                     className="img-1"
                     src={ window.matchMedia("(max-width: 600px)").matches  ? image1Mobile : image1}
                     alt={'landing-page-1'}
@@ -161,7 +166,7 @@ function LandingPage () {
                 />
                 <h1>
                     #Gamification In Education
-                </h1>
+                </h1> */}
             </div>
 
             {
@@ -175,15 +180,17 @@ function LandingPage () {
                 </div>
             }
 
-            <h2>Lorem Ipsum Dolor</h2>
+            <h2>
+                Apa Benefit Bergabung Dengan LARUNO.ID Untuk Kemajuan Bisnis dan Karir Anda?
+            </h2>
 
             <List/>
 
-            <img
+            {/* <img
                 className="lp-10-c4"
                 src={image3}
                 alt="landing-page-content"
-            />
+            /> */}
 
             {
                 renderPage()

@@ -33,35 +33,50 @@ function Carousel (props) {
             setSelected(lastLen)
         }
     }
-    
-    return (
-        <div
-            style={{justifyContent : detail.image_url.length <= 1 && "center"}}
-            className="product-detail-carousel"
-        >
-            {
-                detail.image_url.length > 1 &&
-                <NavigateBeforeIcon 
-                    style={{fontSize : 40}}
-                    onClick={e=>handleMin()}
+    if (detail.image_url.length <= 1) {
+        return (
+            <div
+                style={{width : "100%",height : "auto"}}
+                className="product-detail-carousel"
+            >
+                 <img
+                    src={detail.image_url[selected]}
+                    className="pdc-carousel-55"
+                    style={{width : "100%", height : "100%"}}
                 />
-            }
-            <img
-                src={detail.image_url[selected]}
-                className="pdc-carousel-55"
-            />
-            {/* <div className="pdc-carousel-55">
+            </div>
+        )
+    }else {
 
-            </div> */}
-            {
-                detail.image_url.length > 1 &&
-                <NavigateNextIcon 
-                    style={{fontSize : 40}}
-                    onClick={e=>handlePlus()}
+        return (
+            <div
+                style={{justifyContent : detail.image_url.length <= 1 && "center"}}
+                className="product-detail-carousel"
+            >
+                {
+                    detail.image_url.length > 1 &&
+                    <NavigateBeforeIcon 
+                        style={{fontSize : 40,cursor : "pointer"}}
+                        onClick={e=>handleMin()}
+                    />
+                }
+                <img
+                    src={detail.image_url[selected]}
+                    className="pdc-carousel-55"
                 />
-            }
-        </div>
-    )
+                {/* <div className="pdc-carousel-55">
+    
+                </div> */}
+                {
+                    detail.image_url.length > 1 &&
+                    <NavigateNextIcon 
+                        style={{fontSize : 40,cursor : "pointer"}}
+                        onClick={e=>handlePlus()}
+                    />
+                }
+            </div>
+        )
+    }
 
 }
 

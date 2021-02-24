@@ -70,13 +70,16 @@ function Order () {
             }
         })
         .then(({data})=>{
-            console.log(data.data[0] , ' DATA ORDER')
+            // let res = data.data.sort((a,b)=>new Date(a.create_date) - new Date(b.create_date))
+            // console.log(res ,  '<<<< VALUE RES')
+            console.log(data.data[0] , ' <<< ORDER VALUE')
             let arr = data.data[0].items
             let bumpArr = []
             // ecommerce
             arr.forEach(e=>{
                 priceNum += e.product_info.price
                 saleNum += e.product_info.sale_price
+                saleNum += e.bump_price
                 if (e && e.product_info && e.product_info.bump) {
                     bumpArr.push(...e.product_info.bump)
                 }
@@ -88,7 +91,6 @@ function Order () {
             setPrice(priceNum)
             setSale(saleNum)
             setDiskon(priceNum - saleNum)
-
             setOrder(data.data[0])
         })
         .catch(err=>{
@@ -143,6 +145,20 @@ function Order () {
         }
     }
 
+    let renderCoupon = () => {
+        if (order &&order.coupon) {
+            let e1 = order.coupon
+            let { value , max_discount } = e1
+            let disk = Math.ceil((value / 100) * sale)
+            if (disk > max_discount ) {
+                disk = max_discount
+            }
+            return disk
+        }else {
+            return 0
+        }
+    }
+
     return (
         <div className="order-container-08" style={{width : "100%",backgroundColor : "white"}}>
             <h1>Review Pesanan</h1>
@@ -154,31 +170,37 @@ function Order () {
             }
             <div className="order-08-price" style={{marginTop : 18}}>
                 <h5>
-                    Harga
-                </h5>
-                <h6>
-                    {price && moneyConvert(price ? price.toString() : "" ,"Rp. ")}
-                </h6>
-            </div>
-            <div className="order-08-price">
-                <h5>
-                    Diskon
-                </h5>
-                <h6>
-                    {diskon && moneyConvert(diskon ? diskon.toString() : "" ,"Rp. ")}
-                </h6>
-            </div>
-            <div className="order-08-price">
-                <h5>
-                    Total Harga
+                    Total
                 </h5>
                 <h6>
                     {sale && moneyConvert(sale ? sale.toString() : "" ,"Rp. ")}
                 </h6>
             </div>
+            {
+                order && order.coupon &&
+                <div className="order-08-price">
+                    <h5>
+                        Diskon Kode
+                    </h5>
+                    <h6>
+                        {diskon && moneyConvert(renderCoupon() ? renderCoupon().toString() : "" ,"Rp. ")}
+                    </h6>
+                </div>
+            }
+            <div className="order-08-price">
+                <h5>
+                    Total
+                </h5>
+                <h6>
+                    {
+                        sale && 
+                        moneyConvert(sale ? (sale-renderCoupon()).toString() : "" ,"Rp. ")
+                    }
+                </h6>
+            </div>
             <hr className="order-08-line"/>
             <div className="order-08-t2">
-                Payment Method
+                Pilih Cara Pembayaran Anda
             </div>
             {
                 payment &&
@@ -198,6 +220,11 @@ function Order () {
                     "BAYAR SEKARANG"
                 }
             </button>
+            <div
+                style={{width : "82%",marginTop : 20,fontSize : 18,fontWeight : 20,textAlign : "center"}}
+            >
+                Segera Hadir Cara Pembayaran Dengan DANA Indonesia, OVO, Link Aja, Virtual Account dan Kartu Kredit
+            </div>
         </div>
     )
 

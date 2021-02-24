@@ -23,51 +23,71 @@ function Home (props) {
         <div className="bmc-drawer-9">
             <div 
                 style={{marginTop : 19}}
-                className={checkSelected("/home")}
-                onClick={e=>handleChangePage('/home')}
+                className={checkSelected("/")}
+                onClick={e=>handleChangePage('/')}
             >
                 Beranda
             </div>
 
-            <div className="bmc-content-4" >
-                Tentang Laruno
-            </div>
+            {
+                !localStorage.getItem('token') &&
+                <div
+                    className={checkSelected("/auth")}
+                    onClick={e=>handleChangePage('/auth')} 
+                >
+                    Daftar Sekarang Gratis 3 Bulan
+                </div>
+            }
 
-            <div
-                className={checkSelected("/auth")}
-                onClick={e=>handleChangePage('/auth')} 
+            <div 
+                className={checkSelected("/about-us")}
+                onClick={e=>handleChangePage('/about-us')} 
             >
-                Login & Register Akun
-            </div>
-
-            <div className="bmc-content-4" >
                 Tentang Laruno
             </div>
 
-            <div className="bmc-content-4" >
+            <div 
+                className={checkSelected("/topic-list")}
+                onClick={e=>handleChangePage('/topic-list')} 
+            >
                 Topik Belajar Laruno
             </div>
 
             <div
-                className={checkSelected("/product-list")}
-                onClick={e=>handleChangePage('/product-list')}
+                className={checkSelected("/auth")}
+                onClick={e=>handleChangePage('/auth')}
             >
-                Produk Pembelajaran Laruno
+                Masuk ke Akun Anda
             </div>
+            {
+                localStorage.getItem('token') &&
+                <div
+                    className={checkSelected("/order-history")}
+                    onClick={e=>handleChangePage('/order-history')}   
+                >
+                    History Transaksi
+                </div>
+            }
 
-            {/* <div
-                className={checkSelected("/order-history")}
-                onClick={e=>handleChangePage('/order-history')}   
-            >
-                History Transaksi
-            </div>
+            {
+                localStorage.getItem('token') &&
+                <div
+                    className={checkSelected("/lms-dashboard")}
+                    onClick={e=>handleChangePage('/lms-dashboard')}
+                >
+                    LMS
+                </div>
+            }
 
-            <div
-                className={checkSelected("/lms-dashboard")}
-                onClick={e=>handleChangePage('/lms-dashboard')}
-            >
-                LMS
-            </div> */}
+            {
+                localStorage.getItem('token') &&
+                <div
+                    className={checkSelected("")}
+                    onClick={e=>[handleChangePage('/'),localStorage.removeItem('token')]}
+                >
+                    Keluar
+                </div>
+            }
 
         </div>
     )

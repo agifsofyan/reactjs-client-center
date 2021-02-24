@@ -102,6 +102,7 @@ function Cart () {
 
                 // e = {...e,isChecked : true}
             })
+            console.log(bumpArr , ' <<< VALUE BUMP >> FJJ')
             setBump(bumpArr)
             setPrice(priceNum)
             setSale(saleNum)
@@ -188,14 +189,58 @@ function Cart () {
         setSale(saleNum)
     },[cart])
 
+    useEffect(()=>{
+        console.log(bump, " value bump")
+    },[bump])
+
+    let checkBump = (data) => {
+        let val = data.bump[0]
+        // console.log(val , ' <<< VALUE VAL')
+        // let { bump } = data
+        let flag = false
+        if (val) {
+            bump.forEach((e)=>{
+                console.log(e, ' <<< E')
+                console.log(val , ' <<<< VAL')
+                if (e.isSelected && e._id === val._id) {
+                    console.log('MASUK SINI')
+                    flag = true
+                }
+            })
+            return flag
+        }else {
+            return false
+        }
+    }
+
     let handleObjCart = (arr) => {
         let result = []
         arr.forEach(e=>{
+            // bump.forEach(e2=>{
+            //     let flag = false
+            //     if (e.isChecked) {
+            //         console.log(e2._id , ' <<<< e2._id')
+            //         console.log(e.product_info.bump._id , ' <<< e.product_info.bump._id')
+            //         if (e2._id === e.product_info.bump[0]._id) {
+            //             console.log('LOL <><><><><>----')
+            //             flag = true
+            //         }
+            //         let objR = { 
+            //                         product_id : e.product_info._id , 
+            //                         utm : e.utm ,
+            //                         quantity : e.quantity,
+            //                         is_bump : flag
+            //                     }
+            //         result.push(objR)
+            //     }
+            // })
             if (e.isChecked) {
-                let objR = { product_id : e.product_info._id , 
-                             utm : e.utm ,
-                             quantity : e.quantity
-                           }
+                let objR = { 
+                    product_id : e.product_info._id , 
+                    utm : e.utm ,
+                    quantity : e.quantity,
+                    is_bump : checkBump(e.product_info)
+                  }
                 result.push(objR)
             }
         })
@@ -203,15 +248,16 @@ function Cart () {
     }
 
     let handleOrder = () => {
-        console.log(selectedCoupon , ' <<< VALUE')
+        // console.log(selectedCoupon , ' <<< VALUE')
         setLoadingOrder(true)
         let resultCart = handleObjCart(cart)
+        console.log(resultCart , ' <<<< FIX 0000 ----- ==== --')
         axios({
             method : 'POST',
             url : `${SWAGGER_URL}/orders/store`,
             data : {
                 items : resultCart,
-                coupon : {
+                [ selectedCoupon ? "coupon" : "Lol"] : {
                     code : selectedCoupon ? selectedCoupon.code : null
                 },
                 shipment : {
@@ -299,7 +345,7 @@ function Cart () {
 
             </div>
             <h2 className="cwr-99-1 cart-06-title1">
-                Enrolled Course
+                Gabung di Kelas
             </h2>
             {
                 cart && cart.length > 0 ?
@@ -364,6 +410,15 @@ function Cart () {
                         />
                     )
                 })
+            }
+            <div className="cart-06-1 cart-06-c2">
+
+            </div>
+            {
+                cart && cart.length > 0 &&
+                <h3>
+                    Mau dapet potongan Harga silahkan pilih kupon Anda
+                </h3>
             }
             {
                 coupons  && cart.length > 0 &&

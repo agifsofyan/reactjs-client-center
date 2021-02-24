@@ -20,10 +20,10 @@ function List () {
                     alt={"lp-1"}
                 />
                 <div className="t1">
-                    Strategic Planning
+                    Belajar yang Menyenangkan
                 </div>
                 <div className="t2">
-                    Lorem Ipsum dolor sit amet, this is dummy text
+                    Kami membuat Program Pembelajaran yang Menyenangkan Dengan Mengusung Gamifikasi Dalam Proses Belajar
                 </div>
             </div>
 
@@ -33,10 +33,11 @@ function List () {
                     alt={"lp-1"}
                 />
                 <div className="t1">
-                    Strategic Planning
+                    Intensif dan Efektif
                 </div>
                 <div className="t2">
-                    Lorem Ipsum dolor sit amet, this is dummy text
+                    Dijaman dimana informasi / pendidikan bisa diakses dengan mudah. Maka, selain LARUNO.ID 
+                    menjadi platform yang Uptodate juga Intensif dan Efektif dalam menyajikan konten.
                 </div>
             </div>
 
@@ -46,10 +47,10 @@ function List () {
                     alt={"lp-1"}
                 />
                 <div className="t1">
-                    Strategic Planning
+                    Layanan Konsultasi
                 </div>
                 <div className="t2">
-                    Lorem Ipsum dolor sit amet, this is dummy text
+                    Anda bisa bertanya seputar dunia bisnis dan karir dari 1 pintu layanan chat, bersama Mentor di LARUNO.ID
                 </div>
             </div>
 
@@ -59,10 +60,10 @@ function List () {
                     alt={"lp-1"}
                 />
                 <div className="t1">
-                    Strategic Planning
+                    GRATIS 3 BULAN
                 </div>
                 <div className="t2">
-                    Lorem Ipsum dolor sit amet, this is dummy text
+                    Dalam Masa Launching (1 Bulan), LARUNO.ID Sedang Membuka Secara Gratis, Anda bisa Coba Sekarang Selama 3 Bulan.
                 </div>
             </div>
 

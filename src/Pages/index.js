@@ -14,6 +14,10 @@ import PaymentSuccess from './PaymentSuccess'
 import LandingPage from './LandingPage'
 import ScrollToTop from './ScrollToTop'
 import OrderHistory from './OrderHistory'
+import TopicList from './TopicList'
+import AboutUs from './AboutUs'
+import Privacy from './Privacy'
+import Terms from './TermsCondition'
 
 export {
     Auth,
@@ -31,5 +35,9 @@ export {
     PaymentSuccess,
     LandingPage,
     ScrollToTop,
-    OrderHistory
+    OrderHistory,
+    TopicList,
+    AboutUs,
+    Privacy,
+    Terms
 }

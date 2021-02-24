@@ -11,7 +11,9 @@ import Home from './Home'
 import LMS from './LMS'
 
 // MATERIAL ICONS
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+// import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 // STYLE
 import './style.css'
@@ -92,10 +94,17 @@ function Modal (props) {
                         Mau belajar online yang menyenangkan, efektif dan interaktif? 
                     </div>
 
-                    <div style={{marginTop : 20 , width : 180, height : 26 , borderRadius : 5}} className="card-06-tc-c1">
-                        <div className="card-06-tc-c1-1">
-                            <span style={{fontSize :  12 , fontWeight : 300}}>Sort By Topic</span>
-                            <ExpandMoreIcon className="card-06-tc-c1-1-icon"/>
+                    <div style={{marginTop : 20 , width : 215, height : 30 , borderRadius : 5}} className="card-06-tc-c1">
+                        <div 
+                            className="card-06-tc-c1-1" 
+                            style={{alignItems : "center",height : "100%"}}
+                            onClick={e=>[history.push("/product-list"),handleModalClose()]}
+                        >
+                            <span style={{fontSize :  12 , fontWeight : 300, width : "100%"}}>
+                                Pilih Pembelajaran Sekarang
+                            </span>
+                            {/* <ExpandMoreIcon className="card-06-tc-c1-1-icon"/> */}
+                            <NavigateNextIcon className="card-06-tc-c1-1-icon"/>
                         </div>
                     </div>
 
@@ -128,10 +137,15 @@ function Modal (props) {
                     <div style={{marginTop : 15}} className="bmc-content-3"></div>
 
                     <div className="bmc-content-7">
-                        <div>
+                        <div
+                            onClick={e=> [history.push('/privacy-policy'),handleModalClose()]}
+                        >
                             Privacy Policy
                         </div>
-                        <div style={{marginLeft : 20}}>
+                        <div 
+                            onClick={e=> [history.push('/terms-and-condition'),handleModalClose()]}
+                            style={{marginLeft : 20}}
+                        >
                             Terms & Condition
                         </div>
                     </div>

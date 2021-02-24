@@ -13,6 +13,7 @@ function Social () {
             <img
                 src={ig}
                 alt="drawer-img-1"
+                style={{marginLeft : 0}}
             />
             <img
                 src={fb}

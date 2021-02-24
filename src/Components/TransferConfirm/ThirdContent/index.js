@@ -137,6 +137,8 @@ function ThirdContent (props) {
                     calendarClassName="transfer-08-calendar"
                     // className="transfer-08-tc-date-2"
                     customInput={<CustomDate/>}
+                    dateFormat="MM/yyyy"
+                    endDate={new Date("2021/23/02")}
                 />
             </div>
             

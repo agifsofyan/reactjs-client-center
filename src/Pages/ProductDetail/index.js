@@ -133,7 +133,7 @@ function ProductDetail (props) {
                        }
                     </div>
                     {/* ONLY LINE */}
-                    <div className="product-detail-c8">
+                    <div style={{backgroundColor : "#959595",height : "0.1"}} className="product-detail-c8">
 
                     </div>
                 </div>
@@ -323,7 +323,7 @@ function ProductDetail (props) {
                 </span>
             </div>
             <span className="product-detail-c6">
-                Hemat {diskP}% - Khusus minggu ini promo hemat {diskP}%!
+                Hemat {diskP}% - Khusus minggu ini promo hemat {moneyConvert( (detail.price - detail.sale_price).toString(),"Rp. ")}!
             </span>
             <div
                 className="product-detail-c7"
@@ -365,7 +365,7 @@ function ProductDetail (props) {
             </div>
             
             <div className="product-detail-c12">
-                What You Will Learn
+                Dalam Kelas Ini Anda Akan Belajar:
             </div>
 
             {/* C 13 */}
@@ -380,7 +380,15 @@ function ProductDetail (props) {
 
             {renderSection()}
 
-            <Bonus/>
+            {
+                detail.bonus ?
+                <Bonus/> :
+                <div
+                    style={{marginBottom : 150}}
+                >
+
+                </div>
+            }
 
             <Payment detail={detail} loading={loading} handleAddCart={handleAddCart} topScroll={topScroll}/>
 

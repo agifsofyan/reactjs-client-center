@@ -6,6 +6,9 @@ import Cookies from 'js-cookie';
 // COMPONENT
 import { Email , Login , Register } from '../../Components/CardNLog'
 
+// HELPER
+import moneyConvert from '../../Support/moneyConvert'
+
 // STYLE
 import './style.css'
 
@@ -46,6 +49,13 @@ function CardNotLoggendIn (props) {
         }
     }
 
+    let renderDiskon = (data) => {
+        let {price,sale_price} = data
+        let min = price - sale_price
+        let presentase = min/price * 100
+        return Math.round(presentase)
+    }
+
     return (
         <div className="cardn-container-07">
             {renderPage()}
@@ -53,25 +63,25 @@ function CardNotLoggendIn (props) {
 
             </div>
             <div className="cardn-title-2">
-                Enrolled Course
+                Kelas yang Anda Pelajari
             </div>
 
             {
-                cookieCart ?
+                cookieCart && cookieCart[0] ?
                 <div className="carnd-cart-list">
                     
                     <h4>
                         {
-                            cookieCart[0].slug
+                            cookieCart[0].name
                         }
                     </h4>
 
                     <div>
                         <div>
-                            <span>Rp.1.900.000</span>
-                            <div>Rp.210.000</div>
+                            <span>{ moneyConvert(cookieCart[0].price.toString(),"Rp. ") }</span>
+                            <div>{moneyConvert(cookieCart[0].sale_price.toString(),"Rp. ")}</div>
                         </div>
-                        <button>Hemat 80%</button>
+                        <button>Hemat {renderDiskon(cookieCart[0])}%</button>
                     </div>
 
                 </div> :
