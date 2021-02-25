@@ -1,76 +1,114 @@
-import React from 'react';
-import { Carousel } from 'antd';
+import React, { useState } from 'react';
 import { TextField } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import './content.css';
 
-const useStyles = makeStyles((theme) => ({
-    textField: {
-        width: '100%',
-        marginBottom: '20px',
-        boxShadow: '0 0 5px 1.25px #E6E6E6',
-    },
-}));
-
-const Content = () => {
-    const classes = useStyles();
-
-    const topicList = [
-        {
-            name: "Trending",
-            active: true,
-        },
-        {
-            name: "Content",
-            active: false,
-        },
-        {
-            name: "Topic",
-            active: false,
-        },
-    ];
-
-    const renderButtons = () => {
-        return topicList.map((val,index) => {
+const Trending = () => {
+    const renderVideos = () => {
+        return [0,1,2].map(() => {
             return (
-                <div key={index}>
-                    <button 
-                        className={
-                            val.active 
-                            ?
-                            `content-btn active-btn`
-                            :
-                            `content-btn`
-                        }
-                    >
-                        {val.name}
-                    </button>
+                <div style={{
+                    marginRight: '20px',
+                    width: '100%',
+                    borderRadius: '5px',
+                    overflow: 'hidden',
+                }}>
+                    <iframe 
+                        title='business' 
+                        width="560" 
+                        height="315" 
+                        src="https://www.youtube.com/embed/PO_d169ibZ8" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen 
+                        className='content-video'
+                    />
                 </div>
             );
         });
     };
 
-    const Iframe = (
-        <iframe 
-            title='business' 
-            width="560" 
-            height="315" 
-            src="https://www.youtube.com/embed/PO_d169ibZ8" 
-            frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen 
-            className='content-video' 
-        />
+    return (
+        <div className='content-video-group'>
+            {renderVideos()}
+        </div>
     );
+};
+
+const Content = () => {
+    return [0].map(() => {
+        return (
+            <div>
+                ini Content
+            </div>
+        );
+    });
+};
+
+const Topic = () => {
+    return [0].map(() => {
+        return (
+            <div>
+                ini Content
+            </div>
+        );
+    });
+};
+
+const tabList = [
+    {
+        id: 1,
+        title: "Trending",
+        content: <Trending />,
+    },
+    {
+        id: 2,
+        title: "Content",
+        content: <Content />,
+    },
+    {
+        id: 3,
+        title: "Topic",
+        content: <Topic />,
+    },
+];
+
+const FilterTab = ({
+    title = "",
+    onItemClicked = () => console.error('You passed no action'),
+    isActive = false,
+}) => {
+    return (
+        <div>
+            <button 
+                onClick={onItemClicked}
+                className={
+                    isActive 
+                    ? `content-btn active-btn`
+                    : `content-btn`
+                }
+            >
+                {title}
+            </button>
+        </div>
+    );
+};
+
+const ContentSection = () => {
+    const [active, setActive] = useState(1);
 
     return (
         <div className='content-section'>
+            {/* SEARCH */}
             <TextField
                 variant="outlined"
                 placeholder="Search here..."
-                className={classes.textField}
+                style={{
+                    width: '100%',
+                    marginBottom: '20px',
+                    boxShadow: '0 0 5px 1.25px #E6E6E6',
+                }}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
@@ -79,16 +117,29 @@ const Content = () => {
                     ),
                 }}
             />
+
+            {/* FILTER */}
             <div className='content-button-group'>
-                {renderButtons()}
+                {tabList.map(({ id, title }) => 
+                    <FilterTab
+                        key={title}
+                        title={title}
+                        onItemClicked={() => setActive(id)}
+                        isActive={active === id}
+                    />
+                )}
             </div>
-            <Carousel slidesToScroll='1'>
-                <div>{Iframe}</div>
-                <div>{Iframe}</div>
-                <div>{Iframe}</div>
-            </Carousel>
+
+            {/* LIST */}
+            <div>
+                {tabList.map(({ id, content }) => {
+                    return active === id
+                    ? content
+                    : null
+                })}
+            </div>
         </div>
     );
 };
 
-export default Content;
+export default ContentSection;

@@ -4,7 +4,6 @@
 }
 .content-button-group {
     display: flex;
-    /* justify-content: space-between; */
     justify-content: center;
 }
 .content-btn {
@@ -22,8 +21,33 @@
     color: #FFFFFF;
     background-color: #000000;
 }
+.content-video-group {
+    /* margin: 0px 35px; */
+    display: flex;
+    overflow-y: auto;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+.content-video-group > div {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+    transform-origin: center center;
+    transform: scale(1);
+    transition: transform 0.35s;
+    position: relative;
+}
+.content-video-group::-webkit-scrollbar-track {
+    background: transparent;
+}
+.content-video-group::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
 .content-video {
     margin-top: 20px;
+    margin-right: 20px;
     width: 100%;
     border-radius: 5px;
     overflow: hidden;

@@ -261,10 +261,8 @@ const List = () => {
             <div className='videos-section'>
                 {tabList.map(({ id, content }) => {
                     return active === id 
-                    ? 
-                    content 
-                    : 
-                    null
+                    ? content 
+                    : null
                 })}
             </div>
 
