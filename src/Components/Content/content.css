@@ -22,7 +22,6 @@
     background-color: #000000;
 }
 .content-video-group {
-    /* margin: 0px 35px; */
     display: flex;
     overflow-y: auto;
     overflow-x: scroll;
@@ -46,7 +45,6 @@
     height: 0px;
 }
 .content-video {
-    margin-top: 20px;
     margin-right: 20px;
     width: 100%;
     border-radius: 5px;

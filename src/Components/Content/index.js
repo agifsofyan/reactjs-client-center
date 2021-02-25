@@ -50,7 +50,7 @@ const Topic = () => {
     return [0].map(() => {
         return (
             <div>
-                ini Content
+                ini Topic
             </div>
         );
     });
@@ -131,7 +131,7 @@ const ContentSection = () => {
             </div>
 
             {/* LIST */}
-            <div>
+            <div style={{marginTop:'20px'}}>
                 {tabList.map(({ id, content }) => {
                     return active === id
                     ? content
