@@ -15,7 +15,7 @@ import './style.css'
 function Payment (props) {
 
     // PARENT PROPS
-    const { handleAddCart , detail ,loading  } = props
+    const { handleAddCart , detail ,loading , renderButton  } = props
 
     // GLOBAL
     const topScroll = useSelector(state=>state.user.top)
@@ -46,11 +46,12 @@ function Payment (props) {
                 </div>
             </div>
             <div className="product-detail-c14-sc">
-                <div onClick={e=>handleAddCart(e)}>
+                <div 
+                    onClick={e=>renderButton() === "STOK KOSONG" ? console.log("STOK KOSONG") : handleAddCart(e)}>
                     {
                         loading ?
                         <Loader/> :
-                        "JOIN SEKARANG"
+                        renderButton()
                     }
                 </div>
             </div>

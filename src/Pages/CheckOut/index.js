@@ -41,6 +41,12 @@ function Order () {
     const [price,setPrice] = useState(0)
     const [sale,setSale] = useState(0)
     const [diskon,setDiskon] = useState(0)
+    
+    // UNIQUE NUMBER
+    const [unique,setUnique] = useState(null)
+
+    // SHIPMENT
+    const [shipmentPrice,setShipmentPrice] = useState(0)
 
     useEffect(()=>{
 
@@ -70,8 +76,6 @@ function Order () {
             }
         })
         .then(({data})=>{
-            // let res = data.data.sort((a,b)=>new Date(a.create_date) - new Date(b.create_date))
-            // console.log(res ,  '<<<< VALUE RES')
             console.log(data.data[0] , ' <<< ORDER VALUE')
             let arr = data.data[0].items
             let bumpArr = []
@@ -83,15 +87,33 @@ function Order () {
                 if (e && e.product_info && e.product_info.bump) {
                     bumpArr.push(...e.product_info.bump)
                 }
-                // setBump(bumpArr)
-                // setPrice(priceNum)
-                // setSale(saleNum)
-                // e = {...e,isChecked : true}
             })
+            let shipment = data.data[0].shipment
+            if (shipment) {
+                if (shipment.price && typeof shipment.price === 'number') {
+                    setShipmentPrice(shipment.price)
+                } 
+            }
             setPrice(priceNum)
             setSale(saleNum)
             setDiskon(priceNum - saleNum)
             setOrder(data.data[0])
+            return axios({
+                method : "POST",
+                url : `${SWAGGER_URL}/orders/unique`,
+                headers : {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+                data : {
+                    order_id : data.data[0]._id
+                }
+            })
+        })
+        .then(({data})=>{
+            setUnique(data.data)
+            console.log(data.data ,' <<<< VALUE DATA UNIQUE')
         })
         .catch(err=>{
             console.log(err ,  ' <<< ERROR GET ORDER LIST')
@@ -106,13 +128,16 @@ function Order () {
     let handlePay = () => {
         if (selectedPayment) {
             setLoading(true)
+            let total_price = (sale - renderCoupon() + unique + shipmentPrice)
+            console.log(total_price , ' <<<< VALUE TOTAL PRICE HERE 89') 
             axios({
                 method : 'POST',
                 url : `${SWAGGER_URL}/orders/${order._id}/pay`,
                 data : {
                     payment : {
                         method : selectedPayment._id
-                    }
+                    },
+                    total_price 
                 },
                 headers : {
                     'Access-Control-Allow-Origin': '*',
@@ -133,8 +158,8 @@ function Order () {
                     }
                     history.push('/transfer-confirm')
                 }
-                console.log(data.data.payment.method.info , '  <<<< KUDU BANK TRANSFER')
-                console.log(data , )
+                // console.log(data.data.payment.method.info , '  <<<< KUDU BANK TRANSFER')
+                console.log(data , " <<<< SUKSES >>>>")
             })
             .catch(err=>{
                 setLoading(false)
@@ -181,24 +206,49 @@ function Order () {
                 order && order.coupon &&
                 <div className="order-08-price">
                     <h5>
-                        {order.coupon.name}
+                        {'Potongan Kupon "' +order.coupon.name + '"'}
                     </h5>
                     <h6>
-                        {diskon && moneyConvert(renderCoupon() ? renderCoupon().toString() : "" ,"Rp. ")}
+                        {diskon && "( - ) " + moneyConvert(renderCoupon() ? renderCoupon().toString() : "" ,"Rp. ")}
                     </h6>
                 </div>
             }
-            <div className="order-08-price">
-                <h5>
-                    Total
-                </h5>
-                <h6>
-                    {
-                        sale && 
-                        moneyConvert(sale ? (sale-renderCoupon()).toString() : "" ,"Rp. ")
-                    }
-                </h6>
-            </div>
+            {
+                order && shipmentPrice > 0 &&
+                <div className="order-08-price">
+                    <h5>
+                        Ongkir
+                    </h5>
+                    <h6>
+                        {shipmentPrice && "( + ) " + moneyConvert( shipmentPrice.toString() , "Rp. " )}
+                    </h6>
+                </div>
+            }
+            {
+                order && unique &&
+                <div className="order-08-price">
+                    <h5>
+                        Kode Unik
+                    </h5>
+                    <h6>
+                        {unique && "( + ) " + moneyConvert( unique.toString() , "Rp. " )}
+                    </h6>
+                </div>
+            }
+            {
+                unique &&
+                <div className="order-08-price">
+                    <h5>
+                        Total Akhir
+                    </h5>
+                    <h6>
+                        {
+                            sale && 
+                            moneyConvert(sale ? ( sale - renderCoupon() + unique + shipmentPrice ).toString() : "" ,"Rp. ")
+                        }
+                    </h6>
+                </div>
+            }
             <hr className="order-08-line"/>
             <div className="order-08-t2">
                 Pilih Cara Pembayaran Anda

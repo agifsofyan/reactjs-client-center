@@ -172,8 +172,9 @@
     width: 100%;
     height: auto;
     /* background-color: #063E60; */
-    margin: 50px 0 0 0;
-    padding: 31px 0 18px 0;
+    background-color: #f9f9f9;
+    margin: 42px 0 0 0;
+    padding: 18px 0 18px 0;
     display: flex;
     flex-direction: column;
     align-items: center;

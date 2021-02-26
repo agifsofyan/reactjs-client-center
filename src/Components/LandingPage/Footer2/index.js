@@ -24,7 +24,7 @@ function Footer () {
         <div className="lp-10-c5">
             {/* FIRST CONTENT  */}
            <div 
-                style={{paddingLeft : 0,width : "auto"}}
+                style={{paddingLeft : 0,width : "auto",marginTop : 1}}
                 className="bmc-content-5"
             >
                 <img

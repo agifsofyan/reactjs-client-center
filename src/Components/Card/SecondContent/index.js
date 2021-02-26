@@ -7,6 +7,8 @@ function SecondContent (props) {
 
     const { bump , index , bumpArr, setBump , sale,setSale ,price,setPrice , saleBef , setSaleBef } = props
 
+    console.log(bumpArr , ' <<<< VALUE BUMP ARR >>>>')
+
     let handleChanBox = (e) => {
         let arr = [...bumpArr]
         let res = !bump.isSelected

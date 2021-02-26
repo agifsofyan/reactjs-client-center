@@ -97,7 +97,7 @@ function Modal (props) {
                     <div style={{marginTop : 20 , width : 215, height : 30 , borderRadius : 5}} className="card-06-tc-c1">
                         <div 
                             className="card-06-tc-c1-1" 
-                            style={{alignItems : "center",height : "100%"}}
+                            style={{alignItems : "center",height : "100%",cursor : "pointer"}}
                             onClick={e=>[history.push("/product-list"),handleModalClose()]}
                         >
                             <span style={{fontSize :  12 , fontWeight : 300, width : "100%"}}>

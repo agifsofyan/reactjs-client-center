@@ -55,6 +55,9 @@ function Cart () {
     // FOR CHILDREN STATE
     const [loadingOrder,setLoadingOrder] = useState(false)
 
+    // PRICE SHIPMENT
+    const [shipmentPrice,setShipmentPrice] = useState(0)
+
     // LOCAL STATE CHECK VALIDATION INPUT ADDRESS
     // const [inputNext,setInputNext] = useState(true)
 
@@ -81,6 +84,7 @@ function Cart () {
             arr.forEach(e=>{
                 let check = e.product_info.type
                 if (check === 'ecommerce') {
+                    console.log(e , ' &*&*&*&*&*&*&*&*&*&*&*&*&')
                     setIsEcommerce(true)
                     // setInputNext(false)
                 }
@@ -95,25 +99,22 @@ function Cart () {
                     // console.log(e.product_info.bump , ' <<< PER BUMP')
                     if (e.product_info.bump) {
                         e.product_info.bump.forEach((e2,index)=>{
-                            bumpArr.push({...e2,isSelected : false})
+                            bumpArr.push({...e2,isSelected : false,isShow : true})
                         })
                     }
                 }
 
                 // e = {...e,isChecked : true}
             })
-            console.log(bumpArr , ' <<< VALUE BUMP >> FJJ')
             setBump(bumpArr)
             setPrice(priceNum)
             setSale(saleNum)
-            setSaleBef(saleNum)
+            setSaleBef(saleNum > 0 ? saleNum : priceNum)
             arr = arr.map(e=>{
                 return e = {isChecked : true,...e}
             })
-            // console.log(arr, ' <<<<< TES')
             setCart(arr)
             setIsData(true)
-            // console.log(bumpArr , ' <<< VALUE BUMP')
         })
         .catch(err=>{
             console.log(err ,' << ERROR ')
@@ -175,19 +176,20 @@ function Cart () {
         console.log(selectedAddress , ' <<< SELECTED ADDRESS')
     },[selectedAddress])
 
-    useEffect(()=>{
+    useEffect(() => {
         let arr = cart
         let priceNum = 0
         let saleNum = 0
         arr.forEach((e)=>{
             if (e.isChecked) {
                 priceNum += e.product_info.price
-                saleNum += e.product_info.sale_price
+                saleNum += e.product_info.sale_price > 0 ? e.product_info.sale_price : e.product_info.price
             }
         })
+        console.log(saleNum , ' <<<<<<<<<<<<< SALE NUM ****')
         setPrice(priceNum)
         setSale(saleNum)
-        setSaleBef(saleNum)
+        setSaleBef(saleNum > 0 ? saleNum : priceNum)
     },[cart])
 
     useEffect(()=>{
@@ -201,8 +203,6 @@ function Cart () {
         let flag = false
         if (val) {
             bump.forEach((e)=>{
-                console.log(e, ' <<< E')
-                console.log(val , ' <<<< VAL')
                 if (e.isSelected && e._id === val._id) {
                     console.log('MASUK SINI')
                     flag = true
@@ -252,7 +252,8 @@ function Cart () {
         // console.log(selectedCoupon , ' <<< VALUE')
         setLoadingOrder(true)
         let resultCart = handleObjCart(cart)
-        console.log(resultCart , ' <<<< FIX 0000 ----- ==== --')
+        // console.log(resultCart , ' <<<< FIX 0000 ----- ==== --')
+        console.log(sale , ' <<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> VALUE SALE')
         axios({
             method : 'POST',
             url : `${SWAGGER_URL}/orders/store`,
@@ -263,14 +264,16 @@ function Cart () {
                 },
                 shipment : {
                     address_id : selectedAddress && isEcommerce ? selectedAddress._id : null,
-                    price :  price   
-                }
+                    price :  shipmentPrice  
+                },
+                total_price : (sale + shipmentPrice)
             },
             headers : {
                 'Authorization': `Bearer ${localStorage.getItem('token')}`,
             }
         })
         .then(({data})=>{
+            console.log(data , ' <<<< HASIL PROMISE THEN CART ORDER')
             history.push('/check-out')
             setLoadingOrder(false)
         })
@@ -302,6 +305,8 @@ function Cart () {
                     address={address}
                     selectedAddress={selectedAddress}
                     setSelectedAddress={setSelectedAddress}
+                    cart={cart}
+                    setShipmentPrice={setShipmentPrice}
                 />            
             )
         }else {
@@ -375,13 +380,12 @@ function Cart () {
                 />
             } */}
             {
-                isEcommerce &&
+                isEcommerce && cart &&
                 renderAdrInput()
             }
              {
                    selectedAddress && isEcommerce &&
-                    <div className="cart-06-address">
-                        
+                    <div className="cart-06-address">             
                             <span>John Doe</span>
                             <span style={{marginTop : 10}}>0827267272</span>
                             <div style={{marginTop : 10}}>
@@ -450,7 +454,7 @@ function Cart () {
                     }
                 >
                     <div className="product-detail-c14-fc">
-                        <span>{ sale && moneyConvert(sale.toString(),"Rp. ")}</span>
+                        <span>{ sale && moneyConvert( (sale + shipmentPrice).toString(),"Rp. ")}</span>
                         {
                             
                         }

@@ -101,6 +101,7 @@ function ProductDetail (props) {
                     // console.log( Math.round(presentase) , ' <<<< FIX')
                     console.log(e._id , ' <<<< ID')
                     setDiskP(Math.round(presentase))
+                    console.log(e , ' <<<<<<< Value detail *&**&*^&^&&%^%$$%$%$%$%$%%')
                     setDetail(e)
                 }
             })
@@ -241,6 +242,23 @@ function ProductDetail (props) {
         })
     }
 
+    let renderButton = (text) => {
+        console.log(detail , ' <<< VALUE DETAIL 82738273827382738273283728372837287')
+        if (detail) {
+            if (detail.type === "ecommerce" && detail.ecommerce) {
+                if (detail.ecommerce.stock === 0) {
+                    return "STOK KOSONG"
+                }else {
+                    return "JOIN SEKARANG"
+                }
+            }else {
+                return "JOIN SEKARANG"
+            }
+        }else {
+            return "JOIN SEKARANG"
+        }
+    }
+
     if (!detail) {
         return (
             <div className="product-detail-root" style={{height : "99vh",alignItems : "flex-start"}}>
@@ -264,7 +282,7 @@ function ProductDetail (props) {
                         className="product-detail-c7"
                     >
                         {
-                            loading?<Loader/>:
+                            loading ?<Loader/>:
                             "JOIN SEKARANG"
                         }
                     </div>
@@ -330,11 +348,11 @@ function ProductDetail (props) {
             }
             <div
                 className="product-detail-c7"
-                onClick={e=>handleAddCart()}
+                onClick={e=> renderButton() === "STOK KOSONG" ? console.log("STOK KOSONG") : handleAddCart()}
             >
                 {
                     loading?<Loader/>:
-                    "JOIN SEKARANG"
+                    renderButton()
                 }
             </div>
             
@@ -393,7 +411,7 @@ function ProductDetail (props) {
                 </div>
             }
 
-            <Payment detail={detail} loading={loading} handleAddCart={handleAddCart} topScroll={topScroll}/>
+            <Payment renderButton={renderButton} detail={detail} loading={loading} handleAddCart={handleAddCart} topScroll={topScroll}/>
 
         </div>
     )

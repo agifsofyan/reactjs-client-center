@@ -22,6 +22,9 @@ function FirstContent () {
     const [sale,setSale] = useState(0)
     const [diskon,setDiskon] = useState(0)
 
+    // SHIPMENT
+    const [shipmentPrice,setShipmentPrice] = useState(0)
+
     useEffect(()=>{
 
         let priceNum = 0
@@ -53,6 +56,12 @@ function FirstContent () {
                 // setSale(saleNum)
                 // e = {...e,isChecked : true}
             })
+            let shipment = data.data[0].shipment
+            if (shipment) {
+                if (shipment.price && typeof shipment.price === 'number') {
+                    setShipmentPrice(shipment.price)
+                } 
+            }
             setPrice(priceNum)
             setSale(saleNum)
             setDiskon(priceNum - saleNum)
@@ -119,11 +128,20 @@ function FirstContent () {
                 {
                     order && renderItems()
                 }
-                
-                <div>
-                    <span>{order&&order.coupon.name}</span>
-                    <span>{diskon && moneyConvert(renderCoupon() ? renderCoupon().toString() : "" ,"Rp. ")}</span>
-                </div>
+                {
+                    order&& order.coupon &&
+                    <div>
+                        <span>{order&& order.coupon && order.coupon.name}</span>
+                        <span>{diskon && "( + ) " +  moneyConvert(renderCoupon() ? renderCoupon().toString() : "" ,"Rp. ")}</span>
+                    </div>
+                }
+                {
+                  shipmentPrice && shipmentPrice > 0 &&
+                  <div>
+                    <span>{shipmentPrice && shipmentPrice > 0 && "Ongkir"}</span>
+                    <span>{diskon && "( + ) " + moneyConvert(shipmentPrice ? shipmentPrice.toString() : "" ,"Rp. ")}</span>
+                  </div>
+                }
                 <div className="transfer-08-fc-2-line">
 
                 </div>
