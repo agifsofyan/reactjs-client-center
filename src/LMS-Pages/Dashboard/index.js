@@ -166,24 +166,32 @@ const Dashboard = () => {
                 <div className='schedule-box-section'>
                     {renderSchedule()}
                 </div>
-                <div className='rating-container'>
-                    <div style={{marginTop:'10px'}}>
+                <div style={{display:'flex', justifyContent:'center'}}>
+                    <div className='dashboard-rating-container'>
                         <div style={{display:'flex', alignItems:'center'}}>
-                            <div style={{margin:'0px 10px'}}>
+                            <div style={{
+                                margin:'0px 10px',
+                                fontFamily: 'Rubik, sans-serif',
+                                fontSize:'medium',
+                            }}>
                                 Beri Review
                             </div>
-                            <Rate disabled defaultValue={5} />
+                            <Rate defaultValue={0} />
                         </div>
                         <div style={{display:'flex', alignItems:'center'}}>
-                            <div style={{margin:'0px 10px'}}>
+                            <div style={{
+                                margin:'0px 10px',
+                                fontFamily: 'Rubik, sans-serif',
+                                fontSize:'medium',
+                            }}>
                                 Nilai Mentor
                             </div>
-                            <Rate disabled defaultValue={5} />
+                            <Rate defaultValue={0} />
                         </div>
+                        <button className='rating-advice-btn'>
+                            SARAN
+                        </button>
                     </div>
-                    <button className='rating-advice'>
-                        SARAN
-                    </button>
                 </div>
             </div>
         );
