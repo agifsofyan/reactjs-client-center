@@ -252,7 +252,7 @@ const TipsDetail = (query) => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'50px'}}>
+            <div className='lms-tips-detail-footer'>
                 <Footer />
             </div>
         </div>

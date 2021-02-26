@@ -233,3 +233,14 @@ u {
     margin-left: 15px;
 }
 /* RECOMMENDED */
+
+/* FOOTER */
+.lms-webinar-footer {
+    margin-top: 50px;
+}
+@media only screen and (max-width: 600px) {
+    .lms-webinar-footer {
+        margin-top: 40px;
+    }
+}
+/* FOOTER */

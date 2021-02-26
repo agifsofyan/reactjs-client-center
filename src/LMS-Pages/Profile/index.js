@@ -165,7 +165,7 @@ const LMSProfile = () => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'60px'}}>
+            <div className='lms-profile-footer'>
                 <Footer />
             </div>
         </div>

@@ -7,6 +7,7 @@ export const GET_SELECTED_USER = "GET_SELECTED_USER";
 export const CHANGE_TOP = "CHANGE_TOP";
 export const USER_START = 'USER_START';
 export const USER_ME = 'USER_ME';
+export const USER_LOGOUT = 'USER_LOGOUT';
 export const USER_FAILED = 'USER_FAILED';
 
 // LMS

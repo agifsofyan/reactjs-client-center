@@ -84,3 +84,14 @@
     color: #000000;
 }
 /* LISTS */
+
+/* FOOTER */
+.lms-video-list-footer {
+    margin-top: 40px;
+}
+@media only screen and (max-width: 600px) {
+    .lms-video-list-footer {
+        margin-top: 30px;
+    }
+}
+/* FOOTER */

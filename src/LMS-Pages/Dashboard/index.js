@@ -8,14 +8,18 @@ import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import productRecom from '../../Assets/Images/recommended.png';
 import { getPaidList } from '../../Redux/Actions';
+import { getUserWhoAmI } from '../../Redux/Actions/userAction';
 import './style.css';
 
 const Dashboard = () => {
     const dispatch = useDispatch();
 
+    const userInfo = useSelector(({ user }) => user.userMe);
+
     useEffect(() => {
         document.title = 'Dashboard';
         dispatch(getPaidList());
+        dispatch(getUserWhoAmI());
     }, [dispatch]);
 
     const storyImg = 'https://www.digitalartsonline.co.uk/cmsdata/slideshow/3784651/01_idea.jpg';
@@ -162,24 +166,32 @@ const Dashboard = () => {
                 <div className='schedule-box-section'>
                     {renderSchedule()}
                 </div>
-                <div className='rating-container'>
-                    <div style={{marginTop:'10px'}}>
+                <div style={{display:'flex', justifyContent:'center'}}>
+                    <div className='dashboard-rating-container'>
                         <div style={{display:'flex', alignItems:'center'}}>
-                            <div style={{margin:'0px 10px'}}>
+                            <div style={{
+                                margin:'0px 10px',
+                                fontFamily: 'Rubik, sans-serif',
+                                fontSize:'medium',
+                            }}>
                                 Beri Review
                             </div>
-                            <Rate disabled defaultValue={5} />
+                            <Rate defaultValue={0} />
                         </div>
                         <div style={{display:'flex', alignItems:'center'}}>
-                            <div style={{margin:'0px 10px'}}>
+                            <div style={{
+                                margin:'0px 10px',
+                                fontFamily: 'Rubik, sans-serif',
+                                fontSize:'medium',
+                            }}>
                                 Nilai Mentor
                             </div>
-                            <Rate disabled defaultValue={5} />
+                            <Rate defaultValue={0} />
                         </div>
+                        <button className='rating-advice-btn'>
+                            SARAN
+                        </button>
                     </div>
-                    <button className='rating-advice'>
-                        SARAN
-                    </button>
                 </div>
             </div>
         );
@@ -215,14 +227,15 @@ const Dashboard = () => {
 
             {/* PAID ITEMS */}
             <div className='paid-greeting'>
-                Hi, `name` 👋
+                {/* Hi, `name` 👋 */}
+                Hi, {userInfo.name} 👋
             </div>
             <div className='paid-description'>
                 Dapatkan content dari product
             </div>
             <div className='paid-content'>
                 {/* <Content /> */}
-                <div className="slides-3">
+                <div className="slides-paid-list">
                     { paidList && renderList() }
                 </div>
             </div>
@@ -239,7 +252,7 @@ const Dashboard = () => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'60px'}}>
+            <div className='lms-dashboard-footer'>
                 <Footer />
             </div>
         </div>

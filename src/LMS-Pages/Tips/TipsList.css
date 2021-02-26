@@ -145,3 +145,14 @@ u {
     margin-left: 10px;
 }
 /* TIPS */
+
+/* FOOTER */
+.lms-tips-list-footer {
+    margin-top: 40px;
+}
+@media only screen and (max-width: 600px) {
+    .lms-tips-list-footer {
+        margin-top: 30px;
+    }
+}
+/* FOOTER */

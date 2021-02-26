@@ -183,7 +183,7 @@ const Module = () => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'10px'}}>
+            <div className='lms-module-footer'>
                 <Footer />
             </div>
         </div>

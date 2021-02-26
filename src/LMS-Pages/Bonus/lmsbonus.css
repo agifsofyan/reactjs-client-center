@@ -143,3 +143,14 @@ u {
     }
 }
 /* BONUS */
+
+/* FOOTER */
+.lms-bonus-footer {
+    margin-top: 30px;
+}
+@media only screen and (max-width: 600px) {
+    .lms-bonus-footer {
+        margin-top: 20px;
+    }
+}
+/* FOOTER */

@@ -170,8 +170,8 @@ function App () {
 
   useEffect(()=>{
     if (location.pathname!== "/") {
-      document.title = handleSiteRoute() + " - " + "#1 Gamification-Based Education in Indonesia"
-    }else {
+      document.title = handleSiteRoute() + " - #1 Gamification-Based Education in Indonesia"
+    } else {
       document.title = "#1 Gamification-Based Education in Indonesia"
     }
   },[location])

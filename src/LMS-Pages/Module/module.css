@@ -99,3 +99,14 @@ u {
     padding: 5px 15px;
 }
 /* ACTION */
+
+/* FOOTER */
+.lms-module-footer {
+    margin-top: 20px;
+}
+@media only screen and (max-width: 600px) {
+    .lms-module-footer {
+        margin-top: 10px;
+    }
+}
+/* FOOTER */

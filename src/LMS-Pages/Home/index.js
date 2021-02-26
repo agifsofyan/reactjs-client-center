@@ -22,6 +22,8 @@ const LMSHome = (query) => {
     const productById = useSelector(({ product }) => product.productById);
     const queryId = query.location.search.split('=')[1];
 
+    console.log(userInfo._id);
+
     useEffect(() => {
         document.title = 'LMS Home';
         dispatch(getProductById(queryId));
@@ -32,8 +34,8 @@ const LMSHome = (query) => {
     }, [dispatch]);
 
     useEffect(() => {
-        dispatch(getReviewByUser(productById._id));
-    }, [dispatch, productById._id]);
+        dispatch(getReviewByUser(userInfo._id));
+    }, [dispatch, productById._id, userInfo._id]);
 
     const detail = {
         image: 'https://c0.wallpaperflare.com/preview/494/520/839/russia-moscow-sunset-mood.jpg',
@@ -49,7 +51,7 @@ const LMSHome = (query) => {
     const renderDetail = () => {
         return (
             <div>
-                <div>{productById._id}</div>
+                {/* <div>{productById._id}</div> */}
                 <img src={detail.image} alt='product' className='product-image' />
                 <div className='product-mentor'>
                     Mentored by <b>{detail.mentor}</b>
@@ -200,15 +202,22 @@ const LMSHome = (query) => {
                 </div>
                 {
                     reviewUserProduct
-                    // &&
-                    // reviewUserProduct.user._id === userInfo.user._id
                     ?
                     <div className='comment-from-user-product'>
                         {reviewUserProduct.opini}
                     </div>
                     :
+                    // null
                     <div>
-                        <TextArea name='opini' rows={5} showCount={true} maxLength={300} onChange={handleChangeReviewCourse} />
+                        <TextArea 
+                            name='opini' 
+                            rows={5} 
+                            showCount={true} 
+                            maxLength={300} 
+                            allowClear={true}
+                            disabled={reviewUserProduct !== [] ? true : false} 
+                            onChange={handleChangeReviewCourse} 
+                        />
                         <div className='commment-button-section'>
                             <button className='post-comment-button' onClick={handleSubmitReview}>
                                 Tulis Komentar
@@ -252,7 +261,7 @@ const LMSHome = (query) => {
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'50px'}}>
+            <div className='lms-home-footer'>
                 <Footer />
             </div>
         </div>

@@ -261,15 +261,13 @@ const List = () => {
             <div className='videos-section'>
                 {tabList.map(({ id, content }) => {
                     return active === id 
-                    ? 
-                    content 
-                    : 
-                    null
+                    ? content 
+                    : null
                 })}
             </div>
 
             {/* FOOTER */}
-            <div style={{marginTop:'40px'}}>
+            <div className='lms-video-list-footer'>
                 <Footer />
             </div>
         </div>
