@@ -1,5 +1,8 @@
 import React from 'react'
 
+// STYLE
+import './style.css'
+
 function Item (props) {
 
     const { style } = props

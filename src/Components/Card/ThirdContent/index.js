@@ -22,7 +22,8 @@ function ThirdContent (props) {
             setSelectedCoupon , 
             sale,
             setSale,
-            saleBef
+            saleBef,
+            minDis,setMinDisk
             // handleOrder , 
             // loadingOrder,
             // price,
@@ -32,30 +33,24 @@ function ThirdContent (props) {
     // LOCAL STATE
     const [showMenu,setShowMenu] = useState(false)
 
-    // DISKON
-    const [disPre,setDisPre] = useState(null)
-    const [minDis,setMinDisk] = useState(null)
-
     let handleCoupon = (el) => {
+        setSelectedCoupon(el)
+
         let { value , max_discount } = el
         // let res = sale - value
         // let disk = value/sale * 100
         // console.log(el , ' <<<< VALUE EL')
-        let disk = Math.ceil((value / 100) * sale)
-        if (disk > max_discount ) {
-            // console.log('HERE')
-            disk = max_discount
-        }
+        // let disk = Math.ceil((value / 100) * saleBef)
+        // if (disk > max_discount ) {
+        //     // console.log('HERE')
+        //     disk = max_discount
+        // }
         // console.log(disk , ' <<<< DISK')
         // setDisPre( Math.ceil(disk) )
         // let num = sale
         // let num = 
         // console.log(saleBef , " , << SALE BEF")
         // console.log(sale , ' <<< VALUE SALE')
-        setSale( saleBef - disk)
-        setMinDisk(disk)
-        setDisPre( value )
-        setSelectedCoupon(el)
         setShowMenu(false)
 
     }
@@ -107,7 +102,7 @@ function ThirdContent (props) {
                 }
             </div>
             {
-                disPre ?
+                minDis ?
                 <div className="card-06-tc-c2">
                     Mendapat diskon sebesar { moneyConvert(minDis.toString(),"Rp.")}
                 </div> : null

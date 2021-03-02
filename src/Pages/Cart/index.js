@@ -58,6 +58,9 @@ function Cart () {
     // PRICE SHIPMENT
     const [shipmentPrice,setShipmentPrice] = useState(0)
 
+    // DISKON
+    const [minDis,setMinDisk] = useState(null)
+
     // LOCAL STATE CHECK VALIDATION INPUT ADDRESS
     // const [inputNext,setInputNext] = useState(true)
 
@@ -203,7 +206,7 @@ function Cart () {
                 saleNum += e.product_info.sale_price > 0 ? (e.product_info.sale_price * e.quantity) : (e.product_info.price* e.quantity)
             }
         })
-        console.log(saleNum , ' <<<<<<<<<<<<< SALE NUM ****')
+        console.log(saleNum , ' <<<<<<<<<<<<< SALE NUM RUN ****')
         setPrice(priceNum)
         setSale(saleNum)
         setSaleBef(saleNum > 0 ? saleNum : priceNum)
@@ -212,6 +215,19 @@ function Cart () {
     useEffect(()=>{
         console.log(bump, " value bump")
     },[bump])
+
+    useEffect(()=>{
+        if (selectedCoupon) {
+            let { value , max_discount } = selectedCoupon
+            let disk = Math.ceil((value / 100) * saleBef)
+            if (disk > max_discount ) {
+                // console.log('HERE')
+                disk = max_discount
+            }
+            setSale( saleBef - disk)
+            setMinDisk(disk)
+        }
+    },[sale,selectedCoupon])
 
     let checkBump = (data) => {
         let val = data.bump[0]
@@ -369,11 +385,6 @@ function Cart () {
     //     }
     // },[bump])
 
-    useEffect(()=>{
-        console.log(sale, ' <<< ** VALUE SALE')
-        console.log(saleBef , ' <<< ** VALUE SALE BEF')
-    },[sale,saleBef])
-
     return (
         <div className="cart-container-06">
             <h1 className="cwr-99-1 cart-06-title1">User Data</h1>
@@ -474,6 +485,8 @@ function Cart () {
                     sale={sale}
                     setSale={setSale}
                     saleBef={saleBef}
+                    minDis={minDis}
+                    setMinDisk={setMinDisk}
                 />
             }
 

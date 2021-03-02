@@ -12,10 +12,12 @@ import moneyConvert from '../../../Support/moneyConvert'
 // STYLE
 import './style.css'
 
-function FirstContent () {
+function FirstContent (props) {
+
+    const { order,setOrder } = props
 
     // LOCAL STATE DATA ORDER
-    const [order,setOrder] = useState(null)
+    // const [order,setOrder] = useState(null)
 
     // PRICE
     const [price,setPrice] = useState(0)
@@ -46,6 +48,7 @@ function FirstContent () {
             console.log(data.data[0] , ' DATA ORDER')
             let arr = data.data[0].items
             let bumpArr = []
+            let unique = data.data[0].unique_number
             // ecommerce
             arr.forEach(e=>{
                 priceNum += e.product_info.price
@@ -71,22 +74,7 @@ function FirstContent () {
             setDiskon(priceNum - saleNum)
             console.log(data.data[0] , ' <<< DATA ORDER >>>>')
             setOrder(data.data[0])
-            return axios({
-                method : "POST",
-                url : `${SWAGGER_URL}/orders/unique`,
-                headers : {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                },
-                data : {
-                    order_id : data.data[0]._id
-                }
-            })
-        })
-        .then(({data})=>{
-            setUnique(data.data)
-            console.log(data.data ,' <<<< VALUE DATA UNIQUE')
+            setUnique(unique)
         })
         .catch(err=>{
             console.log(err ,  ' <<< ERROR GET ORDER LIST')

@@ -45,22 +45,22 @@ function TransferBank () {
 
     useEffect(()=>{
         // GET ORDER
-        axios({
-           method : "GET",
-           url : `${SWAGGER_URL}/orders/self`,
-           headers : {
-               'Access-Control-Allow-Origin': '*',
-               'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-               'Authorization': `Bearer ${localStorage.getItem('token')}`,
-           }
-       })
-       .then(({data})=>{
-           console.log(data.data[0] , '   HMMM <><><><><><><><><>>')
-           setOrder(data.data[0])
-       })
-       .catch(err=>{
-           console.log(err ,  ' <<< ERROR GET ORDER LIST')
-       })
+    //     axios({
+    //        method : "GET",
+    //        url : `${SWAGGER_URL}/orders/self`,
+    //        headers : {
+    //            'Access-Control-Allow-Origin': '*',
+    //            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    //            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    //        }
+    //    })
+    //    .then(({data})=>{
+    //        console.log(data.data[0] , '   HMMM <><><><><><><><><>>')
+    //        setOrder(data.data[0])
+    //    })
+    //    .catch(err=>{
+    //        console.log(err ,  ' <<< ERROR GET ORDER LIST')
+    //    })
 
        axios({
             method : 'GET',
@@ -180,7 +180,10 @@ function TransferBank () {
             <div className="transfer-08-t2" style={{marginTop : 50}}>
                 1. Review Pesanan
             </div>
-            <FirstContent/>
+            <FirstContent
+                order={order}
+                setOrder={setOrder}
+            />
             <div className="transfer-08-t2">
                 2. Lakukan Pembayaran
             </div>
