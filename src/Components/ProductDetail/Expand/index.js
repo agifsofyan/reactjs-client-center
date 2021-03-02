@@ -60,7 +60,7 @@ function Expand (props) {
 
                         <div className="pdce-c13-content-2">
                             <div className="pdce-c13-content-2-a">
-                                {el.note}
+                                {  el.note.slice(0,12) + ( el.note.length > 12 ? "..." : '' )  }
                             </div>
                             {
                                 checkAccordion(el)  ?

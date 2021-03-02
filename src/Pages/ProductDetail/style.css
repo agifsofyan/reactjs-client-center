@@ -135,8 +135,10 @@
 .product-detail-c8 {
     width: 90%;
     height: 0.15px;
-    background-color: #000000;
+    /* background-color: #000000; */
     margin-top: 23px;
+    background-color : "#959595";
+    height : 0.1px;
 }
 
 .product-detail-c9 {
@@ -204,8 +206,8 @@
 @media only screen and (max-width: 600px) {
 
     .product-detail-c1 {
-        font-size: 22px;
-        line-height: 25px;
+        font-size: 21px;
+        line-height: 24px;
     }
 
     .product-detail-c2 {
@@ -217,6 +219,12 @@
         height: 200px;
     }
 
+    .product-detail-c6 {
+        font-size: 15.5px;
+        color: #FF0000;
+        font-weight: 400;
+        width: 90%;
+    }
 
 
     .pdc3-button-2 {
@@ -233,12 +241,40 @@
     }
 
     .product-detail-c7 {
-        font-size: 26px;
+        font-size: 25px;
+        height: 49px;
+    }
+
+    .product-detail-c9 {
+        font-size: 21px;
+        line-height: 24px;
+    }
+
+    .product-detail-c10 {
+        font-size: 20px;
+        line-height: 22px;
+        width: 90%;
+        font-weight: 500;
+    }
+
+    .product-detail-c11 {
+        /* font-size: 12px; */
+        font-size: 17.5px;
+        /* line-height: 13.72px; */
+        line-height: 19.5x;
+        font-weight: 300;
+        width: 90%;
     }
 
 }
 
-@media only screen and (max-width: 350px) {
+@media only screen and (max-width: 380px) {
+
+    .product-detail-c9 {
+        font-size: 19px;
+        line-height: 22px;
+    }
+
     .product-detail-c5 h5 {
         font-size: 23px;
     }
@@ -248,4 +284,10 @@
         margin-bottom: 4px;
         font-size: 16px;
     }
+
+    .product-detail-c7 {
+        font-size: 24px;
+        height: 48px;
+    }
+
 }

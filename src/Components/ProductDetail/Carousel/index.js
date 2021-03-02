@@ -56,7 +56,7 @@ function Carousel (props) {
                 {
                     detail.image_url.length > 1 &&
                     <NavigateBeforeIcon 
-                        style={{fontSize : 45,cursor : "pointer"}}
+                        style={{fontSize : 40,cursor : "pointer"}}
                         onClick={e=>handleMin()}
                     />
                 }
@@ -70,7 +70,7 @@ function Carousel (props) {
                 {
                     detail.image_url.length > 1 &&
                     <NavigateNextIcon 
-                        style={{fontSize : 45,cursor : "pointer"}}
+                        style={{fontSize : 40,cursor : "pointer"}}
                         onClick={e=>handlePlus()}
                     />
                 }

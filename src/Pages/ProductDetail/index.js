@@ -134,7 +134,7 @@ function ProductDetail (props) {
                        }
                     </div>
                     {/* ONLY LINE */}
-                    <div style={{backgroundColor : "#959595",height : "0.1"}} className="product-detail-c8">
+                    <div style={{backgroundColor : "#959595",height : "0.1",marginTop : 18}} className="product-detail-c8" >
 
                     </div>
                 </div>
@@ -381,7 +381,7 @@ function ProductDetail (props) {
             </div>
             
             {/* ONLY LINE */}
-            <div className="product-detail-c8">
+            <div className="product-detail-c8" style={{marginTop : 18,backgroundColor : "#959595",height : "0.1"}}>
 
             </div>
             

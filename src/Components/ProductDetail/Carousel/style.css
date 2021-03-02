@@ -27,12 +27,18 @@
 
 @media only screen and (max-width: 600px) {
     .pdc-carousel-55 {
-        width: 280px;
-        height: 100%;
-        background-color: #c4c4c4;   
-        border-radius: 6px;
+        width: 74%;
+        height: 90%;
     }
     .product-detail-carousel {
         height: 187px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .pdc-carousel-55 {
+        width: 72%;
+        height: 88%;
+        object-fit: cover;
     }
 }
