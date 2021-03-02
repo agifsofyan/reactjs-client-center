@@ -18,7 +18,6 @@ function TopicSort (props) {
     // GLOBAL STATE
     const topicList = useSelector(state=>state.product.topicList)
 
-
     let renderTopic = () => {
         return topicList.map((el,index)=>{
             return (

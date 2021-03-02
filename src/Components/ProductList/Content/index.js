@@ -7,7 +7,7 @@ import Skeleton from 'react-loading-skeleton';
 import axios from 'axios';
 
 // ANT DESIGN 
-import { Rate } from 'antd';
+// import { Rate } from 'antd';
 import './style.css'
 
 // HELPER
@@ -29,8 +29,6 @@ function Content (props) {
 
     // GLOBAL STATE
     const list = useSelector(state=>state.product.productList)
-
-    console.log(list , ' << VALUE LIST')
 
     // LOCAL ACTION
     let renderDot = (name) => {
@@ -65,6 +63,19 @@ function Content (props) {
         }
     }
 
+    let handleStock = (e) => {
+        let { type, ecommerce } = e
+        if (ecommerce && type === "ecommerce") {
+            if (ecommerce.stock === 0) {
+                return "Stock Kosong"
+            }else {
+                return "Daftar"
+            }
+        }else {
+            return "Daftar"
+        }
+    }
+
     // LOCAL ACTION
     let renderList = () => {
         let arr 
@@ -74,9 +85,7 @@ function Content (props) {
                 let status = false
                 // console.log(el1 , " <<<< VALUE el 1")
                 el1.topic.forEach(el2=>{
-                    console.log(el2.name , ' <<<<2')
                     filterData.forEach(el3=>{
-                        console.log(el3.name , ' <<<<3')
                         if (el2.name === el3.name) {
                             status = true
                         }
@@ -103,7 +112,7 @@ function Content (props) {
                 return (
                 <div
                     // onClick={e=>history.push(`/product-detail?utm=origin&id=${el._id}`)}
-                    onClick={e=>history.push(`/product-detail/${el.slug}?utm=origin`)}
+                    onClick={e=>handleStock(el) === 'Stock Kosong' ? console.log("Stock Kosong") : history.push(`/product-detail/${el.slug}?utm=origin`)}
                 >
                     <img 
                         className="slides-3-content-c1"
@@ -155,7 +164,9 @@ function Content (props) {
                         </div>
                     </div>
                     <div className="slides-3-content-c6">
-                        Daftar
+                        {
+                            handleStock(el)
+                        }
                     </div>
                 </div>
                 ) 

@@ -21,7 +21,7 @@ function Menu (props) {
             if (check === 'ecommerce') {
                 let ec = e.product_info.ecommerce
                 if (ec) {
-                    numR += ec.weight
+                    numR += (ec.weight * e.quantity)
                 }
                 // console.log(e , ' <<<< PER ITEM ECOMMERCE')
             }
@@ -34,8 +34,8 @@ function Menu (props) {
         setSelectedAddress(data)
         setShowMenu(false)
         // getWeight()
-        console.log(data , ' <<<<< DATA SHIPPING')
-        console.log(getWeight() , ' <<< RESULT WEIGHT')
+        // console.log(data , ' <<<<< DATA SHIPPING')
+        // console.log(getWeight() , ' <<< RESULT WEIGHT')
         // setShipmentPrice( getWeight() )
         axios({
             method : "POST",
@@ -53,7 +53,7 @@ function Menu (props) {
         .then(({data})=>{
             if (data.data) {
                 if (data.data.cost) {
-                    console.log(data.data.cost , ' <<<< FIX DATA ONGKIR DATA ONGKIR PENTING >>>')
+                    console.log(data.data.cost , ' <<<< FIX DATA ONGKIR DATA ONGKIR PENTING 88898989898998)()()() >>>')
                     setShipmentPrice(data.data.cost.value)
                 }
             }               

@@ -2,6 +2,7 @@ import React , { useState , useEffect } from 'react'
 
 // MODULE
 import { useHistory , useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 // COMPONENT
 import Header from './Header'
@@ -14,6 +15,9 @@ import LMS from './LMS'
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
+
+// API
+import { SWAGGER_URL } from '../../Support/API_URL'
 
 // STYLE
 import './style.css'
@@ -31,6 +35,9 @@ function Modal (props) {
 
     // WIDTH
     const [width,setWidth] = useState(0)
+
+    // LOCAL STATE DATA USER
+    const [user,setUser] = useState(null)
 
     const {
         // modalClose,
@@ -51,6 +58,28 @@ function Modal (props) {
             },1000)
         }
     },[showModal])
+
+    useEffect(()=>{
+        axios({
+            method : 'GET',
+            url : `${SWAGGER_URL}/users/me`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            console.log(data.data.user.name , ' <<<< RES DATA PROFILE')
+            if (data && data.data) {
+                setUser(data.data.user)
+                console.log(data.data.user , ' <<, fix <><>>< pppp')
+            } 
+        })
+        .catch(err=>{
+            console.log(err.response , ' <<<< ERORR')
+        })
+    },[])
 
     let handleModalClose = () => {
         setWidth(0)
@@ -113,11 +142,13 @@ function Modal (props) {
                     {/* HOME MENU DRAWER */}
 
                     {
-                        location.pathname.split('-')[0] === "/lms" ?
+                        // location.pathname.split('-')[0] === "/lms" ?
+                        localStorage.getItem("token") ?
                         <LMS
                             history={history}
                             location={location}
                             handleModalClose={handleModalClose}
+                            user={user}
                         /> :
                         <Home
                             history={history}

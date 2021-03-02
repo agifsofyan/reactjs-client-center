@@ -1,10 +1,10 @@
 import React from 'react'
 
 // IMAGES
-import image1 from '../../../Assets/Images/lp-1.png'
-// import image2 from '../../../Assets/Images/lp-2.png'
-// import image3 from '../../../Assets/Images/lp-3.png'
-// import image4 from '../../../Assets/Images/lp-4.png'
+import Intensif from '../../../Assets/Images/Intensif.png'
+import Belajar from '../../../Assets/Images/Belajar.png'
+import Layanan from '../../../Assets/Images/Layanan.png'
+import GRATIS from '../../../Assets/Images/GRATIS.png'
 
 
 // STYLING DI pages/LandingPage
@@ -16,7 +16,7 @@ function List () {
 
             <div> 
                 <img
-                    src={image1}
+                    src={Belajar}
                     alt={"lp-1"}
                 />
                 <div className="t1">
@@ -29,7 +29,7 @@ function List () {
 
             <div> 
                 <img
-                    src={image1}
+                    src={Intensif}
                     alt={"lp-1"}
                 />
                 <div className="t1">
@@ -43,8 +43,9 @@ function List () {
 
             <div> 
                 <img
-                    src={image1}
+                    src={Layanan}
                     alt={"lp-1"}
+                    // style={{marginTop :}}
                 />
                 <div className="t1">
                     Layanan Konsultasi
@@ -56,7 +57,7 @@ function List () {
 
             <div> 
                 <img
-                    src={image1}
+                    src={GRATIS}
                     alt={"lp-1"}
                 />
                 <div className="t1">

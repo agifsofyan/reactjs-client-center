@@ -50,7 +50,7 @@ function Login (props) {
             }
         })
         .then(({data})=>{
-            history.push('/')
+            history.push('/lms-dashboard')
             setIsLoading(false)
             // alert("bERHASIL LOGIN")
         })

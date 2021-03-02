@@ -135,7 +135,7 @@ function InputAddress (props) {
             url : `${SWAGGER_URL}/rajaongkirs/cities?province=${el.province_id}`
         })
         .then(({data})=>{
-            console.log(' UUUUUUUU')
+            // console.log(' UUUUUUUU')
             setDataCity(data.data)
             // setDataProv(data.data)
         })

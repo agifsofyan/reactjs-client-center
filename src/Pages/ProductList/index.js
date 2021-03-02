@@ -1,5 +1,8 @@
 import React , { useEffect , useState } from 'react'
 
+// MODULE
+import {  useSelector } from 'react-redux'
+
 // STYLE
 import './style.css'
 
@@ -7,9 +10,12 @@ import './style.css'
 import { Content , Carousel , TopicSort , Rating  } from '../../Components/ProductList'
 
 // IMAGE
-import Content1 from '../../Assets/Images/content-1.png'
+import Content1 from '../../Assets/Images/content-pl.jpg'
 
 function ProductList () {
+
+    // GLOBAL STATE
+    const topicList = useSelector(state=>state.product.topicList)
 
     // SELECTED TOPIC
     const [arrTopic,setArrTopic] = useState([])
@@ -34,6 +40,10 @@ function ProductList () {
         }
     },[showMenu])
 
+    useEffect(() => {
+        console.log(topicList , ' <<<< ARR TOPIC >>>')
+    }, [topicList])
+
     return (
         <div 
             className="product-list-container"
@@ -50,21 +60,32 @@ function ProductList () {
             >
                 Business
             </span>
-            <Content/>
+            <Content
+                isFilter={true}
+                filterData={topicList ? topicList.filter(e=>e.name === "Business & Entrepreneurship") : []}
+            />
             <div className="plc-p-line">
 
             </div>
             <span className="plc-p-title">
-                Career
+                Health
             </span>
-            <Content/>
+            <Content
+                isFilter={true}
+                filterData={topicList ? topicList.filter(e=>e.name === "Health") : []}
+            />
             <div className="plc-p-line">
 
             </div>
+
             <span className="plc-p-title">
-                Finance
+                Office Productivity
             </span>
-            <Content/>
+            <Content
+                isFilter={true}
+                filterData={topicList ? topicList.filter(e=>e.name === "Office Productivity") : []}
+            />
+
             <div className="plc-p-line">
 
             </div>

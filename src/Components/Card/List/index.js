@@ -44,8 +44,6 @@ function List (props) {
             }
         })
         .then(({data})=>{
-            console.log('BERHASIL MENGHAPUS')
-            console.log(data , '  <<< DATA AFTER DELETE')
             return axios(({
                 method : "GET",
                 url : `${SWAGGER_URL}/carts/list`,
@@ -58,7 +56,6 @@ function List (props) {
         })
         .then(({data})=>{
             setCart(data.data.items)
-            console.log('HMMMM')
         })
         .catch(err=>{
             console.log(err.response)
@@ -77,7 +74,6 @@ function List (props) {
             })
             setCart(arr)
         }
-        console.log(qty , ' <<< QUAN')
     }
 
     let checkedCart = (id,status) => {
@@ -102,7 +98,6 @@ function List (props) {
 
     let renderData = () => {
         return cart.map((el,index)=>{
-            console.log(el , ' <<<< VALUE EL >>>>')
             return (
                 <div 
                     key={index}

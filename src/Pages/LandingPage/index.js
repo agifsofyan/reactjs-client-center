@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 
 // MODULE
 import axios from 'axios'
+import { useSelector } from 'react-redux'
 
 // COMPONENT
 import List from '../../Components/LandingPage/List'
@@ -22,6 +23,9 @@ import { SWAGGER_URL } from '../../Support/API_URL'
 import './style.css'
 
 function LandingPage () {
+
+    // GLOBAL STATE
+    const list = useSelector(state=>state.product.productList)
 
     // GET MEDIA QUERY
     window.matchMedia("(max-width: 600px)")
@@ -146,6 +150,15 @@ function LandingPage () {
         }
     }
 
+    let getVideoBonus = () => {
+        let result = list.filter(e=>e.type === "bonus")
+        if (result.length >= 1) {
+            return result[0].media_url
+        }else {
+            return video
+        }
+    }
+
     return (
         <div className="lp-10-container">
             <div className="lp-10-c1">
@@ -168,9 +181,9 @@ function LandingPage () {
             </div>
 
             {
-                video ?
+                video && list ?
                 <video className="lp-10-c2" controls>
-                    <source src={video} type="video/mp4"/>
+                    <source src={getVideoBonus()} type="video/mp4"/>
                     Your browser does not support the video tag.
                 </video>:
                 <div className="lp-10-c2">

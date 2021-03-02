@@ -7,7 +7,7 @@ import { logOut } from '../../../Redux/Actions/userAction';
 
 function Home (props) {
 
-    const { handleModalClose , history , location } = props
+    const { handleModalClose , history , location , user } = props
 
     let handleChangePage = (route) => {
         history.push(route)
@@ -45,6 +45,18 @@ function Home (props) {
         })
     };
 
+    let nameFormat = (str) => {
+        let strArr = str.split(' ')
+        if (strArr.length === 1) {
+            let result = str.split("")
+            result[0] = result[0].toUpperCase()
+            console.log(result , ' <<<< HAHAHDSFJNDSFNDSJFNSJDFN')
+            return result.join("")
+        }else {
+            return str
+        }
+    }
+
     return (
         <div className="bmc-drawer-9">
             <div 
@@ -55,7 +67,7 @@ function Home (props) {
                 }}
                 className='bmc-content-4'
             >
-                Hi, John Doe
+                Hi, {user && nameFormat(user.name)}
             </div>
 
             <div style={{

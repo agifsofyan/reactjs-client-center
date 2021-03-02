@@ -1,7 +1,7 @@
 import React , {useEffect}  from 'react'
 
 // MODULES
-import { useLocation  } from 'react-router-dom';
+import { useLocation , useHistory  } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 
 // MATERIAL ICONS
@@ -14,6 +14,9 @@ function Advertisement (props) {
 
     // USE LOCATION
     const location = useLocation()
+
+    // USE HISTORY
+    const history = useHistory()
 
     // CHILD PROPS
     const { setShowAdv } = props
@@ -53,7 +56,11 @@ function Advertisement (props) {
     }
     else  {
         return (
-            <div className="adv-container"  id="adv-cont">
+            <div 
+                onClick={e=>history.push(`/product-detail/${productHeader.slug}?utm=origin`)}
+                className="adv-container"  
+                id="adv-cont"
+            >
                 <div
                     className="adv-content"
                 >
@@ -62,7 +69,7 @@ function Advertisement (props) {
                             {productHeader.feature.feature_onheader }
                             {/* bla bla bla bla bla */}
                         </div>
-                        <div style={{marginTop : 4}}>1 days left!</div>
+                        <div style={{marginTop : 4}}>Daftar Sekarang!</div>
                     </div>
                     <CloseIcon
                         onClick={e=>setShowAdv(false)}

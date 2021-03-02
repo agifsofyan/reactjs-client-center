@@ -18,6 +18,7 @@ import TopicList from './TopicList'
 import AboutUs from './AboutUs'
 import Privacy from './Privacy'
 import Terms from './TermsCondition'
+import ContentList from './ContentList'
 
 export {
     Auth,
@@ -39,5 +40,6 @@ export {
     TopicList,
     AboutUs,
     Privacy,
-    Terms
+    Terms,
+    ContentList
 }

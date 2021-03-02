@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     height: 90px;
+    cursor: pointer;
 }
 
 /* .adv-content {

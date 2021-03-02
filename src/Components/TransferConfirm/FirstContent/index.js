@@ -25,6 +25,9 @@ function FirstContent () {
     // SHIPMENT
     const [shipmentPrice,setShipmentPrice] = useState(0)
 
+    // UNIQUE NUMBER
+    const [unique,setUnique] = useState(null)
+
     useEffect(()=>{
 
         let priceNum = 0
@@ -48,8 +51,9 @@ function FirstContent () {
                 priceNum += e.product_info.price
                 saleNum += e.product_info.sale_price
                 saleNum += e.bump_price
-                if (e && e.product_info && e.product_info.bump) {
+                if (e && e.product_info && e.product_info.bump && e.is_bump) {
                     bumpArr.push(...e.product_info.bump)
+                    saleNum += e.product_info.bump[0].bump_price
                 }
                 // setBump(bumpArr)
                 // setPrice(priceNum)
@@ -67,6 +71,22 @@ function FirstContent () {
             setDiskon(priceNum - saleNum)
             console.log(data.data[0] , ' <<< DATA ORDER >>>>')
             setOrder(data.data[0])
+            return axios({
+                method : "POST",
+                url : `${SWAGGER_URL}/orders/unique`,
+                headers : {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+                data : {
+                    order_id : data.data[0]._id
+                }
+            })
+        })
+        .then(({data})=>{
+            setUnique(data.data)
+            console.log(data.data ,' <<<< VALUE DATA UNIQUE')
         })
         .catch(err=>{
             console.log(err ,  ' <<< ERROR GET ORDER LIST')
@@ -105,6 +125,7 @@ function FirstContent () {
     let renderCoupon = () => {
         if (order &&order.coupon) {
             let e1 = order.coupon
+            console.log(order.coupon , ' <<<<< ORDER COUPON TF &&&&')
             let { value , max_discount } = e1
             console.log(sale , ' <<< EL DI TF')
             let disk = Math.ceil((value / 100) * sale)
@@ -132,7 +153,7 @@ function FirstContent () {
                     order&& order.coupon &&
                     <div>
                         <span>{order&& order.coupon && order.coupon.name}</span>
-                        <span>{diskon && "( + ) " +  moneyConvert(renderCoupon() ? renderCoupon().toString() : "" ,"Rp. ")}</span>
+                        <span>{diskon && "( - ) " +  moneyConvert(renderCoupon() ? renderCoupon().toString() : "" ,"Rp. ")}</span>
                     </div>
                 }
                 {
@@ -142,12 +163,23 @@ function FirstContent () {
                     <span>{diskon && "( + ) " + moneyConvert(shipmentPrice ? shipmentPrice.toString() : "" ,"Rp. ")}</span>
                   </div>
                 }
+                {
+                     order && unique &&
+                    <div>
+                        <span>Kode Unik</span>
+                        <span>{unique && "( + ) " + moneyConvert( unique.toString() , "Rp. " )}</span>
+                    </div>
+                }
                 <div className="transfer-08-fc-2-line">
 
                 </div>
                 <div>
                     <b>Silahkan Transfer</b>
-                    <b>{sale &&  moneyConvert(sale ? (sale-renderCoupon()).toString() : "" ,"Rp. ")}</b>
+                    <b>
+                        {sale &&  
+                            moneyConvert(sale ? ( sale - renderCoupon() + unique + shipmentPrice ).toString() : "" ,"Rp. ")
+                        }
+                    </b>
                 </div>
             </div>
         </div>

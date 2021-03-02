@@ -1,0 +1,15 @@
+.first-title-content-11 {
+    display: flex;
+    flex-direction: column;
+    margin: 21px 0 0 0;
+    width: 90%;
+    height: 100px;
+}
+
+.first-title-content-11 > h1 {
+    font-family: 'Rubik', sans-serif;
+    font-weight : 400;
+    font-size: 26px;
+    line-height: 28px;
+    width: 100%;
+}

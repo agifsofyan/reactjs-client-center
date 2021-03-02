@@ -82,9 +82,11 @@ function Cart () {
             let bumpArr = []
             // ecommerce
             arr.forEach(e=>{
+                // console.log(e , ' <<<<< TES (*(*(*')
                 let check = e.product_info.type
                 if (check === 'ecommerce') {
-                    console.log(e , ' &*&*&*&*&*&*&*&*&*&*&*&*&')
+                    // console.log(e , ' &*&*&*&*&*&*&*&*&*&*&*&*&')
+                    console.log(e.quantity , ' <<<< QTY >>>>')
                     setIsEcommerce(true)
                     // setInputNext(false)
                 }
@@ -93,8 +95,21 @@ function Cart () {
                 // }else {
                 //     priceNum += e.product_info.price
                 // }
-                priceNum += e.product_info.price
-                saleNum += e.product_info.sale_price
+                // priceNum *= e.quantity
+                // saleNum *= e.quantity
+                // if (e.product_info.type === 'ecommerce') {
+                //     priceNum += (e.product_info.price * e.quantity)
+                //     saleNum += (e.product_info.sale_price * e.quantity)
+                // }else {
+                //     priceNum += (e.product_info.price )
+                //     saleNum += (e.product_info.sale_price )
+                // }
+                priceNum = priceNum + e.product_info.price * e.quantity 
+                saleNum = saleNum + e.product_info.sale_price * e.quantity
+                // console.log(typeof e.quantity , ' <<<<<')
+                // console.log('SJFNSJDNFJSDNFSJDFNSDJNFDSJNSJNFSJFNSDJFNSDJFNSKDNFKSJFN')
+                console.log(saleNum ,' <<< saLU NUM')
+                console.log( saleNum + " , " + e.product_info.sale_price + " ," + e.quantity  )
                 if (e && e.product_info) {
                     // console.log(e.product_info.bump , ' <<< PER BUMP')
                     if (e.product_info.bump) {
@@ -106,6 +121,8 @@ function Cart () {
 
                 // e = {...e,isChecked : true}
             })
+            console.log(saleNum , ' <<<< SALE NUM ANJING')
+            console.log(priceNum , ' <<<< PRICE NUM')
             setBump(bumpArr)
             setPrice(priceNum)
             setSale(saleNum)
@@ -182,8 +199,8 @@ function Cart () {
         let saleNum = 0
         arr.forEach((e)=>{
             if (e.isChecked) {
-                priceNum += e.product_info.price
-                saleNum += e.product_info.sale_price > 0 ? e.product_info.sale_price : e.product_info.price
+                priceNum += (e.product_info.price * e.quantity)
+                saleNum += e.product_info.sale_price > 0 ? (e.product_info.sale_price * e.quantity) : (e.product_info.price* e.quantity)
             }
         })
         console.log(saleNum , ' <<<<<<<<<<<<< SALE NUM ****')
@@ -239,6 +256,7 @@ function Cart () {
                 let objR = { 
                     product_id : e.product_info._id , 
                     utm : e.utm ,
+                    // quantity : e.product_info.type === "ecommerce" ? e.quantity : 1,
                     quantity : e.quantity,
                     is_bump : checkBump(e.product_info)
                   }
@@ -253,7 +271,8 @@ function Cart () {
         setLoadingOrder(true)
         let resultCart = handleObjCart(cart)
         // console.log(resultCart , ' <<<< FIX 0000 ----- ==== --')
-        console.log(sale , ' <<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> VALUE SALE')
+        // console.log(sale , ' <<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>> VALUE SALE')
+        console.log( (sale + shipmentPrice) , "  ()))()())()()()()()(batangan)  ")
         axios({
             method : 'POST',
             url : `${SWAGGER_URL}/orders/store`,
@@ -273,7 +292,22 @@ function Cart () {
             }
         })
         .then(({data})=>{
-            console.log(data , ' <<<< HASIL PROMISE THEN CART ORDER')
+            let id = data.data._id
+            console.log(data.data._id , ' <<<< HASIL PROMISE THEN CART ORDER')
+            return axios({
+                method : "POST",
+                url : `${SWAGGER_URL}/orders/unique`,
+                headers : {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                },
+                data : {
+                    order_id : id
+                }
+            })
+        })
+        .then(({data})=>{
             history.push('/check-out')
             setLoadingOrder(false)
         })

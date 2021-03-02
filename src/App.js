@@ -24,7 +24,8 @@ import {
         TopicList,
         AboutUs,
         Privacy,
-        Terms
+        Terms,
+        ContentList
       } from './Pages'
 
       import { 
@@ -54,7 +55,7 @@ import Advertisement from './Components/Advertisement/index'
 import { changeValue , changeValueUser } from './Redux/Actions/index'
 
 // API
-import {  SWAGGER_URL } from './Support/API_URL'
+import { SWAGGER_URL } from './Support/API_URL'
 
 // STYLE
 import './index.css'
@@ -219,6 +220,7 @@ function App () {
             <Route path="/about-us" component={AboutUs}/>
             <Route path="/privacy-policy" component={Privacy}/>
             <Route path="/terms-and-condition" component={Terms}/>
+            <Route path="/content" component={ContentList}/>
             {/* LMS PAGE  */}
             <Route path='/lms-dashboard' component={Dashboard} />
             <Route path='/lms-home' component={LMSHome} />

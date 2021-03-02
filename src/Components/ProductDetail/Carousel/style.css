@@ -1,17 +1,28 @@
 .product-detail-carousel {
-    width: 92%;
-    height: 300px;
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 19px;
+    /* background-color: pink; */
 }
 
 .pdc-carousel-55 {
-    width: 480px;
+    width: 85%;
     height: 100%;
     /* background-color: #c4c4c4;    */
-    border-radius: 4px;
+    border-radius: 2px;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 1190px) {
+    .pdc-carousel-55 {
+        width: 80%;
+        height: 100%;
+        /* background-color: #c4c4c4;    */
+        border-radius: 4px;
+    }
 }
 
 @media only screen and (max-width: 600px) {

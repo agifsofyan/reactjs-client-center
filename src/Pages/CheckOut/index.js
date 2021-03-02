@@ -76,47 +76,51 @@ function Order () {
             }
         })
         .then(({data})=>{
-            console.log(data.data[0] , ' <<< ORDER VALUE')
-            let arr = data.data[0].items
-            let bumpArr = []
-            // ecommerce
-            arr.forEach(e=>{
-                priceNum += e.product_info.price
-                saleNum += e.product_info.sale_price
-                saleNum += e.bump_price
-                if (e && e.product_info && e.product_info.bump) {
-                    bumpArr.push(...e.product_info.bump)
-                }
-            })
+            console.log(data.data[0] , ' <<<<<< 77767667676')
             let shipment = data.data[0].shipment
             if (shipment) {
                 if (shipment.price && typeof shipment.price === 'number') {
+                    console.log(shipment.price , ' <<<<<<<<<<<<<<<<<<<<<<<<<<<< DARI API SHIPMENT')
                     setShipmentPrice(shipment.price)
                 } 
             }
+            console.log(data.data[0] , ' <<< ORDER VALUE')
+            let arr = data.data[0].items
+            console.log(arr.length , ' <<<< LENGTG ****&*&')
+            let bumpArr = []
+            let unique = data.data[0].unique_number
+            console.log(unique ,  ' <<<< UNIQUE')
+            // ecommerce
+            arr.forEach(e=>{
+                // if (e.product_info.type === 'ecommerce') {
+                //     priceNum += (e.product_info.price * e.quantity)
+                //     saleNum += (e.product_info.sale_price * e.quantity)
+                // }else {
+                //     priceNum += (e.product_info.price )
+                //     saleNum += (e.product_info.sale_price )
+                // }
+                priceNum += (e.product_info.price * e.quantity)
+                saleNum += (e.product_info.sale_price * e.quantity)
+                // saleNum += e.bump_price
+                // console.log(e.product_info.sale_price , ' <<<<<  0900909PRICE >>>>>>')
+                console.log(e ,' <<<< E >>>> XXXX')
+                if (e && e.product_info && e.product_info.bump && e.is_bump) {
+                    bumpArr.push(...e.product_info.bump)
+                    console.log(e.product_info.bump[0].bump_price ,' +_+__________________________+')
+                    saleNum += e.product_info.bump[0].bump_price
+                }
+            })
+            
+            console.log(priceNum , ' <<<< PRICE NUM')
+            console.log(saleNum , ' <<<< SALE NUM 09090909')
             setPrice(priceNum)
             setSale(saleNum)
             setDiskon(priceNum - saleNum)
             setOrder(data.data[0])
-            return axios({
-                method : "POST",
-                url : `${SWAGGER_URL}/orders/unique`,
-                headers : {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                },
-                data : {
-                    order_id : data.data[0]._id
-                }
-            })
-        })
-        .then(({data})=>{
-            setUnique(data.data)
-            console.log(data.data ,' <<<< VALUE DATA UNIQUE')
+            setUnique(unique)
         })
         .catch(err=>{
-            console.log(err ,  ' <<< ERROR GET ORDER LIST')
+            console.log(err.response ,  ' <<< ERROR GET ORDER LIST')
         })
 
     },[])
@@ -174,6 +178,7 @@ function Order () {
         if (order &&order.coupon) {
             let e1 = order.coupon
             let { value , max_discount } = e1
+            console.log(order.coupon , ' <<<<< ORDER COUPON CK &&&&')
             console.log(sale , ' <<< EL DI CHECKOUT')
             let disk = Math.ceil((value / 100) * sale)
             if (disk > max_discount ) {
@@ -225,7 +230,7 @@ function Order () {
                 </div>
             }
             {
-                order && unique &&
+                order &&
                 <div className="order-08-price">
                     <h5>
                         Kode Unik
