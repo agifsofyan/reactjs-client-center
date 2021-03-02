@@ -1,7 +1,7 @@
 import React from 'react'
 
 // COMPONENT 
-import { Search , FirstTitle } from '../../Components/ContentList'
+import { Search , FirstTitle , Item } from '../../Components/ContentList'
 
 // STYLE
 import './style.css'
@@ -17,6 +17,23 @@ function Content () {
             <Search/>
 
             <FirstTitle/>
+
+            <div className="title-2">
+                <h3>
+                    Featured Posts
+                </h3>
+            </div>
+
+            {
+                Array(3).map((e,index)=>{
+                    return (
+                        <Item
+                            e={e}
+                            index={index}
+                        />
+                    )
+                })
+            }
 
         </div>
     )

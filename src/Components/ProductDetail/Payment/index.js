@@ -33,7 +33,6 @@ function Payment (props) {
         >
             <div className="product-detail-c14-fc">
                 <span>
-                    {/* Rp 210.000 */}
                     {
                         detail.sale_price > 0 ?
                         moneyConvert(detail.sale_price.toString(),"Rp. ") : moneyConvert(detail.price.toString(),"Rp. ")

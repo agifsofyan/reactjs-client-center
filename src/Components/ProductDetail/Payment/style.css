@@ -7,18 +7,20 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 0 10px 0;
+    /* background-color: pink; */
 } 
 
 .product-detail-c14-fixed {
-    width: 49.9%;
+    width: 100%;
     background-color: #F4F4F4;
+    /* background-color: pink; */
     /* height: 70px; */
     /* padding: 12px 12px 12px 12px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 0 10px 0;
-    position: fixed;
+    position: sticky;
     left: 0 auto;
     bottom: 0;
     z-index: 0;

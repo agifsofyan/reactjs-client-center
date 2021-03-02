@@ -405,7 +405,7 @@ function ProductDetail (props) {
                 detail.bonus ?
                 <Bonus/> :
                 <div
-                    style={{marginBottom : 150}}
+                    style={{marginBottom : 52}}
                 >
 
                 </div>
