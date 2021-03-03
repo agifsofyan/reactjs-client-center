@@ -148,7 +148,7 @@ function FirstContent (props) {
                   shipmentPrice && shipmentPrice > 0 &&
                   <div>
                     <span>{shipmentPrice && shipmentPrice > 0 && "Ongkir"}</span>
-                    <span>{diskon && "( + ) " + moneyConvert(shipmentPrice ? shipmentPrice.toString() : "" ,"Rp. ")}</span>
+                    <span>{diskon && shipmentPrice > 0 && "( + ) " + moneyConvert(shipmentPrice ? shipmentPrice.toString() : "" ,"Rp. ")}</span>
                   </div>
                 }
                 {

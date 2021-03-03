@@ -102,15 +102,15 @@ function Cart () {
                 // priceNum *= e.quantity
                 // saleNum *= e.quantity
 
-                // if (e.product_info.type === 'ecommerce') {
-                //     priceNum += (e.product_info.price * e.quantity)
-                //     saleNum += (e.product_info.sale_price * e.quantity)
-                // }else {
-                //     priceNum += (e.product_info.price )
-                //     saleNum += (e.product_info.sale_price )
-                // }
-                priceNum = priceNum + e.product_info.price * e.quantity 
-                saleNum = saleNum + e.product_info.sale_price * e.quantity
+                if (e.product_info.type === 'ecommerce') {
+                    priceNum += (e.product_info.price * e.quantity)
+                    saleNum += (e.product_info.sale_price * e.quantity)
+                }else {
+                    priceNum += (e.product_info.price )
+                    saleNum += (e.product_info.sale_price )
+                }
+                // priceNum = priceNum + e.product_info.price * e.quantity 
+                // saleNum = saleNum + e.product_info.sale_price * e.quantity
                 // console.log(typeof e.quantity , ' <<<<<')
                 // console.log('SJFNSJDNFJSDNFSJDFNSDJNFDSJNSJNFSJFNSDJFNSDJFNSKDNFKSJFN')
                 console.log( saleNum + " , " + e.product_info.sale_price + " ," + e.quantity  )
@@ -203,8 +203,15 @@ function Cart () {
         let saleNum = 0
         arr.forEach((e)=>{
             if (e.isChecked) {
-                priceNum += (e.product_info.price * e.quantity)
-                saleNum += e.product_info.sale_price > 0 ? (e.product_info.sale_price * e.quantity) : (e.product_info.price* e.quantity)
+                if (e.product_info.type === 'ecommerce') {
+                    priceNum += (e.product_info.price * e.quantity)
+                    saleNum += (e.product_info.sale_price * e.quantity)
+                }else {
+                    priceNum += (e.product_info.price )
+                    saleNum += (e.product_info.sale_price )
+                }
+                // priceNum += (e.product_info.price * e.quantity)
+                // saleNum += e.product_info.sale_price > 0 ? (e.product_info.sale_price * e.quantity) : (e.product_info.price* e.quantity)
             }
         })
         setPrice(priceNum)
@@ -274,8 +281,8 @@ function Cart () {
                 let objR = { 
                     product_id : e.product_info._id , 
                     utm : e.utm ,
-                    // quantity : e.product_info.type === "ecommerce" ? e.quantity : 1,
-                    quantity : e.quantity,
+                    quantity : e.product_info.type === "ecommerce" ? e.quantity : 1,
+                    // quantity : e.quantity,
                     is_bump : checkBump(e.product_info)
                   }
                 result.push(objR)
@@ -438,10 +445,10 @@ function Cart () {
                 renderAdrInput()
             }
              {
-                   selectedAddress && isEcommerce &&
+                   selectedAddress && isEcommerce && user &&
                     <div className="cart-06-address">             
-                            <span>John Doe</span>
-                            <span style={{marginTop : 10}}>0827267272</span>
+                            <span>{user.name}</span>
+                            <span style={{marginTop : 10}}>{user.phone_number}</span>
                             <div style={{marginTop : 10}}>
                                {selectedAddress.detail_address}
                             </div>
@@ -478,13 +485,13 @@ function Cart () {
 
             </div>
             {
-                cart && cart.length > 0 &&
+                cart && cart.length > 0 && cart.filter(e=>e.isChecked).length > 0 &&
                 <h3>
                     Mau dapet potongan Harga silahkan pilih kupon Anda
                 </h3>
             }
             {
-                coupons  && cart.length > 0 &&
+                coupons  && cart.length > 0 && cart.filter(e=>e.isChecked).length > 0 &&
                 <ThirdContent 
                     selectedCoupon={selectedCoupon} 
                     setSelectedCoupon={setSelectedCoupon}
@@ -503,7 +510,7 @@ function Cart () {
 
             {/* STYLING DI src/Pages/ProductDetail/style.css */}
             {
-                cart.length > 0 &&
+                cart.length > 0 && cart.filter(e=>e.isChecked).length > 0 &&
                 <div 
                     // className="product-detail-c14-fixed"
                     className={

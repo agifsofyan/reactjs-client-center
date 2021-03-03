@@ -55,6 +55,17 @@ function ThirdContent (props) {
 
     }
 
+    let renderDisk = (e) => {
+        let { value , max_discount } = e
+        let disk = Math.ceil((value / 100) * saleBef)
+        if (disk > max_discount ) {
+            // console.log('HERE')
+            disk = max_discount
+        }
+        // setSale( saleBef - disk)
+        return disk
+    }
+
     // RENDER MENU
     let renderMenu = () => {
         return coupons.map((el,index)=>{
@@ -71,7 +82,7 @@ function ThirdContent (props) {
                         }
                     </div>
                     <div>
-                        { el.max_discount && `Mendapatkan diskon sebesar ${ moneyConvert(el.max_discount.toString(),"Rp. ")}`}
+                        { el.max_discount && `Diskon sebesar ${ moneyConvert(renderDisk(el).toString(),"Rp. ")}`}
                     </div>
                 </div>
             )
