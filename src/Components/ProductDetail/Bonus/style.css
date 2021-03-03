@@ -1,10 +1,10 @@
 .product-detail-c13-bonus {
     width: 90%;
-    height: 450px; 
+    height: auto; 
     /* 118 */
     box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
     border-radius: 9px;
-    margin: 26px 0 120px 0;
+    margin: 20px 0 40px 0;
     display: flex;
     flex-direction: column;
 }
@@ -15,6 +15,7 @@
     height: 332px;
     width: 100%;
     display: flex;
+    object-fit: cover;
     /* border-radius: 7px; */
 }
 
@@ -37,7 +38,9 @@
 /* SECOND CONTENT */
 
 .pdc13-bonus-sc {
-    height: 118px;
+    /* height: 118px; */
+    height: auto;
+    padding: 20px 0 20px 0;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -48,7 +51,7 @@
 .pdc13-bonus-sc-c1 {
     font-weight: 500;
     font-size: 22px;
-    /* margin: 20px 0 0 0; */
+    margin: 20px 0 0 0;
 }
 
 .pdc13-bonus-sc-c2 {
@@ -71,8 +74,66 @@
     /* margin-bottom: 200px; */
 }
 
-/* PHONE SCREEN */
 @media only screen and (max-width: 950px) {
+    .product-detail-c13-bonus {
+        border-radius: 7px;
+    }
+    .pdc13-bonus-fc {
+        height: 310px;
+    }
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+    .product-detail-c13-bonus {
+        border-radius: 6px;
+        margin: 14px 0 44px 0;
+    }
+
+    .pdc13-bonus-fc {
+        height: 290px;
+    }
+    .pdc13-bonus-sc {
+        padding: 14px 0 14px 0;
+    }
+
+    .pdc13-bonus-sc-c1 {
+        font-size: 19px;
+        margin: 20px 0 0 0;
+    }
+    
+    .pdc13-bonus-sc-c2 {
+        border: 1px solid #EE0000;
+        box-sizing: border-box;
+        border-radius: 5px;
+        width: 108px;
+        padding: 4px 2px 4px 2px;
+    }
+    
+    .pdc13-bonus-sc-c3 {
+        font-size: 19px;
+        font-weight: 400;
+        /* margin: 0 0 2100px 0; */
+        /* margin-bottom: 200px; */
+    }
+}
+
+@media only screen and (max-width: 350px) {
+
+    .product-detail-c13-bonus {
+        border-radius: 5.5px;
+        margin: 14px 0 44px 0;
+    }
+
+    .pdc13-bonus-fc {
+        height: 260px;
+    }
+}
+
+/* PHONE SCREEN */
+/* @media only screen and (max-width: 950px) {
     .product-detail-c13-bonus {
         height: 490px; 
     }
@@ -86,9 +147,9 @@
 
 @media only screen and (max-width: 600px) {
     .product-detail-c13-bonus {
-        height: 390px;
+        height: 360px;
     }
     .pdc13-bonus-fc {
-        height: 272px;
+        height: 242px;
     }
-}
+} */

@@ -21,10 +21,10 @@ function List (props) {
 
 
     // PARENT PROPS
-    const { cart , setCart } = props
+    const { cart , setCart , bump,setBump , setIsEcommerce } = props
 
     // LOCAL STATE
-    const [lastLength] = useState(cart.length-1)
+    const [lastLength,setLastLenght] = useState(cart.length-1)
     // const [num,setNum] = useState(1)
 
     // let handleChangeNum = (res) => {
@@ -33,7 +33,7 @@ function List (props) {
     //     }
     // }
 
-    let deleteCart = (id) => {
+    let deleteCart = (id,bumpId) => {
         axios({
             method : 'DELETE',
             url : `${SWAGGER_URL}/carts/remove?product_id=${id}`,
@@ -44,18 +44,25 @@ function List (props) {
             }
         })
         .then(({data})=>{
-            return axios(({
-                method : "GET",
-                url : `${SWAGGER_URL}/carts/list`,
-                headers : {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            let arr = [...cart]
+            let bumpArr = [...bump]
+            arr = arr.filter(e=>e.product_info._id !== id)
+            bumpArr = bumpArr.filter(e=>e._id !== bumpId)
+            setCart(arr)
+            setBump(bumpArr)
+            setLastLenght(arr.length-1)
+            // HANDLE COMMERCE
+            let flag = false
+            arr.forEach(e=>{
+                let check = e.product_info.type
+                if (check === 'ecommerce') {
+                    setIsEcommerce(true)
+                    flag = false
                 }
-            }))
-        })
-        .then(({data})=>{
-            setCart(data.data.items)
+            })
+            if (!flag) {
+                setIsEcommerce(flag)
+            }
         })
         .catch(err=>{
             console.log(err.response)
@@ -76,9 +83,10 @@ function List (props) {
         }
     }
 
-    let checkedCart = (id,status) => {
+    let checkedCart = (id,status,bumpId) => {
         // let obj = 
         let arr = [...cart]
+        let arrBump = [...bump]
         arr = arr.map(e=>{
             if (e._id === id) {
                 return e = { ...e ,isChecked : !status}
@@ -86,7 +94,29 @@ function List (props) {
                 return e
             }
         })
+        arrBump = bump.map(e=>{
+            if ( bumpId && e._id === bumpId) {
+                return e = { ...e ,isShow : !status}
+            }else {
+                return e
+            }
+        })
         setCart(arr)
+        setBump(arrBump)
+        // HANLE CHECK ECOMMERCE
+        let flag = false
+        arr.forEach(e=>{
+            let check = e.product_info.type
+            if (check === 'ecommerce' && e.isChecked) {
+                setIsEcommerce(true)
+                flag = true
+                console.log('KDNSFJNFJDFNDJSFNDS hahahahha')
+            }
+        })
+        if (!flag) {
+            console.log('LOL JNJDNFJDSFNJDSFNDJSFFFFFFFFFFFFFFFFFFFFFFFFFFFFFN')
+            setIsEcommerce(flag)
+        }
     }
 
     let renderDiskon = (data) => {
@@ -114,7 +144,7 @@ function List (props) {
                     <div className="cart-06-list1-fc">
 
                         <input
-                            onClick={e=>checkedCart(el._id,el.isChecked)}
+                            onClick={e=>checkedCart(el._id,el.isChecked,el.product_info.bump ? el.product_info.bump[0]._id : null )}
                             type="checkbox"
                             checked={el.isChecked}
                         />
@@ -182,7 +212,7 @@ function List (props) {
                             {
                                 el.product_info.type === "ecommerce" &&
                                 <DeleteIcon
-                                    onClick={e=>deleteCart(el.product_info._id)}
+                                    onClick={e=>deleteCart(el.product_info._id,el.product_info.bump ? el.product_info.bump[0]._id : null)}
                                     className="cart-06-list1-sc-c3-icon-2"
                                 />
                             }

@@ -402,8 +402,21 @@ function ProductDetail (props) {
             {renderSection()}
 
             {
+                detail.bonus &&
+                <div
+                    className={"pdc13-bonus-sc-c1"}
+                >
+                    {
+                        detail.bonus.title
+                    }
+                </div>
+            }
+
+            {
                 detail.bonus ?
-                <Bonus/> :
+                <Bonus
+                    detail={detail}
+                /> :
                 <div
                     style={{marginBottom : 52}}
                 >

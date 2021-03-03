@@ -25,7 +25,24 @@ function Content () {
             </div>
 
             {
-                Array(3).map((e,index)=>{
+                [0,1,2].map((e,index)=>{
+                    return (
+                        <Item
+                            e={e}
+                            index={index}
+                        />
+                    )
+                })
+            }
+
+            <div className="title-2">
+                <h3>
+                    Laruno's Blog
+                </h3>
+            </div>
+
+            {
+                [0,1,2].map((e,index)=>{
                     return (
                         <Item
                             e={e}

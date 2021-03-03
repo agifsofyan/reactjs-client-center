@@ -203,10 +203,10 @@ const Dashboard = () => {
             <Profile complete={false} />
 
             {/* DIVIDER */}
-            <div className='divider' />
+            {/* <div className='divider' /> */}
 
             {/* SECTION CAROUSEL */}
-            <TopicSection dashboardTab={true} />
+            {/* <TopicSection dashboardTab={true} /> */}
 
             {/* DIVIDER */}
             <div className='divider' />

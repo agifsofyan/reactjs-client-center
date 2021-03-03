@@ -81,7 +81,7 @@ function ThirdContent (props) {
     return (
         <div 
             className="card-06-tc-container"
-            style={{marginBottom : showMenu && 150}}    
+            style={{marginBottom : showMenu && 40}}    
         >
             <div 
                 style={{height : showMenu && 220, overflowY : showMenu && "auto"}}  

@@ -34,8 +34,10 @@ function Cart () {
     const [selectedCoupon,setSelectedCoupon] = useState(null)
     const [selectedAddress,setSelectedAddress] = useState(null)
     const [address,setAddress] = useState(null)
-    const [bump,setBump] = useState(null)
     const [user,setUser] = useState(null)
+    
+    // BUMP
+    const [bump,setBump] = useState(null)
 
     // CEK GET DATA
     const [isData,setIsData] = useState(false)
@@ -89,7 +91,6 @@ function Cart () {
                 let check = e.product_info.type
                 if (check === 'ecommerce') {
                     // console.log(e , ' &*&*&*&*&*&*&*&*&*&*&*&*&')
-                    console.log(e.quantity , ' <<<< QTY >>>>')
                     setIsEcommerce(true)
                     // setInputNext(false)
                 }
@@ -100,6 +101,7 @@ function Cart () {
                 // }
                 // priceNum *= e.quantity
                 // saleNum *= e.quantity
+
                 // if (e.product_info.type === 'ecommerce') {
                 //     priceNum += (e.product_info.price * e.quantity)
                 //     saleNum += (e.product_info.sale_price * e.quantity)
@@ -111,7 +113,6 @@ function Cart () {
                 saleNum = saleNum + e.product_info.sale_price * e.quantity
                 // console.log(typeof e.quantity , ' <<<<<')
                 // console.log('SJFNSJDNFJSDNFSJDFNSDJNFDSJNSJNFSJFNSDJFNSDJFNSKDNFKSJFN')
-                console.log(saleNum ,' <<< saLU NUM')
                 console.log( saleNum + " , " + e.product_info.sale_price + " ," + e.quantity  )
                 if (e && e.product_info) {
                     // console.log(e.product_info.bump , ' <<< PER BUMP')
@@ -124,8 +125,7 @@ function Cart () {
 
                 // e = {...e,isChecked : true}
             })
-            console.log(saleNum , ' <<<< SALE NUM ANJING')
-            console.log(priceNum , ' <<<< PRICE NUM')
+            console.log(bumpArr , ' <<< VALUE BUMP ARR >>>>')
             setBump(bumpArr)
             setPrice(priceNum)
             setSale(saleNum)
@@ -197,6 +197,7 @@ function Cart () {
     },[selectedAddress])
 
     useEffect(() => {
+        console.log(cart ,  ' <<<<< VALUE CART (()()()()()()(')
         let arr = cart
         let priceNum = 0
         let saleNum = 0
@@ -206,10 +207,11 @@ function Cart () {
                 saleNum += e.product_info.sale_price > 0 ? (e.product_info.sale_price * e.quantity) : (e.product_info.price* e.quantity)
             }
         })
-        console.log(saleNum , ' <<<<<<<<<<<<< SALE NUM RUN ****')
         setPrice(priceNum)
         setSale(saleNum)
         setSaleBef(saleNum > 0 ? saleNum : priceNum)
+        console.log('THIS ACTION RUNNING <<<<')
+        console.log(saleNum , ' <<<< SALE NUM *****)))')
     },[cart])
 
     useEffect(()=>{
@@ -385,6 +387,10 @@ function Cart () {
     //     }
     // },[bump])
 
+    useEffect(()=>{
+        console.log(isEcommerce , ' <<<<< STATUS IS ECOMMERCE >>>> 9SJDFSDJFDJF')
+    },[isEcommerce])
+
     return (
         <div className="cart-container-06">
             <h1 className="cwr-99-1 cart-06-title1">User Data</h1>
@@ -403,6 +409,9 @@ function Cart () {
                 <List
                     setCart={setCart}
                     cart={cart}
+                    setBump={setBump}
+                    bump={bump}
+                    setIsEcommerce={setIsEcommerce}
                 /> :
                 <div style={{marginTop : 10}}>
                     Anda Belum Memiliki Cart
@@ -447,20 +456,22 @@ function Cart () {
                 bump &&
                 bump.map((e,index)=>{
                     // console.log(e , ' <<<< VALUE BUMP')
-                    return (
-                        <SecondContent
-                            bump={e}
-                            setBump={setBump}
-                            index={index}
-                            bumpArr={bump}
-                            sale={sale}
-                            saleBef={saleBef}
-                            setSale={setSale}
-                            setSaleBef={setSaleBef}
-                            price={price}
-                            setPrice={setPrice}
-                        />
-                    )
+                    if (e.isShow) {
+                        return (
+                            <SecondContent
+                                bump={e}
+                                setBump={setBump}
+                                index={index}
+                                bumpArr={bump}
+                                sale={sale}
+                                saleBef={saleBef}
+                                setSale={setSale}
+                                setSaleBef={setSaleBef}
+                                price={price}
+                                setPrice={setPrice}
+                            />
+                        )
+                    }
                 })
             }
             <div className="cart-06-1 cart-06-c2">
