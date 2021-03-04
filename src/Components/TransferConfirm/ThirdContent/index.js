@@ -56,7 +56,7 @@ function ThirdContent (props) {
             <div onClick={onClick} className="transfer-08-date-root">
                 {
                     tanggalTransfer ?
-                    new Date(tanggalTransfer).toDateString() :
+                    formatDate(tanggalTransfer) :
                     "Pilih Tanggal"
                 }
                 <div style={{width : 100, cursor : "pointer",}} onClick={onClick}>
@@ -100,6 +100,30 @@ function ThirdContent (props) {
 
     }
 
+    const handleChangeDate = (date) => {
+        console.log(date , ' <<<< VALUE DATE')
+        let date1 = new Date().getTime()
+        let date2 = new Date(date).getTime()
+        if (date2 <= date1) {
+            setTanggalTransfer(date)
+        }else {
+            alert("Tanggal kelebihan")
+        }
+    }
+
+    const formatDate = (date) => {
+        let days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        let months = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+        
+        let day = new Date(date).getDay()
+        let date2 = new Date (date).getDate()
+        let month = new Date(date).getMonth()
+        let year = new Date(date).getFullYear()
+
+        return `${days[day]}, ${(date2 <= 9 ? "0" + date2 : date2)} ${months[month]} ${year}` 
+
+    }
+
     return (
         <div className="transfer-08-tc">
             <h3>
@@ -130,7 +154,7 @@ function ThirdContent (props) {
 
                 {/* DATE PICKER */}
                 <DatePicker 
-                    onChange={date=>setTanggalTransfer(date)}
+                    onChange={date=>handleChangeDate(date)}
                     closeOnScroll={e => e.target === document} 
                     // onCalendarClose={e=>setDateShow(true)}
                     // onCalendarOpen={e=>setDateShow(false)}

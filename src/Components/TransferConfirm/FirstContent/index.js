@@ -144,13 +144,15 @@ function FirstContent (props) {
                         <span>{diskon && "( - ) " +  moneyConvert(renderCoupon() ? renderCoupon().toString() : "" ,"Rp. ")}</span>
                     </div>
                 }
+
                 {
-                  shipmentPrice && shipmentPrice > 0 &&
-                  <div>
-                    <span>{shipmentPrice && shipmentPrice > 0 && "Ongkir"}</span>
-                    <span>{diskon && shipmentPrice > 0 && "( + ) " + moneyConvert(shipmentPrice ? shipmentPrice.toString() : "" ,"Rp. ")}</span>
-                  </div>
+                  shipmentPrice > 0 &&
+                    <div>
+                        <span>{shipmentPrice && shipmentPrice > 0 && "Ongkir"}</span>
+                        {/* <span>{ order && diskon && shipmentPrice > 0 && "( + ) " + moneyConvert(shipmentPrice ? shipmentPrice.toString() : "" ,"Rp. ")}</span> */}
+                    </div>
                 }
+
                 {
                      order && unique &&
                     <div>

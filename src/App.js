@@ -25,7 +25,9 @@ import {
         AboutUs,
         Privacy,
         Terms,
-        ContentList
+        ContentList,
+        DanaNotif,
+        DanaFinish
       } from './Pages'
 
       import { 
@@ -221,6 +223,9 @@ function App () {
             <Route path="/privacy-policy" component={Privacy}/>
             <Route path="/terms-and-condition" component={Terms}/>
             <Route path="/content" component={ContentList}/>
+            {/* DANA */}
+            <Route path="/callback/dana/notif" component={DanaNotif}/>
+            <Route path="/callback/dana/finish" component={DanaFinish}/>
             {/* LMS PAGE  */}
             <Route path='/lms-dashboard' component={Dashboard} />
             <Route path='/lms-home' component={LMSHome} />

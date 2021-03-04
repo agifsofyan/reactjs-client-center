@@ -19,6 +19,8 @@ import AboutUs from './AboutUs'
 import Privacy from './Privacy'
 import Terms from './TermsCondition'
 import ContentList from './ContentList'
+import DanaNotif from './DanaNotif'
+import DanaFinish from './DanaFinish'
 
 export {
     Auth,
@@ -41,5 +43,7 @@ export {
     AboutUs,
     Privacy,
     Terms,
-    ContentList
+    ContentList,
+    DanaNotif,
+    DanaFinish
 }

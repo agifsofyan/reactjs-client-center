@@ -96,7 +96,7 @@ function List (props) {
         })
         arrBump = bump.map(e=>{
             if ( bumpId && e._id === bumpId) {
-                return e = { ...e ,isShow : !status}
+                return e = { ...e ,isShow : !status , isSelected :  !status}
             }else {
                 return e
             }

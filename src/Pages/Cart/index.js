@@ -245,8 +245,7 @@ function Cart () {
         let flag = false
         if (val) {
             bump.forEach((e)=>{
-                if (e.isSelected && e._id === val._id) {
-                    console.log('MASUK SINI')
+                if (e.isSelected && e._id === val._id && e.isShow) {
                     flag = true
                 }
             })
@@ -288,6 +287,7 @@ function Cart () {
                 result.push(objR)
             }
         })
+        console.log(result , ' <<<< VALUE RESULT')
         return result
     }
 

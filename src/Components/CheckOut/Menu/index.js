@@ -32,6 +32,8 @@ function Menu (props) {
                         width : "86%",
                         ...style,
                         height : showMenu ? 145 : style.height, 
+                        borderWidth : 0.1
+                        // backgroundColor : "pink"
                     }}  
             className="card-06-tc-c1"
             onClick={e=>setShowMenu(!showMenu)}

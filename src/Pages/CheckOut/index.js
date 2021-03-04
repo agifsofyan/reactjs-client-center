@@ -210,10 +210,10 @@ function Order () {
             {
                 order && order.coupon &&
                 <div className="order-08-price">
-                    <h5>
+                    <h5 style={{color : "#11870F"}}>
                         {'Potongan Kupon "' +order.coupon.name + '"'}
                     </h5>
-                    <h6>
+                    <h6 style={{color : "#11870F"}}>
                         {diskon && "( - ) " + moneyConvert(renderCoupon() ? renderCoupon().toString() : "" ,"Rp. ")}
                     </h6>
                 </div>
@@ -243,10 +243,10 @@ function Order () {
             {
                 unique &&
                 <div className="order-08-price">
-                    <h5>
+                    <h5 style={{color : "#FF4500"}}>
                         Total Akhir
                     </h5>
-                    <h6>
+                    <h6 style={{color : "#FF4500"}}>
                         {
                             sale && 
                             moneyConvert(sale ? ( sale - renderCoupon() + unique + shipmentPrice ).toString() : "" ,"Rp. ")

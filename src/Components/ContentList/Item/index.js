@@ -31,7 +31,7 @@ function Item (props) {
 
             <div className="c1">
                 <div className="t1">
-                    {title.slice(0,54) + ( title.length >= 54 && "...." )}
+                    {title.slice(0,34) + ( title.length >= 34 && "...." )}
                 </div>
                 <div className="t2">
                     {content.slice(0,90) + ( content.length >= 90 && "...." )}

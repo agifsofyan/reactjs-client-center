@@ -17,7 +17,8 @@ function Payment (props) {
 
     let renderData = (type) => {
         return payment.map((el,index) => {
-            if (el.info === type) {
+            console.log(el ,' <<<< DATA CHECKOUT')
+            if (el.info === type && el.isActive) {
                 return (
                     <div>
                         <input
@@ -42,14 +43,14 @@ function Payment (props) {
             className="order-08-payment"
         >
 
-            {/* <div style={{marginTop : 25}}>
+            <div style={{marginTop : 25}}>
                 <header>E-Wallet</header>
                 <main>Bayar langsung dari akun e-wallet</main>
                 <section></section>
                 {
                     renderData("EWallet")
                 }
-            </div> */}
+            </div>
 
             {/* <div style={{marginTop : 30}}>
                 <header>Virtual Account</header>
