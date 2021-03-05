@@ -44,9 +44,9 @@ function Payment (props) {
         >
 
             <div style={{marginTop : 25}}>
-                <header>E-Wallet</header>
-                <main>Bayar langsung dari akun e-wallet</main>
-                <section></section>
+                <header>Dompet Digital</header>
+                {/* <main>Bayar langsung dari Dompet Digital</main> */}
+                {/* <section></section> */}
                 {
                     renderData("EWallet")
                 }
@@ -64,7 +64,7 @@ function Payment (props) {
             <div style={{marginTop : 30}}>
                 <header>Bank Transfer</header>
                 {/* <main>Bayar dengan akhir nominal 4 angka verifikasi</main> */}
-                <section></section>
+                {/* <section></section> */}
                 {
                     renderData("Bank-Transfer")
                 }
