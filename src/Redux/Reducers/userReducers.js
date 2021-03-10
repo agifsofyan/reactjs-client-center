@@ -4,6 +4,7 @@ import {
     USER_ME,
     USER_LOGOUT,
     USER_FAILED,
+    GET_PRODUCT
 } from '../type'
 
 const INITIAL_STATE = {
@@ -11,6 +12,7 @@ const INITIAL_STATE = {
     userMe: [],
     top: 0,
     loading: false,
+    userProduct : null
 };
 
 export const UserReducer = (state = INITIAL_STATE, action) => {
@@ -38,6 +40,11 @@ export const UserReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: false,
             };
+        case GET_PRODUCT:
+            return {
+                ...state,
+                userProduct :  action.payload
+            }
         default: return state;
     };
 };

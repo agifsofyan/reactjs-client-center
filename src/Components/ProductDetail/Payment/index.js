@@ -11,7 +11,7 @@ import moneyConvert from '../../../Support/moneyConvert'
  
 // STYLE
 import './style.css'
-
+    
 function Payment (props) {
 
     // PARENT PROPS

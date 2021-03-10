@@ -93,6 +93,32 @@
     margin: 30px 0 0 0;
 }
 
+.payment-09-button3 {
+    width: 314px;
+    height: 42px;
+    border : 2px solid #FF4500;
+    margin: 50px 0 0 0;
+    border-radius: 5px;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #FF4500;
+    cursor: pointer;
+}
+
+.payment-09-container > h4 {
+    border-bottom: 2.5px solid #FF4500;
+    padding-bottom: 2px;
+    font-size: 18px;
+    color: #FF4500;
+    margin: 25px 0 45px 0;
+}
+
 /* @media only screen and (max-width: 600px) {
     .payment-09-button2 {
         width: 290px;

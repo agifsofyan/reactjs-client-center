@@ -126,49 +126,105 @@ function Order () {
     },[])
 
     useEffect(()=>{
-        console.log(selectedPayment , '  <<< SELECTED PAYMENT')
+        console.log(selectedPayment , '  <<< SELECTED PAYMENT 999)()())()()(')
     },[selectedPayment])
+
+
+    let handleBank = (total_price) => {
+        let id = order._id
+        let unique = null
+        axios({
+            method : "POST",
+            url : `${SWAGGER_URL}/orders/unique`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+            data : {
+                order_id : id
+            }
+        })
+        .then(({data})=>{
+            unique = data.data
+            return axios({
+                        method : 'POST',
+                        url : `${SWAGGER_URL}/orders/${order._id}/pay`,
+                        data : {
+                            payment : {
+                                method : selectedPayment._id
+                            },
+                            total_price ,
+                            unique_number : unique 
+                        },
+                        headers : {
+                            'Access-Control-Allow-Origin': '*',
+                            'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        }
+                    })
+        })
+        .then(({data})=>{
+            setLoading(false)
+            let type = data.data.payment.method.info;
+            let total = data.data.total_price
+            let id = data.data._id
+            console.log(id , ' <<<< ID FIXXXXXXXX')
+            console.log(type , ' <<< VALUE TYPE')
+            if (type === "Bank-Transfer") {
+                if (typeof window !== "undefined") {
+                    if (window.fbq != null) { 
+                      window.fbq('track', 'Purchase', {currency: "IDR", value: total });
+                    }
+                }
+                history.push('/transfer-confirm')
+            }
+        })
+        .catch(err=>{
+            setLoading(false)
+            console.log(err.response , ' <<<<< ERROR')
+        })
+    }
+
+    let handleDana = (total_price) => {
+        axios({
+            method : 'POST',
+            url : `${SWAGGER_URL}/orders/${order._id}/pay`,
+            data : {
+                payment : {
+                    method : selectedPayment._id
+                },
+                total_price  ,
+                // unique_number : unique 
+            },
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            setLoading(false)
+            console.log(data.data , ' <<< DANA HERE )())()()()(')
+            window.open(data.data, '_blank')
+        })
+        .catch(err=>{
+            setLoading(false)
+            console.log(err.response , ' <<< should error')
+        })
+    }
 
     let handlePay = () => {
         if (selectedPayment) {
             setLoading(true)
             let total_price = (sale - renderCoupon() + unique + shipmentPrice)
             console.log(total_price , ' <<<< VALUE TOTAL PRICE HERE 89') 
-            axios({
-                method : 'POST',
-                url : `${SWAGGER_URL}/orders/${order._id}/pay`,
-                data : {
-                    payment : {
-                        method : selectedPayment._id
-                    },
-                    total_price 
-                },
-                headers : {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                }
-            })
-            .then(({data})=>{
-                setLoading(false)
-                let type = data.data.payment.method.info;
-                let total = data.data.total_price
-                if (type === "Bank-Transfer") {
-                    console.log('TRUEE')
-                    if (typeof window !== "undefined") {
-                        if (window.fbq != null) { 
-                          window.fbq('track', 'Purchase', {currency: "IDR", value: total });
-                        }
-                    }
-                    history.push('/transfer-confirm')
-                }
-                // console.log(data.data.payment.method.info , '  <<<< KUDU BANK TRANSFER')
-                console.log(data , " <<<< SUKSES >>>>")
-            })
-            .catch(err=>{
-                setLoading(false)
-                console.log(err.response , ' << ERROR PAY')
-            })
+            if (selectedPayment.info === "Bank-Transfer") {
+                handleBank(total_price)
+            }else if (selectedPayment.info === "EWallet" && selectedPayment.name === "DANA INDONESIA") {
+                console.log('HERE <><><><')
+                handleDana(total_price)
+            }
         }else {
             alert('SILAHKAN PILIH METODE PEMBAYARAN')
         }
@@ -178,8 +234,8 @@ function Order () {
         if (order &&order.coupon) {
             let e1 = order.coupon
             let { value , max_discount } = e1
-            console.log(order.coupon , ' <<<<< ORDER COUPON CK &&&&')
-            console.log(sale , ' <<< EL DI CHECKOUT')
+            // console.log(order.coupon , ' <<<<< ORDER COUPON CK &&&&')
+            // console.log(sale , ' <<< EL DI CHECKOUT')
             let disk = Math.ceil((value / 100) * sale)
             if (disk > max_discount ) {
                 disk = max_discount
@@ -229,7 +285,7 @@ function Order () {
                     </h6>
                 </div>
             }
-            {
+            {/* {
                 order &&
                 <div className="order-08-price">
                     <h5>
@@ -239,20 +295,21 @@ function Order () {
                         {unique && "( + ) " + moneyConvert( unique.toString() , "Rp. " )}
                     </h6>
                 </div>
-            }
+            } */}
+            <div className="order-08-price">
+                <h5 style={{color : "#FF4500"}}>
+                    Total Akhir
+                </h5>
+                <h6 style={{color : "#FF4500"}}>
+                    {
+                        sale && 
+                        moneyConvert(sale ? ( sale - renderCoupon() + shipmentPrice ).toString() : "" ,"Rp. ")
+                    }
+                </h6>
+            </div>
             {
-                unique &&
-                <div className="order-08-price">
-                    <h5 style={{color : "#FF4500"}}>
-                        Total Akhir
-                    </h5>
-                    <h6 style={{color : "#FF4500"}}>
-                        {
-                            sale && 
-                            moneyConvert(sale ? ( sale - renderCoupon() + unique + shipmentPrice ).toString() : "" ,"Rp. ")
-                        }
-                    </h6>
-                </div>
+                // unique &&
+               
             }
             <hr className="order-08-line"/>
             <div className="order-08-t2">
@@ -269,6 +326,7 @@ function Order () {
             <button 
                 className="order-08-button"
                 onClick={e=>handlePay()}
+                // onClick={e=>window.open('http://stackoverflow.com', '_blank')}
             > 
                 {
                     loading ?

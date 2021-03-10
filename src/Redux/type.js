@@ -9,6 +9,7 @@ export const USER_START = 'USER_START';
 export const USER_ME = 'USER_ME';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const USER_FAILED = 'USER_FAILED';
+export const GET_PRODUCT = "GET_PRODUCT"
 
 // LMS
 export const PRODUCT_START = 'PRODUCT_START';

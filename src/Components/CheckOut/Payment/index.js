@@ -17,7 +17,6 @@ function Payment (props) {
 
     let renderData = (type) => {
         return payment.map((el,index) => {
-            console.log(el ,' <<<< DATA CHECKOUT')
             if (el.info === type && el.isActive) {
                 return (
                     <div>

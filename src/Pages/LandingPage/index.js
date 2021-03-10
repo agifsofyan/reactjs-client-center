@@ -204,7 +204,7 @@ function LandingPage () {
             /> */}
 
             {
-                renderPage()
+                !localStorage.getItem("token") && renderPage()
             }
 
             <Footer/>

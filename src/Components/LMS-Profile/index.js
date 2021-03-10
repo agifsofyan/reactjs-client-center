@@ -1,11 +1,15 @@
-import React from 'react';
+import React , { useState ,useEffect } from 'react';
 import ProgressBar from '../../Components/ProgressBar/index';
 import checkmark from '../../Assets/Images/checkmark.png';
 import gold from '../../Assets/Images/gold.png';
 import './lmsprofile.css';
 
 const LMSProfile = (props) => {
-    const complete = props.complete;
+
+    // LOCAL STATE
+    const [progress,setProgress] = useState(0);
+
+    const { complete , user } = props
 
     const todoList = [
         {
@@ -22,7 +26,6 @@ const LMSProfile = (props) => {
         },
     ];
 
-    const progress = 70;
 
     const renderComplete = () => {
         return todoList.map((val,index) => {
@@ -110,6 +113,25 @@ const LMSProfile = (props) => {
             );
         });
     };
+
+    useEffect(()=>{
+        if (user) {
+            let num = 0
+            if (user.achievement && user.achievement.length > 0) {
+                num+= 20
+            }
+            if (user.address &&user.address.length > 0) {
+                num+=20
+            }
+            if (user.experience && user.experience.length > 0) {
+                num+=20
+            }
+            if (user.religion && user.religion.length > 0) {
+                num+=20
+            }
+            setProgress(num)
+        }
+    },[user])
 
     return (
         <div>

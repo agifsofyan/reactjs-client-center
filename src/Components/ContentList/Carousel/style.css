@@ -1,0 +1,50 @@
+.cl-carousel-11 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.cl-carousel-11 > .c1 {
+    width: 87%;
+    display: flex;
+    justify-content: space-between;
+    align-items : center;
+}
+
+.cl-carousel-11 > .c1 > .content {
+    width: 278px;
+    height: 253px;
+    background-color: bisque;
+    object-fit: fill;
+}
+
+.cl-carousel-11 > .c1 > .c-icon-11 {
+    font-size: 40px !important;
+}
+
+.cl-carousel-11 > .c2 {
+    font-weight: bold;
+    font-size: 21px;
+    line-height : 23px;
+    margin : 5px 0 0 0;
+    width: 278px;
+}
+
+.cl-carousel-11 > .c3 {
+    font-weight: 300;
+    font-size: 18px;
+    line-height : 20px;
+    margin : 5px 0 0 0;
+    width: 278px;
+}
+
+.cl-carousel-11 > .c4 {
+    font-weight: 300;
+    font-size: 17.5px;
+    line-height : 20px;
+    margin : 5px 0 0 0;
+    width: 278px;
+}
+

@@ -1,0 +1,45 @@
+.cd-13-bc {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    margin: 10px 0 0 0;
+}
+
+.cd-13-bc > .t1 {
+    font-size: 18px;
+    color: #777777;
+    font-weight: 500;
+    /* line-height: 100px; */
+    /* letter-spacing: 3px; */
+}
+
+.cd-13-bc > .t2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-left: 5px;
+}
+
+.cd-13-bc * {
+    font-family: 'Rubik', sans-serif;
+    /* font-size: 18px;    */
+}
+
+.cd-13-bc > .c1 > .t3 {
+    display: flex;
+    margin: 11px 0 0 0;
+    align-items: center;
+}
+
+.cd-13-bc > .c1 > .t3 > .img {
+    width: 25px;
+    height: 25px;
+    border-radius: 100px;
+    background-color: #cccccc;
+}
+
+.cd-13-bc > .c1 > .t3 > .t1 {
+    font-size: 18px;
+    line-height: 20px;
+    font-weight: 300;
+    margin-left: 4px;
+}

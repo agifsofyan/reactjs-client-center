@@ -179,6 +179,12 @@ function Modal (props) {
                         >
                             Terms & Condition
                         </div>
+                        <div 
+                            // onClick={e=> [history.push('/terms-and-condition'),handleModalClose()]}
+                            style={{marginLeft : 20}}
+                        >
+                            FAQ
+                        </div>
                     </div>
                     <div className="bmc-content-8">
                         Copyright @ 2021 larunocom

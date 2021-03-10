@@ -319,22 +319,20 @@ function Cart () {
         .then(({data})=>{
             let id = data.data._id
             console.log(data.data._id , ' <<<< HASIL PROMISE THEN CART ORDER')
-            return axios({
-                method : "POST",
-                url : `${SWAGGER_URL}/orders/unique`,
-                headers : {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`,
-                },
-                data : {
-                    order_id : id
-                }
-            })
-        })
-        .then(({data})=>{
             history.push('/check-out')
             setLoadingOrder(false)
+            // return axios({
+            //     method : "POST",
+            //     url : `${SWAGGER_URL}/orders/unique`,
+            //     headers : {
+            //         'Access-Control-Allow-Origin': '*',
+            //         'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+            //         'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            //     },
+            //     data : {
+            //         order_id : id
+            //     }
+            // })
         })
         .catch(err=>{
             setLoadingOrder(false)

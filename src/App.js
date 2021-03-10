@@ -25,9 +25,10 @@ import {
         AboutUs,
         Privacy,
         Terms,
-        ContentList,
         DanaNotif,
-        DanaFinish
+        DanaFinish,
+        ContentContainer,
+        PaymentSuccess2
       } from './Pages'
 
       import { 
@@ -222,10 +223,11 @@ function App () {
             <Route path="/about-us" component={AboutUs}/>
             <Route path="/privacy-policy" component={Privacy}/>
             <Route path="/terms-and-condition" component={Terms}/>
-            <Route path="/content" component={ContentList}/>
+            <Route path="/blog" component={ContentContainer}/>
+            {/* <Route path="/blog" component={ContentList}/> */}
             {/* DANA */}
-            <Route path="/callback/dana/notif" component={DanaNotif}/>
-            <Route path="/callback/dana/finish" component={DanaFinish}/>
+            <Route path="/payments/notification" component={PaymentSuccess2}/>
+            <Route path="/payments/finish" component={DanaFinish}/>
             {/* LMS PAGE  */}
             <Route path='/lms-dashboard' component={Dashboard} />
             <Route path='/lms-home' component={LMSHome} />

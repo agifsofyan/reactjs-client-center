@@ -1,14 +1,25 @@
 import React, { useEffect } from 'react';
+
+// MODULE
+import axios from 'axios';
+import { message, Rate } from 'antd';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+
+// COMPONENT
 import Profile from '../../Components/LMS-Profile';
 import TopicSection from '../../Components/TopicSection';
 import ContentSection from '../../Components/Content';
 import Footer from '../../Components/LMSFooter';
-import { message, Rate } from 'antd';
-import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import productRecom from '../../Assets/Images/recommended.png';
+
+// REDUX 
 import { getPaidList } from '../../Redux/Actions';
-import { getUserWhoAmI } from '../../Redux/Actions/userAction';
+import { getUserWhoAmI , getUserProduct } from '../../Redux/Actions/userAction';
+
+// IMAGES
+import productRecom from '../../Assets/Images/recommended.png';
+
+// STYLING
 import './style.css';
 
 const Dashboard = () => {
@@ -16,18 +27,27 @@ const Dashboard = () => {
 
     const userInfo = useSelector(({ user }) => user.userMe);
 
+    const dataProduct = useSelector(state=>state.user.userProduct)
+
     useEffect(() => {
         document.title = 'Dashboard';
         dispatch(getPaidList());
         dispatch(getUserWhoAmI());
+        dispatch(getUserProduct())
     }, [dispatch]);
+
+    useEffect(()=>{
+
+        console.log(dataProduct , ' <<< DATA PRODUCT >>>')
+
+    },[dataProduct])
 
     const storyImg = 'https://www.digitalartsonline.co.uk/cmsdata/slideshow/3784651/01_idea.jpg';
     const unfinishImg = 'https://wallpaperaccess.com/full/656648.jpg';
     const badge = 'https://i.ibb.co/DfxtJ6L/Obsidian.png';
 
     const renderStory = () => {
-        return [0,1,2,3,4,5,6,7,8,9].map(() => {
+        return dataProduct.map((e) => {
             return (
                 <div className='story-card'>
                     <img src={storyImg} alt='boba' className='story-img' />
@@ -200,7 +220,10 @@ const Dashboard = () => {
     return (
         <div className='root'>
             {/* PROFILE CHECK */}
-            <Profile complete={false} />
+            <Profile 
+                complete={false} 
+                user={userInfo}
+            />
 
             {/* DIVIDER */}
             {/* <div className='divider' /> */}
@@ -213,7 +236,7 @@ const Dashboard = () => {
 
             {/* STORY */}
             <div className='story-section'>
-                {renderStory()}
+                { dataProduct && renderStory()}
             </div>
 
             {/* DIVIDER */}

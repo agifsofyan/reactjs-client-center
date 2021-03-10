@@ -4,7 +4,7 @@ import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
 import Footer from '../../Components/LMSFooter';
 import './TipsList.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBlogList } from '../../Redux/Actions';
 

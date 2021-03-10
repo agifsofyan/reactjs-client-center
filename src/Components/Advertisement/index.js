@@ -46,6 +46,7 @@ function Advertisement (props) {
             location.pathname === "/order-history" ||
             location.pathname === "/" ||
             location.pathname.split('-')[0] === "/lms" ||
+            location.pathname === "/payments/notification" ||
             !productHeader ||
             !productHeader.feature
         ) 

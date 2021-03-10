@@ -1,10 +1,10 @@
-import React , { useEffect } from 'react'
+import React , { useEffect , useState } from 'react'
 
 // MODULE
 import axios from 'axios'
 
 // COMPONENT 
-import { Search , FirstTitle , Item, Carousel } from '../../Components/ContentList'
+import { Search , FirstTitle , Item, Carousel , Podcast } from '../../Components/ContentList'
 
 // API
 import {  SWAGGER_URL } from '../../Support/API_URL'
@@ -12,7 +12,9 @@ import {  SWAGGER_URL } from '../../Support/API_URL'
 // STYLE
 import './style.css'
 
-function Content () {
+function Content (props) {
+
+    const [dataNews,setDataNews] = useState(null)
 
     useEffect(()=>{
         axios({
@@ -25,10 +27,11 @@ function Content () {
             }
         }).
         then(({data})=>{
+            setDataNews(data.data)
             console.log(data , ' <<< VALUE DATA')
         })
         .catch(err=>{
-            console.log(err.response , ' <<<< ERROR')
+            console.log(err.response , ' <<<< ERROR RESPONS ><><><>><><')
         })
     },[])
 
@@ -49,7 +52,7 @@ function Content () {
             </div>
 
             {
-                [0,1,2].map((e,index)=>{
+                dataNews && dataNews.filter(e=>!e.isBlog).map((e,index)=>{
                     return (
                         <Item
                             e={e}
@@ -66,7 +69,7 @@ function Content () {
             </div>
 
             {
-                [0,1,2].map((e,index)=>{
+                dataNews && dataNews.filter(e=>e.isBlog).map((e,index)=>{
                     return (
                         <Item
                             e={e}
@@ -94,6 +97,22 @@ function Content () {
 
             <Carousel/>
 
+            <div className="title-2">
+                <h3>
+                    Podcast
+                </h3>
+            </div>
+
+            <div
+                className="first-title-content-11"
+                style={{marginTop : 1,marginBottom: 10, height : 40 }}
+            >
+                <h2>
+                    Stay updated on the most important developments in Asia’s tech.
+                </h2>
+
+            </div>
+            <Podcast/>
         </div>
     )
 

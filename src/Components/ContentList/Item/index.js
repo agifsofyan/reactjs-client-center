@@ -1,5 +1,8 @@
 import React , { useState } from 'react'
 
+// MODULE
+import { useHistory } from 'react-router-dom'
+
 // IMAGE
 import newsImg from '../../../Assets/Images/news-img.png'
 
@@ -8,22 +11,18 @@ import './style.css'
 
 function Item (props) {
 
-    const { style } = props
-
-    const [title] = useState(`
-        There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour,
-    `)
-    const [content] = useState(`
-        Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, 
-        making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur,
-    `)
+    // PARENT PROPS
+    const { style , e } = props
+    
+    // HISTORY
+    const history = useHistory()
 
     return (
         <div
             style={{...style}}
             className="cl-item-11"
+            onClick={e2=>history.push(`/blog?title=${e.title}`)}
         >
-
             <img
                 src={newsImg}
                 alt={"news"}
@@ -31,10 +30,10 @@ function Item (props) {
 
             <div className="c1">
                 <div className="t1">
-                    {title.slice(0,34) + ( title.length >= 34 && "...." )}
+                    {e.title.slice(0,34) + ( e.title.length >= 34 ? "...." : "" )}
                 </div>
                 <div className="t2">
-                    {content.slice(0,90) + ( content.length >= 90 && "...." )}
+                    {e.desc.slice(0,90) + ( e.desc.length >= 90 ? "...." : "" )}
                 </div>
                 <div className="t3">
                     <div className="img">
