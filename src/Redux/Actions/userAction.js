@@ -14,7 +14,7 @@ export const getUserProduct = () => {
     return (dispatch) => {
         Axios({
             method : "GET",
-            url : `${SWAGGER_URL}/userproducts`,
+            url : `${SWAGGER_URL}/userproducts?placement=stories&as_user=true`,
             headers : {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',

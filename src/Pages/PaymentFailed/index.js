@@ -1,26 +1,25 @@
 import React , { useState , useEffect } from 'react'
 
-// MODULE 
+// MODULE
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 
+
 // COMPONENT
 import {
-    List,
     Payment
 } from '../../Components/CheckOut'
 import Loader from '../../Components/Loader'
 
+// IMAGE
+import Logo from '../../Assets/Images/failed.png'
+
 // API
 import { SWAGGER_URL } from '../../Support/API_URL'
 
-// HELPER
-import moneyConvert from '../../Support/moneyConvert'
+// STYLING ../PaymentSuccess/style.css
 
-// STYLE
-import './style.css'
-
-function Order () {
+function PaymentSuccess () {
 
     // CALL HISTORY
     const history = useHistory()
@@ -129,7 +128,6 @@ function Order () {
         console.log(selectedPayment , '  <<< SELECTED PAYMENT 999)()())()()(')
     },[selectedPayment])
 
-
     let handleBank = (total_price) => {
         let id = order._id
         let unique = null
@@ -183,7 +181,6 @@ function Order () {
         .catch(err=>{
             setLoading(false)
             console.log(err.response , ' <<<<< ERROR')
-            history.push('/payments/failed')
         })
     }
 
@@ -210,7 +207,6 @@ function Order () {
             window.open(data.data, '_blank')
         })
         .catch(err=>{
-            history.push('/payments/failed')
             setLoading(false)
             console.log(err.response , ' <<< should error')
         })
@@ -248,70 +244,23 @@ function Order () {
         }
     }
 
+
     return (
-        <div className="order-container-08" style={{width : "100%",backgroundColor : "white"}}>
-            <h1>Review Pesanan</h1>
-            {
-                order &&
-                <List
-                    order={order}
-                />
-            }
-            <div className="order-08-price" style={{marginTop : 18}}>
-                <h5>
-                    Total
-                </h5>
-                <h6>
-                    {sale && moneyConvert(sale ? sale.toString() : "" ,"Rp. ")}
-                </h6>
-            </div>
-            {
-                order && order.coupon &&
-                <div className="order-08-price">
-                    <h5 style={{color : "#11870F"}}>
-                        {'Potongan Kupon "' +order.coupon.name + '"'}
-                    </h5>
-                    <h6 style={{color : "#11870F"}}>
-                        {diskon && "( - ) " + moneyConvert(renderCoupon() ? renderCoupon().toString() : "" ,"Rp. ")}
-                    </h6>
-                </div>
-            }
-            {
-                order && shipmentPrice > 0 &&
-                <div className="order-08-price">
-                    <h5>
-                        Ongkir
-                    </h5>
-                    <h6>
-                        {shipmentPrice && "( + ) " + moneyConvert( shipmentPrice.toString() , "Rp. " )}
-                    </h6>
-                </div>
-            }
-            {/* {
-                order &&
-                <div className="order-08-price">
-                    <h5>
-                        Kode Unik
-                    </h5>
-                    <h6>
-                        {unique && "( + ) " + moneyConvert( unique.toString() , "Rp. " )}
-                    </h6>
-                </div>
-            } */}
-            <div className="order-08-price">
-                <h5 style={{color : "#FF4500"}}>
-                    Total Akhir
-                </h5>
-                <h6 style={{color : "#FF4500"}}>
-                    {
-                        sale && 
-                        moneyConvert(sale ? ( sale - renderCoupon() + shipmentPrice ).toString() : "" ,"Rp. ")
-                    }
-                </h6>
-            </div>
-            <hr className="order-08-line"/>
-            <div className="order-08-t2">
-                Pilih Cara Pembayaran Anda
+        <div className="payment-09-container">
+            <h1>Oops</h1>
+            <img
+                src={Logo}
+                alt="success-logo"
+            />
+            <h2>
+                Pembayaran Anda Gagal
+            </h2>
+            <h3>
+                Maaf pembayaran anda gagal, silahkan coba lagi.
+                Silahkan pilih metode pembayaran yang diinginkan :
+            </h3>
+            <div style={{marginTop : 30}}>
+
             </div>
             {
                 payment &&
@@ -321,7 +270,7 @@ function Order () {
                     payment={payment}
                 />
             }
-            <button 
+             <button 
                 className="order-08-button"
                 onClick={e=>handlePay()}
                 // onClick={e=>window.open('http://stackoverflow.com', '_blank')}
@@ -337,9 +286,12 @@ function Order () {
             >
                 Segera Hadir Cara Pembayaran Dengan DANA Indonesia, OVO, Link Aja, Virtual Account dan Kartu Kredit
             </div>
+            <div style={{marginBottom : 30}}>
+
+            </div>
         </div>
     )
 
 }
 
-export default Order;
+export default PaymentSuccess

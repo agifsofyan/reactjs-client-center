@@ -22,6 +22,8 @@ import DanaNotif from './DanaNotif'
 import DanaFinish from './DanaFinish'
 import ContentContainer from './ContentContainer'
 import PaymentSuccess2 from './PaymentSuccess2'
+import PaymentFailed from './PaymentFailed'
+import CallbackDana from './CallbackDana'
 
 export {
     Auth,
@@ -47,5 +49,7 @@ export {
     ContentContainer,
     DanaNotif,
     DanaFinish,
-    PaymentSuccess2
+    PaymentSuccess2,
+    PaymentFailed,
+    CallbackDana
 }

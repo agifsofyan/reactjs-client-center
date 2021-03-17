@@ -28,7 +28,9 @@ import {
         DanaNotif,
         DanaFinish,
         ContentContainer,
-        PaymentSuccess2
+        PaymentSuccess2,
+        PaymentFailed,
+        CallbackDana
       } from './Pages'
 
       import { 
@@ -228,6 +230,8 @@ function App () {
             {/* DANA */}
             <Route path="/payments/notification" component={PaymentSuccess2}/>
             <Route path="/payments/finish" component={DanaFinish}/>
+            <Route path="/payments/failed" component={PaymentFailed}/>
+            <Route path="/payments/callback" component={CallbackDana}/>
             {/* LMS PAGE  */}
             <Route path='/lms-dashboard' component={Dashboard} />
             <Route path='/lms-home' component={LMSHome} />

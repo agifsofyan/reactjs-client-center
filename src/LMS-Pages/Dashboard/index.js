@@ -25,8 +25,8 @@ import './style.css';
 const Dashboard = () => {
     const dispatch = useDispatch();
 
+    // GLOBAL STATE
     const userInfo = useSelector(({ user }) => user.userMe);
-
     const dataProduct = useSelector(state=>state.user.userProduct)
 
     useEffect(() => {
@@ -50,7 +50,7 @@ const Dashboard = () => {
         return dataProduct.map((e) => {
             return (
                 <div className='story-card'>
-                    <img src={storyImg} alt='boba' className='story-img' />
+                    <img src={e.content.images[0]} alt='boba' className='story-img' />
                 </div>
             );
         });
