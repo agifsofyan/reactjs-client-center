@@ -16,7 +16,7 @@ function Carousel (props) {
     const [lastLen] = useState(detail.image_url.length -1)
 
 
-    console.log(detail , ' <<< VALUE DETAIL >>>> uuu')
+    // console.log(detail , ' <<< VALUE DETAIL >>>> uuu')
 
     let handlePlus = () => {
         if (selected !== lastLen) {

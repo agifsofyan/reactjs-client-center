@@ -101,7 +101,7 @@ function ProductDetail (props) {
                     // console.log( Math.round(presentase) , ' <<<< FIX')
                     console.log(e._id , ' <<<< ID')
                     setDiskP(Math.round(presentase))
-                    console.log(e , ' <<<<<<< Value detail *&**&*^&^&&%^%$$%$%$%$%$%%')
+                    // console.log(e , ' <<<<<<< Value detail *&**&*^&^&&%^%$$%$%$%$%$%%')
                     setDetail(e)
                 }
             })
@@ -196,7 +196,7 @@ function ProductDetail (props) {
         if (localStorage.getItem('token')) {
             handleCartDb()
         }else {
-            console.log(detail , ' <<< VALUE DETAIL')
+            // console.log(detail , ' <<< VALUE DETAIL')
             addCart(detail)
             addId(detail._id)
             history.push('/cart')
@@ -243,7 +243,7 @@ function ProductDetail (props) {
     }
 
     let renderButton = (text) => {
-        console.log(detail , ' <<< VALUE DETAIL 82738273827382738273283728372837287')
+        // console.log(detail , ' <<< VALUE DETAIL 82738273827382738273283728372837287')
         if (detail) {
             if (detail.type === "ecommerce" && detail.ecommerce) {
                 if (detail.ecommerce.stock === 0) {

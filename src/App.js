@@ -57,7 +57,8 @@ import Drawer from './Components/Modal'
 import Advertisement from './Components/Advertisement/index'
 
 // GLOBAL ACTION
-import { changeValue , changeValueUser } from './Redux/Actions/index'
+import { changeValue , changeValueUser ,  } from './Redux/Actions/index'
+import { setDataSetting } from './Redux/Actions/userAction'
 
 // API
 import { SWAGGER_URL } from './Support/API_URL'
@@ -75,6 +76,7 @@ function App () {
 
   // GLOGAL STATE
   const productHeader = useSelector(state=>state.product.productHeader)
+  const setting = useSelector(state=>state.user.settingData)
 
   // LOCAL STATE
   const [showModal,setShowModal] = useState(false)
@@ -138,6 +140,8 @@ function App () {
       // .catch(err=>{
       //   console.log(err.response)
       // })
+      dispatch(setDataSetting())
+
 
   },[dispatch])
 
@@ -160,7 +164,7 @@ function App () {
       for (let j in e) {
         let e2 = e[j]
         if ( j === "0") {
-          console.log('HERE jfdjfnjsdfnsjdfndsjfn')
+          // console.log('HERE jfdjfnjsdfnsjdfndsjfn')
           strR += e2.toUpperCase()
         }else if (e2 === "/") {
           strR += " | "
@@ -176,11 +180,11 @@ function App () {
 
   useEffect(()=>{
     if (location.pathname!== "/") {
-      document.title = handleSiteRoute() + " - #1 Gamification-Based Education in Indonesia"
+      document.title = (setting ? (setting.site_title.value + " | ") : "") + handleSiteRoute() 
     } else {
-      document.title = "#1 Gamification-Based Education in Indonesia"
+      document.title = `${setting ? (setting.site_title.value + " | ") : ""}#1 Gamification-Based Education in Indonesia`
     }
-  },[location])
+  },[location,setting])
  
   return (
     <div

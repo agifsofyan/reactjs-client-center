@@ -47,6 +47,7 @@ function Advertisement (props) {
             location.pathname === "/" ||
             location.pathname.split('-')[0] === "/lms" ||
             location.pathname === "/payments/notification" ||
+            location.pathname === "/privacy-policy" ||
             !productHeader ||
             !productHeader.feature
         ) 

@@ -5,7 +5,8 @@ import {
     USER_ME,
     USER_LOGOUT,
     USER_FAILED,
-    GET_PRODUCT
+    GET_PRODUCT,
+    GET_SETTING
 } from '../type';
 
 const token = localStorage.getItem('token');
@@ -74,3 +75,27 @@ export const logOut = () => {
         });
     };
 };
+
+export const setDataSetting = (data) => {
+    return (dispatch) => {
+        Axios({
+            method : 'GET',
+            url : `${SWAGGER_URL}/general-settings`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${token}`,
+            },
+        })
+        .then(({data})=>{
+            console.log(data.data , ' <<<< DATA SETTING HERE ')
+            dispatch({
+                type : GET_SETTING,
+                payload : data.data
+            })
+        })
+        .catch(err=>{
+            console.log(err , ' <<< ERROR')
+        })
+    }
+}

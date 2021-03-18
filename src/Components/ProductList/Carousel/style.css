@@ -17,7 +17,7 @@
 .plc-carousel-fc > img {
     width: 278px;
     height: 253px;
-    object-fit: fill;
+    object-fit: cover;
     border-radius: 7px;
     -webkit-transition: opacity 1s ease-in-out;
     -moz-transition: opacity 1s ease-in-out;

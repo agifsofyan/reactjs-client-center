@@ -4,7 +4,8 @@ import {
     USER_ME,
     USER_LOGOUT,
     USER_FAILED,
-    GET_PRODUCT
+    GET_PRODUCT,
+    GET_SETTING
 } from '../type'
 
 const INITIAL_STATE = {
@@ -12,7 +13,8 @@ const INITIAL_STATE = {
     userMe: [],
     top: 0,
     loading: false,
-    userProduct : null
+    userProduct : null,
+    settingData : null
 };
 
 export const UserReducer = (state = INITIAL_STATE, action) => {
@@ -44,6 +46,11 @@ export const UserReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 userProduct :  action.payload
+            }
+        case GET_SETTING:
+            return {
+                ...state,
+                settingData : action.payload
             }
         default: return state;
     };

@@ -1,8 +1,14 @@
 import React from 'react'
 
+// MODULE
+import { useSelector } from 'react-redux'
+
+// IMAGES
 import Wa from '../../../Assets/Images/Whatsapp.png'
 
 function WaContent () {
+
+    const setting = useSelector(state=>state.user.settingData)
 
     return (
         <div className="bmc-content-5">
@@ -14,7 +20,7 @@ function WaContent () {
                 Chat via Whatsapp :
             </div>
             <div className="t2">
-                087878500139
+                {setting && setting.whatsapp.value}
             </div>
         </div>
     )

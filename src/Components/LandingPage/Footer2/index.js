@@ -2,6 +2,7 @@ import React from 'react'
 
 // MODULE
 import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 // IMAGES 
 import Wa from '../../../Assets/Images/Whatsapp.png'
@@ -20,6 +21,11 @@ function Footer () {
     // HISTORY
     const history = useHistory()
 
+    // GLOBAL STATE
+    const setting = useSelector(state=>state.user.settingData)
+
+    console.log(setting , ' <<< VALUE SETTING ')
+
     return (
         <div className="lp-10-c5">
             {/* FIRST CONTENT  */}
@@ -35,7 +41,7 @@ function Footer () {
                     Chat via Whatsapp :
                 </div>
                 <div className="t2">
-                    087878500139
+                    {setting && setting.whatsapp.value}
                 </div>
             </div>
             {/* SECOND CONTENT  */}
