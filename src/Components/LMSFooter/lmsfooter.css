@@ -1,13 +1,18 @@
 .footer-root {
     display: flex;
     justify-content: center;
+    /* width: 90%; */
+    background-color: pink;
 }
 .footer-container {
     display: flex;
     position: absolute;
+    justify-content: space-between;
     bottom: 10px;
     border: 1px solid #DFDFDF;
-    padding: 15px 15px;
+    padding: 15px 0 15px 0;
+    /* width: 44.2%; */
+    left: auto;
     border-radius: 100px;
     color: #020303;
     background-color: #F2F2F2;

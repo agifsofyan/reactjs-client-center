@@ -2,6 +2,7 @@ import React from 'react'
 
 // MODULES
 import { useHistory , useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 // STYLE
 import './style.css'
@@ -21,15 +22,21 @@ function Navbar (props) {
     // USE HISTORY
     const history = useHistory()
 
+    // GLOBAL STATE
+    const setting = useSelector(state=>state.user.settingData)
+
     if (location.pathname.split('/')[1] === "product-detail"|| location.pathname === '/cart' || location.pathname === '/check-out' || location.pathname === '/transfer-confirm') {
         return (
         <div className="navbar-container">
             <div className="navbar-content" style={{justifyContent : "center"}} >
-                <img
-                    src={Logo}
-                    alt="laruno"
-                    className="navbar-laruno-logo"
-                />
+                {
+                    setting &&
+                    <img
+                        src={setting.logo.value}
+                        alt="laruno"
+                        className="navbar-laruno-logo"
+                    />
+                }
             </div>
         </div>
         )
@@ -38,13 +45,16 @@ function Navbar (props) {
             <div className="navbar-container">
                 <div className="navbar-content" >
                     <MenuIcon onClick={e=>[ setShowModal(true)]} style={{ fontSize : 27 , color : "#033E66",cursor : 'pointer'}}/>
-                    <img
-                        src={Logo}
-                        alt="laruno"
-                        className="navbar-laruno-logo"
-                        onClick={e=>history.push('/')}
-                        // onClick={e=>setShowModal(true)}
-                    />
+                    {
+                        setting &&
+                        <img
+                            src={setting.logo.value}
+                            alt="laruno"
+                            className="navbar-laruno-logo"
+                            onClick={e=>history.push('/')}
+                            // onClick={e=>setShowModal(true)}
+                        />
+                    }
                     <NotificationsNoneIcon style={{ fontSize : 27 }}/>
                 </div>
             </div>

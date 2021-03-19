@@ -169,8 +169,8 @@ function Order () {
             let type = data.data.payment.method.info;
             let total = data.data.total_price
             let id = data.data._id
-            console.log(id , ' <<<< ID FIXXXXXXXX')
-            console.log(type , ' <<< VALUE TYPE')
+            // console.log(id , ' <<<< ID FIXXXXXXXX')
+            // console.log(type , ' <<< VALUE TYPE')
             if (type === "Bank-Transfer") {
                 if (typeof window !== "undefined") {
                     if (window.fbq != null) { 
@@ -188,6 +188,16 @@ function Order () {
     }
 
     let handleDana = (total_price) => {
+        // console.log(typeof total_price , ' <<<< TYPE DATA HERE')
+        // console.log(total_price , ' <<< VALUE <<<<<<')
+        // console.log(selectedPayment , ' <<<< SELECTED PAYMENY')
+        // console.log({
+        //     payment : {
+        //         method : selectedPayment._id
+        //     },
+        //     total_price,
+        // } ,  '  <<<<< DATA (*(*(*(*(*')
+        console.log(new Date())
         axios({
             method : 'POST',
             url : `${SWAGGER_URL}/orders/${order._id}/pay`,
@@ -195,7 +205,7 @@ function Order () {
                 payment : {
                     method : selectedPayment._id
                 },
-                total_price  ,
+                total_price,
                 // unique_number : unique 
             },
             headers : {
@@ -206,13 +216,15 @@ function Order () {
         })
         .then(({data})=>{
             setLoading(false)
-            console.log(data.data , ' <<< DANA HERE )())()()()(')
-            window.open(data.data, '_blank')
+            console.log(data.data , ' <<< SUCCESS >>> )()()()()()(')
+            let res = data.data;
+            window.open(res.payment.invoice_url,"_self")
+            console.log('###################################################################')
         })
         .catch(err=>{
             history.push('/payments/failed')
             setLoading(false)
-            console.log(err.response , ' <<< should error')
+            console.log(err.response , ' <<< should error DANAN HERE')
         })
     }
 
@@ -220,11 +232,11 @@ function Order () {
         if (selectedPayment) {
             setLoading(true)
             let total_price = (sale - renderCoupon() + unique + shipmentPrice)
-            console.log(total_price , ' <<<< VALUE TOTAL PRICE HERE 89') 
+            // console.log(total_price , ' <<<< VALUE TOTAL PRICE HERE 89') 
             if (selectedPayment.info === "Bank-Transfer") {
                 handleBank(total_price)
             }else if (selectedPayment.info === "EWallet" && selectedPayment.name === "DANA INDONESIA") {
-                console.log('HERE <><><><')
+                // console.log('HERE <><><><')
                 handleDana(total_price)
             }
         }else {
