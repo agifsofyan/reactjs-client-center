@@ -9,7 +9,7 @@ import './style.css'
 function List (props) {
 
     // PARENT PROPS
-    const { order } = props
+    const { order, handleSaleEmpty } = props
 
     console.log(order.items , ' <<< IIII')
  
@@ -30,9 +30,15 @@ function List (props) {
                     <div>
                         <h3>{e.product_info.name}</h3>
                         {/* <h4>{e.product_info.sale_price ? "Rp. " +  e.product_info.sale_price : "Rp. " + e.product_info.price  }</h4> */}
-                        <h4>
-                            {e.product_info.sale_price  && moneyConvert(e.product_info.sale_price  ? e.product_info.sale_price.toString() : "" ,"Rp. ")}
-                        </h4>
+                        {
+                            e.product_info.sale_price > 0 ?
+                            <h4>
+                                {e.product_info.sale_price  && moneyConvert(e.product_info.sale_price  ? e.product_info.sale_price.toString() : "" ,"Rp. ")}
+                            </h4>:
+                            <h4>
+                                {e.product_info.price  && moneyConvert(e.product_info.price  ? e.product_info.price.toString() : "" ,"Rp. ")}
+                            </h4>
+                        }
                     </div>
                     {
                         e.is_bump &&

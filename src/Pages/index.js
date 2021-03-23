@@ -24,6 +24,7 @@ import ContentContainer from './ContentContainer'
 import PaymentSuccess2 from './PaymentSuccess2'
 import PaymentFailed from './PaymentFailed'
 import CallbackDana from './CallbackDana'
+import Faq from './Faq'
 
 export {
     Auth,
@@ -51,5 +52,6 @@ export {
     DanaFinish,
     PaymentSuccess2,
     PaymentFailed,
-    CallbackDana
+    CallbackDana,
+    Faq
 }

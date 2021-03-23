@@ -35,6 +35,7 @@ function Navbar (props) {
                         src={setting.logo.value}
                         alt="laruno"
                         className="navbar-laruno-logo"
+                        onClick={e=>history.push('/')}
                     />
                 }
             </div>

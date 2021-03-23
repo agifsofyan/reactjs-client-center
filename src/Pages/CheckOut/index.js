@@ -48,6 +48,11 @@ function Order () {
     // SHIPMENT
     const [shipmentPrice,setShipmentPrice] = useState(0)
 
+    let handleSaleEmpty = (sale,price) => {
+        if (sale > 0) return sale
+        else return price
+    }
+
     useEffect(()=>{
 
         let priceNum = 0
@@ -100,7 +105,8 @@ function Order () {
                 //     saleNum += (e.product_info.sale_price )
                 // }
                 priceNum += (e.product_info.price * e.quantity)
-                saleNum += (e.product_info.sale_price * e.quantity)
+                saleNum += (handleSaleEmpty(e.product_info.sale_price , e.product_info.price) * e.quantity)
+                
                 // saleNum += e.bump_price
                 // console.log(e.product_info.sale_price , ' <<<<<  0900909PRICE >>>>>>')
                 console.log(e ,' <<<< E >>>> XXXX')
@@ -267,6 +273,7 @@ function Order () {
                 order &&
                 <List
                     order={order}
+                    handleSaleEmpty={handleSaleEmpty}
                 />
             }
             <div className="order-08-price" style={{marginTop : 18}}>
@@ -284,7 +291,7 @@ function Order () {
                         {'Potongan Kupon "' +order.coupon.name + '"'}
                     </h5>
                     <h6 style={{color : "#11870F"}}>
-                        {diskon && "( - ) " + moneyConvert(renderCoupon() ? renderCoupon().toString() : "" ,"Rp. ")}
+                        {order && "( - ) " + moneyConvert(renderCoupon() ? renderCoupon().toString() : "" ,"Rp. ")}
                     </h6>
                 </div>
             }

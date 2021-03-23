@@ -82,7 +82,13 @@ function Footer () {
                 >
                     Terms & Condition
                 </div>
+                <div 
+                    onClick={e=>history.push('/faq')}
+                    style={{marginLeft : 20}}
+                >
+                    FAQ
                 </div>
+            </div>
             <div className="bmc-content-8">
                 Copyright @ 2021 larunocom
             </div>

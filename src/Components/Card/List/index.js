@@ -138,6 +138,7 @@ function List (props) {
                         borderBottom :  ( index === lastLength || cart.length === 1 ) && "0.5px solid #A4A4A4",
                         borderBottomRightRadius : (index === lastLength || cart.length === 1 ) && 12,
                         borderBottomLeftRadius : (index === lastLength || cart.length === 1 ) && 12,
+                        height : el.product_info.type === 'ecommerce' && el.product_info.sale_price > 0 && 115
                     }}
                 >
 
@@ -156,12 +157,25 @@ function List (props) {
                     </div>
 
                     <div className="cart-06-list1-sc">
-                        <div className="cart-06-list1-sc-c1">
-                            <span>{ el.product_info && moneyConvert( el.product_info.price ? el.product_info.price.toString() : "","Rp. ") }</span>
-                            <div>{ el.product_info && moneyConvert(el.product_info.sale_price ? el.product_info.sale_price.toString() : "","Rp. ")}</div>
-                        </div>
+                        {
+                            el.product_info.sale_price > 0 ?
+                            <div className="cart-06-list1-sc-c1">
+                                <span>{ el.product_info && moneyConvert( el.product_info.price ? el.product_info.price.toString() : "","Rp. ") }</span>
+                                <div>{ el.product_info && moneyConvert(el.product_info.sale_price ? el.product_info.sale_price.toString() : "","Rp. ")}</div>
+                            </div> :
+                            <div className="cart-06-list1-sc-c1" style={{justifyContent : "center",width : "50%"}}>
+                                <div style={{marginLeft : 0}}>
+                                    { el.product_info && moneyConvert( el.product_info.price ? el.product_info.price.toString() : "","Rp. ") }
+                                </div>
+                            </div>
+                        }
                         <div className="cart-06-list1-sc-c2">
-                            <div className="cart-06-list1-sc-c2-button">Hemat {renderDiskon(el.product_info)}%</div>
+                            {
+                                el.product_info.sale_price > 0 &&
+                                <div className="cart-06-list1-sc-c2-button">
+                                    Hemat {renderDiskon(el.product_info)}%
+                                </div>
+                            }
                         </div>
                         <div className="cart-06-list1-sc-c3">
                             {

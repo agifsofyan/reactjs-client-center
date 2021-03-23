@@ -180,7 +180,7 @@ function Modal (props) {
                             Terms & Condition
                         </div>
                         <div 
-                            // onClick={e=> [history.push('/terms-and-condition'),handleModalClose()]}
+                            onClick={e=> [history.push('/faq'),handleModalClose()]}
                             style={{marginLeft : 20}}
                         >
                             FAQ

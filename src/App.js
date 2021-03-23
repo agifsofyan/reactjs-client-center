@@ -30,7 +30,8 @@ import {
         ContentContainer,
         PaymentSuccess2,
         PaymentFailed,
-        CallbackDana
+        CallbackDana,
+        Faq
       } from './Pages'
 
       import { 
@@ -229,6 +230,7 @@ function App () {
             <Route path="/about-us" component={AboutUs}/>
             <Route path="/privacy-policy" component={Privacy}/>
             <Route path="/terms-and-condition" component={Terms}/>
+            <Route path="/faq" component={Faq}/>
             <Route path="/blog" component={ContentContainer}/>
             {/* <Route path="/blog" component={ContentList}/> */}
             {/* DANA */}

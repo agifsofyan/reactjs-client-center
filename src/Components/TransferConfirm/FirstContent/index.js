@@ -30,6 +30,11 @@ function FirstContent (props) {
     // UNIQUE NUMBER
     const [unique,setUnique] = useState(null)
 
+    let handleSaleEmpty = (sale,price) => {
+        if (sale > 0) return sale
+        else return price
+    }
+
     useEffect(()=>{
 
         let priceNum = 0
@@ -52,7 +57,7 @@ function FirstContent (props) {
             // ecommerce
             arr.forEach(e=>{
                 priceNum += e.product_info.price
-                saleNum += e.product_info.sale_price
+                saleNum += handleSaleEmpty(e.product_info.sale_price , e.product_info.price)
                 saleNum += e.bump_price
                 if (e && e.product_info && e.product_info.bump && e.is_bump) {
                     bumpArr.push(...e.product_info.bump)
@@ -87,11 +92,19 @@ function FirstContent (props) {
             arr.push(
                 <div>
                     <span>{e.product_info.name}</span>
-                    <span>
+                    {
+                        e.product_info.sale_price > 0 ?
+                        <span>
+                            {
+                                e.product_info.sale_price  && moneyConvert(e.product_info.sale_price  ? e.product_info.sale_price.toString() : "" ,"Rp. ")
+                            }
+                        </span> :
+                        <span>
                         {
-                            e.product_info.sale_price  && moneyConvert(e.product_info.sale_price  ? e.product_info.sale_price.toString() : "" ,"Rp. ")
+                            e.product_info.price  && moneyConvert(e.product_info.price  ? e.product_info.price.toString() : "" ,"Rp. ")
                         }
                     </span>
+                    }
                 </div>
             )
             if (e.is_bump) {

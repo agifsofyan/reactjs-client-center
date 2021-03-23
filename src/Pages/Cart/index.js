@@ -66,6 +66,11 @@ function Cart () {
     // LOCAL STATE CHECK VALIDATION INPUT ADDRESS
     // const [inputNext,setInputNext] = useState(true)
 
+    let handleSaleEmpty = (sale,price) => {
+        if (sale > 0) return sale
+        else return price
+    }
+
     useEffect(()=>{
 
         let priceNum = 0
@@ -101,18 +106,14 @@ function Cart () {
                 // }
                 // priceNum *= e.quantity
                 // saleNum *= e.quantity
-
+                console.log(e.product_info.sale_price , ' <<<< SALE PRICE RESULT (((')
                 if (e.product_info.type === 'ecommerce') {
                     priceNum += (e.product_info.price * e.quantity)
-                    saleNum += (e.product_info.sale_price * e.quantity)
+                    saleNum += (handleSaleEmpty(e.product_info.sale_price , e.product_info.price) * e.quantity)
                 }else {
                     priceNum += (e.product_info.price )
-                    saleNum += (e.product_info.sale_price )
+                    saleNum += (handleSaleEmpty(e.product_info.sale_price , e.product_info.price) )
                 }
-                // priceNum = priceNum + e.product_info.price * e.quantity 
-                // saleNum = saleNum + e.product_info.sale_price * e.quantity
-                // console.log(typeof e.quantity , ' <<<<<')
-                // console.log('SJFNSJDNFJSDNFSJDFNSDJNFDSJNSJNFSJFNSDJFNSDJFNSKDNFKSJFN')
                 console.log( saleNum + " , " + e.product_info.sale_price + " ," + e.quantity  )
                 if (e && e.product_info) {
                     // console.log(e.product_info.bump , ' <<< PER BUMP')
@@ -205,10 +206,10 @@ function Cart () {
             if (e.isChecked) {
                 if (e.product_info.type === 'ecommerce') {
                     priceNum += (e.product_info.price * e.quantity)
-                    saleNum += (e.product_info.sale_price * e.quantity)
+                    saleNum += (handleSaleEmpty(e.product_info.sale_price , e.product_info.price) * e.quantity)
                 }else {
                     priceNum += (e.product_info.price )
-                    saleNum += (e.product_info.sale_price )
+                    saleNum += (handleSaleEmpty(e.product_info.sale_price , e.product_info.price) )
                 }
                 // priceNum += (e.product_info.price * e.quantity)
                 // saleNum += e.product_info.sale_price > 0 ? (e.product_info.sale_price * e.quantity) : (e.product_info.price* e.quantity)
