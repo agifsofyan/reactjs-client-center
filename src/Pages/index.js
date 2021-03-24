@@ -25,6 +25,7 @@ import PaymentSuccess2 from './PaymentSuccess2'
 import PaymentFailed from './PaymentFailed'
 import CallbackDana from './CallbackDana'
 import Faq from './Faq'
+import Career from './Career'
 
 export {
     Auth,
@@ -53,5 +54,6 @@ export {
     PaymentSuccess2,
     PaymentFailed,
     CallbackDana,
-    Faq
+    Faq,
+    Career
 }

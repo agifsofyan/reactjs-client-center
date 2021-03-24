@@ -4,10 +4,13 @@
     height: 600px;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('../../../Assets/Images/au-carousel.png');
+    background-position: center;
+    /* background- */
+    background-image: url('../../../Assets/Images/about-slide2.jpg');
     display: flex;
     justify-content: space-between;
     align-items: center;    
+    /* opacity: ; */
 }
 
 .about-us-13 > .c6 > .t1 {
@@ -24,6 +27,7 @@
 .about-us-13 > .c6 > .t1 > * {
     color: #ffffff;
     font-size: 28px;
+    cursor: pointer;
 }
 
 .about-us-13 > .c6 > :nth-child(1) {
@@ -49,9 +53,19 @@
 
 .about-us-13 > .c6 > .t2 > .f1 {
     background-color: #B00E23;
+    background-color: #ffffff;
+    /* background-color: #000000; */
     width: 84%;
     height: 300px;
     border-radius: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-us-13 > .c6 > .t2 > .f1 > img {
+    width: 200px;
+    height: 200px;
 }
 
 .about-us-13 > .c6 > .t2 > .f2 {

@@ -31,7 +31,8 @@ import {
         PaymentSuccess2,
         PaymentFailed,
         CallbackDana,
-        Faq
+        Faq,
+        Career
       } from './Pages'
 
       import { 
@@ -232,6 +233,7 @@ function App () {
             <Route path="/terms-and-condition" component={Terms}/>
             <Route path="/faq" component={Faq}/>
             <Route path="/blog" component={ContentContainer}/>
+            <Route path="/career" component={Career}/>
             {/* <Route path="/blog" component={ContentList}/> */}
             {/* DANA */}
             <Route path="/payments/notification" component={PaymentSuccess2}/>

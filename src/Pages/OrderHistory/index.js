@@ -121,7 +121,7 @@ function OrderHistory () {
                     BELUM LUNAS
                 </div>
                 <div className="btn">
-                    CICILAN
+                    LANGGANAN
                 </div>
             </div>
 

@@ -1,0 +1,46 @@
+.career-15-container {
+    width: 100%;
+    height: auto;
+    padding-bottom: 99vh;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.career-15-container > .c1 {
+    width: 150px;
+    height: 150px;
+    margin: 20px;
+}
+
+.career-15-container > .c2 {
+    font-size: 25px;
+    font-family: 'Rubik', sans-serif;
+    color:#033E66;
+    margin: 1px 0 0 0;
+}
+
+.career-15-container > .c3 {
+    width: 450px;
+    height: 450px;
+    margin: 20px 0 0 0;
+}
+
+.career-15-container > .line {
+    width: 530px;
+    height: 0.5px;
+    background-color: #000000;
+    margin: 38px 0 0 0;
+}
+
+@media only screen and (max-width: 600px) {
+    .career-15-container > .c1 {
+        width: 75px;
+        height: 75px;
+    }
+    .career-15-container > .c3 {
+        width: 216px;
+        height: 216px;
+    }
+}

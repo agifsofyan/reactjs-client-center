@@ -73,7 +73,7 @@ function ContentDetail (props) {
                 </div>
             </div>
             <div className="c5">
-                Every day, 100k+ smart people read our newsletter. You can sign up here. 🔥
+                Mau Langganan Konten Seperti Ini atau Lebih Advance Sesuai Minat Anda? Silahkan Daftar Disini Sekarang.
             </div>
             <div className="c6">
                 Hello readers,

@@ -6,17 +6,22 @@ import DesktopWindowsIcon from '@material-ui/icons/DesktopWindows';
 // STYLE
 import './style.css'
 
-function AboutItem () {
+function AboutItem (props) {
+
+    const {
+        title,
+        desc
+    } = props
 
     return (
         <div className="t1">
             <DesktopWindowsIcon
             />
             <div className="w1">
-                Fast & effective
+                {title}
             </div>
             <div className="w2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                {desc}
             </div>
         </div>        
     )

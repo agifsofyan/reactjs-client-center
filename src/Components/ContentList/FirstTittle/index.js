@@ -10,11 +10,11 @@ function FirstTitle () {
             className="first-title-content-11"
         >
             <h1>
-                Newsletters
+                Content LARUNO
             </h1>
 
             <h2>
-                Stay updated on the most important developments in Asia’s tech and startup community in less than three minutes - for free. You can sign up here.
+                Dapatkan tips seputar bisnis, karir dan investasi yang kekinian. Buka setiap hari website Laruno atau Langganan Disini untuk dapat notifiikasi melalui email / whatsapp
             </h2>
 
         </div>

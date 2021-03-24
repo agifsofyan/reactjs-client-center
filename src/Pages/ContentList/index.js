@@ -4,7 +4,7 @@ import React , { useEffect , useState } from 'react'
 import axios from 'axios'
 
 // COMPONENT 
-import { Search , FirstTitle , Item, Carousel , Podcast } from '../../Components/ContentList'
+import { Search , FirstTitle , Item, Carousel , Podcast , Sort } from '../../Components/ContentList'
 
 // API
 import {  SWAGGER_URL } from '../../Support/API_URL'
@@ -15,6 +15,7 @@ import './style.css'
 function Content (props) {
 
     const [dataNews,setDataNews] = useState(null)
+    const [NewsTemp,setNewsTemp] = useState(null)
 
     useEffect(()=>{
         axios({
@@ -27,6 +28,7 @@ function Content (props) {
             }
         }).
         then(({data})=>{
+            setNewsTemp(data.data)
             setDataNews(data.data)
             console.log(data , ' <<< VALUE DATA')
         })
@@ -41,47 +43,56 @@ function Content (props) {
             className="content-list-container-11"
         >
 
-            <Search/>
+            <Search
+                setDataNews={setDataNews}
+                NewsTemp={NewsTemp}
+            />
+
+            <Sort
+                dataNews={dataNews}
+                setDataNews={setDataNews}
+                NewsTemp={NewsTemp}
+            />
 
             <FirstTitle/>
 
             <div className="title-2">
                 <h3>
-                    Featured Posts
+                    Konten Terbaru
                 </h3>
             </div>
 
             {
-                dataNews && dataNews.filter(e=>!e.isBlog).map((e,index)=>{
+                dataNews && dataNews.filter(e=>!e.isBlog).length > 0 ? dataNews.filter(e=>!e.isBlog).map((e,index)=>{
                     return (
                         <Item
                             e={e}
                             index={index}
                         />
                     )
-                })
+                }) : <div>Data Tidak ditemukan</div>
             }
 
             <div className="title-2">
                 <h3>
-                    Laruno's Blog
+                    Semua Konten
                 </h3>
             </div>
 
             {
-                dataNews && dataNews.filter(e=>e.isBlog).map((e,index)=>{
+                dataNews && dataNews.filter(e=>e.isBlog).length > 0 ? dataNews.filter(e=>e.isBlog).map((e,index)=>{
                     return (
                         <Item
                             e={e}
                             index={index}
                         />
                     )
-                })
+                })  : <div>Data Tidak ditemukan</div>
             }
 
             <div className="title-2">
                 <h3>
-                    Videos
+                    Konten Video
                 </h3>
             </div>
 
@@ -90,7 +101,7 @@ function Content (props) {
                 style={{marginTop : 1}}
             >
                 <h2>
-                    Stay updated on the most important developments in Asia’s tech.
+                    Lagi punya waktu luang? Silahkan tonton video edukasi dibawah gratis
                 </h2>
 
             </div>
@@ -99,16 +110,16 @@ function Content (props) {
 
             <div className="title-2">
                 <h3>
-                    Podcast
+                    Konten Podcast
                 </h3>
             </div>
 
             <div
                 className="first-title-content-11"
-                style={{marginTop : 1,marginBottom: 10, height : 40 }}
+                style={{marginTop : 1,marginBottom: 10, height : "auto" }}
             >
                 <h2>
-                    Stay updated on the most important developments in Asia’s tech.
+                Temani aktivitasmu dengan Podcast edukasi. Silahkan dengarkan gratis!
                 </h2>
 
             </div>

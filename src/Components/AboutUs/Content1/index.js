@@ -6,13 +6,13 @@ function Content1 () {
         <div className="c1">
             <div>
                 <div>
-                Creative 
+                Pertama Di Indonesia.
                 </div>
                 <div style={{color : "#E3CD00",marginLeft : 8}}>
-                    startup 
+                Platform
                 </div>
                 <div>
-                    company website to present your amazing ideas
+                    dengan Gamification Concept. Cari Tau Disini!
                 </div>
             </div>
         </div>

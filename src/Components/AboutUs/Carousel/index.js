@@ -7,7 +7,28 @@ import './style.css'
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 
-function Carousel () {
+// IMAGES 
+import logo1 from '../../../Assets/Images/as-slide-1.svg'
+
+function Carousel (props) {
+
+    const { title,desc , index , setIndex , lastLen } = props
+
+    let handlePlus = () => {
+        if (index !== lastLen) {
+            setIndex(index +1)
+        }else {
+            setIndex(0)
+        }
+    }
+    
+    let handleMin = () => {
+        if (index !== 0) {
+            setIndex(index - 1)
+        }else {
+            setIndex(lastLen)
+        }
+    }
 
     return (
         <div className="c6">
@@ -15,24 +36,32 @@ function Carousel () {
                 className="t1"
                 // style={{marginLeft : "4.5%"}}
             >
-                <NavigateBeforeIcon/>
+                <NavigateBeforeIcon
+                    onClick={e=>handleMin()}
+                />
             </div>
             <div className="t2">
                 <div className="f1">
-
+                    <img
+                        src={logo1}
+                        alt="1-as"
+                    />
                 </div>
                 <div className="f2">
-                    Some Text Title Here
+                    {title}
                 </div>
                 <div className="f3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sagittis, risus ac porta rhoncus, elit libero semper tellus.
+                    {desc}
                 </div>
             </div>
             <div 
                 className="t1"
                 // style={{marginRight : "4.5%"}}
             >
-                <NavigateNextIcon/>
+                <NavigateNextIcon
+                    // onC
+                    onClick={e=>handlePlus()}
+                />
             </div>            
         </div>
     )
