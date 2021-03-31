@@ -4,6 +4,11 @@ import React , { useState , useEffect } from 'react'
 import axios from 'axios'
 import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+
+// GLOBAL ACTION
+import { getPaidList } from '../../../Redux/Actions';
+import { getUserWhoAmI , getUserProduct , logOut } from '../../../Redux/Actions/userAction';
 
 // COMPONENT
 import Input from '../../Auth/Input' 
@@ -16,6 +21,8 @@ import { SWAGGER_URL } from '../../../Support/API_URL'
 import './style.css'
 
 function Register (props) {
+
+    const dispatch = useDispatch();
 
     // PARENT PROPS
     const { email , setSelectedPage ,  landingPage , style , finishFunction } = props
@@ -133,18 +140,25 @@ function Register (props) {
         .then(({data})=>{
             // setSelectedPage(1)
             // setLoading(false)
+            dispatch(logOut())
             let tokenR = data.data.accessToken
             localStorage.setItem('token',tokenR)
             if (landingPage) {
-                finishFunction()
-                .then(data=>{
-                    console.log('MASUK RESOLVE <m<<')
-                    setLoading(false)
-                    history.push("/lms-dashboard")
-                })
-                .catch(err=>{
-                    setLoading(false)
-                })
+                // dispatch(logOut())
+                // dispatch(getPaidList());
+                // dispatch(getUserWhoAmI());
+                // dispatch(getUserProduct())
+                setLoading(false)
+                history.push("/lms-dashboard")
+                // finishFunction()
+                // .then(data=>{
+                //     console.log('MASUK RESOLVE <m<<')
+                //     setLoading(false)
+                //     history.push("/lms-dashboard")
+                // })
+                // .catch(err=>{
+                //     setLoading(false)
+                // })
             }else {
                 handleAddCart()
             }

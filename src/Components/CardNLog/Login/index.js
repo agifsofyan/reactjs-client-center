@@ -1,9 +1,13 @@
-import React , { useState } from 'react'
+import React , { useState , useEffect } from 'react'
 
 // MODULE
 import axios from 'axios'
 import Cookies from 'js-cookie';
 import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+
+// GLOBAL ACTION
+import { logOut } from '../../../Redux/Actions/userAction';
 
 // COMPONENT
 import Input from '../../Auth/Input' 
@@ -13,6 +17,8 @@ import Button from '../../Button'
 import { SWAGGER_URL } from '../../../Support/API_URL'
 
 function Login (props) {
+
+    const dispatch = useDispatch();
     
     // PARENT PROPS
     const { email , setSelectedPage ,  landingPage , style , finishFunction } = props
@@ -72,6 +78,7 @@ function Login (props) {
             }
         })
         .then(({data})=>{
+            dispatch(logOut())
             let tokenR = data.data.accessToken
             localStorage.setItem('token',tokenR)
             if (typeof window !== "undefined") {
@@ -81,15 +88,19 @@ function Login (props) {
             }
             // ACTION CHANGE TO CART LOGGED IN HERE
             if (landingPage) {
-                finishFunction()
-                .then(data=>{
-                    console.log('MASUK RESOLVE <m<<')
-                    history.push('/lms-dashboard')
-                    setIsLoading(false)
-                })
-                .catch(err=>{
-                    setIsLoading(false)
-                })
+                // dispatch(getPaidList());
+                // dispatch(getUserWhoAmI());
+                // dispatch(getUserProduct())
+                setIsLoading(false)
+                history.push("/lms-dashboard")
+                // finishFunction()
+                // .then(data=>{
+                //     history.push('/lms-dashboard')
+                //     setIsLoading(false)
+                // })
+                // .catch(err=>{
+                //     setIsLoading(false)
+                // })
             }else {
                 handleAddCart()
             }

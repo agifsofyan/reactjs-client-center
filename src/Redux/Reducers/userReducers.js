@@ -4,8 +4,9 @@ import {
     USER_ME,
     USER_LOGOUT,
     USER_FAILED,
-    GET_PRODUCT,
-    GET_SETTING
+    GET_STORIES,
+    GET_SETTING,
+    GET_LMS
 } from '../type'
 
 const INITIAL_STATE = {
@@ -13,7 +14,8 @@ const INITIAL_STATE = {
     userMe: [],
     top: 0,
     loading: false,
-    userProduct : null,
+    userLMS : null,
+    stories : null,
     settingData : null
 };
 
@@ -36,21 +38,27 @@ export const UserReducer = (state = INITIAL_STATE, action) => {
                 loading: false,
             };
         case USER_LOGOUT:
+            console.log('CASE USER LOG OUT *(((*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(())))')
             return INITIAL_STATE;
         case USER_FAILED:
             return {
                 ...state,
                 loading: false,
             };
-        case GET_PRODUCT:
+        case GET_STORIES:
             return {
                 ...state,
-                userProduct :  action.payload
+                stories :  action.payload
             }
         case GET_SETTING:
             return {
                 ...state,
                 settingData : action.payload
+            }
+        case GET_LMS:
+            return {
+                ...state,
+                userLMS : action.payload
             }
         default: return state;
     };

@@ -36,6 +36,7 @@ function Home (props) {
         }).then((result) => {
             if (result.isConfirmed) {
                 handleModalClose()
+                console.log('SUCCESS LOGOUT')
                 dispatch(logOut());
                 Swal.fire(
                     'Success!',

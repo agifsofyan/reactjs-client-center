@@ -40,6 +40,7 @@ function Login (props) {
 
     // LOGIN
     let handleClick = (e) => {
+        e.preventDefault()
         setIsLoading(true)
         axios({
             method : "POST",
@@ -62,7 +63,10 @@ function Login (props) {
     }
 
     return (
-        <div style={{width : "100%",display : "flex",flexDirection : "column",justifyContent : "center",alignItems : "center", marginTop : 5}}>
+        <form 
+            style={{width : "100%",display : "flex",flexDirection : "column",justifyContent : "center",alignItems : "center", marginTop : 5}}
+            onSubmit={e=>handleClick(e)}
+        >
 
             <Input 
                 text={'Email'}
@@ -124,7 +128,7 @@ function Login (props) {
                 </div>
             </div>
 
-        </div>
+        </form>
     )
 
 }

@@ -74,7 +74,8 @@ function Login (props) {
         })
     }
 
-    let handleValidation = () => {
+    let handleValidation = (e) => {
+        e.preventDefault()
         if (!password || password === '' ) {
             setIsError(true)
             setMessage('Password tidak boleh kosong')
@@ -84,7 +85,10 @@ function Login (props) {
     }
 
     return (
-        <div className="auth-check-email-container" >
+        <form 
+            className="auth-check-email-container" 
+            onSubmit={e=>handleValidation(e)}
+        >
             <img
                 src={image}
                 alt="check-email"
@@ -114,7 +118,7 @@ function Login (props) {
                 Lupa Password?
             </div>
 
-        </div>
+        </form>
     )
 
 }

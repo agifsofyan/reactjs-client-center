@@ -32,7 +32,8 @@ import {
         PaymentFailed,
         CallbackDana,
         Faq,
-        Career
+        Career,
+        Subscribe
       } from './Pages'
 
       import { 
@@ -59,8 +60,8 @@ import Drawer from './Components/Modal'
 import Advertisement from './Components/Advertisement/index'
 
 // GLOBAL ACTION
-import { changeValue , changeValueUser ,  } from './Redux/Actions/index'
-import { setDataSetting } from './Redux/Actions/userAction'
+import { changeValue , changeValueUser  } from './Redux/Actions/index'
+import { setDataSetting  } from './Redux/Actions/userAction'
 
 // API
 import { SWAGGER_URL } from './Support/API_URL'
@@ -79,6 +80,7 @@ function App () {
   // GLOGAL STATE
   const productHeader = useSelector(state=>state.product.productHeader)
   const setting = useSelector(state=>state.user.settingData)
+  const userInfo = useSelector(({ user }) => user.userMe);
 
   // LOCAL STATE
   const [showModal,setShowModal] = useState(false)
@@ -144,8 +146,11 @@ function App () {
       // })
       dispatch(setDataSetting())
 
-
   },[dispatch])
+
+  useEffect(()=>{
+    console.log('VALUE USER INFO HERE !!!!!^^^^^^^^^^^^^^^^^')
+  },[userInfo])
 
   // HANDLE SCROLL
   let handleAll = (e) => {
@@ -234,6 +239,7 @@ function App () {
             <Route path="/faq" component={Faq}/>
             <Route path="/blog" component={ContentContainer}/>
             <Route path="/career" component={Career}/>
+            <Route path="/subscribe" component={Subscribe}/>
             {/* <Route path="/blog" component={ContentList}/> */}
             {/* DANA */}
             <Route path="/payments/notification" component={PaymentSuccess2}/>

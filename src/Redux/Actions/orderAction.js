@@ -6,9 +6,9 @@ import {
     ORDER_FAILED,
 } from '../type';
 
-const token = localStorage.getItem('token');
 
 export const getPaidList = () => {
+    const token = localStorage.getItem('token');
     return async dispatch => {
         dispatch({
             type: ORDER_START,

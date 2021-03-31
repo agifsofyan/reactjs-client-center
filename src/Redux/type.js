@@ -9,8 +9,9 @@ export const USER_START = 'USER_START';
 export const USER_ME = 'USER_ME';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const USER_FAILED = 'USER_FAILED';
-export const GET_PRODUCT = "GET_PRODUCT"
+export const GET_STORIES = "GET_STORIES"
 export const GET_SETTING = "GET_SETTING"
+export const GET_LMS = "GET_LMS"
 
 // LMS
 export const PRODUCT_START = 'PRODUCT_START';
@@ -36,3 +37,7 @@ export const REVIEW_FAILED = 'REVIEW_FAILED';
 export const ORDER_START = 'ORDER_START';
 export const ORDER_PAID_LIST = 'ORDER_PAID_LIST';
 export const ORDER_FAILED = 'ORDER_FAILED';
+export const ORDER_LOGOUT = "ORDER_LOGOUT"
+
+// USER PRODUCT
+export const GET_USER_PRODUCT = 'GET_USER_PRODUCT'

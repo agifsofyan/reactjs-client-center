@@ -14,7 +14,7 @@ const Trending = (props) => {
     const renderVideos = () => {
         if (getVideoBonus) {
             return (
-                <video className='content-video' controls>
+                <video className='content-video' style={{width : "100%",height : 300}} controls>
                     <source src={getVideoBonus()} type="video/mp4"/>
                     Your browser does not support the video tag.
                 </video>

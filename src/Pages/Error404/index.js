@@ -22,7 +22,7 @@ function Error404 () {
                 alt="not-found-page-2"
             />
             <h1>
-                Oh god, sorry about that, but this page does not exist!
+                Maaf, Halaman tidak ada / tidak memiliki akses.
             </h1>
 
             <button>

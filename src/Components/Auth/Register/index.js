@@ -140,7 +140,8 @@ function Register (props) {
     },[name,phoneNumber,password,isClick])
 
     // VALIDATION CHECK
-    let handleValidation = () => {
+    let handleValidation = (e) => {
+        e.preventDefault()
         let isNext = true
         setIsClick(true)
         if (!name || name === "") {
@@ -180,7 +181,10 @@ function Register (props) {
     }
 
     return (
-        <div className="auth-check-email-container" >
+        <form
+            onSubmit={e=>handleValidation(e)} 
+            className="auth-check-email-container" 
+        >
             <img
                 src={image}
                 alt="check-email"
@@ -229,7 +233,7 @@ function Register (props) {
                 loader={loading}
             />
 
-        </div>
+        </form>
     )
 
 }

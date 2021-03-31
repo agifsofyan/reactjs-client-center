@@ -2,6 +2,7 @@ import React , { useEffect , useState } from 'react'
 
 // MODULE
 import axios from 'axios'
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 // COMPONENT 
 import { Search , FirstTitle , Item, Carousel , Podcast , Sort } from '../../Components/ContentList'
@@ -17,10 +18,17 @@ function Content (props) {
     const [dataNews,setDataNews] = useState(null)
     const [NewsTemp,setNewsTemp] = useState(null)
 
+    const [showAll,setShowAll] = useState(3)
+
     useEffect(()=>{
+        getData()
+    },[])
+
+    let getData = () => {
         axios({
             method : 'GET',
-            url : `${SWAGGER_URL}/contents`,
+            // url : `${SWAGGER_URL}/contents`,
+            url : `${SWAGGER_URL}/userproducts?trending=true&favorite=false&as_user=false&done=false&offset=1&limit=10&sortby=created_at&sortval=desc`,
             headers : {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
@@ -28,14 +36,14 @@ function Content (props) {
             }
         }).
         then(({data})=>{
+            console.log(data.data , ' <<< VALUE DATA')
             setNewsTemp(data.data)
             setDataNews(data.data)
-            console.log(data , ' <<< VALUE DATA')
         })
         .catch(err=>{
             console.log(err.response , ' <<<< ERROR RESPONS ><><><>><><')
         })
-    },[])
+    }
 
     return (
         <div
@@ -63,7 +71,7 @@ function Content (props) {
             </div>
 
             {
-                dataNews && dataNews.filter(e=>!e.isBlog).length > 0 ? dataNews.filter(e=>!e.isBlog).map((e,index)=>{
+                dataNews && dataNews.filter((e,i)=> i === 0).length > 0 ? dataNews.filter((e,i)=> i === 0).map((e,index)=>{
                     return (
                         <Item
                             e={e}
@@ -77,10 +85,22 @@ function Content (props) {
                 <h3>
                     Semua Konten
                 </h3>
+                <div
+                    onClick={e=>setShowAll( showAll === 3 ? 12 : 3)}
+                >
+                    <div className="text">
+                        {
+                            showAll === 3 ? "Lihat Semua" : "Lebih Sedikit"
+                        }
+                    </div>
+                    <ArrowForwardIcon
+                        style={{color : "#FF4500",marginLeft : 5}}
+                    />
+                </div>
             </div>
 
             {
-                dataNews && dataNews.filter(e=>e.isBlog).length > 0 ? dataNews.filter(e=>e.isBlog).map((e,index)=>{
+                dataNews && dataNews.filter((e,i)=> i < showAll).length > 0 ? dataNews.filter((e,i)=> i < showAll).map((e,index)=>{
                     return (
                         <Item
                             e={e}

@@ -8,13 +8,12 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // COMPONENT
 import Profile from '../../Components/LMS-Profile';
-import TopicSection from '../../Components/TopicSection';
 import ContentSection from '../../Components/Content';
 import Footer from '../../Components/LMSFooter';
 
 // REDUX 
 import { getPaidList } from '../../Redux/Actions';
-import { getUserWhoAmI , getUserProduct } from '../../Redux/Actions/userAction';
+import { getUserWhoAmI , getUserStory , getUserLMS } from '../../Redux/Actions/userAction';
 
 // IMAGES
 import productRecom from '../../Assets/Images/recommended.png';
@@ -23,24 +22,27 @@ import productRecom from '../../Assets/Images/recommended.png';
 import './style.css';
 
 const Dashboard = () => {
+
     const dispatch = useDispatch();
+
+    const history = useHistory();
 
     // GLOBAL STATE
     const userInfo = useSelector(({ user }) => user.userMe);
-    const dataProduct = useSelector(state=>state.user.userProduct)
+    const dataProduct = useSelector(state=>state.user.stories)
+    const dataLMS = useSelector(state=>state.user.userLMS)
 
     useEffect(() => {
         document.title = 'Dashboard';
         dispatch(getPaidList());
         dispatch(getUserWhoAmI());
-        dispatch(getUserProduct())
-    }, [dispatch]);
+        dispatch(getUserStory())
+        dispatch(getUserLMS({trending : true,favorite : false}))
+    }, [dispatch,localStorage]);
 
     useEffect(()=>{
-
-        console.log(dataProduct , ' <<< DATA PRODUCT >>>')
-
-    },[dataProduct])
+        console.log(dataLMS , ' <<<<< VALUE DATA LNS')
+    },[dataLMS])
 
     const storyImg = 'https://www.digitalartsonline.co.uk/cmsdata/slideshow/3784651/01_idea.jpg';
     const unfinishImg = 'https://wallpaperaccess.com/full/656648.jpg';
@@ -97,60 +99,35 @@ const Dashboard = () => {
         });
     };
 
-    const history = useHistory();
-
-    const paidList = useSelector(({ order }) => order.paidList);
-
     let renderList = () => {
-        return paidList.map((el,index) => {
+        return dataLMS.map((el,index) => {
             const items = el.items;
-            return items.map((val,index) => {
-                return (
-                    <div
-                        key={index}
-                        onClick={(e) => history.push(`/lms-home?id=${val.product_info._id}`)}
-                    >
-                        <img 
-                            className="slides-3-content-c1"
-                            src={productRecom}
-                            alt={'recom'}
-                        />
-                        <span className="slides-3-content-c2">
-                            {val.product_info.name.slice(0,27) + "" + renderDot(val.product_info.name)}
-                        </span>
-                        <div className="slides-3-content-c3">
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
-                            Lorem Ipsum has been the  
-                        </div>
-                        <div className="slides-3-content-c4">
-                            <Rate 
-                                allowHalf 
-                                defaultValue={4.5} 
-                                style={{color : "#EB8A2F",fontSize : 20}}
-                            />
-                            <div className="slides-3-content-c4-t">
-                                (5) 1.200
-                            </div>
-                        </div>
-                        <div className="slides-3-content-c5">
-                            <span>
-                                Rp {val.product_info.price.toLocaleString('id-ID')}
-                            </span>
-                            <div>
-                                Rp {val.product_info.sale_price.toLocaleString('id-ID')}
-                            </div>
-                        </div>
-                        <div className="slides-3-content-c6">
-                            Daftar
-                        </div>
+            return (
+                <div
+                    key={index}
+                    onClick={(e) => history.push(`/lms-home?id=${el.product_info._id}`)}
+                >
+                    <img 
+                        className="slides-3-content-c1"
+                        src={productRecom}
+                        alt={'recom'}
+                    />
+                    <span className="slides-3-content-c2">
+                        {el.content.title.slice(0,27) + "" + renderDot(el.content.title,27)}
+                    </span>
+                    <div className="slides-3-content-c3">
+                        {el.content.desc.slice(0,60) + "" + renderDot(el.content.desc,60)}
                     </div>
-                );
-            });
+                    <div className="slides-3-content-c6">
+                        Daftar
+                    </div>
+                </div>
+            );
         });
     };
 
-    const renderDot = (name) => {
-        if (name.length >= 27) {
+    const renderDot = (name,len = 30) => {
+        if (name.length >= len) {
             return "...";
         } else {
             return "";
@@ -259,7 +236,7 @@ const Dashboard = () => {
             <div className='paid-content'>
                 {/* <Content /> */}
                 <div className="slides-paid-list">
-                    { paidList && renderList() }
+                    { dataLMS && renderList() }
                 </div>
             </div>
 

@@ -163,7 +163,9 @@ function Modal (props) {
 
                     <div style={{marginTop : 15}} className="bmc-content-3"></div>
 
-                    <Social/>
+                    <Social
+                        handleModalClose={handleModalClose}
+                    />
                     
                     <div style={{marginTop : 15}} className="bmc-content-3"></div>
 

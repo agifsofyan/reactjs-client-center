@@ -2,6 +2,7 @@ import {
     ORDER_START,
     ORDER_PAID_LIST,
     ORDER_FAILED,
+    ORDER_LOGOUT
 } from '../type';
 
 const INITIAL_STATE = {
@@ -28,6 +29,8 @@ export const OrderReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 loading: false,
             };
+        case ORDER_LOGOUT:
+            return INITIAL_STATE
         default: return state;
     };
 };

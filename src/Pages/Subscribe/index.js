@@ -2,7 +2,6 @@ import React , { useEffect , useState } from 'react'
 
 // MODULE
 import axios from 'axios'
-import { useSelector } from 'react-redux'
 
 // COMPONENT 
 import Content from '../../Components/ContentList/Item/index'
@@ -17,11 +16,10 @@ import tt from '../../Assets/Images/tt.png'
 // API
 import {  SWAGGER_URL } from '../../Support/API_URL'
 
-function TopicList () {
+// STYLE
+import './style.css'
 
-    // GLOBAL STATE
-    const topicList = useSelector(state=>state.product.topicList)
-    console.log(topicList , ' <<< TOPIC LIST >>>')
+function Subscribe () {
 
     // LOCAL STATE DATA CONTENT
     const [dataNews,setDataNews] = useState(null)
@@ -91,36 +89,69 @@ function TopicList () {
         }
     }
 
-    let renderTopic = () => {
-        return topicList.map((e,index)=>{
-            return (
-            <div className="list" style={{marginTop : 13,cursor : "pointer"}}>
-                <img
-                    alt="social-media-laruno"
-                    src={e.icon}
-                />
-                <div className="c1" style={{marginLeft : 40}}>
-                    <div className="t1">
-                        {e.name}
-                    </div>
-                </div>
-            </div>
-            )
-        })
-    }
-
     return (
         <div className="subscribe-16-container">
             <div className="t1">
-                Pilih topik yang ingin anda pelajari
+                Follow the good Vibes!, Here!
+            </div>
+            <div className="t1" style={{marginTop : 0}}>
+                Ikuti Laruno di Social Media    
             </div>
             <div className="line">
 
             </div>
 
-            {
-                topicList && renderTopic()
-            }
+            <div className="list" style={{marginTop : 13}}>
+                <img
+                    alt="social-media-laruno"
+                    src={fb}
+                />
+                <div className="c1">
+                    <div className="t1">
+                        @laruno.com
+                    </div>
+                   
+                </div>
+            </div>
+
+            <div className="list">
+                <img
+                    alt="social-media-laruno"
+                    src={ig}
+                />
+                <div className="c1">
+                    <div className="t1">
+                        @laruno.com
+                    </div>
+                   
+                </div>
+            </div>
+
+            <div className="list">
+                <img
+                    alt="social-media-laruno"
+                    src={tt}
+                />
+                <div className="c1">
+                    <div className="t1">
+                        @laruno.com
+                    </div>
+                   
+                </div>
+            </div>
+
+            <div className="list">
+                <img
+                    alt="social-media-laruno"
+                    src={yt}
+                />
+                <div className="c1">
+                    <div className="t1">
+                        @laruno.com
+                    </div>
+                   
+                </div>
+            </div>
 
             <div className="line">
 
@@ -153,4 +184,4 @@ function TopicList () {
 
 }
 
-export default TopicList
+export default Subscribe

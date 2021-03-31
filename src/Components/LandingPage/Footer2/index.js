@@ -52,19 +52,23 @@ function Footer () {
                 <img
                     src={ig}
                     alt="drawer-img-1"
+                    onClick={e=>history.push('/subscribe')}
                     style={{marginLeft : 0}}
                 />
                 <img
                     src={fb}
                     alt="drawer-img-1"
+                    onClick={e=>history.push('/subscribe')}
                 />
                 <img
                     src={yt}
                     alt="drawer-img-1"
+                    onClick={e=>history.push('/subscribe')}
                 />
                 <img
                     src={tt}
                     alt="drawer-img-1"
+                    onClick={e=>history.push('/subscribe')}
                 />
                 <div>
                     @larunocom
