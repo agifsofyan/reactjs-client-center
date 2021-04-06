@@ -1,10 +1,20 @@
 import React , { useState ,useEffect } from 'react';
+
+// MODULE
+import { useHistory } from 'react-router-dom'
+
+// COMPONENT
 import ProgressBar from '../../Components/ProgressBar/index';
 import checkmark from '../../Assets/Images/checkmark.png';
 import gold from '../../Assets/Images/gold.png';
+
+// STYLE
 import './lmsprofile.css';
 
 const LMSProfile = (props) => {
+
+    // HISTORY
+    const history = useHistory()
 
     // LOCAL STATE
     const [progress,setProgress] = useState(0);
@@ -149,7 +159,10 @@ const LMSProfile = (props) => {
                     <ProgressBar bgcolor='#FFCA41' completed={progress} />
                     {renderComplete()}
                     <div className='complete-complete-div'>
-                        <button className='complete-complete-btn'>
+                        <button 
+                            className='complete-complete-btn'
+                            onClick={e=>history.push('/profile-update')}
+                        >
                             Lengkapi Profil
                         </button>
                     </div>

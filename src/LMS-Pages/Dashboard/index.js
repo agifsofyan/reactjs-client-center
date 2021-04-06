@@ -12,8 +12,8 @@ import ContentSection from '../../Components/Content';
 import Footer from '../../Components/LMSFooter';
 
 // REDUX 
-import { getPaidList } from '../../Redux/Actions';
-import { getUserWhoAmI , getUserStory , getUserLMS } from '../../Redux/Actions/userAction';
+// import { getPaidList } from '../../Redux/Actions';
+// import { getUserWhoAmI , getUserStory , getUserLMS } from '../../Redux/Actions/userAction';
 
 // IMAGES
 import productRecom from '../../Assets/Images/recommended.png';
@@ -34,10 +34,6 @@ const Dashboard = () => {
 
     useEffect(() => {
         document.title = 'Dashboard';
-        dispatch(getPaidList());
-        dispatch(getUserWhoAmI());
-        dispatch(getUserStory())
-        dispatch(getUserLMS({trending : true,favorite : false}))
     }, [dispatch,localStorage]);
 
     useEffect(()=>{
@@ -105,7 +101,7 @@ const Dashboard = () => {
             return (
                 <div
                     key={index}
-                    onClick={(e) => history.push(`/lms-home?id=${el.product_info._id}`)}
+                    onClick={(e) => history.push(`/lms-home?id=${el._id}`)}
                 >
                     <img 
                         className="slides-3-content-c1"

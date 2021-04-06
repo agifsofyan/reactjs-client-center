@@ -7,6 +7,10 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import './content.css';
 
+// REDUX GLOBAL
+import { getUserWhoAmI , getUserStory , getUserLMS } from '../../Redux/Actions/userAction';
+
+
 const Trending = (props) => {
 
     const { video, getVideoBonus } = props
@@ -79,16 +83,19 @@ const tabList = [
         id: 1,
         title: "Trending",
         Content: Trending ,
+        filter : {trending : true,favorite : false}
     },
     {
         id: 2,
-        title: "Content",
-        Content: Content,
+        title: "Favorite",
+        Content: Trending,
+        filter : {trending : false,favorite : true}
     },
     {
         id: 3,
         title: "Topic",
-        Content: Topic ,
+        Content: Trending ,
+        filter : {trending : true,favorite : false}
     },
 ];
 
@@ -96,11 +103,13 @@ const FilterTab = ({
     title = "",
     onItemClicked = () => console.error('You passed no action'),
     isActive = false,
+    dispatch,
+    filter
 }) => {
     return (
         <div>
             <button 
-                onClick={onItemClicked}
+                onClick={e=> [dispatch(getUserLMS(filter)),onItemClicked()]}
                 className={
                     isActive 
                     ? `content-btn active-btn`
@@ -114,6 +123,8 @@ const FilterTab = ({
 };
 
 const ContentSection = () => {
+
+    const dispatch = useDispatch();
 
     const list = useSelector(state=>state.product.productList)
 
@@ -151,12 +162,14 @@ const ContentSection = () => {
 
             {/* FILTER */}
             <div className='content-button-group'>
-                {tabList.map(({ id, title }) => 
+                {tabList.map(({ id, title , filter }) => 
                     <FilterTab
                         key={title}
                         title={title}
                         onItemClicked={() => setActive(id)}
                         isActive={active === id}
+                        filter={filter}
+                        dispatch={dispatch}
                     />
                 )}
             </div>

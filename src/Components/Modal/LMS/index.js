@@ -1,15 +1,23 @@
-import React from 'react'
-import { useDispatch } from 'react-redux';
-import Swal from 'sweetalert2';
-import { logOut } from '../../../Redux/Actions/userAction';
+import React from "react"
+
+// MODULE
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom"
+
+import Swal from "sweetalert2";
+import { logOut } from "../../../Redux/Actions/userAction";
 
 // STYLING DI ../drawer.css
 
 function Home (props) {
 
+    // HISTORY
+    const history2 = useHistory()
+
     const { handleModalClose , history , location , user } = props
 
-    let handleChangePage = (route) => {
+    let handleChangePage = (route,e) => {
+        e.preventDefault()
         history.push(route)
         handleModalClose()
     };
@@ -26,33 +34,34 @@ function Home (props) {
 
     const handleLogOut = () => {
         Swal.fire({
-            title: 'Are you sure?',
+            title: "Are you sure?",
             text: "You are going to log out from this account.",
-            icon: 'warning',
+            icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Log Out'
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Log Out"
         }).then((result) => {
             if (result.isConfirmed) {
                 handleModalClose()
-                console.log('SUCCESS LOGOUT')
+                console.log("SUCCESS LOGOUT")
                 dispatch(logOut());
+                history2.push("/")
                 Swal.fire(
-                    'Success!',
-                    'You have been logged out.',
-                    'success',
+                    "Success!",
+                    "You have been logged out.",
+                    "success",
                 );
             }
         })
     };
 
     let nameFormat = (str) => {
-        let strArr = str.split(' ')
+        let strArr = str.split(" ")
         if (strArr.length === 1) {
             let result = str.split("")
             result[0] = result[0].toUpperCase()
-            console.log(result , ' <<<< HAHAHDSFJNDSFNDSJFNSJDFN')
+            console.log(result , " <<<< HAHAHDSFJNDSFNDSJFNSJDFN")
             return result.join("")
         }else {
             return str
@@ -64,51 +73,54 @@ function Home (props) {
             <div 
                 style={{
                     marginTop:19,
-                    display:'flex',
-                    justifyContent:'center',
+                    display:"flex",
+                    justifyContent:"center",
                 }}
-                className='bmc-content-4'
+                className="bmc-content-4"
             >
                 Hi, {user && nameFormat(user.name)}
             </div>
 
             <div style={{
-                backgroundColor:'#E9E9E9',
-                width:'90%',
-                height:'7px',
+                backgroundColor:"#E9E9E9",
+                width:"90%",
+                height:"7px",
             }} />
 
-            <div className='bmc-content-4'>
+            <div className="bmc-content-4">
                 Aktivitas Kamu
             </div>
 
-            <div className='bmc-content-4'>
+            <a
+                href="/" 
+                className="bmc-content-4"
+            >
                 Riwayat Pemesanan
-            </div>
+            </a>
 
-            <div className='bmc-content-4'>
+            <div className="bmc-content-4">
                 Peringkat
             </div>
 
-            <div className='bmc-content-4'>
+            <div className="bmc-content-4">
                 Terima Tantangan?
             </div>
 
             <div style={{
-                backgroundColor:'#E9E9E9',
-                width:'90%',
-                height:'7px',
+                backgroundColor:"#E9E9E9",
+                width:"90%",
+                height:"7px",
             }} />
 
-            <div className='bmc-content-4'>
+            <div className="bmc-content-4">
                 Profile Saya
             </div>
 
-            <div className='bmc-content-4'>
+            <div className="bmc-content-4">
                 Topik Favorit Saya
             </div>
 
-            <div className='bmc-content-4' onClick={handleLogOut}>
+            <div className="bmc-content-4" onClick={handleLogOut}>
                 Keluar Akun
             </div>
         </div>

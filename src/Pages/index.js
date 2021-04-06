@@ -27,6 +27,7 @@ import CallbackDana from './CallbackDana'
 import Faq from './Faq'
 import Career from './Career'
 import Subscribe from './Subscribe'
+import ProfileUpdate from './ProfileUpdate'
 
 export {
     Auth,
@@ -57,5 +58,6 @@ export {
     CallbackDana,
     Faq,
     Career,
-    Subscribe
+    Subscribe,
+    ProfileUpdate
 }

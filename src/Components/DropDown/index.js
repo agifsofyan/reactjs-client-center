@@ -11,6 +11,7 @@ function DropDown (props) {
 
     const { text , 
             style , 
+            styleI,
             showMenu , 
             setShowMenu ,
             dataMenu,
@@ -36,7 +37,8 @@ function DropDown (props) {
                     height : showMenu && 157, 
                     // overflowY : showMenu && "auto",
                     paddingTop : !showMenu ? 3 : 4.5,
-                    border : isError && "1px solid #ff3333"
+                    border : isError && "1px solid #ff3333",
+                    ...styleI
                 }}
                 className="dropdown-comp-i"
             >

@@ -1,0 +1,95 @@
+.profile-update-17 {
+    width: 100%;
+    background-color: #031B32;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* C1 START */
+
+.profile-update-17 > .c1 {
+    margin: 20px 0 0 0;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background-color: pink; */
+}
+
+.profile-update-17 > .c1 > .t1 {
+    font-family: 'Rubik', sans-serif;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+    /* margin-left: 50px; */
+    /* width: 33%; */
+}
+
+.profile-update-17 > .c1 > .t2 {
+    display: flex;
+    align-items: center;
+    /* width: 33%; */
+}
+
+.profile-update-17 > .c1 > .t2 >.text {
+    font-family: 'Rubik', sans-serif;
+    color: #ffffff;
+    font-size: 21px;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    margin-right: 5px;
+}
+
+/* C2 START */
+
+.profile-update-17 > .c2 {
+    display: flex;
+    align-items: center;
+}
+
+.profile-update-17 > .c2 > .list-data {
+    display: flex;
+    flex-direction: column;
+    height: 130px;
+    justify-content: center;
+    margin-left: 10px;
+    font-weight: 300;
+    /* align-items: center; */
+}
+
+.profile-update-17 > .c2 > .list-data > div {
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.profile-update-17 > .c2 > .profile { 
+    width: 130px;
+    height: 130px;
+    border-radius: 100px;
+    background-color: #c4c4c4;
+    /* margin: 25px 0 0 0; */
+    position: relative;
+}
+
+.profile-update-17 > .c2 > .profile >  .t1 {
+    bottom: 5px;
+    right: 2px;
+    position: absolute;
+    background-color: #FF4500;
+    width: 35px;
+    height: 35px;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-update-17 > .c2 > .profile >  .t1 > * {
+    font-size: 20px;
+    color: #ffffff;
+}

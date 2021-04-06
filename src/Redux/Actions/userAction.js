@@ -40,7 +40,7 @@ export const getUserStory = () => {
 
 export const getUserLMS = (params) => {
     const { trending, favorite} = params
-    const example = `trending=${trending}&favorite=${favorite}&as_user=false&done=false&offset=1&limit=20&sortby=created_at&sortval=desc&as_user=true`
+    console.log(`${SWAGGER_URL}/userproducts?trending=${trending}&favorite=${favorite}&as_user=false&done=false&offset=1&limit=20&sortby=created_at&sortval=desc`,)
     return (dispatch) => {
         Axios({
             method : 'GET',
@@ -84,7 +84,9 @@ export const getUserWhoAmI = () => {
                 let res = await Axios.get(`${SWAGGER_URL}/users/me`, options);
                 console.log(res , ' <<<< RES')
                 let result = {...res.data.data.user,...res.data.data}
-                console.log(result , ' RESULT >>>>')
+                console.log(res.data.data , " res.data.data")
+                console.log(res.data.data.user , " res.data.data.user")
+                // console.log(result , ' RESULT >>>> USER')
                 dispatch({
                     type: USER_ME,
                     payload: result,

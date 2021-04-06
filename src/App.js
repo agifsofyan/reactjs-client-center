@@ -33,7 +33,8 @@ import {
         CallbackDana,
         Faq,
         Career,
-        Subscribe
+        Subscribe,
+        ProfileUpdate
       } from './Pages'
 
       import { 
@@ -60,8 +61,8 @@ import Drawer from './Components/Modal'
 import Advertisement from './Components/Advertisement/index'
 
 // GLOBAL ACTION
-import { changeValue , changeValueUser  } from './Redux/Actions/index'
-import { setDataSetting  } from './Redux/Actions/userAction'
+import { changeValue , changeValueUser , getPaidList } from './Redux/Actions/index'
+import { setDataSetting ,getUserWhoAmI , getUserStory , getUserLMS  } from './Redux/Actions/userAction'
 
 // API
 import { SWAGGER_URL } from './Support/API_URL'
@@ -115,9 +116,11 @@ function App () {
               console.log(e.price , ' <<<< PRICE')
               console.log(e.sale_price , ' <<< SALE PRICE')
             }
-            if (e.feature.active_header || e.feature.active_page) {
-              console.log(e._id , ' <<< ID')
-              dispatch(changeValue("productHeader",e))
+            if (e.feature) {
+              if (e.feature.active_header || e.feature.active_page) {
+                console.log(e._id , ' <<< ID')
+                dispatch(changeValue("productHeader",e))
+              }
             }
           })
           console.log(data.data , ' <<<<< DATA PRODUCT')
@@ -145,6 +148,10 @@ function App () {
       //   console.log(err.response)
       // })
       dispatch(setDataSetting())
+      dispatch(getPaidList());
+      dispatch(getUserWhoAmI());
+      dispatch(getUserStory())
+      dispatch(getUserLMS( {trending : true,favorite : false} ))
 
   },[dispatch])
 
@@ -240,6 +247,7 @@ function App () {
             <Route path="/blog" component={ContentContainer}/>
             <Route path="/career" component={Career}/>
             <Route path="/subscribe" component={Subscribe}/>
+            <Route path="/profile-update" component={ProfileUpdate}/>
             {/* <Route path="/blog" component={ContentList}/> */}
             {/* DANA */}
             <Route path="/payments/notification" component={PaymentSuccess2}/>

@@ -33,7 +33,7 @@ function Cart () {
     const [coupons,setCoupons] = useState(null)
     const [selectedCoupon,setSelectedCoupon] = useState(null)
     const [selectedAddress,setSelectedAddress] = useState(null)
-    const [address,setAddress] = useState(null)
+    const [address,setAddress] = useState([])
     const [user,setUser] = useState(null)
     
     // BUMP
@@ -165,6 +165,7 @@ function Cart () {
             }
         })
         .then(({data})=>{
+            console.log(data.data , ' <<<< VALUE DATA')
             setAddress(data.data.address)
         })
         .catch(err=>{
@@ -355,7 +356,7 @@ function Cart () {
 
     // RENDER CONDITIONAL SELECT ADDRESS OR INPUT ADDRESS
     let renderAdrInput = () => {
-        if (address) {
+        if (address.length < 0) {
             return (
                 <Menu
                     showMenu={showMenu}

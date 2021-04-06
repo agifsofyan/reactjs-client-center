@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProgressBar = (props) => {
-    const { bgcolor, completed } = props;
+    const { bgcolor, completed , style } = props;
 
     const containerStyles = {
         height: 15,
@@ -28,7 +28,7 @@ const ProgressBar = (props) => {
     };
 
     return (
-        <div style={{display:'flex'}}>
+        <div style={{display:'flex',...style}}>
             <div style={containerStyles}>
                 <div style={fillerStyles} />
             </div>

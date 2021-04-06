@@ -9,6 +9,7 @@ export const getProductList = () => {
         });
         try {
             let res = await Axios.get(`${SWAGGER_URL}/products`);
+            console.log(res , ' <<<<< &&&&* 555 %%%%%%% value produK')
             dispatch({
                 type: PRODUCT_LIST,
                 payload: res.data.data,
