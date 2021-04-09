@@ -17,11 +17,13 @@ function Item (props) {
     // HISTORY
     const history = useHistory()
 
+    // console.log(e , ' <<< VALUE E')
+
     return (
         <div
             style={{...style}}
             className="cl-item-11"
-            onClick={e2=>history.push(`/blog?title=${e.content.title}`)}
+            onClick={e2=>history.push(`/blog?title=${e.content.title}&id=${e._id}`)}
         >
             <img
                 src={newsImg}
@@ -30,10 +32,10 @@ function Item (props) {
 
             <div className="c1">
                 <div className="t1">
-                    {e.content.title.slice(0,34) + ( e.content.title.length >= 34 ? "...." : "" )}
+                    { e.content && e.content.title.slice(0,34) + ( e.content.title.length >= 34 ? "...." : "" )}
                 </div>
                 <div className="t2">
-                    {e.content.desc.slice(0,90) + ( e.content.desc.length >= 90 ? "...." : "" )}
+                    {e.content && e.content.desc.slice(0,90) + ( e.content.desc.length >= 90 ? "...." : "" )}
                 </div>
                 <div className="t3">
                     <div className="img">

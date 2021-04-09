@@ -31,9 +31,13 @@ function Edit () {
     // INPUT STATE
     const [name,setName] = useState(null)
     const [email,setEmail] = useState(null)
+    const [ktp_numb,setKtp_numb] = useState(null)
 
     // INPUT NUMBER STATE
     const [numArr,setNumArr] = useState([])
+
+    // STATUS KTP 
+    const [isKtp,setIsKtp] = useState(false)
 
     let changeNumArr = () => {
         let arr = [...numArr]
@@ -81,6 +85,8 @@ function Edit () {
     // SET DATA INPUT VALUE SAME WITH DB
     useEffect(()=>{
         if (userInfo) {
+            console.log(userInfo , ' <<< USER INFO RESULT')
+            console.log(userInfo.ktp_numb , ' <<<< RESULT KTP')
             if (userInfo.phone_numbers) {
                 if (userInfo.phone_numbers.length > 0) {
                     console.log('HERE 9999999 ((())))')
@@ -111,10 +117,6 @@ function Edit () {
             setEmail(userInfo.email)
         }
     },[userInfo])
-
-    useEffect(()=>{
-        console.log(numArr , ' <<< VALUE NUM ARR')
-    },[numArr])
 
     // HANDLE ADD INPUT
     let handleAdd = (e) => {
@@ -213,7 +215,7 @@ function Edit () {
             )
         })
     }
-    
+
     return (
         <form onSubmit={e=>handleClick(e)} className="container">
             <div className="title" style={{marginTop : 30}}>Full Name</div>
@@ -225,6 +227,14 @@ function Edit () {
             />
 
             <div className="title">Email</div>
+            <input 
+                type="text" 
+                className="input1"
+                onChange={e=>setEmail(e.target.value)}
+                value={email}
+            />
+
+            <div className="title">Nomor KTP</div>
             <input 
                 type="text" 
                 className="input1"

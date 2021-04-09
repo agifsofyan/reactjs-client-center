@@ -1,6 +1,8 @@
 import React from 'react'
 
-function User () {
+function User (props) {
+
+    const { detailData } = props
 
     return (
         <div className="c1">
@@ -9,7 +11,7 @@ function User () {
                     
                 </div>
                 <div className="t1">
-                    John Doe . 4h ago. 5 min read
+                    { detailData && detailData.content && detailData.content.author.name}
                 </div>
             </div>
         </div>

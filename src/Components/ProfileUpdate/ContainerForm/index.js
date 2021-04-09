@@ -4,6 +4,7 @@ import React , { useState } from 'react'
 import Edit1 from './Edit1'
 import Edit2 from './Edit2'
 import Edit3 from './Edit3'
+import Edit4 from './Edit4'
 
 // COMPONENTS VIEW
 import View from './View'
@@ -22,7 +23,7 @@ function ContainerForm (props) {
     // const [selectedTab,setSelectedTab] = useState(0)
 
     let renderComponent = () => {
-        let arr = [<Edit1 />,<Edit2/>,<Edit3/>]
+        let arr = [<Edit1 />,<Edit4/> ,<Edit2/>,<Edit3/>]
         return arr[selectedTab]
     }
 

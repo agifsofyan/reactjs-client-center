@@ -188,7 +188,7 @@ function Order () {
         })
         .catch(err=>{
             setLoading(false)
-            console.log(err.response , ' <<<<< ERROR')
+            console.log(err.response , ' <<<<< ERROR BANK HERE LOL WKWKWKWKWKWKWK')
             history.push('/payments/failed')
         })
     }
@@ -203,7 +203,6 @@ function Order () {
         //     },
         //     total_price,
         // } ,  '  <<<<< DATA (*(*(*(*(*')
-        console.log(new Date())
         axios({
             method : 'POST',
             url : `${SWAGGER_URL}/orders/${order._id}/pay`,
@@ -228,9 +227,9 @@ function Order () {
             console.log('###################################################################')
         })
         .catch(err=>{
+            console.log(err.response , ' <<< should error DANAN HERE')
             history.push('/payments/failed')
             setLoading(false)
-            console.log(err.response , ' <<< should error DANAN HERE')
         })
     }
 

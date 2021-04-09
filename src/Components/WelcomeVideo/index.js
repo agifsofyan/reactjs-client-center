@@ -11,10 +11,14 @@ const WelcomeVideo = () => {
         dispatch(getVideo());
     }, [dispatch]);
 
+    const dataLMS = useSelector(state=>state.user.userLMS)
+
     const videoList = useSelector(({ content }) => content.videoList);
     const loading = useSelector(({ content })=> content.loading);
 
     const renderVideo = () => {
+        // dataLMS[0]
+        console.log(dataLMS[0].content.thanks.video , ' %%%%%% % %% % % % %  ')
         return videoList.slice(0,1).map((val,index) => {
             if (loading) {
                 return (
@@ -30,7 +34,7 @@ const WelcomeVideo = () => {
                             muted={true}
                             className='welcome-video'
                         >
-                            <source type='video/mp4' src={val.url} />
+                            <source type='video/mp4' src={ dataLMS[0].content ? dataLMS[0].content.thanks.video : val.src} />
                         </video>
                     </React.Fragment>
                 );
@@ -40,7 +44,7 @@ const WelcomeVideo = () => {
 
     return (
         <div className='welcome-section'>
-            {renderVideo()}
+            { dataLMS && renderVideo()}
         </div>
     );
 };

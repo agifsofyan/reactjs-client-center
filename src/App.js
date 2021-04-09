@@ -113,17 +113,13 @@ function App () {
       .then(({data})=>{
           data.data.forEach((e,index)=>{
             if (!e.price || !e.sale_price) {
-              console.log(e.price , ' <<<< PRICE')
-              console.log(e.sale_price , ' <<< SALE PRICE')
             }
             if (e.feature) {
               if (e.feature.active_header || e.feature.active_page) {
-                console.log(e._id , ' <<< ID')
                 dispatch(changeValue("productHeader",e))
               }
             }
           })
-          console.log(data.data , ' <<<<< DATA PRODUCT')
           dispatch(changeValue("productList",data.data))
       })
       .catch(err=>{
@@ -156,7 +152,7 @@ function App () {
   },[dispatch])
 
   useEffect(()=>{
-    console.log('VALUE USER INFO HERE !!!!!^^^^^^^^^^^^^^^^^')
+    // console.log('VALUE USER INFO HERE !!!!!^^^^^^^^^^^^^^^^^')
   },[userInfo])
 
   // HANDLE SCROLL

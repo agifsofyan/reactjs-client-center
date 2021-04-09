@@ -16,11 +16,17 @@ function Tab (props) {
                 className={ selectedTab === 1 ? "item-active" : "item"}
                 onClick={e=>setSelectedTab(1)}
             >
-                Topik
+                Data Lainnya
             </div>
             <div 
                 className={ selectedTab === 2 ? "item-active" : "item"}
                 onClick={e=>setSelectedTab(2)}
+            >
+                Topik
+            </div>
+            <div 
+                className={ selectedTab === 3 ? "item-active" : "item"}
+                onClick={e=>setSelectedTab(3)}
             >
                 Alamat
             </div>

@@ -37,7 +37,7 @@ const Dashboard = () => {
     }, [dispatch,localStorage]);
 
     useEffect(()=>{
-        console.log(dataLMS , ' <<<<< VALUE DATA LNS')
+        console.log(dataLMS , ' <<<<< *************************************************************************************8')
     },[dataLMS])
 
     const storyImg = 'https://www.digitalartsonline.co.uk/cmsdata/slideshow/3784651/01_idea.jpg';

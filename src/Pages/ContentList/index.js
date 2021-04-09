@@ -15,35 +15,14 @@ import './style.css'
 
 function Content (props) {
 
-    const [dataNews,setDataNews] = useState(null)
-    const [NewsTemp,setNewsTemp] = useState(null)
-
     const [showAll,setShowAll] = useState(3)
 
-    useEffect(()=>{
-        getData()
-    },[])
-
-    let getData = () => {
-        axios({
-            method : 'GET',
-            // url : `${SWAGGER_URL}/contents`,
-            url : `${SWAGGER_URL}/userproducts?trending=true&favorite=false&as_user=false&done=false&offset=1&limit=10&sortby=created_at&sortval=desc`,
-            headers : {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            }
-        }).
-        then(({data})=>{
-            console.log(data.data , ' <<< VALUE DATA')
-            setNewsTemp(data.data)
-            setDataNews(data.data)
-        })
-        .catch(err=>{
-            console.log(err.response , ' <<<< ERROR RESPONS ><><><>><><')
-        })
-    }
+    const {
+        dataNews , 
+        NewsTemp ,
+        setNewsTemp,
+        setDataNews
+    } = props
 
     return (
         <div

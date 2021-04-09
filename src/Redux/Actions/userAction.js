@@ -25,12 +25,10 @@ export const getUserStory = () => {
             },
         })
         .then(({data})=>{
-            console.log(data.data , ' <<< VALUE CONTENT USER PRODUCTS')
             dispatch({
                 type : GET_STORIES,
                 payload : data.data
             })
-            console.log(data , ' succes get product >>')
         })
         .catch(err=>{
             console.log(err.response , ' <<<< VALUE ERROR >>>')
@@ -40,7 +38,7 @@ export const getUserStory = () => {
 
 export const getUserLMS = (params) => {
     const { trending, favorite} = params
-    console.log(`${SWAGGER_URL}/userproducts?trending=${trending}&favorite=${favorite}&as_user=false&done=false&offset=1&limit=20&sortby=created_at&sortval=desc`,)
+    // console.log(`${SWAGGER_URL}/userproducts?trending=${trending}&favorite=${favorite}&as_user=false&done=false&offset=1&limit=20&sortby=created_at&sortval=desc`,)
     return (dispatch) => {
         Axios({
             method : 'GET',
@@ -57,7 +55,7 @@ export const getUserLMS = (params) => {
                 type : GET_LMS,
                 payload : data.data
             })
-            console.log(data.data , ' <<< VALUE DATA USER LMS &&*&*&*((((()))_----000')
+            // console.log(data.data , ' <<< VALUE DATA USER LMS &&*&*&*((((()))_----000')
         })
         .catch(err=>{
             console.log(err.response , ' <<<< ERROR RESPONS ><><><>><><')
@@ -66,7 +64,6 @@ export const getUserLMS = (params) => {
 }
 
 export const getUserWhoAmI = () => {
-    console.log('GET USER WHO AM I RUN HERE <<<<<< ((())) _---- ')
     const token = localStorage.getItem('token');
     return async dispatch => {
         dispatch({
@@ -81,11 +78,8 @@ export const getUserWhoAmI = () => {
                         'Authorization': `Bearer ${token}`,
                     },
                 };
-                let res = await Axios.get(`${SWAGGER_URL}/users/me`, options);
-                console.log(res , ' <<<< RES')
+                let res = await Axios.get(`${SWAGGER_URL}/users/profile`, options);
                 let result = {...res.data.data.user,...res.data.data}
-                console.log(res.data.data , " res.data.data")
-                console.log(res.data.data.user , " res.data.data.user")
                 // console.log(result , ' RESULT >>>> USER')
                 dispatch({
                     type: USER_ME,

@@ -22,6 +22,8 @@ function ProfileUpdate (props) {
 
     // GLOBAL STATE
     const userInfo = useSelector(state => state.user.userMe);
+    
+    console.log(userInfo , ' <<< value user info')
 
     // LOCAL STATE
     const [isEdit,setIsEdit] = useState(false)
@@ -75,7 +77,9 @@ function ProfileUpdate (props) {
                         }
                     </div>
                     <div>
-                        0829292929
+                        {
+                            userInfo && userInfo.phone_numbers && userInfo.phone_numbers.length > 0 && userInfo.phone_numbers[0].phone_number   
+                        }
                     </div>
                 </div>
             </div>

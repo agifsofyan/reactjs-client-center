@@ -1,4 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState } from 'react';
+
+// MODULE
+import axios from 'axios'
+
 import { useDispatch, useSelector } from 'react-redux';
 import { getVideo } from '../../Redux/Actions';
 import WelcomeVideo from '../../Components/WelcomeVideo';
@@ -8,8 +12,35 @@ import live from '../../Assets/Images/live-thumbnail.svg';
 import moment from 'moment';
 import './styles.css';
 
+import { SWAGGER_URL } from '../../Support/API_URL'
+
 const LMSWebinar = () => {
+
+    // USE DISPATCH
     const dispatch = useDispatch();
+
+    // LOCAL STATE
+    const [webinarData,setWebinarData] = useState(null)
+
+    useEffect(()=>{
+        axios({
+            method : 'GET',
+            // url : `${SWAGGER_URL}/contents`,
+            url : `${SWAGGER_URL}/userproducts?content_post_type=webinar&as_user=true`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            setWebinarData(data.dataa)
+            console.log(data, ' <<< VALUE WEBINAR HERE <<< **** *999 *(*')
+        })
+        .catch(err=>{
+            console.log(err.response)
+        })
+    },[])
 
     useEffect(() => {
         document.title = 'LMS Webinar';
@@ -19,7 +50,7 @@ const LMSWebinar = () => {
     const videoList = useSelector((state) => state.content.videoList);
 
     const renderVideo = () => {
-        return videoList.slice(0,1).map((val,index) => {
+        return webinarData.slice(0,1).map((val,index) => {
             return (
                 <div key={index}>
                     <video controls={true} className='nearest-webinar'>
@@ -35,7 +66,7 @@ const LMSWebinar = () => {
     const thumbnail = 'https://victor-mochere.com/wp-content/uploads/2019/08/How-to-download-a-video-on-YouTube.jpg';
 
     const renderPrevious = () => {
-        return [0,1,2].map(() => {
+        return webinarData.map(() => {
             return (
                 <div className='webinar-section'>
                     <img src={thumbnail} alt='previous' className='previous-video' />
@@ -133,8 +164,8 @@ const LMSWebinar = () => {
                 <div className='nearest-title'>
                     Jadwal Webinar Terdekat
                 </div>
-                {renderVideo()}
-                <div className='webinar-desc'>
+                { webinarData && renderVideo()}
+                {/* <div className='webinar-desc'>
                     <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='mentor-img' />
                     <div className='webinar-summary'>
                         <div className='webinar-title'>
@@ -147,7 +178,7 @@ const LMSWebinar = () => {
                             starts {countdown}
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <button className='webinar-join'>
                     <b>IKUT SEKARANG</b>
                 </button>
@@ -161,7 +192,7 @@ const LMSWebinar = () => {
                 <div className='previous-title'>
                     Tonton Rekaman Webinar Sebelumnya
                 </div>
-                {renderPrevious()}
+                { webinarData && renderPrevious()}
             </div>
 
             {/* DIVIDER */}
@@ -172,7 +203,7 @@ const LMSWebinar = () => {
                 <div className='others-title'>
                     Ikuti Webinar Lainnya
                 </div>
-                {renderOthers()}
+                { webinarData && renderOthers()}
             </div>
 
             {/* DIVIDER */}
