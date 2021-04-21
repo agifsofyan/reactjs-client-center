@@ -8,7 +8,8 @@ import {
     GET_STORIES,
     GET_SETTING,
     ORDER_LOGOUT,
-    GET_LMS
+    GET_LMS,
+    SET_LOADING
 } from '../type';
 
 
@@ -36,14 +37,27 @@ export const getUserStory = () => {
     } 
 }
 
-export const getUserLMS = (params) => {
+export const getUserLMS = (params,topic) => {
     const { trending, favorite} = params
     // console.log(`${SWAGGER_URL}/userproducts?trending=${trending}&favorite=${favorite}&as_user=false&done=false&offset=1&limit=20&sortby=created_at&sortval=desc`,)
+    // console.log(params , ' <<<')
+    let url;
+    console.log(topic , ' <<<< VALUE TOPIC HERE')
+    if (trending && favorite ) {
+        url = `${SWAGGER_URL}/userproducts?trending=${trending}&favorite=${favorite}&as_user=true&offset=1&limit=20&sortby=created_at&sortval=desc`
+    }else {
+        url = `${SWAGGER_URL}/userproducts?as_user=false&done=false&offset=1&limit=20&sortby=created_at&sortval=desc&${topic}`
+    }
+    console.log(url , ' <<< WHAT IS URL')
     return (dispatch) => {
+        dispatch({
+            type : SET_LOADING,
+            payload : true
+        })
         Axios({
             method : 'GET',
             // url : `${SWAGGER_URL}/contents`,
-            url : `${SWAGGER_URL}/userproducts?trending=${trending}&favorite=${favorite}&as_user=false&done=false&offset=1&limit=20&sortby=created_at&sortval=desc`,
+            url ,
             headers : {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
@@ -51,6 +65,11 @@ export const getUserLMS = (params) => {
             }
         }).
         then(({data})=>{
+            console.log(data.data.length ,' <<< LENGTHTDSHFDS')
+            dispatch({
+                type : SET_LOADING,
+                payload : false
+            })
             dispatch({
                 type : GET_LMS,
                 payload : data.data
@@ -58,6 +77,10 @@ export const getUserLMS = (params) => {
             // console.log(data.data , ' <<< VALUE DATA USER LMS &&*&*&*((((()))_----000')
         })
         .catch(err=>{
+            dispatch({
+                type : SET_LOADING,
+                payload : false
+            })
             console.log(err.response , ' <<<< ERROR RESPONS ><><><>><><')
         })
     }

@@ -1,7 +1,15 @@
 import React from 'react';
+
+// MODULE
+import { useHistory } from 'react-router-dom'
+
 import './topicsection.css';
 
 const TopicSection = (props) => {
+
+    // HISTORY
+    const history = useHistory()
+
     const {
         dashboardTab,
         webinarTab,
@@ -15,7 +23,7 @@ const TopicSection = (props) => {
 
     const sectionTopic = [
         {
-            title: 'Dashboard',
+            title: 'Home',
             active: dashboardTab,
             href: '/lms-dashboard',
         },
@@ -59,20 +67,22 @@ const TopicSection = (props) => {
     const renderSection = () => {
         return sectionTopic.map((val,index) => {
             return (
-                <a href={val.href} className='anchor'>
-                    <div 
-                        key={index} 
-                        className={
-                            val.active 
-                            ? 
-                            `section-title-active` 
-                            : 
-                            `section-title`
-                        }
-                    >
-                        {val.title}
-                    </div>
-                </a>
+                <div 
+                    onClick={e=>history.push(val.href)}
+                    key={index} 
+                    className={
+                        val.active 
+                        ? 
+                        `section-title-active` 
+                        : 
+                        `section-title`
+                    }
+                    style={{cursor : "pointer"}}
+                >
+                    {val.title}
+                </div>
+                // <a href={val.href} className='anchor'>
+                // {/* </a> */}
             );
         });
     };

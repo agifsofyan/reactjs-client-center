@@ -26,7 +26,7 @@ const LMSWebinar = () => {
         axios({
             method : 'GET',
             // url : `${SWAGGER_URL}/contents`,
-            url : `${SWAGGER_URL}/userproducts?content_post_type=webinar&as_user=true`,
+            url : `${SWAGGER_URL}/userproducts?content_post_type=webinar&as_user=false`,
             headers : {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
@@ -34,7 +34,7 @@ const LMSWebinar = () => {
             }
         })
         .then(({data})=>{
-            setWebinarData(data.dataa)
+            setWebinarData(data.data)
             console.log(data, ' <<< VALUE WEBINAR HERE <<< **** *999 *(*')
         })
         .catch(err=>{
@@ -50,11 +50,13 @@ const LMSWebinar = () => {
     const videoList = useSelector((state) => state.content.videoList);
 
     const renderVideo = () => {
-        return webinarData.slice(0,1).map((val,index) => {
+        let sortData = webinarData.sort((a,b)=>new Date(b.content.created_at) - new Date(a.content.created_at))
+        sortData = webinarData.filter((e,i)=>i === 0)
+        return sortData.map((val,index) => {
             return (
                 <div key={index}>
                     <video controls={true} className='nearest-webinar'>
-                        <source type='video/mp4' src={val.url} />
+                        <source type='video/mp4' src={val.content.video[0].url} />
                     </video>
                 </div>
             );
@@ -66,13 +68,16 @@ const LMSWebinar = () => {
     const thumbnail = 'https://victor-mochere.com/wp-content/uploads/2019/08/How-to-download-a-video-on-YouTube.jpg';
 
     const renderPrevious = () => {
-        return webinarData.map(() => {
+        return webinarData.map((e,i) => {
+            // console.log( , ' <<< VALUE VIDEO')
             return (
-                <div className='webinar-section'>
-                    <img src={thumbnail} alt='previous' className='previous-video' />
+                <div key={i} className='webinar-section'>
+                    <video className='previous-video' controls>
+                        <source src={e.content.video[0].url} type="video/mp4"/>
+                    </video>
                     <div className='webinar-details'>
                         <div className='webinar-title'>
-                            BOE Business Booster
+                            {e.content.title}
                         </div>
                         <div className='webinar-audience'>
                             216 participants
@@ -90,15 +95,18 @@ const LMSWebinar = () => {
     };
 
     const renderOthers = () => {
-        return [0,1,2,3,4,5].map(() => {
+        return webinarData.map((e,i) => {
             return (
                 <div className='other-texts'>
-                    <img src={live} alt='live' className='other-live' />
+                    {/* <img src={live} alt='live' className='other-live' /> */}
+                    <video className='other-live' controls>
+                        <source src={e.content.video[0].url} type="video/mp4"/>
+                    </video>
                     <div className='other-desc'>
                         <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='other-mentor-img' />
                         <div className='other-summary'>
                             <div className='other-title'>
-                                <b>This is the title for the video</b>
+                                <b>{e.content.title}</b>
                             </div>
                             <div className='other-mentor-name'>
                                 mentor name here
@@ -210,14 +218,14 @@ const LMSWebinar = () => {
             <div className='divider' />
 
             {/* RECOMMENDED */}
-            <div className='lmswebinar-recommended-section'>
+            {/* <div className='lmswebinar-recommended-section'>
                 <div className='lmswebinar-recommended-title'>
                     Produk Rekomendasi
                 </div>
                 <div className='lmswebinar-recommended-renderer'>
                     {renderRecommended()}
                 </div>
-            </div>
+            </div> */}
 
             {/* FOOTER */}
             <div className='lms-webinar-footer'>

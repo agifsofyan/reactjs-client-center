@@ -1,6 +1,15 @@
 import React, { useEffect, useState } from 'react';
+
+// MODULE
+import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
+import { Comment, Tooltip, Avatar } from 'antd';
+import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
+import moment from 'moment';
+
+// REDUX
 import { getVideoById } from '../../Redux/Actions';
+
 import Footer from '../../Components/LMSFooter';
 import views from '../../Assets/Images/views.svg';
 import likethumb from '../../Assets/Images/like.svg';
@@ -11,9 +20,11 @@ import save from '../../Assets/Images/save.svg';
 import saved from '../../Assets/Images/saved.svg';
 import other from '../../Assets/Images/other.svg';
 import playNext from '../../Assets/Images/play-next.svg';
-import { Comment, Tooltip, Avatar } from 'antd';
-import moment from 'moment';
-import { DislikeOutlined, LikeOutlined, DislikeFilled, LikeFilled } from '@ant-design/icons';
+
+// API SWAGGER
+import { SWAGGER_URL } from '../../Support/API_URL'
+
+// STYLE
 import './Detail.css';
 
 const Detail = (query) => {
@@ -43,74 +54,103 @@ const Detail = (query) => {
     };
     const saveIcon = savedState ? saved : save;
 
+    // LOCAL STATE
+    const [video,setVideo] = useState(null)
+
+    let getData = (index) => {
+        axios({
+            method : 'GET',
+            // url : `${SWAGGER_URL}/contents`,
+            url :  `${SWAGGER_URL}/userproducts?content_post_type=video&as_user=false&sortby=expired_date&sortval=desc` ,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            setVideo(data.data)
+            console.log(data.data , ' << VIDOE LIST WKWKWKWKWK ')
+        })
+        .catch(err=>{
+            // setLoading(false)
+            console.log(err.response)
+        })
+    }
+
+    useEffect(()=>{
+        getData()
+    },[])
+
     const renderVideo = () => {
-        return videoById.slice(0,1).map((val,index) => {
-            return (
-                <div key={index}>
-                    {/* <div>{val._id}</div> */}
-                    <video controls={true} className='playing-video'>
-                        <source type='video/mp4' src={val.url} />
-                    </video>
-                    <div className='description-container'>
-                        <div className='video-title'>
-                            <b>🎵 Hotel Del Luna OST Medley (호텔 델루나 OST 메들리) | 4hands piano</b>
-                        </div>
-                        <div style={{display:'flex'}}>
-                            <div className='video-views'>
-                                <img src={views} alt='views' className='views-icon' />
-                                <div>140.191.746 views</div>
-                            </div>
-                            ●
-                            <div className='video-creation'>
-                                Uploaded on May 1, 2019
-                            </div>
-                        </div>
+        let val = video.filter(e=>e._id === queryId)
+        let index = 0
+        console.log(val , ' <<< FIX VALUE VAL HERE')
+        return (
+            <div >
+                {/* <div>{val._id}</div> */}
+                <video controls={true} className='playing-video'>
+                    <source type='video/mp4' src={val.url} />
+                </video>
+                <div className='description-container'>
+                    <div className='video-title'>
+                        <b>🎵 Hotel Del Luna OST Medley (호텔 델루나 OST 메들리) | 4hands piano</b>
                     </div>
-                    <div className='action-container'>
-                        <div className='action-group'>
-                            <img 
-                                src={likeIcon} 
-                                alt='like' 
-                                style={{height:'30px'}} 
-                                onClick={toggleLike} 
-                            />
-                            <div className='action-text'>
-                                Like
-                            </div>
+                    <div style={{display:'flex'}}>
+                        <div className='video-views'>
+                            <img src={views} alt='views' className='views-icon' />
+                            <div>140.191.746 views</div>
                         </div>
-                        <div className='action-group'>
-                            <img src={share} alt='share' style={{height:'30px'}} />
-                            <div className='action-text'>
-                                Share
-                            </div>
-                        </div>
-                        <div className='action-group'>
-                            <img src={later} alt='later' style={{height:'30px'}} />
-                            <div className='action-text'>
-                                Add to Watch Later
-                            </div>
-                        </div>
-                        <div className='action-group'>
-                            <img 
-                                src={saveIcon} 
-                                alt='save' 
-                                style={{height:'30px'}} 
-                                onClick={toggleSave} 
-                            />
-                            <div className='action-text'>
-                                Save
-                            </div>
-                        </div>
-                        <div className='action-group'>
-                            <img src={other} alt='other' style={{height:'30px'}} />
-                            <div className='action-text'>
-                                Others
-                            </div>
+                        ●
+                        <div className='video-creation'>
+                            Uploaded on May 1, 2019
                         </div>
                     </div>
                 </div>
-            );
-        });
+                <div className='action-container'>
+                    <div className='action-group'>
+                        <img 
+                            src={likeIcon} 
+                            alt='like' 
+                            style={{height:'30px'}} 
+                            onClick={toggleLike} 
+                        />
+                        <div className='action-text'>
+                            Like
+                        </div>
+                    </div>
+                    <div className='action-group'>
+                        <img src={share} alt='share' style={{height:'30px'}} />
+                        <div className='action-text'>
+                            Share
+                        </div>
+                    </div>
+                    <div className='action-group'>
+                        <img src={later} alt='later' style={{height:'30px'}} />
+                        <div className='action-text'>
+                            Add to Watch Later
+                        </div>
+                    </div>
+                    <div className='action-group'>
+                        <img 
+                            src={saveIcon} 
+                            alt='save' 
+                            style={{height:'30px'}} 
+                            onClick={toggleSave} 
+                        />
+                        <div className='action-text'>
+                            Save
+                        </div>
+                    </div>
+                    <div className='action-group'>
+                        <img src={other} alt='other' style={{height:'30px'}} />
+                        <div className='action-text'>
+                            Others
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
     };
 
     const videoImg = 'https://wallpaperboat.com/wp-content/uploads/2020/04/red-aesthetic-wallpaper-1920x1080-10.jpg';
@@ -169,7 +209,7 @@ const Detail = (query) => {
         <div className='root'>
             {/* PLAYING */}
             <div>
-                {renderVideo()}
+                { video && renderVideo()}
             </div>
 
             {/* DIVIDER */}

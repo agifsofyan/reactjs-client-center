@@ -59,6 +59,7 @@ import AnswerModule from './LMS-Pages/Module/answerModule';
 import Navbar from './Components/Navbar'
 import Drawer from './Components/Modal'
 import Advertisement from './Components/Advertisement/index'
+import Stories from './Pages/StoriesLMS'
 
 // GLOBAL ACTION
 import { changeValue , changeValueUser , getPaidList } from './Redux/Actions/index'
@@ -82,6 +83,7 @@ function App () {
   const productHeader = useSelector(state=>state.product.productHeader)
   const setting = useSelector(state=>state.user.settingData)
   const userInfo = useSelector(({ user }) => user.userMe);
+  const isStory = useSelector(state=>state.story.isActive)
 
   // LOCAL STATE
   const [showModal,setShowModal] = useState(false)
@@ -125,24 +127,6 @@ function App () {
       .catch(err=>{
           console.log(err , ' <<< ERROR')
       })
-      
-      // GET USERS
-      // axios({
-      //   method : "GET",
-      //   url : `${SWAGGER_URL}/users/me`,
-      //   headers : {
-      //     'Access-Control-Allow-Origin': '*',
-      //     'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-      //     'Authorization': `Bearer ${localStorage.getItem('token')}`,
-      //     // "x-auth-token" : localStorage.getItem('token')
-      //   }
-      // })
-      // .then((data)=>{
-      //   console.log(data , ' <<<< FIX >>>> OKOKOKOK')
-      // })
-      // .catch(err=>{
-      //   console.log(err.response)
-      // })
       dispatch(setDataSetting())
       dispatch(getPaidList());
       dispatch(getUserWhoAmI());
@@ -279,6 +263,10 @@ function App () {
           setShowModal={setShowModal}
           showModal={showModal}
         />
+      }
+      {
+        isStory &&
+        <Stories/>
       }
     </div>
   )

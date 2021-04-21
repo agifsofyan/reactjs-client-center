@@ -1,28 +1,116 @@
 import React, { useEffect, useState } from 'react';
+
+// MODULE
+import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux';
+
+// MODULE ANT DESIGN
 import { Rate, message } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
+
+// COMPONENT
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
 import Footer from '../../Components/LMSFooter';
+
+// IMAGES
 import bronze from '../../Assets/Images/bronze.png';
 import silver from '../../Assets/Images/silver.png';
 import gold from '../../Assets/Images/gold.png';
 import obsidian from '../../Assets/Images/obsidian.png';
 import diamond from '../../Assets/Images/diamond.png';
-import { useDispatch, useSelector } from 'react-redux';
+
+// API
+import { SWAGGER_URL } from '../../Support/API_URL'
+
+// REDUX
 import { getProductById, getReviewByUser, postReviewCourse } from '../../Redux/Actions';
 import { getUserWhoAmI } from '../../Redux/Actions/userAction';
+
 import './style.css';
 
-const LMSHome = (query) => {
+const LMSHome = (props) => {
     const dispatch = useDispatch();
 
     const userInfo = useSelector(({ user }) => user.userMe);
+    const dataLMS = useSelector(state=>state.user.userLMS)
+
     const reviewUserProduct = useSelector(({ review }) => review.reviewUserProduct);
     const productById = useSelector(({ product }) => product.productById);
-    const queryId = query.location.search.split('=')[1];
 
-    console.log(userInfo._id);
+    const queryId = props.location.search.split('=')[1];
+
+    // LOCAL STATE
+    let [reviewRate, setReviewRate] = useState(0);
+    let [mentorRate, setMentorRate] = useState(0);
+
+    const [reviewStr,setReviewStr] = useState(null)
+
+    console.log(userInfo , ' <<< VALUE USER INFO');
+
+    const getReview = () => {
+        let detailData = dataLMS.filter(e=>e._id === queryId)[0]
+        axios({
+            method : "GET",
+            url : `${SWAGGER_URL}/review`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            // if ()
+            let arr = data.data
+            // arr.forEach((e,i)=>{
+            //     // console.log(e.product._id + " <<< " + detailData._id + " << "  + e.user._id + " <<< " + userInfo._id)
+            //     if (e.product._id === detailData._id && e.user._id === userInfo._id) {
+            //         setReviewStr(e.opini)
+            //     }
+            // })
+            // if (el.)
+            console.log(arr , ' <<< VALUE DATA REVIEW')
+        })
+        .catch(err=>{
+            console.log(err , ' <<< ERROR')
+        })
+    }
+
+    const getRatings = () => {
+        let detailData = dataLMS.filter(e=>e._id === queryId)[0]
+        axios({
+            method : "GET",
+            url : `${SWAGGER_URL}/ratings?kind=product`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            let arr = data.data
+            console.log(arr , ' <<< VALUE ARR')
+            arr.forEach((e,i)=>{
+                // console.log(e.product._id + " <<< " + detailData._id + " << "  + e.user._id + " <<< " + userInfo._id)
+                console.log(e.kind_id + " KIND <<< " + detailData._id + " DETAIL DATA. ID <<< " +  e.user_id + " E.USER.ID <<< " + userInfo.user._id + " USERINFO.ID <<<<") 
+                if (e.kind_id === detailData._id && e.user_id ===  userInfo.user._id) {
+                    // setReviewStr(e.opini)
+                    setReviewRate(e.rate)
+                    console.log(e , ' <<< VALUE DATA ratingsss HERE (()))) ---- ')
+                }
+            })
+        })
+        .catch(err=>{
+            console.log(err , ' <<< ERROR')
+        })
+    }
+
+    useEffect(()=>{
+        if (userInfo && dataLMS) {
+            // getReview()
+            getRatings()
+        }
+    },[userInfo,dataLMS])
 
     useEffect(() => {
         document.title = 'LMS Home';
@@ -37,6 +125,10 @@ const LMSHome = (query) => {
         dispatch(getReviewByUser(userInfo._id));
     }, [dispatch, productById._id, userInfo._id]);
 
+    useEffect(()=>{
+        console.log(reviewUserProduct , ' <<< REVIEW USER PRODUK')
+    },[reviewUserProduct])
+
     const detail = {
         image: 'https://c0.wallpaperflare.com/preview/494/520/839/russia-moscow-sunset-mood.jpg',
         mentor: 'John Doe',
@@ -49,18 +141,21 @@ const LMSHome = (query) => {
     };
 
     const renderDetail = () => {
+        // console.log(queryId , " <<< ID HERE")
+        let detailData = dataLMS.filter(e=>e._id === queryId)[0]
+        console.log(detailData , ' << DETAIL DATA HERE')
         return (
             <div>
                 {/* <div>{productById._id}</div> */}
-                <img src={detail.image} alt='product' className='product-image' />
-                <div className='product-mentor'>
+                <img src={detailData.content.images[0]} alt='product' className='product-image' />
+                {/* <div className='product-mentor'>
                     Mentored by <b>{detail.mentor}</b>
-                </div>
+                </div> */}
                 <div className='product-title'>
-                    <b>{productById.name}</b>
+                    <b>{detailData.content.title}</b>
                 </div>
                 <div className='product-description'>
-                    {productById.description}
+                    {detailData.content.desc}
                 </div>
             </div>
         );
@@ -125,17 +220,33 @@ const LMSHome = (query) => {
 
     const moreIcon = 'https://image.flaticon.com/icons/png/512/61/61140.png';
 
-    let [reviewRate, setReviewRate] = useState(0);
-    let [mentorRate, setMentorRate] = useState(0);
-
     const handleChangeReview = (value) => {
+        console.log('LOL')
+        let detailData = dataLMS.filter(e=>e._id === queryId)[0]
         setReviewRate(value);
-        reviewRate = value;
+        axios({
+            method : "POST",
+            url : `${SWAGGER_URL}/ratings/add?field=product&id=${detailData._id}&rate=${value}`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            getRatings()
+            setReviewRate(value);
+            console.log(data , ' <<< VALUE DATA 090009 ----- ----')
+        })
+        .catch(err=>{
+            console.log(err.response , ' <<< ERROR')
+        })
+        // reviewRate = value;
     };
 
     const handleChangeMentor = (value) => {
         setMentorRate(value);
-        mentorRate = value;
+        // mentorRate = value;
     };
 
     let [reviewCourse, setReviewCourse] = useState({
@@ -149,11 +260,33 @@ const LMSHome = (query) => {
             product: productById._id,
             [e.target.name]: e.target.value,
         });
+        setReviewStr(e.target.value)
     };
 
     const handleSubmitReview = () => {
-        dispatch(postReviewCourse(reviewCourse));
-        message.success('Your review has been submitted');
+        let detailData = dataLMS.filter(e=>e._id === queryId)[0]
+        axios({
+            method : "POST",
+            url : `${SWAGGER_URL}/review`,
+            data : {
+                product : detailData._id,
+                opini : reviewStr
+            },
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            getReview()
+            console.log('SUKSESS ADD DATA')
+            message.success('Your review has been submitted');
+        })
+        .catch(err=>{
+            console.log(err , ' <<< ERROR')
+        })
+        // dispatch(postReviewCourse(reviewCourse));
     };
 
     return (
@@ -172,7 +305,7 @@ const LMSHome = (query) => {
 
             {/* DETAIL */}
             <div className='detail-section'>
-                {renderDetail()}
+                { dataLMS && renderDetail()}
             </div>
             <div className='separator' />
             <div className='rating-container'>
@@ -185,7 +318,7 @@ const LMSHome = (query) => {
                         <u>{reviewRate}</u>/5
                     </div>
                 </div>
-                <div className='rating-content'>
+                {/* <div className='rating-content'>
                     <div className='rating-title'>
                         Nilai Mentor
                     </div>
@@ -193,38 +326,33 @@ const LMSHome = (query) => {
                     <div className='rate-number'>
                         <u>{mentorRate}</u>/5
                     </div>
-                </div>
+                </div> */}
             </div>
             <div className='separator' />
             <div className='comment-section'>
                 <div className='comment-label'>
                     Komentar Positif Setelah Belajar :
                 </div>
-                {
-                    reviewUserProduct
-                    ?
-                    <div className='comment-from-user-product'>
-                        {reviewUserProduct.opini}
+                {/* <div className='comment-from-user-product'>
+                    {"Keren Sekali"}
+                </div> */}
+                <div>
+                    <TextArea 
+                        name='opini' 
+                        rows={5} 
+                        showCount={true} 
+                        maxLength={300} 
+                        allowClear={true}
+                        // disabled={reviewUserProduct !== [] ? true : false} 
+                        onChange={handleChangeReviewCourse} 
+                        value={reviewStr}
+                    />
+                    <div className='commment-button-section'>
+                        <button className='post-comment-button' onClick={handleSubmitReview}>
+                            Tulis Komentar
+                        </button>
                     </div>
-                    :
-                    // null
-                    <div>
-                        <TextArea 
-                            name='opini' 
-                            rows={5} 
-                            showCount={true} 
-                            maxLength={300} 
-                            allowClear={true}
-                            disabled={reviewUserProduct !== [] ? true : false} 
-                            onChange={handleChangeReviewCourse} 
-                        />
-                        <div className='commment-button-section'>
-                            <button className='post-comment-button' onClick={handleSubmitReview}>
-                                Tulis Komentar
-                            </button>
-                        </div>
-                    </div>
-                }
+                </div>
             </div>
 
             {/* DIVIDER */}

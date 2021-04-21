@@ -1,0 +1,163 @@
+const Terbaru = () => {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getBlogList());
+    }, [dispatch]);
+
+    const blogList = useSelector(({ content }) => content.blogList);
+
+    const renderBlogList = () => {
+        return blogList.map((val,index) => {
+            return (
+                <a href={`/lms-tips-detail?id=${val._id}`} style={{color:'black'}}>
+                    <div key={index} className='tips-group'>
+                        <img 
+                            src='https://static-cse.canva.com/blob/142565/Blue-Orange-and-Yellow-Cool-Memoir_Inspirational-Book-Cover.jpg' 
+                            alt='book on shipping' 
+                            className='tips-book' 
+                        />
+                        <div className='tips-desc'>
+                            <div className='tips-detail'>
+                                <b>{val.title}</b>
+                                {
+                                    index === 0
+                                    ? <img src={tick} alt='tick' className='tips-checkmark' />
+                                    : null
+                                }
+                                <br/>
+                                {val.desc}
+                            </div>
+                            <div className='tips-poin'>
+                                <b>+3 Poin</b>
+                            </div>
+                            <div className='author-details'>
+                                <img src={author} alt='author' className='author-profile' />
+                                <div className='author-name-time'>
+                                    John Doe ● {ago} ● 5 min read
+                                </div>
+                            </div>
+                            <div style={{marginTop:'10px'}}>
+                                {val._id}
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            );
+        });
+    };
+
+    return (
+        <div>
+            {renderBlogList()}
+        </div>
+    );
+};
+
+const Rekomendasi = () => {
+    return [0,1,2,3,4].map((val,index) => {
+        return (
+            <div key={index} className='tips-group'>
+                <img 
+                    src='https://static-cse.canva.com/blob/142533/Red-and-Beige-Cute-Illustration-Young-Adult-Book-Cover.jpg' 
+                    alt='book on shipping' 
+                    className='tips-book' 
+                />
+                <div className='tips-desc'>
+                    <div className='tips-detail'>
+                        <b>To Kill a Mockingbird</b>
+                        {
+                            index === 0
+                            ?
+                            <img src={tick} alt='tick' className='tips-checkmark' />
+                            :
+                            null
+                        }
+                        <br/> it is set in the mid-1930s in the small town of Maycomb, Alabama. It is narrated by Scout Finch, a six-year-old tomboy who lives with her lawyer father Atticus and her ten-year-old brother Jem, trying to make a scene.
+                    </div>
+                    <div className='tips-poin'>
+                        <b>+3 Poin</b>
+                    </div>
+                    <div className='author-details'>
+                        <img src={author} alt='author' className='author-profile' />
+                        <div className='author-name-time'>
+                            John Doe ● {ago} ● 5 min read
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    });
+};
+
+const TelahDibaca = () => {
+    return [0,1,2,3,4].map((val,index) => {
+        return (
+            <div key={index} className='tips-group'>
+                <img 
+                    src='https://static-cse.canva.com/blob/142564/Colorful-Illustration-Young-Adult-Book-Cover.jpg' 
+                    alt='book on shipping' 
+                    className='tips-book' 
+                />
+                <div className='tips-desc'>
+                    <div className='tips-detail'>
+                        <b>To Kill a Mockingbird</b>
+                        {
+                            index === 0
+                            ?
+                            <img src={tick} alt='tick' className='tips-checkmark' />
+                            :
+                            null
+                        }
+                        <br/> it is set in the mid-1930s in the small town of Maycomb, Alabama. It is narrated by Scout Finch, a six-year-old tomboy who lives with her lawyer father Atticus and her ten-year-old brother Jem, trying to make a scene.
+                    </div>
+                    <div className='tips-poin'>
+                        <b>+3 Poin</b>
+                    </div>
+                    <div className='author-details'>
+                        <img src={author} alt='author' className='author-profile' />
+                        <div className='author-name-time'>
+                            John Doe ● {ago} ● 5 min read
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    });
+};
+
+const SesuaiTopik = () => {
+    return [0,1,2,3,4].map((val,index) => {
+        return (
+            <div key={index} className='tips-group'>
+                <img 
+                    src='https://assets-1.placeit.net/smart_templates/991156c4737dbc9fcf89acfabe9034a0/assets/sa31iylakfbx922u5mn901a16dym9pxk.jpg' 
+                    alt='book on shipping' 
+                    className='tips-book' 
+                />
+                <div className='tips-desc'>
+                    <div className='tips-detail'>
+                        <b>To Kill a Mockingbird</b>
+                        {
+                            index === 0
+                            ?
+                            <img src={tick} alt='tick' className='tips-checkmark' />
+                            :
+                            null
+                        }
+                        <br/> it is set in the mid-1930s in the small town of Maycomb, Alabama. It is narrated by Scout Finch, a six-year-old tomboy who lives with her lawyer father Atticus and her ten-year-old brother Jem, trying to make a scene.
+                    </div>
+                    <div className='tips-poin'>
+                        <b>+3 Poin</b>
+                    </div>
+                    <div className='author-details'>
+                        <img src={author} alt='author' className='author-profile' />
+                        <div className='author-name-time'>
+                            John Doe ● {ago} ● 5 min read
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    });
+};

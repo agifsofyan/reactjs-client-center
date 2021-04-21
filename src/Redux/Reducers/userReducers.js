@@ -6,7 +6,8 @@ import {
     USER_FAILED,
     GET_STORIES,
     GET_SETTING,
-    GET_LMS
+    GET_LMS,
+    SET_LOADING
 } from '../type'
 
 const INITIAL_STATE = {
@@ -16,7 +17,7 @@ const INITIAL_STATE = {
     loading: false,
     userLMS : null,
     stories : null,
-    settingData : null
+    settingData : null,
 };
 
 export const UserReducer = (state = INITIAL_STATE, action) => {
@@ -38,7 +39,6 @@ export const UserReducer = (state = INITIAL_STATE, action) => {
                 loading: false,
             };
         case USER_LOGOUT:
-            console.log('CASE USER LOG OUT *(((*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(*(())))')
             return INITIAL_STATE;
         case USER_FAILED:
             return {
@@ -59,6 +59,12 @@ export const UserReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 userLMS : action.payload
+            }
+        case SET_LOADING:
+            console.log("HERE MASUK 888")
+            return {
+                ...state,
+                loading : action.payload
             }
         default: return state;
     };

@@ -54,6 +54,7 @@ export const getReviewByUser = (id) => {
                 };
                 // let res = await Axios.get(`${SWAGGER_URL}/review/detail?uid=${fields}&value=${id}`, options);
                 let res = await Axios.get(`${SWAGGER_URL}/review/detail?uid=product_id&value=${id}`, options);
+                // console.log(res , ' <<< VALUE RES HERE LOL')
                 dispatch({
                     type: REVIEW_BY_USER_PER_PRODUCT,
                     payload: res.data.data,

@@ -38,6 +38,7 @@ function QA (props) {
     const [focus,setFocus] = useState(false)
  
     let addComment = () => {
+        console.log('HAHAH HERE (((()))))')
         axios({
             method : 'POST',
             // url : `${SWAGGER_URL}/contents`,
@@ -121,7 +122,7 @@ function QA (props) {
 
     let checkInput = () => {
         if (selectReply && commentIn) {
-            if (selectReply.user.name === commentIn.split(" ")[0].split("@")[1] ) {
+            if (selectReply.user.name.split(" ")[0] === commentIn.split(" ")[0].split("@")[1] ) {
                 addReply()
             }else {
                 addComment()
@@ -233,6 +234,7 @@ function QA (props) {
                                 {
                                     selectedShow.filter(el=>el === e._id).length > 0 &&
                                     e.reactions.map((e2)=>{
+                                        console.log(e2 , ' <<< E2')
                                         return (
                                             <Reply
                                                 reaction={e2}

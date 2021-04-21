@@ -17,6 +17,14 @@
 }
 
 /* STORY */
+
+.story-title {
+    margin: 0 35px;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Rubik', 'sans-serif';
+}
+
 .story-section {
     margin: 0px 35px;
     display: flex;
@@ -56,14 +64,14 @@
 
 /* PAID */
 .paid-greeting {
-    margin-top: 5px;
+    margin-top: 3px;
     padding-left: 35px;
     font-family: 'Rubik', 'sans-serif';
     font-size: 20px;
     font-weight: 500;
 }
 .paid-description {
-    margin-top: 5px;
+    margin-top: 3px;
     padding-left: 35px;
     font-family: 'Rubik', 'sans-serif';
     font-size: large;
@@ -81,7 +89,7 @@
     scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     width: 100%;
-    margin-top: 18px;
+    margin-top: 9px;
 }
 .slides-paid-list > div {
     /* TYPE 1 */

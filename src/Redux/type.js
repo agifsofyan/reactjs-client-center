@@ -12,6 +12,7 @@ export const USER_FAILED = 'USER_FAILED';
 export const GET_STORIES = "GET_STORIES"
 export const GET_SETTING = "GET_SETTING"
 export const GET_LMS = "GET_LMS"
+export const SET_LOADING = "SET_LOADING"
 
 // LMS
 export const PRODUCT_START = 'PRODUCT_START';
@@ -41,3 +42,6 @@ export const ORDER_LOGOUT = "ORDER_LOGOUT"
 
 // USER PRODUCT
 export const GET_USER_PRODUCT = 'GET_USER_PRODUCT'
+
+// STORY
+export const SET_VALUE_STORY = "SET_VALUE_STORY" 

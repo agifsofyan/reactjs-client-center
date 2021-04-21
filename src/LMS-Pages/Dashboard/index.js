@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect , useState } from 'react';
 
 // MODULE
-import axios from 'axios';
+// import axios from 'axios';
 import { message, Rate } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import Skeleton from 'react-loading-skeleton';
 
 // COMPONENT
 import Profile from '../../Components/LMS-Profile';
@@ -12,11 +13,7 @@ import ContentSection from '../../Components/Content';
 import Footer from '../../Components/LMSFooter';
 
 // REDUX 
-// import { getPaidList } from '../../Redux/Actions';
-// import { getUserWhoAmI , getUserStory , getUserLMS } from '../../Redux/Actions/userAction';
-
-// IMAGES
-import productRecom from '../../Assets/Images/recommended.png';
+import { setValueStory } from '../../Redux/Actions/storyAction'
 
 // STYLING
 import './style.css';
@@ -31,23 +28,36 @@ const Dashboard = () => {
     const userInfo = useSelector(({ user }) => user.userMe);
     const dataProduct = useSelector(state=>state.user.stories)
     const dataLMS = useSelector(state=>state.user.userLMS)
+    const loadingLMS = useSelector(state=>state.user.loading)
+
+    // LOCAL STATE
+    const [searchStr,setSearchStr] = useState("")
 
     useEffect(() => {
         document.title = 'Dashboard';
     }, [dispatch,localStorage]);
 
     useEffect(()=>{
-        console.log(dataLMS , ' <<<<< *************************************************************************************8')
-    },[dataLMS])
+        console.log(loadingLMS , ' <<<< LOADING LMS VALUE HERE')
+    },[loadingLMS])
 
     const storyImg = 'https://www.digitalartsonline.co.uk/cmsdata/slideshow/3784651/01_idea.jpg';
     const unfinishImg = 'https://wallpaperaccess.com/full/656648.jpg';
     const badge = 'https://i.ibb.co/DfxtJ6L/Obsidian.png';
 
+    // HANDLE STORY WHEN TRIGGER
+    const clickStory = (index) => {
+        dispatch(setValueStory("isActive",true))
+        dispatch(setValueStory("selectedData",index))
+    }
+
     const renderStory = () => {
-        return dataProduct.map((e) => {
+        return dataProduct.map((e,index) => {
             return (
-                <div className='story-card'>
+                <div 
+                    className='story-card'
+                    onClick={e=>clickStory(index)}
+                >
                     <img src={e.content.images[0]} alt='boba' className='story-img' />
                 </div>
             );
@@ -61,26 +71,30 @@ const Dashboard = () => {
     const scheduleList = [
         {
             title: 'Jadwal Webinar',
-            notification: '2 new',
+            notification: null,
+            url : "/lms-webinar"
         },
         {
             title: 'Nonton Video',
             notification: null,
+            url : "'/lms-video-list"
         },
         {
             title: 'Baca Tips',
             notification: null,
+            url: '/lms-tips-list'
         },
         {
             title: 'Isi Modul Praktek',
-            notification: '6 new',
+            notification: null,
+            url: '/lms-module',
         },
     ];
 
     const renderSchedule = () => {
         return scheduleList.map((val,index) => {
             return (
-                <div onClick={binderClick} className='schedule-card' key={index}>
+                <div onClick={e=>history.push(val.url)} className='schedule-card' key={index}>
                     <div className='schedule-description'>
                         <span className='schedule-title'>
                             {val.title}
@@ -96,31 +110,77 @@ const Dashboard = () => {
     };
 
     let renderList = () => {
-        return dataLMS.map((el,index) => {
-            const items = el.items;
-            return (
-                <div
-                    key={index}
-                    onClick={(e) => history.push(`/lms-home?id=${el._id}`)}
-                >
-                    <img 
-                        className="slides-3-content-c1"
-                        src={productRecom}
-                        alt={'recom'}
-                    />
-                    <span className="slides-3-content-c2">
-                        {el.content.title.slice(0,27) + "" + renderDot(el.content.title,27)}
-                    </span>
-                    <div className="slides-3-content-c3">
-                        {el.content.desc.slice(0,60) + "" + renderDot(el.content.desc,60)}
+        if (searchStr === "") {
+            return dataLMS.map((el,index) => {
+                // const items = el.items;
+                // console.log(el)
+                return (
+                    <div
+                        key={index}
+                        onClick={(e) => history.push(`/lms-home?id=${el._id}`)}
+                    >
+                        <img 
+                            className="slides-3-content-c1"
+                            // src={productRecom}
+                            src={el.content.images[0]}
+                            alt={'recom'}
+                        />
+                        <span className="slides-3-content-c2">
+                            {el.product.name.slice(0,27) + "" + renderDot(el.product.name,27)}
+                        </span>
+                        <div className="slides-3-content-c3">
+                            {el.content.desc.slice(0,60) + "" + renderDot(el.content.desc,60)}
+                        </div>
+                        <div className="slides-3-content-c6">
+                            Baca
+                        </div>
                     </div>
-                    <div className="slides-3-content-c6">
-                        Daftar
+                );
+            });
+        }else {
+            let data = dataLMS.filter(e=> searchAction(e.content.title,searchStr) || searchAction(e.content.desc,searchStr)  )
+            if (data.length === 0 ) {
+                return (
+                    <div style={{width : "100%" ,display : "flex",justifyContent : "center",alignItems : "center",height : 100}}>
+                        Content Tidak ditemukan
                     </div>
-                </div>
-            );
-        });
+                )
+            }
+            return data.map((el,index) => {
+                // const items = el.items;
+                console.log(el)
+                return (
+                    <div
+                        key={index}
+                        onClick={(e) => history.push(`/lms-home?id=${el._id}`)}
+                    >
+                        <img 
+                            className="slides-3-content-c1"
+                            // src={productRecom}
+                            src={el.content.images[0]}
+                            alt={'recom'}
+                        />
+                        <span className="slides-3-content-c2">
+                            {el.content.title.slice(0,27) + "" + renderDot(el.content.title,27)}
+                        </span>
+                        <div className="slides-3-content-c3">
+                            {el.content.desc.slice(0,60) + "" + renderDot(el.content.desc,60)}
+                        </div>
+                        <div className="slides-3-content-c6">
+                            Baca
+                        </div>
+                    </div>
+                );
+            });
+        }
     };
+
+    let searchAction = (e,str) => {
+        console.log(e , ' <<< VALUE E')
+        return (
+            e.toUpperCase().search( str.toUpperCase() ) >= 0 
+        )
+    }
 
     const renderDot = (name,len = 30) => {
         if (name.length >= len) {
@@ -132,7 +192,7 @@ const Dashboard = () => {
 
     const renderUnfinish = (percent, rank) => {
         return (
-            <div>
+            <div style={{marginBottom : 50}}>
                 <div className='unfinish-card'>
                     <img src={unfinishImg} alt='unfinish' className='unfinish-image' />
                     <div className='unfinish-status'>
@@ -160,7 +220,7 @@ const Dashboard = () => {
                     {renderSchedule()}
                 </div>
                 <div style={{display:'flex', justifyContent:'center'}}>
-                    <div className='dashboard-rating-container'>
+                    {/* <div className='dashboard-rating-container'>
                         <div style={{display:'flex', alignItems:'center'}}>
                             <div style={{
                                 margin:'0px 10px',
@@ -184,14 +244,29 @@ const Dashboard = () => {
                         <button className='rating-advice-btn'>
                             SARAN
                         </button>
-                    </div>
+                    </div> */}
                 </div>
             </div>
         );
     };
 
+    const renderLoading = () => {
+        return [0,1,2,3].map((el,index)=>{
+            return (
+                <div key={index}>
+                    <Skeleton duration={0.3} width={"100%"} height={150}/>
+                    <Skeleton duration={0.3} width={"100%"} style={{marginTop : 5}}/>
+                    <Skeleton duration={0.3} width={"100%"} style={{marginTop : 5}} />
+                    <Skeleton duration={0.3} width={"100%"} style={{marginTop : 5}} />
+                    <Skeleton duration={0.3} width={"100%"} style={{marginTop : 5}} />
+                </div>
+            )
+        })
+    }
+
     return (
         <div className='root'>
+            
             {/* PROFILE CHECK */}
             <Profile 
                 complete={false} 
@@ -207,6 +282,10 @@ const Dashboard = () => {
             {/* DIVIDER */}
             <div className='divider' />
 
+            <div className="story-title" >
+                Cerita Hari Ini
+            </div>
+
             {/* STORY */}
             <div className='story-section'>
                 { dataProduct && renderStory()}
@@ -216,7 +295,7 @@ const Dashboard = () => {
             <div className='divider' />
             
             {/* CONTENT */}
-            <ContentSection />
+            <ContentSection searchStr={searchStr} setSearchStr={setSearchStr} />
 
             {/* DIVIDER */}
             <div className='divider' />
@@ -232,7 +311,7 @@ const Dashboard = () => {
             <div className='paid-content'>
                 {/* <Content /> */}
                 <div className="slides-paid-list">
-                    { dataLMS && renderList() }
+                    { dataLMS && !loadingLMS ? renderList() : renderLoading() }
                 </div>
             </div>
 
@@ -250,7 +329,7 @@ const Dashboard = () => {
             {/* FOOTER */}
             <div className='lms-dashboard-footer'>
                 <Footer />
-            </div>
+            </div>            
         </div>
     );
 };

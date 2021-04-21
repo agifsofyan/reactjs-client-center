@@ -3,14 +3,14 @@ import React , { useState } from 'react'
 function Reply (props) {
 
     // PARENT PROPS
-    const { e , reaction } = props
+    const {  reaction } = props
 
     return (
         <div className="d5">
 
             <img
                 alt="avatar-user"
-                src={e.user.avatar}
+                src={reaction.user.avatar}
                 className="t1"
             />
             {/* <div className="t1">
@@ -19,14 +19,14 @@ function Reply (props) {
             
             <div className="t2">
                 <div className="d1">
-                    {e.user.name}
+                    {reaction.user.name}
                 </div>
                 <div className="d2">
                     {reaction.comment}
                 </div>
                 <div className="d3">
                     <div className="like">
-                        {e.likes.length} likes
+                        {reaction.likes.length} likes
                     </div>
                     <span>
                         Jawab

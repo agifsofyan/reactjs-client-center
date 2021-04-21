@@ -81,6 +81,7 @@ u {
     padding: 5px 10px;
     border-radius: 10px;
     color: #000000;
+    width: 50%;
 }
 .choosen {
     background-color: #FF4500;
@@ -99,16 +100,21 @@ u {
     justify-content: center;
 }
 .tips-list {
-    margin-top: 5px;
+    margin: 5px 0 60px 0;
 }
 .tips-group {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 25px;
+    cursor: pointer;
+    /* object-fit: contain; */
 }
 .tips-book {
-    width: 22.5%;
+    /* width: 22.5%; */
+    width: 50%;
+    height: auto;
+    object-fit: cover;
 }
 .tips-desc {
     margin-left: 30px;

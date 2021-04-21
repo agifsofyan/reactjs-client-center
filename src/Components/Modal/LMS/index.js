@@ -93,7 +93,20 @@ function Home (props) {
 
             <a
                 href="/" 
+                target="_blank"
+                // style={{marginTop : 19}}
+                className={checkSelected("/lms-dashboard")}
+                onClick={e=>handleChangePage('/lms-dashboard',e)}
+            >
+                Lihat Kelas
+            </a>
+
+            <a
+                href="/" 
+                target="_blank"
                 className="bmc-content-4"
+                className={checkSelected("/order-history")}
+                onClick={e=>handleChangePage('/order-history',e)}
             >
                 Riwayat Pemesanan
             </a>

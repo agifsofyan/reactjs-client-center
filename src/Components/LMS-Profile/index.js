@@ -1,6 +1,7 @@
 import React , { useState ,useEffect } from 'react';
 
 // MODULE
+import { useSelector } from "react-redux"
 import { useHistory } from 'react-router-dom'
 
 // COMPONENT
@@ -36,6 +37,9 @@ const LMSProfile = (props) => {
         },
     ];
 
+    // GLOBAL STATE
+    const userInfo = useSelector(state => state.user.userMe);
+
 
     const renderComplete = () => {
         return todoList.map((val,index) => {
@@ -58,6 +62,27 @@ const LMSProfile = (props) => {
             );
         });
     };
+
+    let numbChange = () => {
+        let num = 4
+        if (userInfo.ktp_numb) {
+            num+= 14
+        }
+        if (userInfo.phone_numbers) {
+            if (userInfo.phone_numbers.length > 0) {
+                num+= 14
+            }
+        }
+        if ( userInfo.favorite_topics) {
+            if (userInfo.favorite_topics.length > 0) {
+                num+= 24
+            }
+        }
+        if (userInfo.avatar) {
+            num+= 9
+        }
+        return num
+    }
 
     const profile = [
         {
@@ -156,8 +181,41 @@ const LMSProfile = (props) => {
                     <div className='complete-title'>
                         Complete Your Profile
                     </div>
-                    <ProgressBar bgcolor='#FFCA41' completed={progress} />
-                    {renderComplete()}
+                    <ProgressBar bgcolor='#FFCA41' completed={numbChange()} />
+                    {/* {renderComplete()} */}
+                    <div className='complete-todo' >
+                        {"Data Diri Anda"}
+                        {
+                            true
+                            ?
+                            <img 
+                                src={checkmark} 
+                                alt='check mark' 
+                                height={25} 
+                                className='complete-check' 
+                            />
+                            :
+                            null
+                        }
+                    </div>
+                    {
+                        <div className='complete-todo' >
+                            {"Topik Favorit Anda"}
+                            {
+                                userInfo && userInfo.favorite_topics &&
+                                userInfo.favorite_topics.length > 0
+                                ?
+                                <img 
+                                    src={checkmark} 
+                                    alt='check mark' 
+                                    height={25} 
+                                    className='complete-check' 
+                                />
+                                :
+                                null
+                            }
+                        </div>
+                    }
                     <div className='complete-complete-div'>
                         <button 
                             className='complete-complete-btn'

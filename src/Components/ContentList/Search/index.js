@@ -33,8 +33,9 @@ function Search (props) {
     }
 
     let searchAction = (e,str) => {
+        console.log(e , ' <<< VALUE E')
         return (
-            e.title.toUpperCase().search(str.toUpperCase() ) >= 0 
+            e.content.title.toUpperCase().search(str.toUpperCase() ) >= 0 
         )
     }
 

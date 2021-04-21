@@ -1,217 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+
+// MODULE
+import axios from 'axios'
+import { useSelector } from 'react-redux'
+
+// API SWAGGER
+import { SWAGGER_URL } from '../../Support/API_URL'
+
+// COMPONENT
 import TopicSection from '../../Components/TopicSection';
 import Footer from '../../Components/LMSFooter';
-import { getVideo } from '../../Redux/Actions';
-import moment from 'moment';
-import localization from 'moment/locale/id';
+import ListComponent from './ListComponent'
+import Loading from './Loading'
+
+// STYLE
 import './List.css';
-
-const Terbaru = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getVideo());
-    }, [dispatch]);
-
-    const videoList = useSelector(({ content }) => content.videoList);
-
-    moment.updateLocale('id', localization);
-
-    const renderVideos = () => {
-        return videoList.map((val,index) => {
-            let time = val.created_at;
-            let date = time.substring(0,10).split('-').join('');
-            let ago = moment(date, "YYYYMMDD").fromNow();
-            return (
-                <Link to={`/lms-video-detail?id=${val._id}`}>
-                    <div key={index} className='videos-texts'>
-                        <img src='https://www.visme.co/wp-content/uploads/2020/02/i_Adventure-Youtube-Video-Cover_full.jpg' alt='live' className='videos-live' />
-                        <div className='videos-desc'>
-                            <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
-                            <div className='videos-summary'>
-                                <div className='videos-title'>
-                                    <b>{val.filename}</b>
-                                </div>
-                                <div className='videos-mentor-name'>
-                                    mentor name here
-                                </div>
-                                <div className='videos-countdown'>
-                                    {ago}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </Link>
-            );
-        });
-    };
-
-    return (
-        <div>
-            {renderVideos()}
-        </div>
-    );
-};
-
-const Rekomendasi = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getVideo());
-    }, [dispatch]);
-
-    const videoList = useSelector(({ content }) => content.videoList);
-
-    moment.updateLocale('id', localization);
-
-    const renderVideos = () => {
-        return videoList.map((val,index) => {
-            let time = val.created_at;
-            let date = time.substring(0,10).split('-').join('');
-            let ago = moment(date, "YYYYMMDD").fromNow();
-            return (
-                <div key={index} className='videos-texts'>
-                    <img src='https://i.pinimg.com/564x/31/33/d0/3133d0bb864699786afd62f71022297e.jpg' alt='live' className='videos-live' />
-                    <div className='videos-desc'>
-                        <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
-                        <div className='videos-summary'>
-                            <div className='videos-title'>
-                                <b>{val.filename}</b>
-                            </div>
-                            <div className='videos-mentor-name'>
-                                mentor name here
-                            </div>
-                            <div className='videos-countdown'>
-                                {ago}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        });
-    };
-
-    return (
-        <div>
-            {renderVideos()}
-        </div>
-    );
-};
-
-const TelahDitonton = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getVideo());
-    }, [dispatch]);
-
-    const videoList = useSelector(({ content }) => content.videoList);
-
-    moment.updateLocale('id', localization);
-
-    const renderVideos = () => {
-        return videoList.map((val,index) => {
-            let time = val.created_at;
-            let date = time.substring(0,10).split('-').join('');
-            let ago = moment(date, "YYYYMMDD").fromNow();
-            return (
-                <div className='videos-texts'>
-                    <img src='https://cdn.wallpapersafari.com/88/67/ul5hCp.png' alt='live' className='videos-live' />
-                    <div className='videos-desc'>
-                        <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
-                        <div className='videos-summary'>
-                            <div className='videos-title'>
-                                <b>{val.filename}</b>
-                            </div>
-                            <div className='videos-mentor-name'>
-                                mentor name here
-                            </div>
-                            <div className='videos-countdown'>
-                                {ago}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        });
-    };
-
-    return (
-        <div>
-            {renderVideos()}
-        </div>
-    );
-};
-
-const SesuaiTopik = () => {
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getVideo());
-    }, [dispatch]);
-
-    const videoList = useSelector(({ content }) => content.videoList);
-
-    moment.updateLocale('id', localization);
-
-    const renderVideos = () => {
-        return videoList.map((val,index) => {
-            let time = val.created_at;
-            let date = time.substring(0,10).split('-').join('');
-            let ago = moment(date, "YYYYMMDD").fromNow();
-            return (
-                <div className='videos-texts'>
-                    <img src='https://wallpapercave.com/wp/1A9R2z9.jpg' alt='live' className='videos-live' />
-                    <div className='videos-desc'>
-                        <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
-                        <div className='videos-summary'>
-                            <div className='videos-title'>
-                                <b>{val.filename}</b>
-                            </div>
-                            <div className='videos-mentor-name'>
-                                mentor name here
-                            </div>
-                            <div className='videos-countdown'>
-                                {ago}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        });
-    };
-
-    return (
-        <div>
-            {renderVideos()}
-        </div>
-    );
-};
-
-const tabList = [
-    {
-        id: 1,
-        title: 'Terbaru',
-        content: <Terbaru />,
-    },
-    {
-        id: 2,
-        title: 'Rekomendasi',
-        content: <Rekomendasi />,
-    },
-    {
-        id: 3,
-        title: 'Telah Ditonton',
-        content: <TelahDitonton />,
-    },
-    {
-        id: 4,
-        title: 'Sesuai Topik',
-        content: <SesuaiTopik />,
-    },
-];
 
 const FilterTab = ({
     title = "",
@@ -229,14 +32,116 @@ const FilterTab = ({
 };
 
 const List = () => {
-    useEffect(() => {
-        document.title = 'LMS Video';
-    });
 
-    const [active, setActive] = useState(1);
+    // GLOBAL STATE
+    const userInfo = useSelector(({ user }) => user.userMe);
+
+    let renderTopic = () => {
+        // console.log(userInfo , ' <<< USER INFO')
+        let result = "topic="
+        let arr = []
+        if (userInfo.favorite_topics) {
+            arr = [...userInfo.favorite_topics]
+        }
+        arr.forEach((e,i)=>{
+            result+= e._id
+            if (i!== arr.length -1) {
+                result += "&topic="
+            }
+        })
+        console.log(result , ' << VALUE QUERY')
+        return result
+    }
+
+    // LOCAL STATE
+    const [active, setActive] = useState(0);
+    const [video,setVideo] = useState(null)
+    const [loading,setLoading] = useState(false)
+    const [tabList] = useState([
+        {
+            // id: 1,
+            title: 'Terbaru',
+            query: "sortby=expired_date&sortval=desc"
+            // content: <Terbaru />,
+        },
+        {
+            // id: 2,
+            title: 'Rekomendasi',
+            query: "trending=true"
+            // content: <Rekomendasi />,
+        },
+        {
+            // id: 3,
+            title: 'Telah Ditonton',
+            query: "sortby=expired_date&sortval=desc"
+            // content: <TelahDitonton />,
+        },
+        {
+            // id: 4,
+            title: 'Sesuai Topik',
+            query: renderTopic() 
+            // content: <SesuaiTopik />,
+        },
+    ]);
+
+    useEffect(()=>{
+        document.title = 'LMS Video';
+        getData(0)
+    },[])
+
+    let getData = (index) => {
+        console.log(tabList.filter((e,i)=>i=== index)[0].query , ' <<< query')
+        console.log(renderTopic() , ' <<< RENDER TOPIC')
+        setLoading(true)
+        axios({
+            method : 'GET',
+            // url : `${SWAGGER_URL}/contents`,
+            url : index < 3 ? `${SWAGGER_URL}/userproducts/videos?type=video&${tabList.filter((e,i)=>i=== index)[0].query}` : 
+            `${SWAGGER_URL}/userproducts?content_post_type=video&as_user=false&${renderTopic()}` ,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            // setWebinarData(data.data)
+            // console.log(data.data , ' << VIDOE LIST (((((')
+            setLoading(false)
+            setVideo(data.data)
+        })
+        .catch(err=>{
+            setLoading(false)
+            console.log(err.response)
+        })
+    }
+
+    // HANDLE CHANGE TAB
+    let handleTab = (el,index) => {
+        console.log(index ,)
+        setActive(index)
+        getData(index)
+    }
+
+    let renderTab = () => {
+        return tabList.map((el,index)=>{
+            const {title} = el
+            return (
+                <div 
+                    // className={isActive ? `filter choosen` : `filter`}
+                    className={index === active ? "filter choosen" : "filter"}
+                    onClick={e=>handleTab(el,index)}
+                    // onClick={onItemClicked}
+                >
+                    {title}
+                </div>
+            )
+        })
+    }
 
     return (
         <div className='root'>
+            
             {/* SECTION CAROUSEL */}
             <div style={{marginTop:'20px'}}>
                 <TopicSection videoTab={true} />
@@ -247,29 +152,25 @@ const List = () => {
 
             {/* FILTER */}
             <div className='filter-container'>
-                {tabList.map(({ id, title }) => 
-                    <FilterTab
-                        key={title}
-                        title={title}
-                        onItemClicked={() => setActive(id)}
-                        isActive={active === id}
-                    />
-                )}
+                {
+                   renderTab()
+                }
             </div>
-
-            {/* LISTS */}
-            <div className='videos-section'>
-                {tabList.map(({ id, content }) => {
-                    return active === id 
-                    ? content 
-                    : null
-                })}
-            </div>
+            {
+                video && !loading ?
+                <ListComponent
+                    active={active}
+                    setActive={setActive}
+                    video={video}
+                /> : 
+                <Loading/>
+            }
 
             {/* FOOTER */}
             <div className='lms-video-list-footer'>
                 <Footer />
             </div>
+
         </div>
     );
 };
