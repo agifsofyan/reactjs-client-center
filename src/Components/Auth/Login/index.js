@@ -4,6 +4,11 @@ import React , { useState } from 'react'
 import axios from 'axios'
 import { useHistory } from 'react-router-dom'
 import Cookies from 'js-cookie';
+import { useDispatch , useSelector } from 'react-redux'
+
+// GLOBAL ACTION
+import { changeValue , changeValueUser , getPaidList } from '../../../Redux/Actions/index'
+import { setDataSetting ,getUserWhoAmI , getUserStory , getUserLMS  } from '../../../Redux/Actions/userAction'
 
 // COMPONENT
 import Input from '../Input' 
@@ -16,6 +21,9 @@ import image from '../../../Assets/Images/login-image.png'
 import { SWAGGER_URL } from '../../../Support/API_URL'
 
 function Login (props) {
+
+    // USE DISPATCH
+    const dispatch = useDispatch()
 
     // PARENT PROPS
     const { email } = props
@@ -50,6 +58,7 @@ function Login (props) {
             setIsLoading(false)
             Cookies.remove('cartList')
             Cookies.remove('productId')
+            handleGlobalAction()
             if (typeof window !== "undefined") {
                 if (window.fbq != null) { 
                   window.fbq('track', 'Subscribe');
@@ -72,6 +81,14 @@ function Login (props) {
             }
             setIsLoading(false)
         })
+    }
+
+    let handleGlobalAction = () => {
+      dispatch(setDataSetting())
+      dispatch(getPaidList());
+      dispatch(getUserWhoAmI());
+      dispatch(getUserStory())
+      dispatch(getUserLMS( {trending : true,favorite : false} ))
     }
 
     let handleValidation = (e) => {

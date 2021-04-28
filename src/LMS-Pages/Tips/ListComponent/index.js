@@ -8,7 +8,7 @@ function ListComponent (props) {
     // HISTORY
     const history = useHistory()
 
-    const { tips , active, setActive } = props
+    const { tips , active, setActive , slug } = props
 
     return (
         <>
@@ -16,32 +16,32 @@ function ListComponent (props) {
                 tips.map((val,index)=>{
                  return (
                     <div
-                        onClick={e=>history.push(`/lms-tips-detail?id=${val._id}`)}
+                        onClick={e=>history.push(`/lms-tips-detail/${slug}/${val._id}`)}
                         key={index} className='tips-group'
                     >
                         <img 
-                            src={val.content.images[0]} 
+                            src={val.image} 
                             alt='book on shipping' 
                             className='tips-book' 
                         />
                         <div className='tips-desc'>
                             <div className='tips-detail'>
-                                <b>{val.content.title}</b>
+                                <b>{val.title}</b>
                                 {/* {
                                     index === 0
                                     ? <img src={tick} alt='tick' className='tips-checkmark' />
                                     : null
                                 } */}
                                 <br/>
-                                {val.content.desc}
+                                {val.desc}
                             </div>
                             <div className='tips-poin'>
-                                <b>+3 Poin</b>
+                                <b>+{val.point} Poin</b>
                             </div>
                             <div className='author-details'>
                                 {/* <img src={author} alt='author' className='author-profile' /> */}
                                 <div className='author-name-time'>
-                                    {/* John Doe ● {ago} ● 5 min read */}
+                                    {val.read_by.name} ● {"ago"} ● 5 min read
                                 </div>
                             </div>
                             {/* <div style={{marginTop:'10px'}}>

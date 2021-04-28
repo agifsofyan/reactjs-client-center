@@ -9,7 +9,8 @@ import {
     GET_SETTING,
     ORDER_LOGOUT,
     GET_LMS,
-    SET_LOADING
+    SET_LOADING,
+    SET_MENU_LMS
 } from '../type';
 
 
@@ -44,9 +45,9 @@ export const getUserLMS = (params,topic) => {
     let url;
     console.log(topic , ' <<<< VALUE TOPIC HERE')
     if (trending && favorite ) {
-        url = `${SWAGGER_URL}/userproducts?trending=${trending}&favorite=${favorite}&as_user=true&offset=1&limit=20&sortby=created_at&sortval=desc`
+        url = `${SWAGGER_URL}/lms?trending=${trending}&favorite=${favorite}&as_user=true&offset=1&limit=20&sortby=created_at&sortval=desc`
     }else {
-        url = `${SWAGGER_URL}/userproducts?as_user=false&done=false&offset=1&limit=20&sortby=created_at&sortval=desc&${topic}`
+        url = `${SWAGGER_URL}/lms?as_user=false&done=false&offset=1&limit=20&sortby=created_at&sortval=desc&${topic}`
     }
     console.log(url , ' <<< WHAT IS URL')
     return (dispatch) => {
@@ -152,6 +153,15 @@ export const setDataSetting = (data) => {
         })
         .catch(err=>{
             console.log(err , ' <<< ERROR')
+        })
+    }
+}
+
+export const setAvailableMenu = (value) => {
+    return (dispatch) => {
+        dispatch({
+            type : SET_MENU_LMS,
+            payload : value
         })
     }
 }

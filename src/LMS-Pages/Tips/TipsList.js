@@ -32,7 +32,7 @@ const FilterTab = ({
     );
 };
 
-const Tips = () => {
+const Tips = (props) => {
 
     // GLOBAL STATE
     const userInfo = useSelector(({ user }) => user.userMe);
@@ -40,6 +40,7 @@ const Tips = () => {
     // LOCAL STATE
     const [tips,setTips] = useState(null)
     const [loading,setLoading] = useState(false)
+    const [allT,setAllT] = useState(null)
 
     let renderTopic = () => {
         // console.log(userInfo , ' <<< USER INFO')
@@ -92,14 +93,16 @@ const Tips = () => {
     },[])
 
     let getData = (index) => {
-        console.log(tabList.filter((e,i)=>i=== index)[0].query , ' <<< query')
-        console.log(renderTopic() , ' <<< RENDER TOPIC')
+        // console.log(tabList.filter((e,i)=>i=== index)[0].query , ' <<< query')
+        // console.log(renderTopic() , ' <<< RENDER TOPIC')
         setLoading(true)
+        let slug = props.location.pathname.split('/')[2]
         axios({
             method : 'GET',
             // url : `${SWAGGER_URL}/contents`,
-            url : index < 3 ? `${SWAGGER_URL}/userproducts?content_post_type=video&as_user=false&${tabList.filter((e,i)=>i=== index)[0].query}` : 
-            `${SWAGGER_URL}/userproducts?content_post_type=video&as_user=false&${renderTopic()}` ,
+            // url : index < 3 ? `${SWAGGER_URL}/userproducts?content_post_type=video&as_user=false&${tabList.filter((e,i)=>i=== index)[0].query}` : 
+            // `${SWAGGER_URL}/userproducts?content_post_type=video&as_user=false&${renderTopic()}` ,
+            url : `${SWAGGER_URL}/lms/${slug}/tips`,
             headers : {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
@@ -110,7 +113,8 @@ const Tips = () => {
             // setWebinarData(data.data)
             console.log(data.data , ' << VIDOE LIST')
             setLoading(false)
-            setTips(data.data)
+            setTips(data.data.tips_list)
+            setAllT(data.data)
         })
         .catch(err=>{
             setLoading(false)
@@ -168,13 +172,13 @@ const Tips = () => {
     return (
         <div className='root'>
             {/* WELCOME VIDEO */}
-            <WelcomeVideo />
+            <WelcomeVideo data={allT}/>
 
             {/* DIVIDER */}
             <div className='divider' />
 
             {/* SECTION CAROUSEL */}
-            <TopicSection tipsTab={true} />
+            <TopicSection {...props} tipsTab={true} />
 
             {/* DIVIDER */}
             {/* <div className='divider' /> */}
@@ -211,6 +215,7 @@ const Tips = () => {
                             active={active}
                             setActive={setActive}
                             tips={tips}
+                            slug={props.location.pathname.split('/')[2]}
                         /> : 
                         <Loading/>
                     }

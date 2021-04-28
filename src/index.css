@@ -72,7 +72,7 @@ code {
   font-family: 'Roboto', sans-serif;
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 1000px) {
   .root-content {
     width: 85%;
     /* background-color: pink; */

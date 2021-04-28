@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 // MODULE
 import axios from 'axios'
-import { useSelector } from 'react-redux'
+import { useSelector , useDispatch } from 'react-redux'
 
 // API SWAGGER
 import { SWAGGER_URL } from '../../Support/API_URL'
@@ -12,6 +12,9 @@ import TopicSection from '../../Components/TopicSection';
 import Footer from '../../Components/LMSFooter';
 import ListComponent from './ListComponent'
 import Loading from './Loading'
+
+// GLOBAL STATE
+import { setAvailableMenu } from '../../Redux/Actions/userAction';
 
 // STYLE
 import './List.css';
@@ -31,7 +34,10 @@ const FilterTab = ({
     );
 };
 
-const List = () => {
+const List = (props) => {
+
+    // USE DISPATCH
+    const dispatch = useDispatch()
 
     // GLOBAL STATE
     const userInfo = useSelector(({ user }) => user.userMe);
@@ -92,12 +98,14 @@ const List = () => {
     let getData = (index) => {
         console.log(tabList.filter((e,i)=>i=== index)[0].query , ' <<< query')
         console.log(renderTopic() , ' <<< RENDER TOPIC')
+        let slug = props.location.pathname.split('/')[2]
         setLoading(true)
         axios({
             method : 'GET',
             // url : `${SWAGGER_URL}/contents`,
-            url : index < 3 ? `${SWAGGER_URL}/userproducts/videos?type=video&${tabList.filter((e,i)=>i=== index)[0].query}` : 
-            `${SWAGGER_URL}/userproducts?content_post_type=video&as_user=false&${renderTopic()}` ,
+            // url : index < 3 ? `${SWAGGER_URL}/userproducts/videos?type=video&${tabList.filter((e,i)=>i=== index)[0].query}` : 
+            // `${SWAGGER_URL}/userproducts?content_post_type=video&as_user=false&${renderTopic()}` ,
+            url : `${SWAGGER_URL}/lms/${slug}/video`,
             headers : {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
@@ -105,10 +113,12 @@ const List = () => {
             }
         })
         .then(({data})=>{
+            console.log(data.data , ' <<< VALUE VIDEO HERE')
             // setWebinarData(data.data)
             // console.log(data.data , ' << VIDOE LIST (((((')
+            dispatch(setAvailableMenu(data.data.available_menu))
             setLoading(false)
-            setVideo(data.data)
+            setVideo(data.data.videos)
         })
         .catch(err=>{
             setLoading(false)
@@ -144,7 +154,7 @@ const List = () => {
             
             {/* SECTION CAROUSEL */}
             <div style={{marginTop:'20px'}}>
-                <TopicSection videoTab={true} />
+                <TopicSection {...props} videoTab={true} />
             </div>
 
             {/* DIVIDER */}
@@ -162,14 +172,18 @@ const List = () => {
                     active={active}
                     setActive={setActive}
                     video={video}
+                    slug={props.location.pathname.split('/')[2]}
                 /> : 
                 <Loading/>
             }
+
+            <div style={{marginBottom : "40px"}}/>
 
             {/* FOOTER */}
             <div className='lms-video-list-footer'>
                 <Footer />
             </div>
+            
 
         </div>
     );

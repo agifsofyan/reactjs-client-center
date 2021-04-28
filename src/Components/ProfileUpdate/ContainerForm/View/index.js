@@ -88,7 +88,7 @@ function View (props) {
             {
                 userInfo && userInfo.favorite_topics &&
                 <ViewContent
-                    title={"Topic"}
+                    title={"Topik"}
                     status={userInfo.favorite_topics.length > 0 ? true : false}
                     action={()=>handleChange(2)}
                 />

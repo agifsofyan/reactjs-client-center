@@ -6,6 +6,7 @@ import { useHistory } from 'react-router-dom'
 
 // COMPONENT
 import { ContainerForm } from '../../Components/ProfileUpdate'
+import Footer from '../../Components/LMSFooter'
 
 // MATERIAL ICON
 import PermMediaIcon from '@material-ui/icons/PermMedia';
@@ -34,12 +35,13 @@ function ProfileUpdate (props) {
     return (
         <div className="profile-update-17">
 
+
             <div className="c1">
                 {/* <div>
 
                 </div> */}
                 <div className="t1">
-                    Profile
+                    Profil
                 </div>
                 <div 
                     className="t2"
@@ -51,7 +53,7 @@ function ProfileUpdate (props) {
                         <KeyboardBackspaceIcon style={{color : "#ffffff",fontSize : 21,cursor : "pointer",marginLeft : 5}}/>
                     }
                     <div className="text">
-                        {props.location.search !== "" ? "Back" : "Edit"}
+                        {props.location.search !== "" ? "Kembali" : "Edit"}
                     </div>
                     {
                         props.location.search === "" &&
@@ -78,7 +80,7 @@ function ProfileUpdate (props) {
                     </div>
                     <div>
                         {
-                            userInfo && userInfo.phone_numbers && userInfo.phone_numbers.length > 0 && userInfo.phone_numbers[0].phone_number   
+                            userInfo && userInfo.phone_numbers && userInfo.phone_numbers.length > 0 && userInfo.phone_numbers[0].country_code +   userInfo.phone_numbers[0].phone_number   
                         }
                     </div>
                 </div>
@@ -90,6 +92,8 @@ function ProfileUpdate (props) {
                 setSelectedTab={setSelectedTab}
                 {...props}
             />
+
+            <Footer/>
             
         </div>
     )

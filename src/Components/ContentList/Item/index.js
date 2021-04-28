@@ -23,19 +23,19 @@ function Item (props) {
         <div
             style={{...style}}
             className="cl-item-11"
-            onClick={e2=>history.push(`/blog?title=${e.content.title}&id=${e._id}`)}
+            onClick={e2=>history.push(`/blog?title=${e.title}&id=${e._id}`)}
         >
             <img
-                src={newsImg}
+                src={e.images[0]}
                 alt={"news"}
             />
 
             <div className="c1">
                 <div className="t1">
-                    { e.content && e.content.title.slice(0,34) + ( e.content.title.length >= 34 ? "...." : "" )}
+                    {  e.title.slice(0,34) + ( e.title.length >= 34 ? "...." : "" )}
                 </div>
                 <div className="t2">
-                    {e.content && e.content.desc.slice(0,90) + ( e.content.desc.length >= 90 ? "...." : "" )}
+                    { e.desc.slice(0,90) + ( e.desc.length >= 90 ? "...." : "" )}
                 </div>
                 <div className="t3">
                     <div className="img">

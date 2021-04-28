@@ -37,6 +37,7 @@ function ContainerForm (props) {
                 renderComponent() :
                 <View setSelectedTab={setSelectedTab}/>
             }
+
         </div>
     )
 

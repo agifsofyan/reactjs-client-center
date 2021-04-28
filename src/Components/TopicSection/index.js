@@ -1,7 +1,8 @@
-import React from 'react';
+import React , { useState } from 'react';
 
 // MODULE
 import { useHistory } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import './topicsection.css';
 
@@ -10,6 +11,10 @@ const TopicSection = (props) => {
     // HISTORY
     const history = useHistory()
 
+    // GLOBAL STATE
+    const availableMenu = useSelector(state=>state.user.availableMenu)
+
+    // PARENT PROPS
     const {
         dashboardTab,
         webinarTab,
@@ -19,56 +24,73 @@ const TopicSection = (props) => {
         groupTab,
         bonusTab,
         resellerTab,
+        idProduct,
     } = props;
+
+    // LOCAL STATE 
+    const [id,setId] = useState(null)
 
     const sectionTopic = [
         {
             title: 'Home',
             active: dashboardTab,
-            href: '/lms-dashboard',
+            href: `/lms-home/${props.location.pathname.split('/')[2]}`,
+            menu : "home"
         },
         {
             title: 'Webinar',
             active: webinarTab,
-            href: '/lms-webinar',
+            href: `/lms-webinar/${props.location.pathname.split('/')[2]}`,
+            menu : "webinar"
         },
         {
             title: 'Video',
             active: videoTab,
-            href: '/lms-video-list',
+            href: `/lms-video-list/${props.location.pathname.split('/')[2]}`,
+            menu : "video"
         },
         {
             title: 'Tips',
             active: tipsTab,
-            href: '/lms-tips-list',
+            href: `/lms-tips-list/${props.location.pathname.split('/')[2]}`,
+            menu : "tips"
         },
         {
             title: 'Module',
             active: moduleTab,
             href: '/lms-module',
+            menu : "module",
         },
         {
             title: 'Group',
             active: groupTab,
             href: '/lms-group',
+            menu : "group",
         },
         {
             title: 'Bonus',
             active: bonusTab,
             href: '/lms-bonus',
+            menu : "bonus",
         },
         {
             title: 'Reseller',
             active: resellerTab,
             href: '/lms-reseller',
+            menu : "reseller",
         },
     ];
 
+    const handleChange = ({title,active,href}) => {
+        history.push(href)
+    }
+
     const renderSection = () => {
         return sectionTopic.map((val,index) => {
+            // console.log(availableMenu[val.menu] , ' <<< IT SHOULD BE TRUE')
             return (
                 <div 
-                    onClick={e=>history.push(val.href)}
+                    onClick={e=> availableMenu[val.menu] && handleChange(val)}
                     key={index} 
                     className={
                         val.active 
@@ -89,7 +111,7 @@ const TopicSection = (props) => {
 
     return (
         <div className='section-section'>
-            {renderSection()}
+            {availableMenu && renderSection()}
         </div>
     );
 };

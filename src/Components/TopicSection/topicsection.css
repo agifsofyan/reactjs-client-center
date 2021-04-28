@@ -4,6 +4,7 @@
 
 /* SECTION */
 .section-section {
+    /* background-color: pink; */
     padding: 0px 35px;
     display: flex;
     justify-content: space-between;
@@ -22,19 +23,75 @@
 }
 .section-title {
     font-family: 'Rubik', sans-serif;
-    font-size: medium;
+    font-size: 17px;
     color: #033E66;
     text-transform: uppercase;
+    /* margin-right: 10px; */
 }
 .section-title-active {
     font-family: 'Rubik', sans-serif;
-    font-size: medium;
+    /* font-size: medium; */
+    font-size: 17px;
     color: #033E66;
     text-transform: uppercase;
     border-bottom: 2px solid #006db6;
     background-color: #FFFFFF;
 }
 /* SECTION */
+
+@media only screen and (max-width: 1250px) {
+    .section-title {
+        font-size: 15px;
+    }
+    .section-title-active {
+        font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 1200px) {
+    .section-title {
+        font-size: 14.7px;
+    }
+    .section-title-active {
+        font-size: 14.7px;
+    }
+}
+
+@media only screen and (max-width: 1170px) {
+    .section-title {
+        font-size: 14.5px;
+    }
+    .section-title-active {
+        font-size: 14.5px;
+    }
+}
+
+@media only screen and (max-width: 1120px) {
+    .section-title {
+        font-size: 14px;
+    }
+    .section-title-active {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 1090px) {
+    .section-title {
+        font-size: 12px;
+    }
+    .section-title-active {
+        font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .section-title {
+        font-size: 17px;
+    }
+    .section-title-active {
+        font-size: 17px;
+    }
+}
 
 /* MOBILE */
 @media only screen and (max-width: 600px) {

@@ -27,9 +27,12 @@
     font-family: 'Rubik', 'sans-serif';
     font-size: medium;
     margin-right: 15px;
-    padding: 5px 10px;
+    padding: 5px 0;
     border-radius: 10px;
     color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .choosen {
     background-color: #FF4500;
@@ -48,7 +51,7 @@
 .videos-texts {
     display: flex;
     flex-direction: column;
-    margin: 20px 5px;
+    margin: 15px 0;
 }
 .videos-live {
     width: 100%;
@@ -56,12 +59,13 @@
 .videos-desc {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    /* margin-top: 10px; */
+    margin: 10px 20px;
 }
 .videos-mentor-img {
     height: 50px;
-    border-radius: 50px;
-    overflow: hidden;
+    border-radius: 100px;
+    /* overflow: hidden; */
 }
 .videos-summary {
     margin-left: 15px;

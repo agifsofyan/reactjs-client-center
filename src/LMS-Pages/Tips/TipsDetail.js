@@ -1,26 +1,67 @@
-import React, { useEffect } from 'react';
-import TopicSection from '../../Components/TopicSection';
-import Footer from '../../Components/LMSFooter';
+import React, { useEffect , useState } from 'react';
+
+// MODULES
 import { Breadcrumb, Select, Input, Comment, Tooltip, List } from 'antd';
-import { getBlogById, getBlogList } from '../../Redux/Actions';
 import { useDispatch, useSelector } from 'react-redux';
 import moment from 'moment';
+import axios from 'axios'
+
+// COMPONENTS
+import TopicSection from '../../Components/TopicSection';
+import Footer from '../../Components/LMSFooter';
+
+// GLOBAL ACTIONS
+import { getBlogById, getBlogList } from '../../Redux/Actions';
+import { setAvailableMenu } from '../../Redux/Actions/userAction'
+
+// API SWAGGER
+import { SWAGGER_URL } from '../../Support/API_URL'
+
+// STYLE
 import './TipsDetail.css';
 
 const { Option } = Select;
 
-const TipsDetail = (query) => {
+const TipsDetail = (props) => {
     const dispatch = useDispatch();
 
+    // PROPS
+    const queryId = props.location.search.split('=')[1];
+
+    // GLOBAL STATE
     const blogList = useSelector(({ content }) => content.blogList);
     const blogById = useSelector(({ content }) => content.blogById);
-    const queryId = query.location.search.split('=')[1];
 
+    // LOCAL STATE
+    const [tips,setTips] = useState(null)
+    
     useEffect(() => {
         document.title = 'LMS Tips Detail';
         dispatch(getBlogById(queryId));
         dispatch(getBlogList());
     }, [dispatch, queryId]);
+
+    useEffect(()=>{
+        let slug = props.location.pathname.split('/')[2]
+        let id = props.location.pathname.split('/')[3]
+        axios({
+            method : 'GET',
+            url : `${SWAGGER_URL}/lms/${slug}/tips/${id}`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            setTips(data.data.tips)
+            dispatch(setAvailableMenu(data.data.available_menu))
+            console.log(data , "  VALUE DETAIL TIPS ((((((**" )
+        })
+        .catch(err=>{
+            console.log(err.response , ' <<< ERROR HERE')
+        })
+    },[])
 
     const breadCrumbs = [
         "Laruno",
@@ -76,7 +117,7 @@ const TipsDetail = (query) => {
                         {breadCrumbs[1]}
                     </Breadcrumb.Item>
                     <Breadcrumb.Item>
-                        {blogById.title}
+                        { tips && tips.title}
                     </Breadcrumb.Item>
                 </Breadcrumb>
                 <div className='tipsdetail-author-details'>
@@ -94,7 +135,8 @@ const TipsDetail = (query) => {
                         <b>{blogById.title}</b>
                     </div>
                     <img 
-                        src="https://img.freepik.com/free-photo/front-view-shopping-cart-with-lots-coins-jar_23-2148569118.jpg?size=626&ext=jpg"
+                        // src="https://img.freepik.com/free-photo/front-view-shopping-cart-with-lots-coins-jar_23-2148569118.jpg?size=626&ext=jpg"
+                        src={tips && tips.image}
                         alt="article illustration" 
                         className="tipsdetail-article-picture"
                     />
@@ -107,7 +149,7 @@ const TipsDetail = (query) => {
                         </button>
                     </div>
                     <div className='tipsdetail-article-showoff'>
-                        Every day, 100k+ smart people read our newsletter. You can sign up here. 🔥
+                        {tips && tips.desc}
                     </div>
                     <div className='tipsdetail-article-paragraphs'>
                         Hello readers, <br/> {blogById.desc}
@@ -214,7 +256,7 @@ const TipsDetail = (query) => {
         <div className='root'>
             {/* SECTION CAROUSEL */}
             <div style={{marginTop:'20px'}}>
-                <TopicSection tipsTab={true} />
+                <TopicSection {...props} tipsTab={true} />
             </div>
 
             {/* DIVIDER */}

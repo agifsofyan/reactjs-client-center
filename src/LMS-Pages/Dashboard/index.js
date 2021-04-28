@@ -1,7 +1,7 @@
 import React, { useEffect , useState } from 'react';
 
 // MODULE
-// import axios from 'axios';
+import axios from 'axios';
 import { message, Rate } from 'antd';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -11,6 +11,9 @@ import Skeleton from 'react-loading-skeleton';
 import Profile from '../../Components/LMS-Profile';
 import ContentSection from '../../Components/Content';
 import Footer from '../../Components/LMSFooter';
+
+// API
+import { SWAGGER_URL } from '../../Support/API_URL'
 
 // REDUX 
 import { setValueStory } from '../../Redux/Actions/storyAction'
@@ -30,8 +33,13 @@ const Dashboard = () => {
     const dataLMS = useSelector(state=>state.user.userLMS)
     const loadingLMS = useSelector(state=>state.user.loading)
 
+    console.log(dataLMS , ' <<< value data LMS HERE')
+
     // LOCAL STATE
     const [searchStr,setSearchStr] = useState("")
+    const [storyData,setStoryData] = useState(null)
+    const [productData,setProductData] = useState(null)
+    const [unfinihsData,setUnfinish] = useState(null)
 
     useEffect(() => {
         document.title = 'Dashboard';
@@ -40,6 +48,39 @@ const Dashboard = () => {
     useEffect(()=>{
         console.log(loadingLMS , ' <<<< LOADING LMS VALUE HERE')
     },[loadingLMS])
+
+    useEffect(()=>{
+        if (dataLMS) {
+            let data = dataLMS
+            setStoryData(data.stories)
+            setProductData(data.products)
+            setUnfinish(data.productInProgress[0])
+        }
+    },[dataLMS])
+
+    let handleDescription = (text) => {
+        return text.replace(/<\/?[^>]+(>|$)/g, "").slice(0,32) + "" + renderDot(text)
+    }
+
+    // useEffect(()=>{
+    //     axios({
+    //         method : "GET",
+    //         url : `${SWAGGER_URL}/lms`,
+    //         headers : {
+    //             'Access-Control-Allow-Origin': '*',
+    //             'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+    //             'Authorization': `Bearer ${localStorage.getItem('token')}`,
+    //         }
+    //     })
+    //     .then(({data})=>{
+    //         setStoryData(data.data.stories)
+    //         setProductData(data.data.products)
+    //         console.log(data.data , ' <<< VALUE DATA')
+    //     })
+    //     .catch(err=>{
+    //         console.log(err.response , ' <<< ERROR')
+    //     })
+    // },[])
 
     const storyImg = 'https://www.digitalartsonline.co.uk/cmsdata/slideshow/3784651/01_idea.jpg';
     const unfinishImg = 'https://wallpaperaccess.com/full/656648.jpg';
@@ -52,13 +93,13 @@ const Dashboard = () => {
     }
 
     const renderStory = () => {
-        return dataProduct.map((e,index) => {
+        return storyData.map((e,index) => {
             return (
                 <div 
                     className='story-card'
                     onClick={e=>clickStory(index)}
                 >
-                    <img src={e.content.images[0]} alt='boba' className='story-img' />
+                    <img src={e.img} alt='boba' className='story-img' />
                 </div>
             );
         });
@@ -72,36 +113,43 @@ const Dashboard = () => {
         {
             title: 'Jadwal Webinar',
             notification: null,
-            url : "/lms-webinar"
+            url : "/lms-webinar",
+            id : "webinar"
         },
         {
             title: 'Nonton Video',
             notification: null,
-            url : "'/lms-video-list"
+            url : "'/lms-video-list",
+            id : "video"
         },
         {
             title: 'Baca Tips',
             notification: null,
-            url: '/lms-tips-list'
+            url: '/lms-tips-list',
+            id : "tips"
         },
         {
             title: 'Isi Modul Praktek',
             notification: null,
             url: '/lms-module',
+            id : "module"
         },
     ];
 
     const renderSchedule = () => {
         return scheduleList.map((val,index) => {
             return (
-                <div onClick={e=>history.push(val.url)} className='schedule-card' key={index}>
+                <div 
+                    // onClick={e=>history.push(val.url)} 
+                    className='schedule-card' key={index}
+                >
                     <div className='schedule-description'>
                         <span className='schedule-title'>
                             {val.title}
                         </span>
                         <br></br>
                         <span className='schedule-notification'>
-                            {val.notification}
+                            {dataLMS[val.id].total + " " + val.id}
                         </span>
                     </div>
                 </div>
@@ -111,25 +159,25 @@ const Dashboard = () => {
 
     let renderList = () => {
         if (searchStr === "") {
-            return dataLMS.map((el,index) => {
+            return productData.map((el,index) => {
                 // const items = el.items;
                 // console.log(el)
                 return (
                     <div
                         key={index}
-                        onClick={(e) => history.push(`/lms-home?id=${el._id}`)}
+                        onClick={(e) => history.push(`/lms-home/${el.slug}`)}
                     >
                         <img 
                             className="slides-3-content-c1"
                             // src={productRecom}
-                            src={el.content.images[0]}
+                            src={el.image_url}
                             alt={'recom'}
                         />
                         <span className="slides-3-content-c2">
-                            {el.product.name.slice(0,27) + "" + renderDot(el.product.name,27)}
+                            {el.name.slice(0,27) + "" + renderDot(el.name,27)}
                         </span>
                         <div className="slides-3-content-c3">
-                            {el.content.desc.slice(0,60) + "" + renderDot(el.content.desc,60)}
+                            {handleDescription( el.description).slice(0,60) + "" + renderDot(handleDescription( el.description),60)}
                         </div>
                         <div className="slides-3-content-c6">
                             Baca
@@ -138,7 +186,7 @@ const Dashboard = () => {
                 );
             });
         }else {
-            let data = dataLMS.filter(e=> searchAction(e.content.title,searchStr) || searchAction(e.content.desc,searchStr)  )
+            let data = dataLMS.products.filter(e=> searchAction(e.name,searchStr) || searchAction(e.description,searchStr)  )
             if (data.length === 0 ) {
                 return (
                     <div style={{width : "100%" ,display : "flex",justifyContent : "center",alignItems : "center",height : 100}}>
@@ -152,19 +200,19 @@ const Dashboard = () => {
                 return (
                     <div
                         key={index}
-                        onClick={(e) => history.push(`/lms-home?id=${el._id}`)}
+                        onClick={(e) => history.push(`/lms-home/${el.slug}`)}
                     >
                         <img 
                             className="slides-3-content-c1"
                             // src={productRecom}
-                            src={el.content.images[0]}
+                            src={el.image_url}
                             alt={'recom'}
                         />
                         <span className="slides-3-content-c2">
-                            {el.content.title.slice(0,27) + "" + renderDot(el.content.title,27)}
+                            {el.name.slice(0,27) + "" + renderDot(el.name,27)}
                         </span>
                         <div className="slides-3-content-c3">
-                            {el.content.desc.slice(0,60) + "" + renderDot(el.content.desc,60)}
+                            {el.description.slice(0,60) + "" + renderDot(el.description,60)}
                         </div>
                         <div className="slides-3-content-c6">
                             Baca
@@ -197,10 +245,10 @@ const Dashboard = () => {
                     <img src={unfinishImg} alt='unfinish' className='unfinish-image' />
                     <div className='unfinish-status'>
                         <div className='status-desc'>
-                            <b>BOE Business Master</b>
+                            <b>{unfinihsData.name}</b>
                         </div>
                         <div className='status-desc'>
-                            Progress: {percent}% / <b>100%</b>
+                            Progress: {unfinihsData.progress}% / <b>100%</b>
                         </div>
                         <button className='status-button'>
                             LANJUT BELAJAR
@@ -288,7 +336,7 @@ const Dashboard = () => {
 
             {/* STORY */}
             <div className='story-section'>
-                { dataProduct && renderStory()}
+                { storyData && renderStory()}
             </div>
 
             {/* DIVIDER */}
@@ -311,7 +359,7 @@ const Dashboard = () => {
             <div className='paid-content'>
                 {/* <Content /> */}
                 <div className="slides-paid-list">
-                    { dataLMS && !loadingLMS ? renderList() : renderLoading() }
+                    { productData && !loadingLMS ? renderList() : renderLoading() }
                 </div>
             </div>
 
@@ -323,7 +371,7 @@ const Dashboard = () => {
                 <div className='unfinish-title'>
                     Kelas yang Belum Anda Selesaikan
                 </div>
-                {renderUnfinish(15,211)}
+                { unfinihsData && renderUnfinish(15,211)}
             </div>
 
             {/* FOOTER */}

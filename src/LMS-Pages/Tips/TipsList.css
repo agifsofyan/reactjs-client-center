@@ -108,16 +108,19 @@ u {
     align-items: center;
     margin-bottom: 25px;
     cursor: pointer;
+    height: 200px;
     /* object-fit: contain; */
 }
 .tips-book {
     /* width: 22.5%; */
     width: 50%;
-    height: auto;
+    /* height: auto; */
+    height: 100%;
     object-fit: cover;
 }
 .tips-desc {
     margin-left: 30px;
+    /* height: 200px; */
 }
 .tips-detail {
     font-family: 'Rubik', sans-serif;

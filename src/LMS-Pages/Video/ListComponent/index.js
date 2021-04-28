@@ -8,25 +8,27 @@ function ListComponent (props) {
     // HISTORY
     const history = useHistory()
 
-    const { video , active, setActive } = props
+    const { video , active, setActive , slug } = props
 
     return (
         <>
             {
                 video.map((el,index)=>{
-                 return (
+                console.log(el , ' <<<< VALUE EL HERE >>>')
+                return (
                     <div 
-                        onClick={e=>history.push(`/lms-video-detail?id=${el._id}`)}
+                        style={{cursor : "pointer"}}
+                        onClick={e=>history.push(`/lms-video-detail/${slug}/${el._id}`)}
                         className='videos-texts'>
                         {/* <img src='https://www.visme.co/wp-content/uploads/2020/02/i_Adventure-Youtube-Video-Cover_full.jpg' alt='live' className='videos-live' /> */}
-                        <video className="videos-live" controls>
+                        <video className="videos-live">
                             <source src={el.url}/>
                         </video>
                         <div className='videos-desc'>
                             <img src='https://pbs.twimg.com/media/ETKeT7wWAAAsxFY.jpg' alt='mentor' className='videos-mentor-img' />
                             <div className='videos-summary'>
                                 <div className='videos-title'>
-                                    {/* <b>{el.content.title}</b> */}
+                                    <b>{el.title}</b>
                                 </div>
                                 <div className='videos-mentor-name'>
                                     mentor name here
@@ -37,7 +39,7 @@ function ListComponent (props) {
                             </div>
                         </div>
                     </div>
-                 )
+                )
                 })
             }
         </>

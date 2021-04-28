@@ -81,6 +81,7 @@
     padding: 25px 35px;
     display: flex;
     align-items: center;
+    color: #000000;
 }
 .video-container:hover {
     background-color: #ECF0FD;

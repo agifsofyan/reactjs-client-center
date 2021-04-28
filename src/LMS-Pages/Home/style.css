@@ -101,7 +101,13 @@ u {
     color: white;
     background-color: #FF4500;
     border: none;
-    padding: 5px 10px;
+    min-width: 120px;
+    height: 40px;
+    /* padding: 0px 10px 0 10px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding: 5px 10px; */
     border-radius: 5px;
 }
 /* DETAIL */

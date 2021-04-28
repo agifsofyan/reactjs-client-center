@@ -218,7 +218,7 @@ function Edit () {
 
     return (
         <form onSubmit={e=>handleClick(e)} className="container">
-            <div className="title" style={{marginTop : 30}}>Full Name</div>
+            <div className="title" style={{marginTop : 30}}>Nama Lengkap</div>
             <input 
                 type="text" 
                 className="input1"

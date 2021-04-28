@@ -25,8 +25,9 @@ function ContentContainer (props) {
     let getData = () => {
         axios({
             method : 'GET',
-            // url : `${SWAGGER_URL}/contents`,
-            url : `${SWAGGER_URL}/userproducts?trending=true&favorite=false&as_user=false&done=false&offset=1&limit=10&sortby=created_at&sortval=desc`,
+            url : `${SWAGGER_URL}/contents`,
+            // url : `${SWAGGER_URL}/userproducts?trending=true&favorite=false&as_user=false&done=false&offset=1&limit=10&sortby=created_at&sortval=desc`,
+            // url : `${SWAGGER_URL}/userproducts`,
             headers : {
                 'Access-Control-Allow-Origin': '*',
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',

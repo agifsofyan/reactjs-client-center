@@ -7,7 +7,8 @@ import {
     GET_STORIES,
     GET_SETTING,
     GET_LMS,
-    SET_LOADING
+    SET_LOADING,
+    SET_MENU_LMS
 } from '../type'
 
 const INITIAL_STATE = {
@@ -18,6 +19,7 @@ const INITIAL_STATE = {
     userLMS : null,
     stories : null,
     settingData : null,
+    availableMenu : null
 };
 
 export const UserReducer = (state = INITIAL_STATE, action) => {
@@ -61,10 +63,14 @@ export const UserReducer = (state = INITIAL_STATE, action) => {
                 userLMS : action.payload
             }
         case SET_LOADING:
-            console.log("HERE MASUK 888")
             return {
                 ...state,
                 loading : action.payload
+            }
+        case SET_MENU_LMS:
+            return {
+                ...state,
+                availableMenu : action.payload
             }
         default: return state;
     };

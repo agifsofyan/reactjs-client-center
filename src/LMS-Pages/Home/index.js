@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // MODULE
-import axios from 'axios'
+import axios from 'axios'   
 import { useDispatch, useSelector } from 'react-redux';
 
 // MODULE ANT DESIGN
@@ -12,6 +12,8 @@ import TextArea from 'antd/lib/input/TextArea';
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
 import Footer from '../../Components/LMSFooter';
+import Loader from '../../Components/Loader'
+import Loading from '../../Components/LMS-Home/Loading'
 
 // IMAGES
 import bronze from '../../Assets/Images/bronze.png';
@@ -25,7 +27,7 @@ import { SWAGGER_URL } from '../../Support/API_URL'
 
 // REDUX
 import { getProductById, getReviewByUser, postReviewCourse } from '../../Redux/Actions';
-import { getUserWhoAmI } from '../../Redux/Actions/userAction';
+import { getUserWhoAmI , setAvailableMenu } from '../../Redux/Actions/userAction';  
 
 import './style.css';
 
@@ -33,6 +35,7 @@ const LMSHome = (props) => {
     const dispatch = useDispatch();
 
     const userInfo = useSelector(({ user }) => user.userMe);
+    console.log(userInfo , ' <<< VALUE USER INFO')
     const dataLMS = useSelector(state=>state.user.userLMS)
 
     const reviewUserProduct = useSelector(({ review }) => review.reviewUserProduct);
@@ -43,13 +46,20 @@ const LMSHome = (props) => {
     // LOCAL STATE
     let [reviewRate, setReviewRate] = useState(0);
     let [mentorRate, setMentorRate] = useState(0);
+    let [loading,setLoading] = useState(false)
+    const [reviewHide,setReviewHide] = useState(false)
+    const [queryId2,setQueryId] = useState(null)
+    const [localDetail,setLocalDetail] = useState(null)
+
 
     const [reviewStr,setReviewStr] = useState(null)
 
-    console.log(userInfo , ' <<< VALUE USER INFO');
+    // console.log(userInfo , ' <<< VALUE USER INFO');
+    // console.log(dataLMS , ' <<< DATA LMS')
 
     const getReview = () => {
-        let detailData = dataLMS.filter(e=>e._id === queryId)[0]
+        let params = props.location.pathname.split('/')[2]
+        let detailData = dataLMS.products.filter(e=>e.slug === params)[0]
         axios({
             method : "GET",
             url : `${SWAGGER_URL}/review`,
@@ -62,14 +72,15 @@ const LMSHome = (props) => {
         .then(({data})=>{
             // if ()
             let arr = data.data
-            // arr.forEach((e,i)=>{
-            //     // console.log(e.product._id + " <<< " + detailData._id + " << "  + e.user._id + " <<< " + userInfo._id)
-            //     if (e.product._id === detailData._id && e.user._id === userInfo._id) {
-            //         setReviewStr(e.opini)
-            //     }
-            // })
+            arr.forEach((e,i)=>{
+                // console.log(e.product._id + " <<< " + detailData._id + " << "  + e.user._id + " <<< " + userInfo.user._id)
+                if (e.product._id === detailData._id && e.user._id === userInfo.user._id) {
+                    setReviewStr(e.opini)
+                    setReviewHide(true)
+                    // console.log('HERE LOL LOL HERE LOL')
+                }
+            })
             // if (el.)
-            console.log(arr , ' <<< VALUE DATA REVIEW')
         })
         .catch(err=>{
             console.log(err , ' <<< ERROR')
@@ -77,7 +88,8 @@ const LMSHome = (props) => {
     }
 
     const getRatings = () => {
-        let detailData = dataLMS.filter(e=>e._id === queryId)[0]
+        let params = props.location.pathname.split('/')[2]
+        let detailData = dataLMS.products.filter(e=>e.slug === params)[0]
         axios({
             method : "GET",
             url : `${SWAGGER_URL}/ratings?kind=product`,
@@ -106,8 +118,45 @@ const LMSHome = (props) => {
     }
 
     useEffect(()=>{
+        let slug = props.location.pathname.split('/')[2]
+        // let slug = ''
+        axios({
+            method : "GET",
+            url : `${SWAGGER_URL}/lms/${slug}/home`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            console.log(data.data , ' <<< VALUE API LMS HOME &&&& ><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<')
+            setLocalDetail(data.data)
+            dispatch(setAvailableMenu(data.data.available_menu))
+        })
+        .catch(err=>{
+            console.log(err.response)
+        })
+    },[])
+
+    useEffect(()=>{
+        let params = props.location.pathname.split('/')[2]
+        if (dataLMS) {
+            console.log(  params, ' ****************************************************************************************************8')
+            dataLMS.products.forEach(e=>{
+                console.log(e.slug , ' <<< PER SLUG')
+                console.log(params , ' <<< VALUE PARAMS')
+                if (e.slug === params ) {
+                    console.log('****************************************************************************************************8')
+                    setQueryId(e._id)
+                }
+            })
+        }
+    },[dataLMS,props.location.pathname])
+
+    useEffect(()=>{
         if (userInfo && dataLMS) {
-            // getReview()
+            getReview()
             getRatings()
         }
     },[userInfo,dataLMS])
@@ -141,21 +190,26 @@ const LMSHome = (props) => {
     };
 
     const renderDetail = () => {
-        // console.log(queryId , " <<< ID HERE")
-        let detailData = dataLMS.filter(e=>e._id === queryId)[0]
+        let params = props.location.pathname.split('/')[2]
+        // let detailData = dataLMS.products.filter(e=>e.slug === params)[0]
+        let detailData = localDetail
+        // console.log(detailData ,  )
         console.log(detailData , ' << DETAIL DATA HERE')
         return (
             <div>
                 {/* <div>{productById._id}</div> */}
-                <img src={detailData.content.images[0]} alt='product' className='product-image' />
+                <img src={detailData.image_display} alt='product' className='product-image' />
                 {/* <div className='product-mentor'>
                     Mentored by <b>{detail.mentor}</b>
                 </div> */}
                 <div className='product-title'>
-                    <b>{detailData.content.title}</b>
+                    <b>{detailData.name}</b>
                 </div>
                 <div className='product-description'>
-                    {detailData.content.desc}
+                    [Goal Of Product]
+                </div>
+                <div className='product-description'>
+                    {detailData.goal}
                 </div>
             </div>
         );
@@ -195,24 +249,25 @@ const LMSHome = (props) => {
     ];
 
     const renderLeaderboard = () => {
-        return leaderboardList.map((val,index) => {
+        let data = localDetail.weekly_ranking
+        return data.map((val,index) => {
             return (
                 <div className='person-rank'>
                     <div className='profile'>
-                        <img src={val.photo} alt='person' className='profile-photo' />
+                        <img src={val.icon} alt='person' className='profile-photo' />
                         <div className='person-position'>
                             {index + 1}
                         </div>
                         <div className='profile-namejob'>
                             <div className='profile-name'>
-                                <b>{val.name}</b>
+                                <b>{val.user.name}</b>
                             </div>
                             <div className='profile-job'>
-                                {val.job}
+                                {"Job"}
                             </div>
                         </div>
                     </div>
-                    <img src={val.badge} alt='badge' className='profile-badge' />
+                    <img src={val.icon} alt='badge' className='profile-badge' />
                 </div>
             );
         });
@@ -222,7 +277,8 @@ const LMSHome = (props) => {
 
     const handleChangeReview = (value) => {
         console.log('LOL')
-        let detailData = dataLMS.filter(e=>e._id === queryId)[0]
+        let params = props.location.pathname.split('/')[2]
+        let detailData = dataLMS.products.filter(e=>e.slug === params)[0]
         setReviewRate(value);
         axios({
             method : "POST",
@@ -264,7 +320,9 @@ const LMSHome = (props) => {
     };
 
     const handleSubmitReview = () => {
-        let detailData = dataLMS.filter(e=>e._id === queryId)[0]
+        setLoading(true)
+        let params = props.location.pathname.split('/')[2]
+        let detailData = dataLMS.products.filter(e=>e.slug === params)[0]
         axios({
             method : "POST",
             url : `${SWAGGER_URL}/review`,
@@ -279,34 +337,39 @@ const LMSHome = (props) => {
             }
         })
         .then(({data})=>{
+            setLoading(false)
             getReview()
+            setReviewHide(true)
             console.log('SUKSESS ADD DATA')
             message.success('Your review has been submitted');
         })
         .catch(err=>{
-            console.log(err , ' <<< ERROR')
+            setLoading(false)
+            console.log(err.response , ' <<< ERROR')
         })
         // dispatch(postReviewCourse(reviewCourse));
     };
 
     return (
         <div className='root'>
+
             {/* WELCOME VIDEO */}
-            <WelcomeVideo />
+            <WelcomeVideo data={localDetail} />
 
             {/* DIVIDER */}
             <div className='divider' />
 
             {/* SECTION CAROUSEL */}
-            <TopicSection dashboardTab={true} />
+            <TopicSection {...props} dashboardTab={true} />
 
             {/* DIVIDER */}
             <div className='divider' />
 
             {/* DETAIL */}
             <div className='detail-section'>
-                { dataLMS && renderDetail()}
+                { localDetail ? renderDetail() : <Loading/>}
             </div>
+
             <div className='separator' />
             <div className='rating-container'>
                 <div className='rating-content'>
@@ -333,10 +396,12 @@ const LMSHome = (props) => {
                 <div className='comment-label'>
                     Komentar Positif Setelah Belajar :
                 </div>
-                {/* <div className='comment-from-user-product'>
-                    {"Keren Sekali"}
-                </div> */}
-                <div>
+                {
+                    reviewHide ?
+                    <div className='comment-from-user-product'>
+                        {reviewStr}
+                    </div> :
+                    <div>
                     <TextArea 
                         name='opini' 
                         rows={5} 
@@ -348,11 +413,16 @@ const LMSHome = (props) => {
                         value={reviewStr}
                     />
                     <div className='commment-button-section'>
-                        <button className='post-comment-button' onClick={handleSubmitReview}>
-                            Tulis Komentar
-                        </button>
+                        <div className='post-comment-button' onClick={handleSubmitReview}>
+                            {
+                                loading ? 
+                                <Loader/> :
+                                "Tulis Komentar" 
+                            }
+                        </div>
                     </div>
-                </div>
+                    </div>
+                }
             </div>
 
             {/* DIVIDER */}
@@ -364,7 +434,7 @@ const LMSHome = (props) => {
                     Peringkat Mingguan
                 </div>
                 <div className='weekly-section'>
-                    {renderLeaderboard()}
+                    { localDetail && renderLeaderboard()}
                 </div>
                 <div className='more-icon-container'>
                     <img src={moreIcon} alt='more' className='more-icon' />

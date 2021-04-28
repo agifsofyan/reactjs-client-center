@@ -236,12 +236,12 @@ function App () {
             <Route path="/payments/callback" component={CallbackDana}/>
             {/* LMS PAGE  */}
             <Route path='/lms-dashboard' component={Dashboard} />
-            <Route path='/lms-home' component={LMSHome} />
-            <Route path='/lms-webinar' component={LMSWebinar} />
-            <Route path='/lms-video-list' component={LMSVideoList} />
-            <Route path='/lms-video-detail' component={LMSVideoDetail} />
-            <Route path='/lms-tips-list' component={LMSTipsList} />
-            <Route path='/lms-tips-detail' component={LMSTipsDetail} />
+            <Route path='/lms-home/:slug' component={LMSHome} />
+            <Route path='/lms-webinar/:slug' component={LMSWebinar} />
+            <Route path='/lms-video-list/:slug' component={LMSVideoList} />
+            <Route path='/lms-video-detail/:slug/:id' component={LMSVideoDetail} />
+            <Route path='/lms-tips-list/:slug' component={LMSTipsList} />
+            <Route path='/lms-tips-detail/:slug/:id' component={LMSTipsDetail} />
             <Route path='/lms-module-answer' component={AnswerModule} />
             <Route path='/lms-module' component={LMSModule} />
             <Route path='/lms-group' component={LMSGroup} />
