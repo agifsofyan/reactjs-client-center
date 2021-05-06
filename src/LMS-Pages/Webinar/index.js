@@ -59,7 +59,6 @@ const LMSWebinar = (props) => {
             }
         })
         .then(({data})=>{
-            console.log(data.data , ' <<<< VALUE WEBINAR HERE >>>>')
             setLoading(false)
             setAllW(data.data)
             setPreviousWebinar(data.data.previous_video)
@@ -86,9 +85,13 @@ const LMSWebinar = (props) => {
     const renderVideo = () => {
         // let sortData = webinarData.sort((a,b)=>new Date(b.content.created_at) - new Date(a.content.created_at))
         let val = closeVideo
+        let slug = props.location.pathname.split('/')[2]
         // sortData = closeVideo.filter((e,i)=>i === 0)
         return (
-            <div style={{cursor : "pointer"}}>
+            <div 
+                onClick={()=>history.push(`/lms-video-detail/${slug}/${val._id}`)}
+                style={{cursor : "pointer"}}
+            >
                 <video className='nearest-webinar'>
                     <source type='video/mp4' src={val.url} />
                 </video>
@@ -261,6 +264,7 @@ const LMSWebinar = (props) => {
 
     return (
         <div className='root'  id="webinar-loading-c">
+            
             {/* WELCOME VIDEO */}
             <WelcomeVideo data={allW}/>
 

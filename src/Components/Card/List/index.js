@@ -145,7 +145,7 @@ function List (props) {
                     <div className="cart-06-list1-fc">
 
                         <input
-                            onClick={e=>checkedCart(el._id,el.isChecked,el.product_info.bump ? el.product_info.bump[0]._id : null )}
+                            onClick={e=>checkedCart(el._id,el.isChecked,el.product_info.bump.length > 0 ? el.product_info.bump[0]._id : null )}
                             type="checkbox"
                             checked={el.isChecked}
                         />

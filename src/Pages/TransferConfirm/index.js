@@ -131,7 +131,7 @@ function TransferBank () {
         })
         .catch(err=>{
             setLoading(false)
-            console.log(err.response , ' <<< ERROR')
+            console.log(err.response , ' <<< ERROR TF')
         })
 
     }
@@ -161,7 +161,7 @@ function TransferBank () {
         })
         .catch(err=>{
             setLoading(false)
-            console.log(err.response , ' <<< ERROR')
+            console.log(err.response , ' <<< ERROR TF')
         })
     }
 

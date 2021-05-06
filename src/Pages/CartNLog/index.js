@@ -59,12 +59,18 @@ function CardNotLoggendIn (props) {
     return (
         <div className="cardn-container-07">
             {renderPage()}
-            <div className="cardn-line-07">
+            {
+                cookieCart && cookieCart[0] &&
+                <div className="cardn-line-07">
 
-            </div>
-            <div className="cardn-title-2">
-                Kelas yang Anda Pelajari
-            </div>
+                </div>
+            }
+            {
+                cookieCart && cookieCart[0] &&
+                <div className="cardn-title-2">
+                    Kelas yang Anda Pelajari
+                </div>
+            }
 
             {
                 cookieCart && cookieCart[0] ?
@@ -86,7 +92,7 @@ function CardNotLoggendIn (props) {
 
                 </div> :
                 <div style={{marginTop : 20}}>
-                    Belum ada data
+                    Anda belum memiliki Kelas
                 </div>
             }
 
@@ -108,10 +114,12 @@ function CardNotLoggendIn (props) {
 
                 </div> */}
 
+            {
+                cookieCart && cookieCart[0] &&
+                <div className="cardn-line-07" style={{marginTop : 35}}>
 
-            <div className="cardn-line-07" style={{marginTop : 35}}>
-
-            </div>
+                </div>
+            }
         </div>
     )
 }

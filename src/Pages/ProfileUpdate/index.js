@@ -53,7 +53,7 @@ function ProfileUpdate (props) {
                         <KeyboardBackspaceIcon style={{color : "#ffffff",fontSize : 21,cursor : "pointer",marginLeft : 5}}/>
                     }
                     <div className="text">
-                        {props.location.search !== "" ? "Kembali" : "Edit"}
+                        {props.location.search !== "" ? "Kembali" : "Ubah"}
                     </div>
                     {
                         props.location.search === "" &&

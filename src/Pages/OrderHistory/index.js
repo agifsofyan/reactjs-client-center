@@ -2,6 +2,10 @@ import React , { useEffect , useState } from 'react'
 
 // MODULE
 import axios from 'axios'
+import { useHistory } from 'react-router-dom'
+
+// COMPONENTS
+import Footer from '../../Components/LMSFooter'
 
 // API
 import { SWAGGER_URL } from '../../Support/API_URL'
@@ -16,6 +20,10 @@ import moneyConvert from '../../Support/moneyConvert'
 import './style.css'
 
 function OrderHistory () {
+
+
+    // HISTORY
+    const history = useHistory()
 
     // LOCAL STATE DATA ORDER
     const [data,setData] = useState(null)
@@ -32,7 +40,7 @@ function OrderHistory () {
         })
         .then(({data})=>{
             let arr1 = data.data
-            arr1 = arr1.filter(e=>e.status === 'PENDING' || e.status === 'UNPAID')
+            // arr1 = arr1.filter(e=>e.status === 'PENDING' || e.status === 'UNPAID')
             console.log(arr1 ,' <<< DATA FIX >>> HISTORY')
             setData(arr1)
         })
@@ -41,10 +49,77 @@ function OrderHistory () {
         })
     },[])
 
+    let renderStatus = (status) => {
+        if (status === 'UNPAID') {
+            return "Transaksi Belum Dibayar"
+        }
+        else if (status === "PAID") {
+            return "Lunas"
+        }else if (status === "PENDING") {
+            return "Transaksi Ditunda"
+        }else if (status === "EXPIRED") {
+            return "Kadaluarsa"
+        }
+    }
+
+    let renderStatus2 = (status) => {
+        if (status === 'UNPAID') {
+            return "Bayar"
+        }
+        else if (status === "PAID") {
+            return "Baca"
+        }else if (status === "PENDING") {
+            return "Bayar"
+        }else if (status === "EXPIRED") {
+            return "Lihat"
+        }
+    }
+
+    let renderColor = (status) => {
+        if (status === 'UNPAID') {
+            return "#FFDEDE"
+        }
+        else if (status === "PAID") {
+            return "#4BB543"
+        }else if (status === "PENDING") {
+            return null
+        }else if (status === "EXPIRED") {
+            return null
+        }
+    }
+
+    let formatDate = (date) => {
+        let days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+        let months = ['Januari', 'Februari', 'Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+        
+        let day = new Date(date).getDay()
+        let date2 = new Date (date).getDate()
+        let month = new Date(date).getMonth()
+        let year = new Date(date).getFullYear()
+
+        return `${days[day]}, ${(date2 <= 9 ? "0" + date2 : date2)} ${months[month]} ${year}` 
+
+    }
+
+    let renderRoute = (status,slug) => {
+        if (status === 'UNPAID') {
+            return "/check-out"
+        }
+        else if (status === "PAID") {
+            return `/lms-home/${slug}`
+        }else if (status === "PENDING") {
+            return "/check-out"
+        }else if (status === "EXPIRED") {
+            return "/product-list"
+        }
+        console.log(status,slug)
+        // console.log(renderRoute(status,slug) , ' <<< CONSOLE.LOG HERE')
+    }
+
     let renderData = () => {
         return data.map((e,index)=>{
             return e.items.map((e2,index)=>{
-
+                // console.log(e2 , ' << STATUS HERE ****** MOGA ADA SLUG')
                 return (
                     <div 
                         className="c2" 
@@ -54,19 +129,22 @@ function OrderHistory () {
                         <div 
                             className="s1"
                             style={{
-                                backgroundColor : e.status === "UNPAID" && "#FFDEDE"
+                                backgroundColor : renderColor(e.status),
+                                color : e.status === "PAID" && "white"
                             }}
                         >
-                            {
+                            {/* {
                                 e.status === 'PENDING' ?
                                 "Transaksi Ditunda" :
                                 "Transaksi Belum Dibayar"
-                            }
+                            } */}
+                            {renderStatus(e.status)}
                             
                         </div>
     
                         <div className="s2">
-                            {e.create_date && e.create_date.split('T')[0]}
+                            {/* {e.create_date && e.create_date.split('T')[0]} */}
+                            {formatDate(e.create_date)}
                         </div>
                         
                         <p className="s3">
@@ -96,8 +174,11 @@ function OrderHistory () {
                         </div>
                         {/* {renderItems(e.items)} */}
     
-                        <button className="s5"> 
-                            Baca
+                        <button 
+                            onClick={()=>history.push(renderRoute(e.status ,e2.product_info.slug))}
+                            className="s5"
+                        > 
+                            {renderStatus2(e.status)}
                         </button>
     
                     </div>
@@ -131,6 +212,12 @@ function OrderHistory () {
             {
                 data && renderData()
             }
+
+            <div style={{marginBottom : 65}}>
+
+            </div>
+
+            <Footer/>
 
         </div>
     )

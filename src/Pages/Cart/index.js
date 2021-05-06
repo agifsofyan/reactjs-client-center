@@ -131,10 +131,12 @@ function Cart () {
             setPrice(priceNum)
             setSale(saleNum)
             setSaleBef(saleNum > 0 ? saleNum : priceNum)
+            console.log(arr , ' <<< yyy YY && && ***')
             arr = arr.map(e=>{
                 return e = {isChecked : true,...e}
             })
-            setCart(arr)
+            // console.log(arr , ' <<<< **** HARUS 0 COK')
+            setCart(arr.filter(e=>e.status !== "EXPIRED"))
             setIsData(true)
         })
         .catch(err=>{
@@ -405,14 +407,20 @@ function Cart () {
                 user={user}
                 isData={isData}
             />
-            <div className="cart-06-1 cart-06-c2">
-
-            </div>
-            <h2 className="cwr-99-1 cart-06-title1">
-                Gabung di Kelas
-            </h2>
             {
-                cart && cart.length > 0 ?
+                cart.length > 0 &&
+                <div className="cart-06-1 cart-06-c2">
+
+                </div>
+            }
+            {
+                cart.length > 0 &&
+                <h2 className="cwr-99-1 cart-06-title1">
+                    Gabung di Kelas
+                </h2>
+            }
+            {
+               cart.length > 0 ?
                 <List
                     setCart={setCart}
                     cart={cart}
@@ -420,7 +428,7 @@ function Cart () {
                     bump={bump}
                     setIsEcommerce={setIsEcommerce}
                 /> :
-                <div style={{marginTop : 10}}>
+                <div style={{marginTop : 40}}>
                     Anda Belum Memiliki Cart
                 </div>
             }
@@ -481,9 +489,12 @@ function Cart () {
                     }
                 })
             }
-            <div className="cart-06-1 cart-06-c2">
+            {
+                cart.length > 0 &&
+                <div className="cart-06-1 cart-06-c2">
 
-            </div>
+                </div>
+            }
             {
                 cart && cart.length > 0 && cart.filter(e=>e.isChecked).length > 0 &&
                 <h3>

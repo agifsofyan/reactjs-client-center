@@ -135,7 +135,7 @@ const LMSHome = (props) => {
             dispatch(setAvailableMenu(data.data.available_menu))
         })
         .catch(err=>{
-            console.log(err.response)
+            console.log(err , ' <<< ERROR PENTING DI LMS HOME HERE &&& LOL ** FIX HAHAHA')
         })
     },[])
 
@@ -206,7 +206,7 @@ const LMSHome = (props) => {
                     <b>{detailData.name}</b>
                 </div>
                 <div className='product-description'>
-                    [Goal Of Product]
+                    [Goal Produk]
                 </div>
                 <div className='product-description'>
                     {detailData.goal}
@@ -436,10 +436,10 @@ const LMSHome = (props) => {
                 <div className='weekly-section'>
                     { localDetail && renderLeaderboard()}
                 </div>
-                <div className='more-icon-container'>
+                {/* <div className='more-icon-container'>
                     <img src={moreIcon} alt='more' className='more-icon' />
-                </div>
-                <div className='person-rank-highlight'>
+                </div> */}
+                {/* <div className='person-rank-highlight'>
                     <div className='profile'>
                         <img src='https://miro.medium.com/max/2048/1*UpK-UrHOeshQf8gxcRnjpg.jpeg' alt='person' className='profile-photo' />
                         <div className='person-position'>
@@ -455,7 +455,7 @@ const LMSHome = (props) => {
                         </div>
                     </div>
                     <img src={bronze} alt='badge' className='profile-badge' />
-                </div>
+                </div> */}
             </div>
 
             {/* FOOTER */}

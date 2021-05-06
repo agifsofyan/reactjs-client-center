@@ -205,24 +205,49 @@ function ProductDetail (props) {
 
     let renderVideo = () => {
         console.log(detail.media_url ,  ' <<<< MEDIA URL')
-        if (detail.media_url) {
-            return (
-                 <video className="product-detail-c4" controls={true} autoPlay={true}>
-                    <source src={`${detail.media_url}`} type="video/mp4"/>
-                </video> 
-            )
+        // if (detail.media_url) {
+        //     return (
+        //          <video className="product-detail-c4" controls={true} autoPlay={true}>
+        //             <source src={`${detail.media.url}`} type="video/mp4"/>
+        //         </video> 
+        //     )
+        // }else {
+        //     return (
+        //         <div className="product-detail-c4">
+
+        //         </div>
+        //         // <iframe 
+        //         //     className="product-detail-c4" 
+        //         //     title={"p"}
+        //         //     // src={`${detail.media_url}`}
+        //         //     src={"https://www.youtube.com/embed/tT0w1KN0mjM"}
+        //         // >
+        //         // </iframe>
+        //     )
+        // }
+        if (detail.media) {
+            if (detail.media.url) {
+                if (detail.media.isVideo) {
+                    return (
+                        <video className="product-detail-c4" controls={true} autoPlay={true}>
+                            <source src={`${detail.media.url}`} type="video/mp4"/>
+                        </video> 
+                    )
+                }else {
+                    return (
+                        <img
+                            className="product-detail-c4"
+                            alt="product-detail-media"
+                            src={`${detail.media.url}`}
+                        />
+                    )
+                }
+            }
         }else {
             return (
-                <div className="product-detail-c4">
+                <div className="product-detail-c4" style={{backgroundColor : "black"}}>
 
                 </div>
-                // <iframe 
-                //     className="product-detail-c4" 
-                //     title={"p"}
-                //     // src={`${detail.media_url}`}
-                //     src={"https://www.youtube.com/embed/tT0w1KN0mjM"}
-                // >
-                // </iframe>
             )
         }
     }

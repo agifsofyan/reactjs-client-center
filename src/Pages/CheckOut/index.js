@@ -37,6 +37,9 @@ function Order () {
     // LOCAL STATE LOADER
     const [loading,setLoading] = useState(false)
 
+    // LOCAL STATE NOTIFICATIONS
+    const [notifTa,setNotifTa] = useState(false)
+
     // PRICE
     const [price,setPrice] = useState(0)
     const [sale,setSale] = useState(0)
@@ -123,6 +126,7 @@ function Order () {
             setSale(saleNum)
             setDiskon(priceNum - saleNum)
             setOrder(data.data[0])
+            console.log(data.data[0] , ' <<<< VALUE ORDER SEKARANG HERE LOL &&*** 88( (**(* 998')
             setUnique(unique)
         })
         .catch(err=>{
@@ -189,7 +193,23 @@ function Order () {
         .catch(err=>{
             setLoading(false)
             console.log(err.response , ' <<<<< ERROR BANK HERE LOL WKWKWKWKWKWKWK')
-            history.push('/payments/failed')
+            let number = 0
+            let message = ""
+            if (err.response) {
+                if (err.response.data) {
+                    number = err.response.data.statusCode
+                    message = err.response.data.message
+                }
+            }
+            console.log(err.response , ' <<< should error DANAN HERE')
+            console.log(number ,  ' <<< NUMBER')
+            console.log(message , ' << MESSAGE')
+            if (number === 400 && message === "unique number already exists") {
+                // alert('Anda telah memilih metode pembayaran')
+                setNotifTa(true)
+            }else {
+                history.push('/payments/failed')
+            }
         })
     }
 
@@ -220,15 +240,39 @@ function Order () {
             }
         })
         .then(({data})=>{
-            setLoading(false)
+            
             console.log(data.data , ' <<< SUCCESS >>> )()()()()()(')
             let res = data.data;
             window.open(res.payment.invoice_url,"_self")
             console.log('###################################################################')
         })
         .catch(err=>{
+            console.log( {
+                payment : {
+                    method : selectedPayment._id
+                },
+                total_price,
+                // unique_number : unique 
+            } ,  ' <<<<<<<<<< BODY ^^^^^ *** ((( ')
+            setLoading(false)
+            // if (err.)
+            let number = 0
+            let message = ""
+            if (err.response) {
+                if (err.response.data) {
+                    number = err.response.data.statusCode
+                    message = err.response.data.message
+                }
+            }
             console.log(err.response , ' <<< should error DANAN HERE')
-            history.push('/payments/failed')
+            console.log(number ,  ' <<< NUMBER')
+            console.log(message , ' << MESSAGE')
+            if (number === 400 && message === "you have already chosen a payment method") {
+                // alert('Anda telah memilih metode pembayaran')
+                setNotifTa(true)
+            }else {
+                history.push('/payments/failed')
+            }
             setLoading(false)
         })
     }
@@ -236,7 +280,7 @@ function Order () {
     let handlePay = () => {
         if (selectedPayment) {
             setLoading(true)
-            let total_price = (sale - renderCoupon() + unique + shipmentPrice)
+            let total_price = (sale - renderCoupon() + shipmentPrice)
             // console.log(total_price , ' <<<< VALUE TOTAL PRICE HERE 89') 
             if (selectedPayment.info === "Bank-Transfer") {
                 handleBank(total_price)
@@ -339,6 +383,12 @@ function Order () {
                     payment={payment}
                 />
             }
+            {
+                notifTa &&
+                <div className="order-08-t3">
+                    Anda telah memilih metode pembayaran
+                </div>
+            }
             <button 
                 className="order-08-button"
                 onClick={e=>handlePay()}
@@ -353,7 +403,7 @@ function Order () {
             <div
                 style={{width : "82%",marginTop : 20,fontSize : 18,fontWeight : 20,textAlign : "center"}}
             >
-                Segera Hadir Cara Pembayaran Dengan DANA Indonesia, OVO, Link Aja, Virtual Account dan Kartu Kredit
+                Segera Hadir Cara Pembayaran Dengan OVO, Link Aja, Virtual Account dan Kartu Kredit
             </div>
         </div>
     )

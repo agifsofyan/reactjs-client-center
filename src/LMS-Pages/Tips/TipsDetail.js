@@ -9,6 +9,7 @@ import axios from 'axios'
 // COMPONENTS
 import TopicSection from '../../Components/TopicSection';
 import Footer from '../../Components/LMSFooter';
+import QA from '../../Components/LMS-Video/QA'
 
 // GLOBAL ACTIONS
 import { getBlogById, getBlogList } from '../../Redux/Actions';
@@ -34,6 +35,9 @@ const TipsDetail = (props) => {
 
     // LOCAL STATE
     const [tips,setTips] = useState(null)
+    const [dataComment,setDataComment] = useState(null)
+    const [loadingComment,setLoadingComment] = useState(false)
+    const [spotlight,setSpotlight] = useState(null)
     
     useEffect(() => {
         document.title = 'LMS Tips Detail';
@@ -41,9 +45,30 @@ const TipsDetail = (props) => {
         dispatch(getBlogList());
     }, [dispatch, queryId]);
 
+    let getCommment = () => {
+        let id = props.location.pathname.split('/')[3]
+        axios({
+            method : 'GET',
+            url : `${SWAGGER_URL}/comments/content/${id}/detail`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            setDataComment(data.data)
+            console.log(data.data , ' <<<< VALUE DATA COMMENTS HERE')
+        })
+        .catch(err=>{
+            console.log(err.response , " <<< ERROR RESPONSE")
+        })
+    }
+
     useEffect(()=>{
         let slug = props.location.pathname.split('/')[2]
         let id = props.location.pathname.split('/')[3]
+        getCommment()
         axios({
             method : 'GET',
             url : `${SWAGGER_URL}/lms/${slug}/tips/${id}`,
@@ -55,6 +80,7 @@ const TipsDetail = (props) => {
         })
         .then(({data})=>{
             setTips(data.data.tips)
+            setSpotlight(data.data.spotlight)
             dispatch(setAvailableMenu(data.data.available_menu))
             console.log(data , "  VALUE DETAIL TIPS ((((((**" )
         })
@@ -126,9 +152,9 @@ const TipsDetail = (props) => {
                         alt='author' 
                         className='tipsdetail-author-picture' 
                     />
-                    <div className='tipsdetail-author-desc'>
+                    {/* <div className='tipsdetail-author-desc'>
                         John Doe ● 4h ago ● 5 min read
-                    </div>
+                    </div> */}
                 </div>
                 <div className='tipsdetail-article-section'>
                     <div className='tipsdetail-article-title'>
@@ -152,10 +178,13 @@ const TipsDetail = (props) => {
                         {tips && tips.desc}
                     </div>
                     <div className='tipsdetail-article-paragraphs'>
-                        Hello readers, <br/> {blogById.desc}
+                        {tips && tips.desc}
                     </div>
+                    {/* <div className='tipsdetail-article-paragraphs'>
+                        Hello readers, <br/> {blogById.desc}
+                    </div> */}
                 </div>
-                <div>
+                {/* <div>
                     <Select
                         showSearch
                         className='tipsdetail-comment-sort'
@@ -192,32 +221,32 @@ const TipsDetail = (props) => {
                             </li>
                         )}
                     />
-                </div>
+                </div> */}
             </div>
         );
     };
 
     const renderSpotlight = () => {
-        return [0].map((val,index) => {
-            return (
-                <div key={index} style={{marginTop:'10px'}}>
-                    <span className='tipsdetail-spotlight-tag'>
-                        News Spotlight
-                    </span>
-                    <div className='tipsdetail-spotlight-title'>
-                        Say hello to Singapore's first digital banks
-                    </div>
-                    <img 
-                        src='https://cdn.techinasia.com/wp-content/uploads/2020/12/bytedance-dali.gif'
-                        alt='spotlight'
-                        className='tipsdetail-spotlight-image'
-                    />
-                    <div className='tipsdetail-spotlight-article'>
-                        After months of suspense, Singapore finally unveiled the winners for its digital bank licenses. <br/><br/> * Drum roll please: Sea Group and the Grab Holdings and Singtel partnership received the digital full bank licenses. Meanwhile, Ant Group as well as the Greenland Financial Holdings, Linklogis Hong Kong, and Beijing Co-operative Equity Investment Fund Management consortium were awarded the digital wholesale bank licenses. <br/><br/> * Grab-Singtel made its moves: The Grab-Singtel consortium didn’t miss a beat. Shortly after the announcement, it appointed Citigroup veteran Charles Wong as its chief executive and said that it will set up a team of 200 people by the end 2021. <br/><br/> * Razer fintech looks elsewhere: While Razer Fintech failed to receive the digital bank license, the company announced plans to roll out Razer Youth Bank in markets such as Malaysia and the Philippines instead.
-                    </div>
-                </div>
-            );
-        });
+        <div style={{marginTop:'10px'}}>
+            <span className='tipsdetail-spotlight-tag'>
+                News Spotlight
+            </span>
+            <div className='tipsdetail-spotlight-title'>
+                Say hello to Singapore's first digital banks
+            </div>
+            <img 
+                src='https://cdn.techinasia.com/wp-content/uploads/2020/12/bytedance-dali.gif'
+                alt='spotlight'
+                className='tipsdetail-spotlight-image'
+            />
+            <div className='tipsdetail-spotlight-article'>
+                After months of suspense, Singapore finally unveiled the winners for its digital bank licenses. <br/><br/> * Drum roll please: Sea Group and the Grab Holdings and Singtel partnership received the digital full bank licenses. Meanwhile, Ant Group as well as the Greenland Financial Holdings, Linklogis Hong Kong, and Beijing Co-operative Equity Investment Fund Management consortium were awarded the digital wholesale bank licenses. <br/><br/> * Grab-Singtel made its moves: The Grab-Singtel consortium didn’t miss a beat. Shortly after the announcement, it appointed Citigroup veteran Charles Wong as its chief executive and said that it will set up a team of 200 people by the end 2021. <br/><br/> * Razer fintech looks elsewhere: While Razer Fintech failed to receive the digital bank license, the company announced plans to roll out Razer Youth Bank in markets such as Malaysia and the Philippines instead.
+            </div>
+        </div>
+        // return [0].map((val,index) => {
+        //     return (
+        //     );
+        // });
     };
 
     const renderBlogs = () => {
@@ -266,6 +295,25 @@ const TipsDetail = (props) => {
             <div className='article-section'>
                 {renderArticle()}
             </div>
+
+            {/* COMMENTS */}
+            <div className="video-comment-title-1">
+                Silahkan Kirim Pertanyaan Anda
+            </div>
+
+            {
+                dataComment && 
+                <div style={{width : "100%",display : "flex" , alignItems : "center" , flexDirection : "column"}}>
+                    <QA
+                        detailData={dataComment}
+                        getData={getCommment}
+                        videoId={props.location.pathname.split('/')[3]}
+                        loadingComment={loadingComment}
+                        setLoadingComment={setLoadingComment}
+                        type={"content"}
+                    />
+                </div>
+            }
 
             {/* DIVIDER */}
             <div className='divider' />

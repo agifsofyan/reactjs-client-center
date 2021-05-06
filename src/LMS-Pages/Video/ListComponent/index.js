@@ -31,7 +31,7 @@ function ListComponent (props) {
                                     <b>{el.title}</b>
                                 </div>
                                 <div className='videos-mentor-name'>
-                                    mentor name here
+                                    Nama Mentor
                                 </div>
                                 {/* <div className='videos-countdown'>
                                     {"ago"}

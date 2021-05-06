@@ -20,7 +20,7 @@ import {  SWAGGER_URL } from '../../../Support/API_URL'
 function QA (props) {
 
     // PARENT PROPS
-    const { detailData , getData , videoId } = props
+    const { detailData , getData , videoId , loadingComment, setLoadingComment , type } = props
 
     // GLOBAL STATE
     const userInfo = useSelector(({ user }) => user.userMe);
@@ -38,11 +38,10 @@ function QA (props) {
     const [focus,setFocus] = useState(false)
  
     let addComment = () => {
-        console.log('HAHAH HERE (((()))))')
         axios({
             method : 'POST',
             // url : `${SWAGGER_URL}/contents`,
-            url : `${SWAGGER_URL}/comments/video/${videoId}/new`,
+            url : `${SWAGGER_URL}/comments/${type}/${videoId}/new`,
             data : {
                 comment : commentIn
             },

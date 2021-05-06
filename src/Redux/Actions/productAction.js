@@ -4,6 +4,7 @@ import { PRODUCT_BY_ID, PRODUCT_FAILED, PRODUCT_START, PRODUCT_LIST } from '../t
 
 export const getProductList = () => {
     return async dispatch => {
+        console.log('RUN NING HERE <<> >>> >>')
         dispatch({
             type: PRODUCT_START,
         });

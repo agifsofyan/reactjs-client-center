@@ -14,6 +14,7 @@ function ListComponent (props) {
         <>
             {
                 tips.map((val,index)=>{
+                 console.log(val , ' <<< VALUE VAL HERE <<<<<')
                  return (
                     <div
                         onClick={e=>history.push(`/lms-tips-detail/${slug}/${val._id}`)}
@@ -41,7 +42,8 @@ function ListComponent (props) {
                             <div className='author-details'>
                                 {/* <img src={author} alt='author' className='author-profile' /> */}
                                 <div className='author-name-time'>
-                                    {val.read_by.name} ● {"ago"} ● 5 min read
+                                    {/* {val.read_by.name} ● {"ago"} ● 5 min read */}
+                                    {val.read_by.name} 
                                 </div>
                             </div>
                             {/* <div style={{marginTop:'10px'}}>

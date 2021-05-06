@@ -113,6 +113,7 @@ function App () {
           url : `${SWAGGER_URL}/products`
       })
       .then(({data})=>{
+          console.log(data.data , ' <<< VALUE DATA HERE &&&')
           data.data.forEach((e,index)=>{
             if (!e.price || !e.sale_price) {
             }
@@ -242,8 +243,8 @@ function App () {
             <Route path='/lms-video-detail/:slug/:id' component={LMSVideoDetail} />
             <Route path='/lms-tips-list/:slug' component={LMSTipsList} />
             <Route path='/lms-tips-detail/:slug/:id' component={LMSTipsDetail} />
-            <Route path='/lms-module-answer' component={AnswerModule} />
-            <Route path='/lms-module' component={LMSModule} />
+            <Route path='/lms-module-answer/:slug' component={AnswerModule} />
+            <Route path='/lms-module/:slug' component={LMSModule} />
             <Route path='/lms-group' component={LMSGroup} />
             <Route path='/lms-bonus' component={LMSBonus} />
             <Route path='/lms-reseller' component={LMSReseller} />

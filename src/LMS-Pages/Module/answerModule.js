@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import WelcomeVideo from '../../Components/WelcomeVideo';
 import TopicSection from '../../Components/TopicSection';
 import Footer from '../../Components/LMSFooter';
-import moduleArt from '../../Assets/Images/module.jpg';
+import moduleArt from '../../Assets/Images/module.jpg'; 
 import { Link } from 'react-router-dom';
 import { Input } from 'antd';
 import './module.css';
@@ -149,7 +149,7 @@ const FilterTab = ({
     );
 };
 
-const AnswerModule = () => {
+const AnswerModule = (props) => {
     useEffect(() => {
         document.title = 'LMS Module';
         window.scrollTo(0,0);
@@ -163,10 +163,10 @@ const AnswerModule = () => {
             <WelcomeVideo />
 
             {/* DIVIDER */}
-            <div className='divider' />
+            <div className='divider' {...props} />
 
             {/* SECTION CAROUSEL */}
-            <TopicSection moduleTab={true} />
+            <TopicSection moduleTab={true} {...props} />
 
             {/* DIVIDER */}
             <div className='divider' />

@@ -58,7 +58,7 @@ const TopicSection = (props) => {
         {
             title: 'Module',
             active: moduleTab,
-            href: '/lms-module',
+            href: `/lms-module/${props.location.pathname.split('/')[2]}`,
             menu : "module",
         },
         {
@@ -90,7 +90,8 @@ const TopicSection = (props) => {
             // console.log(availableMenu[val.menu] , ' <<< IT SHOULD BE TRUE')
             return (
                 <div 
-                    onClick={e=> availableMenu[val.menu] && handleChange(val)}
+                    // onClick={e=> availableMenu[val.menu] && handleChange(val)}
+                    onClick={e=>handleChange(val)}
                     key={index} 
                     className={
                         val.active 

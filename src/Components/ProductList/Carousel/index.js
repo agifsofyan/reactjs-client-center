@@ -25,21 +25,30 @@ function Carousel () {
     const list = useSelector(state=>state.product.productList)
     const productHeader = useSelector(state=>state.product.productHeader)
 
+    console.log(list , ' <<< VALUE LIST HERE ****')
+
     // LOCAL STATE
     const [arrImg] = useState([image1,image2,image3,image4])
     const [selected,setSelected] = useState(0)
-    const [lastLen,setlastLen] = useState(arrImg.length -1)
+    const [lastLen,setlastLen] = useState(0)
 
     // HISTORY
     const history = useHistory()
 
     useEffect(()=>{
+        console.log(productHeader , ' <<< PRODUK HEADER LOL')
         if (productHeader) {
             if (productHeader.image_url) {
                 setlastLen(productHeader.image_url.length -1)
             }
         }
     },[productHeader])
+
+    useEffect(()=>{
+        if (list) {
+            setlastLen(list.length -1)
+        }
+    },[list])
 
     let handlePlus = () => {
         if (selected !== lastLen) {
@@ -85,6 +94,8 @@ function Carousel () {
         })
     }
 
+    // let
+
     return (
         <div className="plc-carousel-container">
             
@@ -104,7 +115,7 @@ function Carousel () {
                 {
                     list ?
                     <img
-                        src={ productHeader ? productHeader.image_url[selected] : arrImg[selected]}
+                        src={ list ? list[selected].image_url[0] : arrImg[selected]}
                         alt="list-p"
                     />  :
                     <Skeleton duration={0.3} height={194} width={197} style={{borderRadius : 6}}/> 
@@ -120,7 +131,7 @@ function Carousel () {
             {   
                 list ?
                 <h1>
-                    {productHeader && productHeader.name}
+                    {list && list[selected].name}
                 </h1> :
                 <Skeleton duration={0.1} width={220} height={15} style={{marginTop : 15}} /> 
             }
@@ -128,22 +139,25 @@ function Carousel () {
             {
                 list ?
                 <h2>
-                    {productHeader && productHeader.description.replace(/<\/?[^>]+(>|$)/g, "")}
+                    {list && list[selected].description.replace(/<\/?[^>]+(>|$)/g, "")}
                 </h2> :
                 <Skeleton duration={0.1} width={200} height={15} style={{marginTop : 15}} /> 
             }
 
             <button
-                onClick={e=> productHeader && history.push(`/product-detail/${productHeader.slug}?utm=origin`)}
+                onClick={e=> list && history.push(`/product-detail/${list[selected].slug}?utm=origin`)}
             >
                 JOIN
             </button>
+            <div style={{marginBottom : 13}}>
 
-            <div className="plc-carousel-container-pagination">
+            </div>
+
+            {/* <div className="plc-carousel-container-pagination">
                 {
                     renderNav()
                 }
-            </div>
+            </div> */}
 
         </div>
     )

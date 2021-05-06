@@ -41,9 +41,11 @@ function Email (props) {
             setLoading1(false)
         })
         .catch(err=>{
-            let status;
-            console.log(err.response)
-            status = err.response.status
+            let status = 0;
+            // console.log(err.response)
+            if (err.response) {
+                status = err.response.status
+            }
             if (status === 404) {
                 setSelectedTab(2)
             }else {

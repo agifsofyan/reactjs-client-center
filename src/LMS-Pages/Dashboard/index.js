@@ -11,9 +11,12 @@ import Skeleton from 'react-loading-skeleton';
 import Profile from '../../Components/LMS-Profile';
 import ContentSection from '../../Components/Content';
 import Footer from '../../Components/LMSFooter';
+import ContentList from '../../Components/LMS-dashboard/Content'
+import LoadingContent from '../../Components/LMS-dashboard/ContentLoading'
 
-// API
-import { SWAGGER_URL } from '../../Support/API_URL'
+// GLOBAL ACTION
+import { getPaidList } from '../../Redux/Actions/index'
+import { getUserWhoAmI , getUserStory , getUserLMS  } from '../../Redux/Actions/userAction'
 
 // REDUX 
 import { setValueStory } from '../../Redux/Actions/storyAction'
@@ -40,27 +43,36 @@ const Dashboard = () => {
     const [storyData,setStoryData] = useState(null)
     const [productData,setProductData] = useState(null)
     const [unfinihsData,setUnfinish] = useState(null)
+    const [contentData,setContentData] = useState(null)
+
+    useEffect(()=>{
+        dispatch(getPaidList());
+        dispatch(getUserWhoAmI());
+        dispatch(getUserStory())
+        dispatch(getUserLMS( {trending : true,favorite : false} ))
+    },[dispatch])
 
     useEffect(() => {
         document.title = 'Dashboard';
     }, [dispatch,localStorage]);
 
     useEffect(()=>{
-        console.log(loadingLMS , ' <<<< LOADING LMS VALUE HERE')
-    },[loadingLMS])
-
-    useEffect(()=>{
         if (dataLMS) {
             let data = dataLMS
             setStoryData(data.stories)
             setProductData(data.products)
+            setContentData(data.content)
             setUnfinish(data.productInProgress[0])
         }
     },[dataLMS])
 
+    console.log(dataLMS , ' <<<< VALUE DATA LMS HERE LOL')
+
     let handleDescription = (text) => {
         return text.replace(/<\/?[^>]+(>|$)/g, "").slice(0,32) + "" + renderDot(text)
     }
+
+    console.log(unfinihsData , ' <<<< CONSOLE.LOG')
 
     // useEffect(()=>{
     //     axios({
@@ -242,7 +254,7 @@ const Dashboard = () => {
         return (
             <div style={{marginBottom : 50}}>
                 <div className='unfinish-card'>
-                    <img src={unfinishImg} alt='unfinish' className='unfinish-image' />
+                    <img src={unfinihsData.image_url} alt='unfinish' className='unfinish-image' />
                     <div className='unfinish-status'>
                         <div className='status-desc'>
                             <b>{unfinihsData.name}</b>
@@ -255,7 +267,7 @@ const Dashboard = () => {
                         </button>
                     </div>
                 </div>
-                <div className='unfinish-rank'>
+                {/* <div className='unfinish-rank'>
                     <img src={badge} alt='badge' className='unfinish-badge' />
                     <div className='unfinish-rank-txt'>
                         Super Star Member
@@ -263,7 +275,7 @@ const Dashboard = () => {
                     <div className='unfinish-rank-num'>
                         {rank}
                     </div>
-                </div>
+                </div> */}
                 <div className='schedule-box-section'>
                     {renderSchedule()}
                 </div>
@@ -312,6 +324,25 @@ const Dashboard = () => {
         })
     }
 
+    const renderLoadCont = () => {
+        return [0,1,2,3].map(()=>{
+            return (
+                <LoadingContent/>
+            )
+        })
+    }
+
+    const renderContent = () => {
+        return contentData.map((e)=>{
+            console.log(e , ' <<< E')
+            return (
+                <ContentList
+                    data={e}
+                />
+            )
+        })
+    }
+
     return (
         <div className='root'>
             
@@ -344,6 +375,12 @@ const Dashboard = () => {
             
             {/* CONTENT */}
             <ContentSection searchStr={searchStr} setSearchStr={setSearchStr} />
+            <div style={{marginTop : 15}}>
+
+            </div>
+            {/* <ContentList/> */}
+            {contentData && !loadingLMS ? renderContent() : renderLoadCont() }
+            {/* {renderLoadCont()} */}
 
             {/* DIVIDER */}
             <div className='divider' />

@@ -101,25 +101,27 @@ u {
 }
 .tips-list {
     margin: 5px 0 60px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .tips-group {
     display: flex;
-    justify-content: center;
-    align-items: center;
     margin-bottom: 25px;
     cursor: pointer;
-    height: 200px;
+    height: 120px;
     /* object-fit: contain; */
 }
 .tips-book {
     /* width: 22.5%; */
-    width: 50%;
+    width: 200px;
     /* height: auto; */
     height: 100%;
     object-fit: cover;
 }
 .tips-desc {
     margin-left: 30px;
+    width: 300px;
     /* height: 200px; */
 }
 .tips-detail {
