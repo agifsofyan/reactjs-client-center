@@ -35,8 +35,7 @@ function FirstContent (props) {
         else return price
     }
 
-    useEffect(()=>{
-
+    let getByIndex = () => {
         let priceNum = 0
         let saleNum = 0
         // GET ORDER
@@ -84,6 +83,75 @@ function FirstContent (props) {
         .catch(err=>{
             console.log(err ,  ' <<< ERROR GET ORDER LIST')
         })
+    }
+
+    let getById = (id) => {
+        let priceNum = 0
+        let saleNum = 0
+        // GET ORDER
+        axios({
+            method : "GET",
+            url : `${SWAGGER_URL}/orders/self`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            console.log(data.data[0] , ' DATA ORDER')
+            let objH = data.data.filter(e=>e._id === id)
+            let arr = objH[0].items    
+            let bumpArr = []
+            let unique = objH[0].unique_number
+            // ecommerce
+            arr.forEach(e=>{
+                priceNum += e.product_info.price
+                saleNum += handleSaleEmpty(e.product_info.sale_price , e.product_info.price)
+                saleNum += e.bump_price
+                if (e && e.product_info && e.product_info.bump && e.is_bump) {
+                    bumpArr.push(...e.product_info.bump)
+                    if (e.product_info.bump[0]) {
+                        if (e.product_info.bump[0].bump_price) {
+                            saleNum += e.product_info.bump[0].bump_price
+                        }
+                    }
+                    // saleNum += e.product_info.bump[0].bump_price
+                }
+                // setBump(bumpArr)
+                // setPrice(priceNum)
+                // setSale(saleNum)
+                // e = {...e,isChecked : true}
+            })
+            let shipment = data.data[0].shipment
+            if (shipment) {
+                if (shipment.price && typeof shipment.price === 'number') {
+                    setShipmentPrice(shipment.price)
+                } 
+            }
+            setPrice(priceNum)
+            setSale(saleNum)
+            setDiskon(priceNum - saleNum)
+            // console.log(data.data[0] , ' <<< DATA ORDER >>>>')
+            setOrder(objH[0])
+            setUnique(unique)
+        })
+        .catch(err=>{
+            console.log(err ,  ' <<< ERROR GET ORDER LIST')
+        })
+    }
+
+    useEffect(()=>{
+
+        // ID ORDER PARAMS
+        let idOrPa = props.location.pathname.split('/')[2]
+
+        if (idOrPa) {
+            getById(idOrPa)
+        }else {
+            getByIndex()
+        }
+        
     },[])
 
     let renderItems = () => {

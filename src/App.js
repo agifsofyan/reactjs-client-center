@@ -206,6 +206,7 @@ function App () {
             <Route path="/change-password"component={ChangePass}/>
             <Route path="/forget-password" component={ResetPass}/>
             <Route path="/check-out" component={CheckOut}/>
+            <Route path="/check-out/:id" component={CheckOut}/>
             <Route 
               path="/product-detail/:slug" 
               component={ProductDetail}
@@ -217,6 +218,7 @@ function App () {
               // component={()=>localStorage.getItem('token') ? <Card/> : <CardNotLoggedIn/>}
             />
             <Route path="/transfer-confirm" component={TransferConfirm}/>
+            <Route path="/transfer-confirm/:id" component={TransferConfirm}/>
             <Route path="/payment=true" component={PaymentSuccess}/>
             <Route path="/order-history" component={OrderHistory}/>
             <Route path="/landing-page" component={LandingPage}/>

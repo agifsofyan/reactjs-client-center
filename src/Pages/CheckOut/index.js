@@ -20,7 +20,7 @@ import moneyConvert from '../../Support/moneyConvert'
 // STYLE
 import './style.css'
 
-function Order () {
+function Order (props) {
 
     // CALL HISTORY
     const history = useHistory()
@@ -58,6 +58,9 @@ function Order () {
 
     useEffect(()=>{
 
+        // ID ORDER PARAMS
+        let idOrPa = props.location.pathname.split('/')[2]
+
         let priceNum = 0
         let saleNum = 0
 
@@ -84,53 +87,60 @@ function Order () {
             }
         })
         .then(({data})=>{
-            console.log(data.data[0] , ' <<<<<< 77767667676')
-            let shipment = data.data[0].shipment
+
+            
+            
+            let shipment;
+            let arr;
+            let unique;
+            let bumpArr = []
+
+            if (idOrPa) {
+                let objH = data.data.filter(e=>e._id === idOrPa)
+                arr = objH[0].items
+                unique = objH[0].unique_number
+                shipment = objH[0].shipment
+            }else {
+                arr = data.data[0].items
+                unique = data.data[0].unique_number
+                shipment = data.data[0].shipment
+            }
+
             if (shipment) {
                 if (shipment.price && typeof shipment.price === 'number') {
-                    console.log(shipment.price , ' <<<<<<<<<<<<<<<<<<<<<<<<<<<< DARI API SHIPMENT')
                     setShipmentPrice(shipment.price)
                 } 
             }
-            console.log(data.data[0] , ' <<< ORDER VALUE')
-            let arr = data.data[0].items
-            console.log(arr.length , ' <<<< LENGTG ****&*&')
-            let bumpArr = []
-            let unique = data.data[0].unique_number
-            console.log(unique ,  ' <<<< UNIQUE')
-            // ecommerce
+
             arr.forEach(e=>{
-                // if (e.product_info.type === 'ecommerce') {
-                //     priceNum += (e.product_info.price * e.quantity)
-                //     saleNum += (e.product_info.sale_price * e.quantity)
-                // }else {
-                //     priceNum += (e.product_info.price )
-                //     saleNum += (e.product_info.sale_price )
-                // }
+                console.log(e , ' <<< FOR EACH')
                 priceNum += (e.product_info.price * e.quantity)
                 saleNum += (handleSaleEmpty(e.product_info.sale_price , e.product_info.price) * e.quantity)
-                
-                // saleNum += e.bump_price
-                // console.log(e.product_info.sale_price , ' <<<<<  0900909PRICE >>>>>>')
-                console.log(e ,' <<<< E >>>> XXXX')
                 if (e && e.product_info && e.product_info.bump && e.is_bump) {
                     bumpArr.push(...e.product_info.bump)
-                    console.log(e.product_info.bump[0].bump_price ,' +_+__________________________+')
-                    saleNum += e.product_info.bump[0].bump_price
+                    if (e.product_info.bump[0]) {
+                        if (e.product_info.bump[0].bump_price) {
+                            saleNum += e.product_info.bump[0].bump_price
+                        }
+                    }
                 }
             })
             
-            console.log(priceNum , ' <<<< PRICE NUM')
-            console.log(saleNum , ' <<<< SALE NUM 09090909')
+            if (!idOrPa) {
+                setOrder(data.data[0])
+            }else {
+                let objH = data.data.filter(e=>e._id === idOrPa)[0]
+                console.log(objH < " <<<< 88888 *****")
+                setOrder(objH)
+            }
+
             setPrice(priceNum)
             setSale(saleNum)
             setDiskon(priceNum - saleNum)
-            setOrder(data.data[0])
-            console.log(data.data[0] , ' <<<< VALUE ORDER SEKARANG HERE LOL &&*** 88( (**(* 998')
             setUnique(unique)
         })
         .catch(err=>{
-            console.log(err.response ,  ' <<< ERROR GET ORDER LIST')
+            console.log(err ,  ' <<< ERROR GET ORDER LIST')
         })
 
     },[])
@@ -240,11 +250,8 @@ function Order () {
             }
         })
         .then(({data})=>{
-            
-            console.log(data.data , ' <<< SUCCESS >>> )()()()()()(')
             let res = data.data;
             window.open(res.payment.invoice_url,"_self")
-            console.log('###################################################################')
         })
         .catch(err=>{
             console.log( {

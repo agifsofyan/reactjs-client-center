@@ -16,7 +16,9 @@ function List (props) {
     let renderData = () => {
         let cart = [0,1,2,3,4,5]
         let lastLength = order.items.length - 1
+        // console.log(order , ' < <<< VALUE ORDER HERE ***S')
         return order.items.map((e,index)=>{
+            // console.log(e , ' <<< VALUE E')
             return (
                 <div
                     style={{

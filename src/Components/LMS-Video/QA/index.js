@@ -6,6 +6,9 @@ import { useSelector } from 'react-redux'
 
 // MATERIAL ICONS
 import SendIcon from '@material-ui/icons/Send';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
 
 // COMPONENTS
 import Reply from './Reply'
@@ -84,6 +87,26 @@ function QA (props) {
         })
     }
 
+    let minLike = (id) => {
+        console.log(id , ' comment id')
+        axios({
+            method : 'POST',
+            // url : `${SWAGGER_URL}/contents`,
+            url : `${SWAGGER_URL}/comments/${id}/cancel-like`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            getData()
+        })
+        .catch(err=>{
+            console.log(err.response)
+        })
+    }
+
     let addReply = () => {
         axios({
             method : 'POST',
@@ -150,6 +173,35 @@ function QA (props) {
         }
     }
 
+    let renderLikeI = (e) => {
+        if (e.likes.length > 0 && userInfo && userInfo.user ) {
+            let checkArr = e.likes.filter(e2=>e2.liked_by._id === userInfo.user._id)
+            // console.log()
+            if (checkArr.length > 0) {
+                return (
+                    <FavoriteIcon
+                        style={{fontSize : 20,marginRight : 6,cursor : "pointer",color : "red"}}
+                        onClick={()=>minLike(e._id)}
+                    />
+                )
+            }else {
+                return (
+                    <FavoriteBorderIcon
+                        onClick={()=>addLike(e._id)}
+                        style={{fontSize : 20,marginRight : 6,cursor : "pointer"}}
+                    />
+                )
+            }
+        }else {
+            return (
+                <FavoriteBorderIcon
+                    onClick={()=>addLike(e._id)}
+                    style={{fontSize : 20,marginRight : 6,cursor : "pointer"}}
+                />
+            )
+        }
+    }
+
     return (
         <div className="cd-qa-13" id="comment-container-2" style={{margin: "0 0 70px 0"}}>
             {/* <div className="c1">
@@ -183,6 +235,7 @@ function QA (props) {
             </div>
             {
                 detailData && detailData.sort((a,b)=>new Date(b.created_at) - new Date(a.created_at)).map(e=>{
+                    console.log(e , ' <<< VALUE E HERE LOL')
                     return (
                         <div className="c3" key={e._id}>
 
@@ -203,18 +256,28 @@ function QA (props) {
                                     {e.comment}
                                 </div>
                                 <div className="d3">
+                                    {/* <i 
+                                        className="fa fa-heart" 
+                                        style={{ fontSize : 17, marginRight : 5}}
+                                    >
+
+                                    </i> */}
+                                    {
+                                        renderLikeI(e)
+                                    }
+                                    
                                     <div className="like">
                                         {e.likes.length} likes
                                     </div>
                                     <span onClick={()=>handleReply({ id : e._id, user : e.user})}>
                                         Jawab
                                     </span>
-                                    <div className="dot">
+                                    {/* <div className="dot">
                                         
                                     </div>
                                     <span onClick={()=>addLike(e._id)}>
                                         Setuju
-                                    </span>
+                                    </span> */}
                                 </div>
                                 {
                                     e.reactions.length > 0 &&

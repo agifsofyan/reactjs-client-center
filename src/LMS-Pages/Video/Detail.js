@@ -178,6 +178,54 @@ const Detail = (props) => {
         })
     }
 
+    const likeVideo = () => {
+        let id = props.location.pathname.split('/')[3]
+        // console.log('RUNNING ANJING')
+        axios({
+            method : 'POST',
+            // url : `${SWAGGER_URL}/contents`,
+            // url :  `${SWAGGER_URL}/userproducts?content_post_type=video&as_user=false&sortby=expired_date&sortval=desc` ,
+            url : `${SWAGGER_URL}/videos/${id}/likes`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            console.log("THIS FUNCTION HAS RUNNING")
+            getData()
+            toggleLike()
+        })
+        .catch(err=>{
+            console.log(err.response , " <<< ERROR RESPONSE")
+        })
+    }
+
+    const unlikeVideo = () => {
+        let id = props.location.pathname.split('/')[3]
+        // console.log('RUNNING ANJING')
+        axios({
+            method : 'POST',
+            // url : `${SWAGGER_URL}/contents`,
+            // url :  `${SWAGGER_URL}/userproducts?content_post_type=video&as_user=false&sortby=expired_date&sortval=desc` ,
+            url : `${SWAGGER_URL}/videos/${id}/cancel-likes`,
+            headers : {
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            }
+        })
+        .then(({data})=>{
+            console.log("THIS FUNCTION HAS RUNNING")
+            getData()
+            setLikedState(false)
+        })
+        .catch(err=>{
+            console.log(err.response , " <<< ERROR RESPONSE")
+        })
+    }
+
     const renderVideo = () => {
         // let val = video.filter(e=>e._id === queryId)
         let index = 0
@@ -213,7 +261,7 @@ const Detail = (props) => {
                             src={likeIcon} 
                             alt='like' 
                             style={{height:'30px'}} 
-                            onClick={e=>likeVideo()} 
+                            onClick={e=>likedState ? unlikeVideo () : likeVideo()} 
                         />
                         <div className='action-text' onClick={e=>likeVideo()}>
                             {video &&  video.likes && video.likes.length} Suka
@@ -285,30 +333,6 @@ const Detail = (props) => {
     const renderDate = (date) => {
         let arrM = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"]
         return "Diunggah Pada " +  new Date(date).getDate() + " " + arrM[new Date(date).getMonth()] + " " + new Date(date).getFullYear()
-    }
-
-    const likeVideo = () => {
-        let id = props.location.pathname.split('/')[3]
-        // console.log('RUNNING ANJING')
-        axios({
-            method : 'POST',
-            // url : `${SWAGGER_URL}/contents`,
-            // url :  `${SWAGGER_URL}/userproducts?content_post_type=video&as_user=false&sortby=expired_date&sortval=desc` ,
-            url : `${SWAGGER_URL}/videos/${id}/likes`,
-            headers : {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`,
-            }
-        })
-        .then(({data})=>{
-            console.log("THIS FUNCTION HAS RUNNING")
-            getData()
-            toggleLike()
-        })
-        .catch(err=>{
-            console.log(err.response , " <<< ERROR RESPONSE")
-        })
     }
 
     const [likes, setLikes] = useState(0);

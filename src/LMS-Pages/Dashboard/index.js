@@ -334,7 +334,7 @@ const Dashboard = () => {
 
     const renderContent = () => {
         return contentData.map((e)=>{
-            console.log(e , ' <<< E')
+            console.log(e , ' <<< E PER CONTENT HERE 7&&&')
             return (
                 <ContentList
                     data={e}

@@ -21,7 +21,6 @@ import './style.css'
 
 function OrderHistory () {
 
-
     // HISTORY
     const history = useHistory()
 
@@ -101,14 +100,14 @@ function OrderHistory () {
 
     }
 
-    let renderRoute = (status,slug) => {
+    let renderRoute = (status,slug,id) => {
         if (status === 'UNPAID') {
-            return "/check-out"
+            return `/check-out/${id}`
         }
         else if (status === "PAID") {
             return `/lms-home/${slug}`
         }else if (status === "PENDING") {
-            return "/check-out"
+            return `/check-out/${id}`
         }else if (status === "EXPIRED") {
             return "/product-list"
         }
@@ -116,10 +115,25 @@ function OrderHistory () {
         // console.log(renderRoute(status,slug) , ' <<< CONSOLE.LOG HERE')
     }
 
+    let handleClick = (status,slug,id,data) => {
+        if (status === 'UNPAID' && data.payment) {
+            if (data.payment.method) {
+                if (data.payment.method.name === "DANA INDONESIA") {
+                    window.open(data.payment.invoice_url,"_self")
+                }else if (data.payment.method.name === "BCA TRANSFER" || data.payment.method.name === "BNI TRANSFER") {
+                    history.push(`/transfer-confirm/${id}`)
+                }
+            }
+        }else {
+            history.push(renderRoute(status,slug,id))
+        }
+    }
+
     let renderData = () => {
         return data.map((e,index)=>{
             return e.items.map((e2,index)=>{
-                // console.log(e2 , ' << STATUS HERE ****** MOGA ADA SLUG')
+                console.log(e2 , ' << STATUS HERE ****** MOGA ADA SLUG')
+                console.log(e , ' <<<< FIND PAYMENT METHOD')
                 return (
                     <div 
                         className="c2" 
@@ -175,7 +189,8 @@ function OrderHistory () {
                         {/* {renderItems(e.items)} */}
     
                         <button 
-                            onClick={()=>history.push(renderRoute(e.status ,e2.product_info.slug))}
+                            // onClick={()=> history.push(renderRoute(e.status ,e2.product_info.slug,e._id))}
+                            onClick={()=> handleClick(e.status ,e2.product_info.slug,e._id,e) }
                             className="s5"
                         > 
                             {renderStatus2(e.status)}

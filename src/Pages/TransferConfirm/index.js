@@ -16,7 +16,7 @@ import logo from '../../Assets/Images/transfer.png'
 // STYLE
 import './style.css'
 
-function TransferBank () {
+function TransferBank (props) {
 
     // CALL HISTORY
     const history = useHistory()
@@ -183,6 +183,7 @@ function TransferBank () {
             <FirstContent
                 order={order}
                 setOrder={setOrder}
+                {...props}
             />
             <div className="transfer-08-t2">
                 2. Lakukan Pembayaran
