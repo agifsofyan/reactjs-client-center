@@ -36,8 +36,6 @@ const Dashboard = () => {
     const dataLMS = useSelector(state=>state.user.userLMS)
     const loadingLMS = useSelector(state=>state.user.loading)
 
-    console.log(dataLMS , ' <<< value data LMS HERE')
-
     // LOCAL STATE
     const [searchStr,setSearchStr] = useState("")
     const [storyData,setStoryData] = useState(null)
@@ -57,6 +55,8 @@ const Dashboard = () => {
     }, [dispatch,localStorage]);
 
     useEffect(()=>{
+	    console.log('useEffect-data', data);
+	    console.log('useEffect-dataLMS', dataLMS)
         if (dataLMS) {
             let data = dataLMS
             setStoryData(data.stories)
@@ -66,13 +66,9 @@ const Dashboard = () => {
         }
     },[dataLMS])
 
-    console.log(dataLMS , ' <<<< VALUE DATA LMS HERE LOL')
-
     let handleDescription = (text) => {
         return text.replace(/<\/?[^>]+(>|$)/g, "").slice(0,32) + "" + renderDot(text)
     }
-
-    console.log(unfinihsData , ' <<<< CONSOLE.LOG')
 
     // useEffect(()=>{
     //     axios({
@@ -208,7 +204,6 @@ const Dashboard = () => {
             }
             return data.map((el,index) => {
                 // const items = el.items;
-                console.log(el)
                 return (
                     <div
                         key={index}
@@ -236,7 +231,6 @@ const Dashboard = () => {
     };
 
     let searchAction = (e,str) => {
-        console.log(e , ' <<< VALUE E')
         return (
             e.toUpperCase().search( str.toUpperCase() ) >= 0 
         )
@@ -334,7 +328,6 @@ const Dashboard = () => {
 
     const renderContent = () => {
         return contentData.map((e)=>{
-            console.log(e , ' <<< E PER CONTENT HERE 7&&&')
             return (
                 <ContentList
                     data={e}
