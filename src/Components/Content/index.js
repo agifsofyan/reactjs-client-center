@@ -127,7 +127,6 @@ const ContentSection = (props) => {
                 result += "&topic="
             }
         })
-        console.log(result , ' << VALUE QUERY')
         return result
     }
 

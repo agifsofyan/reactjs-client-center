@@ -113,7 +113,6 @@ function App () {
           url : `${SWAGGER_URL}/products`
       })
       .then(({data})=>{
-          console.log(data.data , ' <<< VALUE DATA HERE &&&')
           data.data.forEach((e,index)=>{
             if (!e.price || !e.sale_price) {
             }
