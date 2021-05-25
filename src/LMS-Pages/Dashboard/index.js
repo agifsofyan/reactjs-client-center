@@ -55,7 +55,6 @@ const Dashboard = () => {
     }, [dispatch,localStorage]);
 
     useEffect(()=>{
-	    console.log('useEffect-data', data);
 	    console.log('useEffect-dataLMS', dataLMS)
         if (dataLMS) {
             let data = dataLMS
